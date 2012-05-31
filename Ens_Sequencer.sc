@@ -11,7 +11,9 @@
 };
 
 ~sequencer = Pseq([
-	Pfuncn({"________________".postln; 1 }, 1),
+	Pfuncn({"________________".postln; 0 }, 1),
+	Pfuncn({"Section 0".postln; 0 }, 1),
+	~sections[0]
 ], 1);
 )
 

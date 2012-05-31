@@ -5,7 +5,7 @@
 
 (
 ~cleanup = nil;
-~main_function = nil;
+~start_audio = nil;
 ~input = nil; 
 ~fx = nil; 
 ~output = nil; 
@@ -15,7 +15,7 @@
 
 fork{
 	~cleanup = fork{
-		postln("Cleaning up...");
+		postln("Cleaning up");
 		s.newAllocators;
 		~input.free; ~fx.free; ~output.free;
 		~master_fx_bus.free;
@@ -40,8 +40,8 @@ fork{
 		postln("Busses Set");
 		
 		// buffers
-		~buf_a = Buffer.alloc(s, s.sampleRate * 12.5, 1);
-		postln("Buffers Allocated");
+	//	~buf_a = Buffer.alloc(s, s.sampleRate * 12.5, 1);
+	//	postln("Buffers Allocated");
 		);
 		
 		////////////////////////////////////////////////////

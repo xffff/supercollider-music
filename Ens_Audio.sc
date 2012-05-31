@@ -1,0 +1,64 @@
+/************************************	*/
+/* Ensemble Piece		             	*/
+/*	AUDIO						*/
+/************************************	*/
+
+(
+~cleanup = nil;
+~main_function = nil;
+~input = nil; 
+~fx = nil; 
+~output = nil; 
+~master_fx_bus = nil; 
+~buf_a = nil;
+~dryaudio = nil;
+
+fork{
+	~cleanup = fork{
+		postln("Cleaning up...");
+		s.newAllocators;
+		~input.free; ~fx.free; ~output.free;
+		~master_fx_bus.free;
+		~buf_a.free;
+		~dryaudio.free;
+		s.sync; 
+		postln("Done cleaning up");
+	};
+	
+	0.05.wait; // make sure we're cleaned up before we do the rest
+	
+	~start_audio = fork{
+		(
+		// groups
+		~input = Group.new(s,\addToHead);   // from sampler
+		~fx = Group.new(s, \addToTail);     // fx chain
+		~output = Group.new(s, \addToTail); // output
+		postln("Groups Allocated");
+		
+		// busses
+		~master_fx_bus  = Bus.audio(s,~numfxchans); // fx bus
+		postln("Busses Set");
+		
+		// buffers
+		~buf_a = Buffer.alloc(s, s.sampleRate * 12.5, 1);
+		postln("Buffers Allocated");
+		);
+		
+		////////////////////////////////////////////////////
+		
+		// persistent synthdefs
+		(
+		~dryaudio = Synth(\dryaudio, 
+			[
+			\in, #[0,1,2,3,4,5,6,7], 
+			\amp, 1.0, 
+			\out, ~master_fx_bus,
+			], target: ~input, addAction: \addToHead);
+			
+			postln("Dry Audio On");
+			s.queryAllNodes;
+		);
+		
+	}; 
+};
+)

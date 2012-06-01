@@ -3146,7 +3146,7 @@ bfl
 0.0
 1
 -1
-bass flute.ordinario
+bass.flute.ordinario
 1
 0
 128
@@ -3919,7 +3919,7 @@ key 127
 1
 0.0
 -1
-bass flute.double flageolets
+bass.flute.double.flageolets
 1
 0
 128
@@ -4692,7 +4692,7 @@ key 127
 23
 0.0
 -1
-bass flute.jet whistle
+bass.flute.jet whistle
 1
 0
 128
@@ -5465,7 +5465,7 @@ key 127
 13
 0.0
 -1
-bass flute.key noise.press.closed
+bass.flute.key.noise.press.closed
 1
 0
 128
@@ -6238,7 +6238,7 @@ key 127
 24
 0.0
 -1
-bass flute.key noise.press.open
+bass.flute.key.noise.press.open
 1
 0
 128
@@ -7011,7 +7011,7 @@ key 127
 21
 0.0
 -1
-bass flute.multiphonic
+bass.flute.multiphonic
 1
 0
 128

@@ -25,7 +25,7 @@
 				\osccmd, \program,
 				\voicename, [\bfl,\vc,\vi],
 				\programname, 
-					#["bass flute.multiphonic",
+					#["bass.flute.multiphonic",
 					"violin.harmonic.artificial.fourth",
 					"violoncello.flautando"],
 				\dur, Pn(0.01,1)

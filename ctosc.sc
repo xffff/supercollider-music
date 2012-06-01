@@ -43,10 +43,10 @@ Event.addEventType(\ctosc, {|server|
 				latency = i * strum + lag;
 
 				if(latency == 0.0) {
-					oscout.sendBundle(latency, [osccmd, msgArgs].flat)
+					oscout.sendBundle(latency, [osccmd, msgArgs].flatten(1))
 				} {
 					thisThread.clock.sched(latency, {
-						oscout.sendBundle(latency, [osccmd, msgArgs].flat)
+						oscout.sendBundle(latency, [osccmd, msgArgs].flatten(1))
 					})
 				};
 				
@@ -54,15 +54,15 @@ Event.addEventType(\ctosc, {|server|
 				case 
 					{hasGate and: { osccmd === \noteon }} {
 					thisThread.clock.sched(sustain + latency, {
-						oscout.sendBundle(latency, [\noteoff, msgArgs].flat)
+						oscout.sendBundle(latency, [\noteoff, msgArgs].flatten(1))
 					})}
 					{hasGate and: { osccmd === \detuned_noteon }} {
 					thisThread.clock.sched(sustain + latency, {
-						oscout.sendBundle(latency, [\detuned_noteoff, msgArgs].flat)
+						oscout.sendBundle(latency, [\detuned_noteoff, msgArgs].flatten(1))
 					})}
 					{hasGate and: { osccmd === \ctnote }} {
 					thisThread.clock.sched(sustain + latency, {
-						oscout.sendBundle(latency, [\ctnoteoff, msgArgs].flat)
+						oscout.sendBundle(latency, [\ctnoteoff, msgArgs].flatten(1))
 					})};									
 		};
 	}

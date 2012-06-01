@@ -15,16 +15,49 @@
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
 ~load_patterns = fork {
-	~sections[0] = Ppar([
+	~sections[0] = Ptpar([
+		// first do program changes to initiate
+		0,
+		Pdef(\section0_pg, 
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \program,
+				\voicename, [\bfl,\vc,\vi],
+				\programname, 
+					["bass flute.multiphonic",
+					"violin.harmonic.artificial.fourth",
+					"violoncello.flautando"]
+				\dur, 0.01
+			)	
+			 
+		),
+		0.05,
 		Pdef(\section0_fl, 
 			Pfindur(~durations[0], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
-					\voicename, [\vi1,\va1],
-					\midinote, Ptuple([Pseg(Pseq((60..75),inf),5),Pseg(Pseq((60..75),inf),3)],inf),
-					\dur, 1/16,
+					\voicename, \fl,
+					\degree, Prand(Scale.lydian.degrees,inf),
+					\octave, 5,
+					\dur, Prand([1/4,1/2,1],inf),
+					\amp, Pexprand(0.75,1.0,inf)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section0_bfl, 
+			Pfindur(~durations[0], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \bfl,
+					\degree, Prand(Scale.lydian.degrees,inf),
+					\octave, 3,
+					\dur, Prand([1/4,1/2,1],inf),
 					\amp, Pexprand(0.75,1.0,inf)
 				)	
 			) 

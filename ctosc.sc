@@ -10,12 +10,12 @@ Event.addEventType(\ctosc, {|server|
 								[voicename, midinote, detune, asInteger((amp * 127).clip(0, 127))] },
 			\detuned_noteoff:  #{ arg voicename, midinote=60, detune=0;
 								[voicename, midinote, detune] },
-			\ctnote:			#{ arg voicenumber=0, noteid=0, midinote=60, amp=0.1, dur=0;
-								[voicenumber, noteid, midinote, asInteger((amp * 127).clip(0, 127)), dur] },
+			\ctnote:			#{ arg voicenumber=0, noteid=0, midinote=60, amp=0.1, duration=0;
+								[voicenumber, noteid, midinote, asInteger((amp * 127).clip(0, 127)), duration] },
 			\ctnoteoff:  		#{ arg noteid=0;
 								[noteid] },
-			\program:  		#{ arg voicename, progname; 
-								[ voicename, progname ] },
+			\program:  		#{ arg voicename, programname; 
+								[ voicename, programname ] },
 			\gain: 			#{ arg voicename, gain=0; // this is in dB 
 								[ voicename, gain ] },
 			\allNotesOff: 	#{ arg null=0; [null] },

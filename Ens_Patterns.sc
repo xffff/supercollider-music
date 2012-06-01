@@ -25,43 +25,42 @@
 				\osccmd, \program,
 				\voicename, [\bfl,\vc,\vi],
 				\programname, 
-					["bass flute.multiphonic",
+					#["bass flute.multiphonic",
 					"violin.harmonic.artificial.fourth",
-					"violoncello.flautando"]
-				\dur, 0.01
+					"violoncello.flautando"],
+				\dur, Pn(0.01,1)
 			)	
 			 
 		),
-		0.05,
-		Pdef(\section0_fl, 
-			Pfindur(~durations[0], 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \fl,
-					\degree, Prand(Scale.lydian.degrees,inf),
-					\octave, 5,
-					\dur, Prand([1/4,1/2,1],inf),
-					\amp, Pexprand(0.75,1.0,inf)
-				)	
-			) 
-		),
-		0.05,
-		Pdef(\section0_bfl, 
-			Pfindur(~durations[0], 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \bfl,
-					\degree, Prand(Scale.lydian.degrees,inf),
-					\octave, 3,
-					\dur, Prand([1/4,1/2,1],inf),
-					\amp, Pexprand(0.75,1.0,inf)
-				)	
-			) 
-		)
+//		0.05,
+//		Pdef(\section0_fl, 
+//			Pfindur(~durations[0], 
+//				Pbind(
+//					\type, \ctosc, 
+//					\oscout, ~osc_destination,
+//					\osccmd, \noteon,
+//					\voicename, \fl,
+//					\degree, Prand(Scale.lydian.degrees,inf),
+//					\octave, 5,
+//					\dur, Prand([1/4,1/2,1],inf),
+//					\amp, Pexprand(0.75,1.0,inf)
+//				)	
+//			) 
+//		),
+//		0.05,
+//		Pdef(\section0_bfl, 
+//			Pfindur(~durations[0], 
+//				Pbind(
+//					\type, \ctosc, 
+//					\oscout, ~osc_destination,
+//					\osccmd, \noteon,
+//					\voicename, \bfl,
+//					\midinote, 127, // 241-3
+//					\dur, ~durations[0],
+//					\amp, Pexprand(0.75,1.0,inf)
+//				)	
+//			) 
+//		)
 	], 1);			
 };
 

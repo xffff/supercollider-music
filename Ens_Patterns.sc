@@ -80,7 +80,7 @@
 	
 	~sections[1] = Ptpar([
 		0,
-		Pdef(\section0_pg, 
+		Pdef(\section1_pg, 
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -95,7 +95,7 @@
 			 
 		),
 		0.05,
-		Pdef(\section0_sx1, 
+		Pdef(\section1_sx1, 
 			Pfindur(~durations[0], 
 				Pbind(
 					\type, \ctosc, 
@@ -103,13 +103,13 @@
 					\osccmd, \noteon,
 					\voicename, \sx1,
 					\midinote, 105, 
-					\dur, Pn(2,1),
-					\amp, Pexprand(0.1,0.25,inf)
+					\dur, Pn(8,1),
+					\amp, Pexprand(0.1,0.5,inf)
 				)	
 			) 
-		)
+		),
 		0.05,
-		Pdef(\section0_vi1, 
+		Pdef(\section1_vi1, 
 			Pfindur(~durations[0], 
 				Pbind(
 					\type, \ctosc, 
@@ -117,23 +117,22 @@
 					\osccmd, Pseq([\rest,Pn(\noteon,1)],1),
 					\voicename, \vi1,
 					\midinote, 
-						Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}), 
-					\dur, Pseq([2,8],inf),
-					\amp, Pexprand(0.1,0.25,inf)
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 					\dur, Pseq([2,8],inf),
+					\amp, Pexprand(0.1,0.5,inf)
 				)	
 			) 
-		)
+		),
 		0.05,
-		Pdef(\section0_vi2, 
+		Pdef(\section1_vi2, 
 			Pfindur(~durations[0], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,Pn(\noteon,1)],1),
 					\voicename, \vi2,
-					\midinote, 											Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}), 
+					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 
 					\dur, Pseq([2,8],inf),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	

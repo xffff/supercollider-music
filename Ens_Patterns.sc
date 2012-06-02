@@ -25,12 +25,10 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bfl,\vi1,\va1,\vc],
+				\voicename, [\fl,\bfl],
 				\programname, 
-					#["bass.flute.multiphonic",
-					"violin.harmonic.artificial.fourth",
-					"viola.harmonic.artificial.fourth",
-					"violoncello.flautando"],
+					#["flute.air noise.closed.vowel.varied",
+					"bass.flute.multiphonic"],
 				\dur, Pn(0.01,1)
 			)	
 			 
@@ -43,55 +41,41 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \fl,
-					\midinote, 93+Pseq([2,3,0],inf),
-					\dur, Pseq([8,4,4],inf),
-					\amp, Pexprand(0.1,0.2,inf)
+					\midinote, 69+Pseq([0,2],inf),
+					\dur, Pseq([16,8,8,8],inf),
+					\legato, 0.75,
+					\amp, Pexprand(0.75,1.0,inf)
 				)	
 			) 
 		),
 		0.05,
-		Pdef(\section0_bclbfl, 
+		Pdef(\section0_bfl, 
 			Pfindur(~durations[0], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
-					\voicename, [\bcl,\bfl],
-					\midinote, 81+Pseq([2,3,0],inf), 
-					\dur, Pseq([8,4,4],inf),
+					\voicename, \bfl,
+					\midinote, 81+Pseq([0,2,3],inf), 
+					\dur, Pseq([16,8,8,4],inf),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			) 
 		),
 		0.05,
-		Pdef(\section0_vi1va, 
+		Pdef(\section0_bcl, 
 			Pfindur(~durations[0], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
-					\voicename, [\vi1,\va1],
-					\midinote, 96+[0,4,7]+Pseq([2,3,0],inf),
-					\dur,  Pseq([8,4,4],inf),
-					\amp, Pexprand(0.25,0.5,inf)
-				)	
-			) 
-		),
-		0.05,
-		Pdef(\section0_vc, 
-			Pfindur(~durations[0], 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \vc,
-					\midinote, 57+Pseq([2,3,0],inf),
-					\dur, Pseq([8,4,4],inf),
-					\amp, Pexprand(0.25,0.5,inf)
+					\voicename, \bcl,
+					\midinote, 81, 
+					\dur, Pn(~durations[0],1),
+					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			) 
 		)
-
 
 	], 1);			
 };

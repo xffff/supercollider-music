@@ -27,7 +27,7 @@
 				\osccmd, \program,
 				\voicename, [\fl,\bfl],
 				\programname, 
-					#["flute.air noise.closed.vowel.varied",
+					#["flute.air noise.closed.vowel varied",
 					"bass.flute.multiphonic"],
 				\dur, Pn(0.01,1)
 			)	
@@ -68,10 +68,10 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, \noteon,
+					\osccmd, Pseq([\rest,\noteon],inf),
 					\voicename, \bcl,
 					\midinote, 81, 
-					\dur, Pn(~durations[0],1),
+					\dur, Pseq([8,Pn(16,inf)],inf),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			) 

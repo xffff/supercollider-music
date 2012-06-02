@@ -32,17 +32,9 @@ fork{
 	};
 	
 	0.05.wait;
-	
+		
 	////////////////////////////////////////////////////
-	~osc_setup = fork{
-		thisProcess.interpreter.executeFile(~path ++ "/ctosc.sc"); // conTimbre osc event type
-		~osc_destination = NetAddr("127.0.0.1", 7050);
-	};
-	
-	////////////////////////////////////////////////////
-	
-	0.05.wait; 
-	
+		
 	~begin_playback = fork{
 			s.waitForBoot(
 				postln("/****************************************************/");
@@ -51,7 +43,11 @@ fork{
 				postln("/****************************************************/");
 				postln(""); postln("");
 				postln("STARTUP...");
-				postln("________________");
+				postln("________________");		
+				postln("Setting up OSC... ");
+				~osc_setup = fork{
+					thisProcess.interpreter.executeFile(~path ++ "/ctosc.sc"); 					~osc_destination = NetAddr("127.0.0.1", 7050);
+				};
 				postln("Loading Synths... ");
 				thisProcess.interpreter.executeFile(~path ++ "/Ens_Synths.sc");
 				0.5.wait;

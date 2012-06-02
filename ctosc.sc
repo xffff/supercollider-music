@@ -19,7 +19,8 @@ Event.addEventType(\ctosc, {|server|
 			\gain: 			#{ arg voicename, gain=0; // this is in dB 
 								[ voicename, gain ] },
 			\allNotesOff: 	#{ arg null=0; [null] },
-			\kammerton: 		#{arg freq=442; [freq]}
+			\kammerton: 		#{ arg freq=442; [freq]},
+			\rest:			#{ arg null=0; [null]}
 	);
 		
 	freqs = ~freq = ~detunedFreq.value;
@@ -41,14 +42,17 @@ Event.addEventType(\ctosc, {|server|
 				var latency;
 
 				latency = i * strum + lag;
-
-				if(latency == 0.0) {
-					oscout.sendBundle(latency, [osccmd, msgArgs].flatten(1))
-				} {
-					thisThread.clock.sched(latency, {
+				
+				// don't send anything if type is \rest 
+				if(osccmd!=\rest,{
+					if(latency == 0.0) {
 						oscout.sendBundle(latency, [osccmd, msgArgs].flatten(1))
-					})
-				};
+					} {
+						thisThread.clock.sched(latency, {
+							oscout.sendBundle(latency, [osccmd, msgArgs].flatten(1))
+						})
+					}
+				});
 				
 				// automatically deal with noteoff messages for each note-type
 				case 

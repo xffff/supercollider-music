@@ -76,8 +76,70 @@
 				)	
 			) 
 		)
-
-	], 1);			
+	], 1);
+	
+	~sections[1] = Ptpar([
+		0,
+		Pdef(\section0_pg, 
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \program,
+				\voicename, [\sx1,\vi1,\vi2],
+				\programname, 
+					#["alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
+					"violin.harmonic.artificial.fourth",
+					"violin.harmonic.artificial.fourth"],
+				\dur, Pn(0.01,1)
+			)	
+			 
+		),
+		0.05,
+		Pdef(\section0_sx1, 
+			Pfindur(~durations[0], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \sx1,
+					\midinote, 105, 
+					\dur, Pn(2,1),
+					\amp, Pexprand(0.1,0.25,inf)
+				)	
+			) 
+		)
+		0.05,
+		Pdef(\section0_vi1, 
+			Pfindur(~durations[0], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Pn(\noteon,1)],1),
+					\voicename, \vi1,
+					\midinote, 
+						Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}), 
+					\dur, Pseq([2,8],inf),
+					\amp, Pexprand(0.1,0.25,inf)
+				)	
+			) 
+		)
+		0.05,
+		Pdef(\section0_vi2, 
+			Pfindur(~durations[0], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Pn(\noteon,1)],1),
+					\voicename, \vi2,
+					\midinote, 											Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}), 
+					\dur, Pseq([2,8],inf),
+					\amp, Pexprand(0.1,0.25,inf)
+				)	
+			) 
+		)
+	], 1)			
 };
 
 )

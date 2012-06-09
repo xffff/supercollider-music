@@ -14,6 +14,7 @@
 
 ~durations[0] = 60;
 ~durations[1] = 50;
+~durations[2] = 50;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -123,7 +124,7 @@
 					\osccmd, Prand([\noteon,\rest],inf),
 					\voicename, \bfl,
 					\midinote, Prand([49,52,53,56,59,62],inf), 
-					\dur, Prand([16,8,8,4],inf),
+					\dur, Prand([16,8,32],inf),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			) 
@@ -258,20 +259,20 @@
 					\voicename, \cb,
 					\midinote, Pn(38,inf), 
 					\dur, Pseq([16,Prand([32,16,8],inf)],inf),
-					\amp, Pexprand(0.5,0.7,inf)
+					\amp, Pexprand(0.5,1.0,inf)
 				)	
 			) 
 		),
 		0.05,
-		Pdef(\section1_sx1, 
-			Pfindur(~durations[1], 
+		Pdef(\section2_sx1, 
+			Pfindur(~durations[2], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \sx1,
-					\midinote, Pseq([107,108],1), 
-					\dur, Pseq([16,16],1),
+					\midinote, 107, 
+					\dur, Pn(16,1),
 					\amp, Pexprand(0.0,1.0,2)
 				)	
 			) 

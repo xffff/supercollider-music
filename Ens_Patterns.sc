@@ -164,7 +164,7 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
-					\voicename, \sx1,
+					\voicename, \sx2,
 					\midinote, 107, 
 					\dur, Pn(8,1),
 					\amp, 0.25
@@ -256,9 +256,9 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \cb,
-					\midinote, Pseq([45,Pn(26,inf)],1), 
+					\midinote, Pseq([45,Pn(38,inf)],1), 
 					\dur, Pseq([16,Prand([32,16,8],inf)],inf),
-					\amp, Pexprand(0.5,0.95,inf)
+					\amp, Pexprand(0.5,0.7,inf)
 				)	
 			) 
 		),

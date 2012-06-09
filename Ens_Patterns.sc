@@ -80,8 +80,8 @@
 			) 
 		),
 		0.05,
-		Pdef(\section1_va1, 
-			Pfindur(~durations[1], 
+		Pdef(\section0_va1, 
+			Pfindur(~durations[0], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -93,6 +93,19 @@
 					\amp, Pexprand(0.1,0.5,inf)
 				)	
 			) 
+		),
+		0.05,
+		Pdef(\section0_fx1,
+			Pfindur(~durations[0],
+				Pbind(
+					\instrument, Pseq([\recbuf,\freeze],inf),
+					\in, [~master_fx_bus.subBus(0,1), //fl
+							~master_fx_bus.subBus(1,1), //bcl
+							~master_fx_bus.subBus(5,1)] //str
+					\out, 7,
+					\dur, Pseq([2,Pfuncn({10.rand},1)],inf)
+				)
+			)
 		)
 	], 1);
 	

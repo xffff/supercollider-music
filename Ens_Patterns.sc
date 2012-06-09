@@ -106,7 +106,7 @@
 				\programname, 
 					#["bass.flute.jet whistle",
 					"alto saxophone.slap.percussive slap",
-					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
+				//	"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 					"violin.harmonic.artificial.fourth",
 					"violin.harmonic.artificial.fourth",
 					"viola.harmonic.artificial.fourth",
@@ -158,14 +158,14 @@
 			) 
 		),
 		0.05,
-		Pdef(\section1_sx2, 
+		Pdef(\section1_tam, 
 			Pfindur(~durations[1], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
-					\voicename, \sx2,
-					\midinote, 107, 
+					\voicename, \tam,
+					\midinote, 67, 
 					\dur, Pn(8,1),
 					\amp, 0.25
 				)	
@@ -256,7 +256,7 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \cb,
-					\midinote, Pseq([45,Pn(38,inf)],1), 
+					\midinote, Pn(38,inf), 
 					\dur, Pseq([16,Prand([32,16,8],inf)],inf),
 					\amp, Pexprand(0.5,0.7,inf)
 				)	

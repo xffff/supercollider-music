@@ -109,9 +109,10 @@ SynthDef(\fbdelay,{ | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1,
 //}).add;
 
 SynthDef(\freeze, { | bufnum = 0, out = 0, rate = 1, freq = 10, bufdur = 2,
-					asr = #[0.1,0.1,0.1], amp = 0.1, levels = #[0.1, 0.5, 0.5, 0.9], 
-					times = #[1, 2, 1] | 
-	var env = EnvGen.ar(Env.linen(asr[0],asr[1],asr[2],amp), doneAction:2);
+					atk = 0, sus = 0, rel = 0, amp = 0.1, 
+					levels = #[0.1, 0.5, 0.5, 0.9], times = #[1, 2, 1] | 
+	var rdur = times[0]+times[1]+times[2];
+	var env = EnvGen.ar(Env.linen(atk/rdur,sus/rdur,rel/rdur,amp), doneAction:2);
 	var tfreq = 44;
 	var trig = Impulse.kr(tfreq);
 	var center = EnvGen.kr(

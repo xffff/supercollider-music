@@ -65,5 +65,5 @@ fork{
 			~sequencer_stream = ~sequencer.play;
 	};
 };
-)
-//s.queryAllNodes;
+);
+s.queryAllNodes;

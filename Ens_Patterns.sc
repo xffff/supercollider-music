@@ -90,7 +90,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=85}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
-					\amp, Pexprand(0.1,0.5,inf)
+					\amp, Pexprand(0.1,0.7,inf)
 				)	
 			) 
 		),
@@ -100,14 +100,14 @@
 				Pbind(
 					\instrument, Pseq([\recbuf,\freeze],inf),
 					\group, ~fx,
-					\in, #[~master_fx_bus.subBus(0,1), //fl
-							~master_fx_bus.subBus(1,1), //bcl
-							~master_fx_bus.subBus(5,1)], //str
+					\in, ~master_fx_bus.subBus(5,1),//str
 					\bufnum, ~freeze_bufa,
 					\bufdur, 2,
 					\out, 8,
-					\dur, Pseq([2,Pfuncn({16.rand+1},1)],inf),
-					\amp, 1.0//Pexprand(0.01,1.0,inf)
+					\dur, Pseq([2,16],inf),
+					\times, #[3,3,3]
+					\amp, Pexprand(0.1,0.8,inf),
+					\sus, Pkey(\dur)
 				)
 			)
 		)
@@ -247,6 +247,23 @@
 					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			) 
+		),
+		0.05,
+		Pdef(\section1_fx1,
+			Pfindur(~durations[1],
+				Pbind(
+					\instrument, Pseq([\recbuf,\freeze],inf),
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(5,1),//str
+					\bufnum, ~freeze_bufa,
+					\bufdur, 2,
+					\out, 8,
+					\dur, Pseq([2,16],inf),
+					\times, #[3,3,3]
+					\amp, Pexprand(0.1,0.8,inf),
+					\sus, Pkey(\dur)
+				)
+			)
 		)
 
 	], 1);
@@ -321,7 +338,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
 					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.25,inf)
+					\amp, Pexprand(0.1,0.5,inf)
 				)	
 			) 
 		),
@@ -351,7 +368,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 
 					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.25,inf)
+					\amp, Pexprand(0.1,0.5,inf)
 				)	
 			) 
 		),

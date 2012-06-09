@@ -228,7 +228,7 @@
 				\osccmd, \program,
 				\voicename, [\cb],
 				\programname, 
-					#["double bass.pizzicato.bartok"],
+					#["double bass.molto sul ponticello"],
 				\dur, Pn(0.01,1)
 			)	
 			 
@@ -239,11 +239,71 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \cb,
+					\midinote, Pseq([45,38],1), 
+					\dur, Pseq([16,16],1),
+					\amp, Pexprand(0.1,0.25,inf)
+				)	
+			) 
+		),
+				0.05,
+		Pdef(\section1_vi1, 
+			Pfindur(~durations[1], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\voicename, \vi1,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 							\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.1,0.5,inf)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section1_vi2, 
+			Pfindur(~durations[1], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\voicename, \vi2,
+					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 
+					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.1,0.25,inf)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section1_va1, 
+			Pfindur(~durations[1], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\voicename, \va1,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=73}),inf), 							\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.1,0.5,inf)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section1_va2, 
+			Pfindur(~durations[1], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 					\voicename, \va2,
-					\midinote, Pseq([45,38],1), 
-					\dur, Pseq([Pn(6,1),Pn(1,1)],1),
-					\amp, 1.0
+					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=73}),inf), 
+					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			) 
 		)

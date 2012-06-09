@@ -106,7 +106,7 @@
 						\bufnum, ~freeze_bufa,
 						\bufdur, 2,
 						\out, 8,
-						\dur, Pseq([2,15],inf),
+						\dur, Pseq([15,15],inf),
 						\times, [5,5,5],
 						\amp, Pexprand(0.1,0.8,inf),
 						\sus, Pkey(\dur)
@@ -119,7 +119,7 @@
 						\bufnum, ~freeze_bufa,
 						\bufdur, 2,
 						\out, 8,
-						\dur, Pseq([2,15],inf),
+						\dur, Pseq([15,15],inf),
 						\times, [5,5,5],
 						\amp, Pexprand(0.1,0.8,inf),
 						\sus, Pkey(\dur)
@@ -275,12 +275,12 @@
 						\bufnum, ~freeze_bufa,
 						\bufdur, 2,
 						\out, 8,
-						\dur, Pseq([2,15],inf),
+						\dur, Pseq([15,15],inf),
 						\times, [5,5,5],
 						\amp, Pexprand(0.1,0.8,inf),
 						\sus, Pkey(\dur)
 					),
-					2,
+					15,
 					Pbind(
 						\instrument, Pseq([\recbuf,\freeze],inf),
 						\group, ~fx,
@@ -288,7 +288,7 @@
 						\bufnum, ~freeze_bufa,
 						\bufdur, 2,
 						\out, 8,
-						\dur, Pseq([2,15],inf),
+						\dur, Pseq([15,15],inf),
 						\times, [5,5,5],
 						\amp, Pexprand(0.1,0.8,inf),
 						\sus, Pkey(\dur)

@@ -106,6 +106,7 @@
 				\programname, 
 					#["bass.flute.jet whistle",
 					"alto saxophone.slap.percussive slap",
+					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 					"violin.harmonic.artificial.fourth",
 					"violin.harmonic.artificial.fourth",
 					"viola.harmonic.artificial.fourth",
@@ -153,6 +154,20 @@
 					\midinote, Pseq([50,51],32), 
 					\dur, Pn(1/16,32),
 					\amp, Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section1_sx2, 
+			Pfindur(~durations[1], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \sx1,
+					\midinote, 107, 
+					\dur, Pn(8,1),
+					\amp, 0.25
 				)	
 			) 
 		),
@@ -241,15 +256,15 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \cb,
-					\midinote, Pseq([45,Pn(38,inf)],1), 
+					\midinote, Pseq([45,Pn(26,inf)],1), 
 					\dur, Pseq([16,Prand([32,16,8],inf)],inf),
 					\amp, Pexprand(0.5,0.95,inf)
 				)	
 			) 
 		),
 				0.05,
-		Pdef(\section1_vi1, 
-			Pfindur(~durations[1], 
+		Pdef(\section2_vi1, 
+			Pfindur(~durations[2], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -263,8 +278,8 @@
 			) 
 		),
 		0.05,
-		Pdef(\section1_vi2, 
-			Pfindur(~durations[1], 
+		Pdef(\section2_vi2, 
+			Pfindur(~durations[2], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -278,8 +293,8 @@
 			) 
 		),
 		0.05,
-		Pdef(\section1_va1, 
-			Pfindur(~durations[1], 
+		Pdef(\section2_va1, 
+			Pfindur(~durations[2], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -293,8 +308,8 @@
 			) 
 		),
 		0.05,
-		Pdef(\section1_va2, 
-			Pfindur(~durations[1], 
+		Pdef(\section2_va2, 
+			Pfindur(~durations[2], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,

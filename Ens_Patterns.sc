@@ -106,7 +106,6 @@
 				\programname, 
 					#["bass.flute.jet whistle",
 					"alto saxophone.slap.percussive slap",
-				//	"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 					"violin.harmonic.artificial.fourth",
 					"violin.harmonic.artificial.fourth",
 					"viola.harmonic.artificial.fourth",
@@ -167,7 +166,7 @@
 					\voicename, \tam,
 					\midinote, 67, 
 					\dur, Pn(16,1),
-					\amp, 1.0
+					\amp, Pexprand(0.5,1.0,1)
 				)	
 			) 
 		),
@@ -241,9 +240,10 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\cb],
+				\voicename, [\cb,\sx1],
 				\programname, 
-					#["double bass.molto sul ponticello"],
+					#["double bass.molto sul ponticello"
+					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II"],
 				\dur, Pn(0.01,1)
 			)	
 			 
@@ -262,7 +262,21 @@
 				)	
 			) 
 		),
-				0.05,
+		0.05,
+		Pdef(\section1_sx1, 
+			Pfindur(~durations[1], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \sx1,
+					\midinote, Pseq([107,108],1), 
+					\dur, Pseq([16,16],1),
+					\amp, Pexprand(0.0,1.0,2)
+				)	
+			) 
+		),
+		0.05,
 		Pdef(\section2_vi1, 
 			Pfindur(~durations[2], 
 				Pbind(

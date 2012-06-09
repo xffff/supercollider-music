@@ -88,7 +88,7 @@
 					\voicename, \va1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=85}),inf), 							\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+							n>=85}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
 					\amp, Pexprand(0.1,0.5,inf)
 				)	
 			) 
@@ -105,7 +105,7 @@
 				\voicename, [\bfl,\sx1,\vi1,\vi2,\va1,\va2],
 				\programname, 
 					#["bass.flute.jet whistle",
-					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
+					"alto saxophone.slap.percussive slap",
 					"violin.harmonic.artificial.fourth",
 					"violin.harmonic.artificial.fourth",
 					"viola.harmonic.artificial.fourth",
@@ -150,9 +150,9 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \sx1,
-					\midinote, 105, 
-					\dur, Pn(6,1),
-					\amp, Pexprand(0.2,0.75,inf)
+					\midinote, Pseq([50,51],32), 
+					\dur, Pn(1/12,32),
+					\amp, Pseg([0.2,1,0.0],1/12*[16,16])
 				)	
 			) 
 		),
@@ -196,7 +196,7 @@
 					\voicename, \va1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=73}),inf), 							\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+							n>=73}),inf), 							\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.1,0.5,inf)
 				)	
 			) 
@@ -211,7 +211,7 @@
 					\voicename, \va2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 
-					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			) 
@@ -241,9 +241,9 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \cb,
-					\midinote, Pseq([45,38],1), 
-					\dur, Pseq([16,16],1),
-					\amp, Pexprand(0.1,0.25,inf)
+					\midinote, Pseq([45,Pn(38,inf)],1), 
+					\dur, Pseq([16,Prand([32,16,8],inf)],inf),
+					\amp, Pexprand(0.1,0.95,inf)
 				)	
 			) 
 		),

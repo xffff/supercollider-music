@@ -134,7 +134,7 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
+					\osccmd, Pwrand([\rest,\noteon],[0.25,0.75],inf),
 					\voicename, \bcl,
 					\midinote, Pwrand([81,86,74],[0.8,0.2,0.2],inf), 
 					\dur, Pseq([8,Prand([4,8,16],inf)],inf),

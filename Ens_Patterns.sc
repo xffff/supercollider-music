@@ -166,8 +166,8 @@
 					\osccmd, \noteon,
 					\voicename, \tam,
 					\midinote, 67, 
-					\dur, Pn(8,1),
-					\amp, 0.25
+					\dur, Pn(16,1),
+					\amp, 1.0
 				)	
 			) 
 		),

@@ -151,8 +151,8 @@
 					\osccmd, \noteon,
 					\voicename, \sx1,
 					\midinote, Pseq([50,51],32), 
-					\dur, Pn(1/12,32),
-					\amp, Pseg([0.2,1,0.0],1/12*[16,16])
+					\dur, Pn(1/16,32),
+					\amp, Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))
 				)	
 			) 
 		),
@@ -243,7 +243,7 @@
 					\voicename, \cb,
 					\midinote, Pseq([45,Pn(38,inf)],1), 
 					\dur, Pseq([16,Prand([32,16,8],inf)],inf),
-					\amp, Pexprand(0.1,0.95,inf)
+					\amp, Pexprand(0.5,0.95,inf)
 				)	
 			) 
 		),
@@ -253,7 +253,7 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\osccmd, Prand([\rest,\noteon],inf),
 					\voicename, \vi1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
@@ -268,7 +268,7 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\osccmd, Prand([\rest,\noteon],inf),
 					\voicename, \vi2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
@@ -283,7 +283,7 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\osccmd, Prand([\rest,\noteon],inf),
 					\voicename, \va1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
@@ -298,7 +298,7 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\osccmd, Prand([\rest,\noteon],inf),
 					\voicename, \va2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 

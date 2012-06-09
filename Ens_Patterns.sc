@@ -95,20 +95,35 @@
 			) 
 		),
 		0.05,
-		Pdef(\section0_fx1,
+		Pdef(\section0_freeze,
 			Pfindur(~durations[0],
-				Pbind(
-					\instrument, Pseq([\recbuf,\freeze],inf),
-					\group, ~fx,
-					\in, ~master_fx_bus.subBus(5,1),//str
-					\bufnum, ~freeze_bufa,
-					\bufdur, 2,
-					\out, 8,
-					\dur, Pseq([2,16],inf),
-					\times, #[3,3,3]
-					\amp, Pexprand(0.1,0.8,inf),
-					\sus, Pkey(\dur)
-				)
+				Ptpar([
+					0,
+					Pbind(
+						\instrument, Pseq([\recbuf,\freeze],inf),
+						\group, ~fx,
+						\in, ~master_fx_bus.subBus(5,1),//str
+						\bufnum, ~freeze_bufa,
+						\bufdur, 2,
+						\out, 8,
+						\dur, Pseq([2,15],inf),
+						\times, [5,5,5],
+						\amp, Pexprand(0.1,0.8,inf),
+						\sus, Pkey(\dur)
+					),
+					2,
+					Pbind(
+						\instrument, Pseq([\recbuf,\freeze],inf),
+						\group, ~fx,
+						\in, ~master_fx_bus.subBus(5,1),//str
+						\bufnum, ~freeze_bufa,
+						\bufdur, 2,
+						\out, 8,
+						\dur, Pseq([2,15],inf),
+						\times, [5,5,5],
+						\amp, Pexprand(0.1,0.8,inf),
+						\sus, Pkey(\dur)
+				)],1).trace
 			)
 		)
 	], 1);
@@ -259,7 +274,7 @@
 					\bufdur, 2,
 					\out, 8,
 					\dur, Pseq([2,16],inf),
-					\times, #[3,3,3]
+					\times, #[3,3,3],
 					\amp, Pexprand(0.1,0.8,inf),
 					\sus, Pkey(\dur)
 				)

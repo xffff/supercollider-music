@@ -29,7 +29,8 @@
 				\voicename, [\fl,\bfl],
 				\programname, 
 					#["flute.air noise.closed.vowel varied",
-					"bass.flute.multiphonic"],
+					"bass.flute.multiphonic",
+					"viola.harmonic.artificial.fourth"],
 				\dur, Pn(0.01,1)
 			)	
 			 
@@ -74,6 +75,21 @@
 					\midinote, 81, 
 					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
 					\amp, Pexprand(0.1,0.25,inf)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section1_va1, 
+			Pfindur(~durations[1], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\voicename, \va1,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=85}),inf), 							\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.1,0.5,inf)
 				)	
 			) 
 		)
@@ -135,7 +151,7 @@
 					\osccmd, \noteon,
 					\voicename, \sx1,
 					\midinote, 105, 
-					\dur, Pn(4,1),
+					\dur, Pn(6,1),
 					\amp, Pexprand(0.2,0.75,inf)
 				)	
 			) 

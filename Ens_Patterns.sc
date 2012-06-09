@@ -99,11 +99,15 @@
 			Pfindur(~durations[0],
 				Pbind(
 					\instrument, Pseq([\recbuf,\freeze],inf),
-					\in, [~master_fx_bus.subBus(0,1), //fl
+					\group, ~fx,
+					\in, #[~master_fx_bus.subBus(0,1), //fl
 							~master_fx_bus.subBus(1,1), //bcl
 							~master_fx_bus.subBus(5,1)], //str
-					\out, 7,
-					\dur, Pseq([2,Pfuncn({10.rand},1)],inf)
+					\bufnum, ~freeze_bufa,
+					\bufdur, 2,
+					\out, 8,
+					\dur, Pseq([2,Pfuncn({16.rand+1},1)],inf),
+					\amp, 1.0//Pexprand(0.01,1.0,inf)
 				)
 			)
 		)

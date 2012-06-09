@@ -68,6 +68,8 @@ SynthDef(\convolve, { | in = 0, out = 0.1, atk = 0.1, sus = 0.1, rel = 0.1,
 	Out.ar(out,sound*env);
 }).add;
 
+// partconv
+
 SynthDef(\distortion, { | in = 0, out = 0, amount = 0, amp = 0, atk = 10, 
 						sus = 10, rel = 10, dur = 10 |
 	var sound, k, env;
@@ -121,7 +123,6 @@ SynthDef(\freeze, { | bufnum = 0, bufdur = 0, out = 0, rate = 1, freq = 10,
 		centerPos: center, dur: graindur, amp: env);
 	Out.ar(out, sound);
 }).add;
-
 
 SynthDef(\warpin, { | in = 0, out = 0, amp = 0, dur = 10, sus = 0, atk = 0.01, rel = 0.01, 
 					hpfreq = 20, warpfactor = 1, freqscale = 1, windowsize = 0.2, 

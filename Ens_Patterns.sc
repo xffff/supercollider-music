@@ -244,7 +244,8 @@
 				\voicename, [\cb,\sx1],
 				\programname, 
 					#["double bass.molto sul ponticello"
-					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II"],
+					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
+					"violoncello.flautando"],
 				\dur, Pn(0.01,1)
 			)	
 			 
@@ -273,7 +274,7 @@
 					\voicename, \sx1,
 					\midinote, 107, 
 					\dur, Pn(16,1),
-					\amp, Pexprand(0.0,1.0,2)
+					\amp, Pexprand(0.0,1.0,1)
 				)	
 			) 
 		),
@@ -337,6 +338,22 @@
 				)	
 			) 
 		)
+		0.05,
+		Pdef(\section2_vc, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Prand([\rest,\noteon],inf),
+					\voicename, \vc,
+					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n<=84}),inf), 
+					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.1,0.25,inf)
+				)	
+			) 
+		)
+
 	], 1);	
 };
 

@@ -337,7 +337,7 @@
 					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			) 
-		)
+		),
 		0.05,
 		Pdef(\section2_vc, 
 			Pfindur(~durations[2], 

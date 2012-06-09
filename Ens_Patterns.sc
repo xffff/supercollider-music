@@ -13,7 +13,7 @@
 ~durations = 8!32;
 
 ~durations[0] = 60;
-~durations[1] = 60;
+~durations[1] = 50;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -217,7 +217,37 @@
 			) 
 		)
 
-	], 1)			
+	], 1);
+	
+	~sections[2] = Ptpar([
+		0,
+		Pdef(\section2_pg, 
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \program,
+				\voicename, [\cb],
+				\programname, 
+					#["double bass.pizzicato.bartok"],
+				\dur, Pn(0.01,1)
+			)	
+			 
+		),
+		0.05,
+		Pdef(\section2_cb, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\voicename, \va2,
+					\midinote, Pseq([45,38],1), 
+					\dur, Pseq([Pn(6,1),Pn(1,1)],1),
+					\amp, 1.0
+				)	
+			) 
+		)
+	], 1);	
 };
 
 )

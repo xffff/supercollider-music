@@ -16,16 +16,18 @@
 fork{
 	~startup = fork{
 		~numchans = 2;
-		~numfxchans = 8;
+		~numfxchans = 16;
 		
 		s = Server.local;
 		o = Server.local.options;
-		o.inDevice = "Soundflower (16ch)";
-		o.outDevice = "Soundflower (16ch)";
+		//o.inDevice = "Soundflower (16ch)";
+		//o.outDevice = "Soundflower (16ch)";
+		o.inDevice = "JackRouter";
+		o.outDevice = "JackRouter";
 		o.blockSize = 512;
 		o.hardwareBufferSize = 512;
-		o.numOutputBusChannels = 16;
-		o.numInputBusChannels = 16;
+		o.numOutputBusChannels = 32;
+		o.numInputBusChannels = 32;
 		o.memSize;
 		if(o.memSize<1048576,{o.memSize = 1048576}); // 1GB 2**20
 		s.boot;

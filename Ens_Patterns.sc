@@ -260,10 +260,11 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bfl,\cb,\sx1,\vc],
+				\voicename, [\bfl,\cb,\sx1,\sx2,\vc],
 				\programname, 
 					#["bass.flute.ordinario",
 					"alto saxophone.slap.percussive slap",
+					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 					"double bass.pizzicato.bartok",
 					"violoncello.flautando"],
 				\dur, Pn(0.01,1)
@@ -285,17 +286,30 @@
 				)	
 			) 
 		),
-
 		0.05,
 		Pdef(\section2_sx1, 
 			Pfindur(~durations[2], 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+					\osccmd, \noteon,
 					\voicename, \sx1,
 					\midinote, Pseq([50,51],32), 
 					\dur, Pseq([8,Pn(1/16,64)],inf),
+					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section2_sx2, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+					\voicename, \sx1,
+					\midinote, Pseq([0,107],1), 
+					\dur, Pseq([16,Pn(16,inf)],inf),
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
 				)	
 			) 

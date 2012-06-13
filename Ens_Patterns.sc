@@ -19,6 +19,7 @@
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
 ~load_patterns = {
+	////////////////////////////////////////////////////////////////////////////////
 	~sections[0] = Ptpar([
 		// first do program changes to initiate
 		0,
@@ -97,6 +98,7 @@
 		)
 	], 1);
 	
+	////////////////////////////////////////////////////////////////////////////////
 	~sections[1] = Ptpar([
 		0,
 		Pdef(\section1_pg, 
@@ -116,6 +118,21 @@
 				\dur, Pn(0.01,1)
 			)	
 			 
+		),
+		0.05,
+		Pdef(\section1_fl, 
+			Pfindur(~durations[1], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \fl,
+					\midinote, 69+Pseq([0,2],inf),
+					\dur, Pseq([16,8,8,8],inf),
+					\legato, 0.75,
+					\amp, Pexprand(0.75,1.0,inf)
+				)	
+			) 
 		),
 		0.05,
 		Pdef(\section1_bfl, 
@@ -234,7 +251,8 @@
 			) 
 		)
 	], 1);
-	
+
+	////////////////////////////////////////////////////////////////////////////////
 	~sections[2] = Ptpar([
 		0,
 		Pdef(\section2_pg, 
@@ -275,6 +293,24 @@
 					\voicename, \sx1,
 					\midinote, 107, 
 					\dur, Pn(16,1),
+					\amp, Pexprand(0.0,1.0,1)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section2_rlpf, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\instrument, \rlpf, 
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(8,1),
+					\dur, Pn(16,1),
+					\startfreq, 1000,
+					\endfreq, 500,
+					\time, Pkey(\dur),
+					\atk, 0.1*Pkey(\dur),
+					\sus, 0.6*Pkey(\dur),
+					\rel, 0.3*Pkey(\dur),
 					\amp, Pexprand(0.0,1.0,1)
 				)	
 			) 

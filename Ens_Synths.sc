@@ -21,7 +21,25 @@ SynthDef(\fxout, { | in = 0, amp = 1, out = 1, dur = inf, free_trig = 0 |
 
 ///////// synths /////////
 
+////////// filters /////////
 
+SynthDef(\bpf, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 10, rel = 0.1, 
+						freq = 100, res = 0.7 | 
+	var sound, env;
+	sound = In.ar(in,1);
+	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
+	sound = BPF.ar(sound,freq,res) * env;
+	Out.ar(out,sound);
+}).add;
+
+SynthDef(\rlpf, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 10, rel = 0.1, 
+					startfreq = 100, endfreq = 100, res 0.2, time = 10 |
+	var sound, env;
+	sound = In.ar(in,1);
+	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
+	sound = RLPF.ar(sound,Line.kr(startfreq,endfreq,time),res) * env;
+	Out.ar(out,sound);
+}).add;
 
 ////////// fx /////////
 
@@ -80,16 +98,6 @@ SynthDef(\distortion, { | in = 0, out = 0, amount = 0, amp = 0, atk = 10,
 	sound = sound * env;
 	Out.ar(out,sound);
 }).add;
-
-SynthDef(\bpf, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 10, rel = 0.1, 
-						freq = 100, res = 0.7 | 
-	var sound, env;
-	sound = In.ar(in,1);
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
-	sound = BPF.ar(sound,freq,res) * env;
-	Out.ar(out,sound);
-}).add;
-
 
 SynthDef(\fbdelay,{ | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1, 
 						delay = 10, maxdelay = 10, amp = 1.0, fb = 0.1, 

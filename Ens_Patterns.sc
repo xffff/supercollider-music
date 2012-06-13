@@ -293,7 +293,7 @@
 					\voicename, \sx1,
 					\midinote, 107, 
 					\dur, Pn(16,1),
-					\amp, Pexprand(0.0,1.0,1)
+					\amp, 0.1
 				)	
 			) 
 		),
@@ -303,15 +303,16 @@
 				Pbind(
 					\instrument, \rlpf, 
 					\group, ~fx,
-					\in, ~master_fx_bus.subBus(8,1),
-					\dur, Pn(16,1),
-					\startfreq, 1000,
-					\endfreq, 500,
-					\time, Pkey(\dur),
+					\in, ~master_fx_bus.subBus(6,1),
+					\out, 16,
+					\dur, Pn(8,2),
+					\startfreq, Pseq([10000,100],1),
+					\endfreq, Pseq([100,100000],1),
+					\time, Pkey(\dur)*0.5,
 					\atk, 0.1*Pkey(\dur),
 					\sus, 0.6*Pkey(\dur),
 					\rel, 0.3*Pkey(\dur),
-					\amp, Pexprand(0.0,1.0,1)
+					\amp, 1.0 /// careful!
 				)	
 			) 
 		),

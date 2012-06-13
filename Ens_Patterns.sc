@@ -308,7 +308,7 @@
 				\osccmd, \program,
 				\voicename, [\cb,\sx1,\vc],
 				\programname, 
-					#["double bass.pizzicato"
+					#["double bass.pizzicato.bartok",
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 					"violoncello.flautando"],
 				\dur, Pn(0.01,1)
@@ -325,7 +325,7 @@
 					\voicename, \cb,
 					\midinote, Pn(38,inf), 
 					\dur, Pseq([16,Prand([32,16,8],inf)],inf),
-					\amp, Pexprand(0.5,1.0,inf)
+					\amp, Pexprand(0.85,1.0,inf)
 				)	
 			) 
 		),
@@ -354,7 +354,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 							\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.5,inf)
+					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
@@ -369,7 +369,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
 					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.5,inf)
+					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
@@ -384,7 +384,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 							\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.5,inf)
+					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
@@ -399,7 +399,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 
 					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.5,inf)
+					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
@@ -414,7 +414,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n<=84}),inf), 
 					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.25,inf)
+					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		)

@@ -263,7 +263,6 @@
 				\voicename, [\cb,\sx1,\vc],
 				\programname, 
 					#["double bass.pizzicato.bartok",
-					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 					"violoncello.flautando"],
 				\dur, Pn(0.01,1)
 			)	
@@ -280,39 +279,6 @@
 					\midinote, Pn(38,inf), 
 					\dur, Pseq([16,Prand([32,16,8],inf)],inf),
 					\amp, Pexprand(0.85,1.0,inf)
-				)	
-			) 
-		),
-		0.05,
-		Pdef(\section2_sx1, 
-			Pfindur(~durations[2], 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \sx1,
-					\midinote, 107, 
-					\dur, Pn(16,1),
-					\amp, 0.1
-				)	
-			) 
-		),
-		0.05,
-		Pdef(\section2_rlpf, 
-			Pfindur(~durations[2], 
-				Pbind(
-					\instrument, \rlpf, 
-					\group, ~fx,
-					\in, ~master_fx_bus.subBus(6,1),
-					\out, 16,
-					\dur, Pn(8,2),
-					\startfreq, Pseq([10000,100],1),
-					\endfreq, Pseq([100,100000],1),
-					\time, Pkey(\dur)*0.5,
-					\atk, 0.1*Pkey(\dur),
-					\sus, 0.6*Pkey(\dur),
-					\rel, 0.3*Pkey(\dur),
-					\amp, 1.0 /// careful!
 				)	
 			) 
 		),

@@ -18,7 +18,7 @@
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
-~load_patterns = fork {
+~load_patterns = {
 	~sections[0] = Ptpar([
 		// first do program changes to initiate
 		0,
@@ -421,5 +421,5 @@
 
 	], 1);	
 };
-
+~load_patterns.fork;
 )

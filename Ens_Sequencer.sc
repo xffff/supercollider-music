@@ -4,11 +4,12 @@
 /************************************	*/
 
 (
-~stop_all = fork{
+~stop_all = {
 	~sequencer_stream.stop;
 	Pdef.all.do(_.stop);
 	~mOut.size.do{ |i| ~mOut[i].allNotesOff(0) };
 };
+~stop_all.fork;
 
 ~sequencer = Pseq([
 	Pfuncn({"________________".postln; 0 }, 1),

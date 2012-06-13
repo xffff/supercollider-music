@@ -306,7 +306,7 @@
 				\osccmd, \program,
 				\voicename, [\cb,\sx1],
 				\programname, 
-					#["double bass.molto sul ponticello"
+					#["double bass.pizzicato"
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 					"violoncello.flautando"],
 				\dur, Pn(0.01,1)

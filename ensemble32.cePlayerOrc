@@ -3144,7 +3144,7 @@ bfl
 6
 2
 0.0
-1
+2
 -1
 bass.flute.ordinario
 1
@@ -7788,7 +7788,7 @@ bcl
 2
 0
 0.0
-2
+3
 -1
 bass clarinet boehm system.ordinario
 1
@@ -9340,7 +9340,7 @@ bsn1
 2
 0
 0.0
-3
+4
 -1
 bassoon.ordinario.Schwarz Heckel
 1
@@ -10892,7 +10892,7 @@ bsn2
 2
 0
 0.0
-3
+4
 -1
 bassoon.ordinario.Schwarz Heckel
 1
@@ -12444,7 +12444,7 @@ tr1
 1
 0
 0.0
-4
+5
 -1
 trumpet in c.ordinario
 1
@@ -13223,7 +13223,7 @@ tr2
 1
 0
 0.0
-4
+5
 -1
 trumpet in c.ordinario
 1
@@ -14002,7 +14002,7 @@ tb1
 5
 0
 0.0
-5
+6
 -1
 tenor trombone.ordinario
 1
@@ -17873,7 +17873,7 @@ tb2
 5
 0
 0.0
-5
+6
 -1
 tenor trombone.ordinario
 1
@@ -21744,7 +21744,7 @@ sx1
 3
 2
 0.0
-6
+7
 -1
 alto saxophone.ordinario
 1
@@ -24069,7 +24069,7 @@ sx2
 3
 0
 0.0
-6
+7
 -1
 alto saxophone.ordinario
 1
@@ -26394,7 +26394,7 @@ vi1
 2
 1
 0.0
-7
+8
 -1
 violin.ordinario
 1
@@ -27946,7 +27946,7 @@ vi2
 2
 1
 0.0
-7
+8
 -1
 violin.ordinario
 1
@@ -29498,7 +29498,7 @@ vi3
 2
 0
 0.0
-7
+9
 -1
 violin.ordinario
 1
@@ -31050,7 +31050,7 @@ vi4
 2
 0
 0.0
-7
+9
 -1
 violin.ordinario
 1
@@ -32602,7 +32602,7 @@ va1
 2
 1
 0.0
-8
+10
 -1
 viola.ordinario
 1
@@ -34154,7 +34154,7 @@ va2
 2
 1
 0.0
-8
+10
 -1
 viola.ordinario
 1
@@ -35706,7 +35706,7 @@ vc
 4
 0
 0.0
-9
+11
 -1
 violoncello.ordinario
 1
@@ -38804,7 +38804,7 @@ cb
 4
 0
 0.0
-10
+12
 -1
 double bass.ordinario
 1
@@ -41902,7 +41902,7 @@ ctl
 2
 0
 0.0
-11
+13
 -1
 crotales.hard rubber headed mallet
 1
@@ -43454,7 +43454,7 @@ tam
 1
 0
 0.0
-12
+14
 -1
 tamtam.tam-tam beater.edge.ordinario.Pons Paiste_90cm
 1

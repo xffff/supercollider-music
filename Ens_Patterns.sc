@@ -154,7 +154,7 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pwrand([\rest,\noteon],[0.25,0.75],inf),
+					\osccmd, Pwrand([\rest,\noteon],[0.5,0.5],inf),
 					\voicename, \bcl,
 					\midinote, Pseq([121,122],inf), 
 					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
@@ -260,13 +260,45 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\cb,\sx1,\vc],
+				\voicename, [\bfl,\cb,\sx1,\vc],
 				\programname, 
-					#["double bass.pizzicato.bartok",
+					#["bass.flute.ordinario",
+					"alto saxophone.slap.percussive slap",
+					"double bass.pizzicato.bartok",
 					"violoncello.flautando"],
 				\dur, Pn(0.01,1)
 			)	
 			 
+		),
+		0.05,
+		Pdef(\section2_bfl, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \bfl,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=48}).select({|n,i| n<=84}),inf), 					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			) 
+		),
+
+		0.05,
+		Pdef(\section2_sx1, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+					\voicename, \sx1,
+					\midinote, Pseq([50,51],32), 
+					\dur, Pseq([8,Pn(1/16,64)],inf),
+					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
+				)	
+			) 
 		),
 		0.05,
 		Pdef(\section2_cb, 
@@ -288,11 +320,11 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Prand([\rest,\noteon],inf),
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \vi1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}),inf), 							\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+							n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -303,11 +335,11 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Prand([\rest,\noteon],inf),
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \vi2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
-					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -318,11 +350,11 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Prand([\rest,\noteon],inf),
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \va1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=73}),inf), 							\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+							n>=73}),inf), 							\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -333,11 +365,11 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Prand([\rest,\noteon],inf),
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \va2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 
-					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -348,11 +380,11 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Prand([\rest,\noteon],inf),
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \vc,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n<=84}),inf), 
-					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 

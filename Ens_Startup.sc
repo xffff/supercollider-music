@@ -14,7 +14,7 @@
 ~sequencer_stream = nil;
 
 fork{
-	~startup = fork{
+	~startup = {
 		~numchans = 2;
 		~numfxchans = 16;
 		
@@ -32,12 +32,12 @@ fork{
 		if(o.memSize<1048576,{o.memSize = 1048576}); // 1GB 2**20
 		s.boot;
 	};
-	
+	~startup.fork;
 	0.05.wait;
 		
 	////////////////////////////////////////////////////
 		
-	~begin_playback = fork{
+	~begin_playback = {
 			s.waitForBoot(
 				postln("/****************************************************/");
 				postln("/* Ensemble                                         */");
@@ -66,6 +66,7 @@ fork{
 			);
 			~sequencer_stream = ~sequencer.play;
 	};
+	~begin_playback.fork;
 };
 );
 s.queryAllNodes;

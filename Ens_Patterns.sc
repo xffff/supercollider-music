@@ -27,10 +27,11 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\bfl],
+				\voicename, [\fl,\bfl,\bcl,\va1],
 				\programname, 
 					#["flute.air noise.closed.vowel varied",
 					"bass.flute.multiphonic",
+					"bass clarinet boehm system.ordinario",
 					"viola.harmonic.artificial.fourth"],
 				\dur, Pn(0.01,1)
 			)	
@@ -135,7 +136,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bfl,\sx1,\vi1,\vi2,\va1,\va2],
+				\voicename, [\bfl,\bcl,\sx1,\vi1,\vi2,\va1,\va2],
 				\programname, 
 					#["bass.flute.jet whistle",
 					"bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
@@ -215,7 +216,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 							\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.5,inf)
+					\amp, Pexprand(0.1,0.6,inf)
 				)	
 			) 
 		),
@@ -230,7 +231,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
 					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.25,inf)
+					\amp, Pexprand(0.1,0.6,inf)
 				)	
 			) 
 		),
@@ -245,7 +246,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 							\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.1,0.5,inf)
+					\amp, Pexprand(0.1,0.6,inf)
 				)	
 			) 
 		),
@@ -260,7 +261,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 
 					\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.1,0.25,inf)
+					\amp, Pexprand(0.1,0.6,inf)
 				)	
 			) 
 		),
@@ -275,7 +276,7 @@
 						\in, ~master_fx_bus.subBus(5,1),//str
 						\bufnum, ~freeze_bufa,
 						\bufdur, 2,
-						\out, 8,
+						\out, 16,
 						\dur, Pseq([15,15],inf),
 						\times, [5,5,5],
 						\amp, Pexprand(0.1,0.8,inf),
@@ -288,7 +289,7 @@
 						\in, ~master_fx_bus.subBus(5,1),//str
 						\bufnum, ~freeze_bufa,
 						\bufdur, 2,
-						\out, 8,
+						\out, 16,
 						\dur, Pseq([15,15],inf),
 						\times, [5,5,5],
 						\amp, Pexprand(0.1,0.8,inf),
@@ -305,7 +306,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\cb,\sx1],
+				\voicename, [\cb,\sx1,\vc],
 				\programname, 
 					#["double bass.pizzicato"
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",

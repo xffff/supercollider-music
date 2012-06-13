@@ -138,6 +138,7 @@
 				\voicename, [\bfl,\sx1,\vi1,\vi2,\va1,\va2],
 				\programname, 
 					#["bass.flute.jet whistle",
+					"bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
 					"alto saxophone.slap.percussive slap",
 					"violin.harmonic.artificial.fourth",
 					"violin.harmonic.artificial.fourth",
@@ -169,7 +170,7 @@
 					\oscout, ~osc_destination,
 					\osccmd, Pwrand([\rest,\noteon],[0.25,0.75],inf),
 					\voicename, \bcl,
-					\midinote, Pwrand([81,86,74],[0.8,0.2,0.2],inf), 
+					\midinote, Pseq([121,122],inf), 
 					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	

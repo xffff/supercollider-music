@@ -260,7 +260,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bfl,\cb,\sx1,\sx2,\vc],
+				\voicename, [\bfl,\sx1,\sx2,\cb,\vc],
 				\programname, 
 					#["bass.flute.ordinario",
 					"alto saxophone.slap.percussive slap",
@@ -307,7 +307,7 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
-					\voicename, \sx1,
+					\voicename, \sx2,
 					\midinote, Pseq([0,107],1), 
 					\dur, Pseq([16,Pn(16,inf)],inf),
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)

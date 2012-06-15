@@ -209,6 +209,18 @@
 			) 
 		),
 		0.05,
+		Pdef(\section1_recbuf,
+			Pfindur(~durations[1],
+				Pbind(
+					\instrument, \recbuf,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(13,1),
+					\dur, Pn(16,1),
+					\bufnum, ~tamtam_buf
+				)
+			)
+		),
+		0.05,
 		Pdef(\section1_vi1, 
 			Pfindur(~durations[1], 
 				Pbind(

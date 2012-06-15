@@ -40,8 +40,9 @@ fork{
 		postln("Busses Set");
 		
 		// buffers
-		~freeze_bufa = Buffer.alloc(s, s.sampleRate * 2, 1); // use these two bufs and xfade
-		~freeze_bufb = Buffer.alloc(s, s.sampleRate * 2, 1); // recbuf synth / freeze synth
+//		~freeze_bufa = Buffer.alloc(s, s.sampleRate * 2, 1); // use these two bufs and xfade
+//		~freeze_bufb = Buffer.alloc(s, s.sampleRate * 2, 1); // recbuf synth / freeze synth
+		~tamtam_buf = Buffer.alloc(s, s.sampleRate * 16, 1); 
 		postln("Buffers Allocated");
 		);
 		

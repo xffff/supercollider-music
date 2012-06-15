@@ -300,7 +300,7 @@
 					\voicename, \fl,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+							n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.3,1.0,inf)
 				)	
 			) 
@@ -315,7 +315,7 @@
 					\voicename, \bfl,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=48}).select({|n,i| n<=84}),inf), 					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+							n>=48}).select({|n,i| n<=84}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 

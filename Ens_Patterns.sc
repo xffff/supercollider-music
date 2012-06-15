@@ -65,8 +65,8 @@
 					\atk, ~durations[0] * 0.1,
 					\sus, ~durations[0] * 0.3,
 					\rel, ~durations[0] * 0.6, // slight overlap with s2
-					\amp, 1.0,
-					\warpfactor, (4..16).midiratio,
+					\amp, 0.4,
+					\warpfactor, (3,5..11).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			)
@@ -340,11 +340,11 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+					\osccmd, Pseq([\rest,\noteon,\noteon],1),
 					\voicename, \sx2,
-					\midinote, Pseq([0,107],1), 
+					\midinote, Pseq([0,107,111],1), 
 					\dur, Pseq([16,Pn(16,inf)],inf),
-					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
+					\amp, Pseq([0,1,1,1],1)
 				)	
 			) 
 		),

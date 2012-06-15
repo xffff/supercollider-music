@@ -14,7 +14,7 @@
 
 ~durations[0] = 60;
 ~durations[1] = 50;
-~durations[2] = 50;
+~durations[2] = 64;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -302,7 +302,26 @@
 			)	
 			 
 		),
-		0.05,
+		5.05,
+		Pdef(\section2_freeze, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\instrument, \freeze,
+					\group, ~fx,
+					\out, 18,
+					\bufnum, ~tamtam_buf,
+					\bufdur, ~tamtam_buf.duration,
+					\dur, Pseq([48,~durations[2]],1),
+					\times, #[16,16,16],
+					\levels, #[0.1,0.4,0.6,0.9],
+					\atk, 0.1,
+					\sus, Pkey(\dur)*0.5,
+					\rel, Pkey(\dur)*0.5,
+					\amp, Pseq([0,1.0],1)
+				)	
+			) 
+		),
+		5.05,
 		Pdef(\section2_fl, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -317,7 +336,7 @@
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_bfl, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -332,7 +351,7 @@
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_bsn1, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -340,12 +359,12 @@
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,\noteon],1),
 					\voicename, \bsn1,
-					\midinote, 38, 									\dur, Pseq([32,16],1),
+					\midinote, 38, 									\dur, Pseq([48,16],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_tb1, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -353,12 +372,12 @@
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,\noteon],1),
 					\voicename, \tb1,
-					\midinote, 26, 									\dur, Pseq([32,16],1),
+					\midinote, 26, 									\dur, Pseq([48,16],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_sx1, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -372,7 +391,7 @@
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_sx2, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -386,7 +405,7 @@
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_cb, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -400,7 +419,7 @@
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_vi1, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -410,12 +429,12 @@
 					\voicename, \vi1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+							n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_vi2, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -425,12 +444,12 @@
 					\voicename, \vi2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
-					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_vi3, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -440,12 +459,12 @@
 					\voicename, \vi3,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+							n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_vi4, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -455,12 +474,12 @@
 					\voicename, \vi4,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
-					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_va1, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -470,12 +489,12 @@
 					\voicename, \va1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=73}),inf), 							\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+							n>=73}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_va2, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -485,12 +504,12 @@
 					\voicename, \va2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 
-					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
 		),
-		0.05,
+		5.05,
 		Pdef(\section2_vc, 
 			Pfindur(~durations[2], 
 				Pbind(
@@ -500,7 +519,7 @@
 					\voicename, \vc,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n<=84}),inf), 
-					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 

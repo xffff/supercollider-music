@@ -64,7 +64,7 @@
 					\dur, ~durations[0],
 					\atk, ~durations[0] * 0.1,
 					\sus, ~durations[0] * 0.3,
-					\rel, ~durations[0] * 0.6, // slight overlap with s2
+					\rel, ~durations[0] * 0.8, // slight overlap with s2
 					\amp, 0.4,
 					\warpfactor, (3,5..11).midiratio,
 					\freqscale, Pkey(\warpfactor)
@@ -204,7 +204,7 @@
 					\voicename, \tam,
 					\midinote, 67, 
 					\dur, Pn(16,1),
-					\amp, Pexprand(0.6,1.0,1)
+					\amp, Pexprand(0.7,1.0,1)
 				)	
 			) 
 		),
@@ -316,6 +316,32 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=48}).select({|n,i| n<=84}),inf), 					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section2_bsn1, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,\noteon],1),
+					\voicename, \bsn1,
+					\midinote, 38, 									\dur, Pseq([32,16,inf)],1),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section2_tb1, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,\noteon],1),
+					\voicename, \tb1,
+					\midinote, 26, 									\dur, Pseq([32,16,inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 

@@ -21,6 +21,16 @@ SynthDef(\fxout, { | in = 0, amp = 1, out = 1, dur = inf, free_trig = 0 |
 
 ///////// synths /////////
 
+
+// hala
+
+SynthDef(\hala, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 0.1, rel = 0.1, pan = 0 |
+	var sound;
+	sound = In.ar(in,1);
+	sound = PanAz.ar(~numchans, sound, pan)*EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
+	Out.ar(out,sound);
+}).add;
+
 ////////// filters /////////
 
 SynthDef(\bpf, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 10, rel = 0.1, 

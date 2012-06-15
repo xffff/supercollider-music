@@ -82,11 +82,14 @@ SynthDef(\convolve, { | in = 0, out = 0.1, atk = 0.1, sus = 0.1, rel = 0.1,
 	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
 	kernel = RLPF.ar(LFSaw.ar(freq,0,synthmul),filterfreq.max(freq),res);
 	sound = Convolution.ar(In.ar(in,1),kernel,4096);
-	sound = Limiter.ar(sound, 0.95, 0.01); // for some reason this convolution ends up very loud occasionally
 	Out.ar(out,sound*env);
 }).add;
 
 // partconv
+//SynthDef(\partconv, { | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1, amp = 0,
+//						bufnum = 0|
+//	PartConv
+//}).add;
 
 SynthDef(\distortion, { | in = 0, out = 0, amount = 0, amp = 0, atk = 10, 
 						sus = 10, rel = 10, dur = 10 |

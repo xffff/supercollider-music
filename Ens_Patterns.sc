@@ -61,6 +61,7 @@
 					\group, ~fx,
 					\in, ~master_fx_bus.subBus(0,1),
 					\out, 19,
+					\dur, ~durations[0],
 					\atk, ~durations[0] * 0.3,
 					\sus, ~durations[0] * 0.3,
 					\rel, ~durations[0] * 0.5, // slight overlap with s2

@@ -146,7 +146,7 @@ SynthDef(\freeze, { | bufnum = 0, out = 0, rate = 1, freq = 10, bufdur = 2,
 	Out.ar(out, sound);
 }).add;
 
-SynthDef(\warpin, { | in = 0, out = 0, amp = 0, dur = 10, sus = 0, atk = 0.01, rel = 0.01, 
+SynthDef(\warp, { | in = 0, out = 0, amp = 0, dur = 10, sus = 0, atk = 0.01, rel = 0.01, 
 					hpfreq = 20, warpfactor = 1, freqscale = 1, windowsize = 0.2, 
 					overlaps = 10, windowrandratio = 0.1, prelevel = 0,
 					interp = 4 |

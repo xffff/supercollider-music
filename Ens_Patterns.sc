@@ -328,7 +328,7 @@
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,\noteon],1),
 					\voicename, \bsn1,
-					\midinote, 38, 									\dur, Pseq([32,16,inf)],1),
+					\midinote, 38, 									\dur, Pseq([32,16],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -341,7 +341,7 @@
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,\noteon],1),
 					\voicename, \tb1,
-					\midinote, 26, 									\dur, Pseq([32,16,inf)],1),
+					\midinote, 26, 									\dur, Pseq([32,16],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 

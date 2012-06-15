@@ -154,7 +154,7 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pwrand([\rest,\noteon],[0.5,0.5],inf),
+					\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.5,0.5],inf)],1),
 					\voicename, \bcl,
 					\midinote, Pseq([121,122],inf), 
 					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
@@ -186,7 +186,7 @@
 					\voicename, \tam,
 					\midinote, 67, 
 					\dur, Pn(16,1),
-					\amp, Pexprand(0.5,1.0,1)
+					\amp, Pexprand(0.6,1.0,1)
 				)	
 			) 
 		),
@@ -260,9 +260,10 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bfl,\sx1,\sx2,\cb,\vc],
+				\voicename, [\fl,\bfl,\sx1,\sx2,\cb,\vc],
 				\programname, 
-					#["bass.flute.ordinario",
+					#["flute.ordinario",
+					"bass.flute.ordinario",
 					"alto saxophone.slap.percussive slap",
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 					"double bass.pizzicato.bartok",
@@ -270,6 +271,21 @@
 				\dur, Pn(0.01,1)
 			)	
 			 
+		),
+		0.05,
+		Pdef(\section2_fl, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \fl,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			) 
 		),
 		0.05,
 		Pdef(\section2_bfl, 
@@ -365,7 +381,7 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-					\voicename, \vi1,
+					\voicename, \vi3,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
@@ -380,7 +396,7 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-					\voicename, \vi2,
+					\voicename, \vi4,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
 					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),

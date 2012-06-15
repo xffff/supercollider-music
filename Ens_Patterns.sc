@@ -54,6 +54,18 @@
 			) 
 		),
 		0.05,
+		Pdef(\section0_warp,
+			Pfindur(~durations[0],
+				Pbind(
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(0,1),
+					\out, 19,
+					
+				)
+			)
+		),
+		0.05,
 		Pdef(\section0_bfl, 
 			Pfindur(~durations[0], 
 				Pbind(

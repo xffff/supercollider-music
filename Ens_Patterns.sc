@@ -62,11 +62,11 @@
 					\in, ~master_fx_bus.subBus(0,1),
 					\out, 17,
 					\dur, ~durations[0],
-					\atk, 0,//~durations[0] * 0.1,
+					\atk, ~durations[0] * 0.1,
 					\sus, ~durations[0] * 0.3,
 					\rel, ~durations[0] * 0.6, // slight overlap with s2
 					\amp, 1.0,
-					\warpfactor, (4..8).midiratio,
+					\warpfactor, (4..16).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			)

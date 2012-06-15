@@ -124,9 +124,10 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bfl,\bcl,\sx1,\vi1,\vi2,\va1,\va2],
+				\voicename, [\fl,\bfl,\bcl,\sx1,\vi1,\vi2,\va1,\va2],
 				\programname, 
-					#["bass.flute.jet whistle",
+					#["flute.air noise.closed.vowel varied",
+					"bass.flute.jet whistle",
 					"bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
 					"alto saxophone.slap.percussive slap",
 					"violin.harmonic.artificial.fourth",
@@ -312,12 +313,12 @@
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
 					\dur, Pseq([48,~durations[2]],1),
-					\times, #[16,16,16],
+					\times, #[0.2,0.6,0.4],
 					\levels, #[0.1,0.4,0.6,0.9],
 					\atk, 0.1,
-					\sus, Pkey(\dur)*0.5,
-					\rel, Pkey(\dur)*0.5,
-					\amp, Pseq([0,1.0],1)
+					\sus, ~durations[2]*0.5,
+					\rel, ~durations[2]*0.5, // there should be some overlap with s3
+					\amp, Pseq([0.0,1.0],1)
 				)	
 			) 
 		),

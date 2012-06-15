@@ -359,6 +359,36 @@
 			) 
 		),
 		0.05,
+		Pdef(\section2_vi3, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \vi1,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			) 
+		),
+		0.05,
+		Pdef(\section2_vi4, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \vi2,
+					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 
+					\dur, Pseq([Pn(16,1),Prand([2,8,16],inf)],1),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			) 
+		),
+		0.05,
 		Pdef(\section2_va1, 
 			Pfindur(~durations[2], 
 				Pbind(

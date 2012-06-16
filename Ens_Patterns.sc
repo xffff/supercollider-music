@@ -13,7 +13,7 @@
 ~durations = 8!32;
 
 ~durations[0] = 60;
-~durations[1] = 50;
+~durations[1] = 60;
 ~durations[2] = 48;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
@@ -159,11 +159,11 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Prand([\noteon,\rest],inf),
+					\osccmd, Pseq([\noteon,Prand([\noteon,\rest],inf)],1),
 					\voicename, \bfl,
 					\midinote, Prand([49,52,53,56,59,62],inf), 
 					\dur, Prand([16,8,32],inf),
-					\amp, Pexprand(0.1,0.25,inf)
+					\amp, Pexprand(0.1,1.0,inf)
 				)	
 			) 
 		),
@@ -312,12 +312,12 @@
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
 					\dur, Pseq([32,~durations[2]],1),
-					\times, #[0.2,0.6,0.4],
+					\times, #[0.2,0.6,0.9],
 					\levels, #[0.1,0.4,0.6,0.9],
 					\atk, 0.1,
-					\sus, ~durations[2]*0.5,
-					\rel, ~durations[2]*0.5, // there should be some overlap with s3
-					\amp, Pseq([0.0,2.0],1)
+					\sus, 15,
+					\rel, 0.1, // there should be some overlap with s3
+					\amp, Pseq([0.0,1.0],1)
 				)	
 			) 
 		),
@@ -376,7 +376,7 @@
 					\atk, Pkey(\dur)*0.2,
 					\sus, Pkey(\dur)*0.6,
 					\rel, Pkey(\dur)*0.2, 
-					\amp, Pseq([0.0,1.0],1),
+					\amp, Pseq([0.0,2.0],1),
 					\freq, (38.midicps*0.5).neg
 				)	
 			) 

@@ -78,12 +78,12 @@ SynthDef(\pitchshift, { | in = 0, out = 0, ratio = 0, amp = 1, atk = 0.1, sus = 
 	Out.ar(out,sound);
 }).add;
 
-SynthDef(\freqshift, { | in = 0, out = 0, ratio = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
-						freq = 0, lagtime = 0 |
+SynthDef(\freqshift, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
+						freq = 0 |
 	var sound, env;
 	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
 	sound = In.ar(in, 1);
-	sound = FreqShift.ar(sound, Line.kr(freq,freq,lagtime)) * env;
+	sound = FreqShift.ar(sound, freq) * env;
 	Out.ar(out,sound);
 }).add;
 

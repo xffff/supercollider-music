@@ -14,7 +14,7 @@
 
 ~durations[0] = 60;
 ~durations[1] = 50;
-~durations[2] = 64;
+~durations[2] = 48;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -317,7 +317,7 @@
 					\atk, 0.1,
 					\sus, ~durations[2]*0.5,
 					\rel, ~durations[2]*0.5, // there should be some overlap with s3
-					\amp, Pseq([0.0,1.0],1)
+					\amp, Pseq([0.0,2.0],1)
 				)	
 			) 
 		),

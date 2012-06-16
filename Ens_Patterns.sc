@@ -564,7 +564,7 @@
 	
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[3] = Ptpar([
-		0,
+		8,
 		Pdef(\section3_pg, 
 			Pbind(
 				\type, \ctosc, 
@@ -583,7 +583,7 @@
 				\dur, Pn(0.01,1)
 			)		 
 		),
-		0.05,
+		8.05,
 		Pdef(\section3_vi1, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -598,7 +598,7 @@
 				)	
 			) 
 		),
-		0.05,
+		8.05,
 		Pdef(\section3_vi2, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -613,7 +613,7 @@
 				)	
 			) 
 		),
-		0.05,
+		8.05,
 		Pdef(\section3_vi3, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -628,7 +628,7 @@
 				)	
 			) 
 		),
-		0.05,
+		8.05,
 		Pdef(\section3_vi4, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -643,7 +643,7 @@
 				)	
 			) 
 		),
-		0.05,
+		8.05,
 		Pdef(\section3_va1, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -658,7 +658,7 @@
 				)	
 			) 
 		),
-		0.05,
+		8.05,
 		Pdef(\section3_va2, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -673,7 +673,7 @@
 				)	
 			) 
 		),
-		0.05,
+		8.05,
 		Pdef(\section3_vc, 
 			Pfindur(~durations[3], 
 				Pbind(

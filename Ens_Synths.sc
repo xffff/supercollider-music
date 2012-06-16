@@ -87,11 +87,10 @@ SynthDef(\freqshift, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.
 	Out.ar(out,sound);
 }).add;
 
-SynthDef(\convolve, { | in = 0, out = 0.1, atk = 0.1, sus = 0.1, rel = 0.1, 
-						amp = 0, freq = 100, synthmul = 1.0, filterfreq = 100, res = 0.2 | 
+SynthDef(\convolve, { | in = 0, out = 0.1, atk = 0.1, sus = 0.1, rel = 0.1 | 
 	var env, sound, kernel;
 	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
-	kernel = RLPF.ar(LFSaw.ar(freq,0,synthmul),filterfreq.max(freq),res);
+	kernel = In.ar(in, 1);
 	sound = Convolution.ar(In.ar(in,1),kernel,4096);
 	Out.ar(out,sound*env);
 }).add;
@@ -130,16 +129,13 @@ SynthDef(\fbdelay,{ | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1,
 //	
 //}).add;
 
-SynthDef(\freeze, { | bufnum = 0, out = 0, rate = 1, freq = 10, bufdur = 2,
-					atk = 0, sus = 0, rel = 0, amp = 0.1, 
-					levels = #[0.1, 0.5, 0.5, 0.9], times = #[1, 2, 1] | 
+SynthDef(\freeze, { | bufnum = 0, out = 0, rate = 1, bufdur = 2,
+					atk = 0, sus = 0, rel = 0, amp = 0.1, cfreq = 0.1, 
+					cphase = 0, cmul = 1, cadd = 1 | 
 	var env = EnvGen.ar(Env.linen(atk,sus,rel,amp), doneAction:2);
 	var tfreq = 44;
 	var trig = Impulse.kr(tfreq);
-	var center = EnvGen.kr(
-		Env(levels * bufdur, times, #[-5, 0, 5]),
-		timeScale: bufdur, doneAction: 2
-	);
+	var center = SinOsc.kr(cfreq,cphase,cmul,cadd).wrap(0,bufdur);
 	var graindur = 12 / tfreq;
 	var sound = TGrains.ar(2, trig, bufnum, rate: 1, 
 		centerPos: center, dur: graindur, amp: env).sum; // mono!

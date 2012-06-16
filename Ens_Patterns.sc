@@ -313,11 +313,13 @@
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
 					\dur, Pseq([32,~durations[2]],1),
-					\times, #[0.2,0.6,0.9],
-					\levels, #[0.1,0.4,0.6,0.9],
+					\cfreq, Pkey(\bufdur).reciprocal/Pkey(\dur),
+					\cphase, 0.1,
+					\cmul, 0.5,
+					\cadd, 0.5,
 					\atk, 0.1,
-					\sus, 15,
-					\rel, 0.1, // there should be some overlap with s3
+					\sus, 10,
+					\rel, 5, 
 					\amp, Pseq([0.0,1.0],1)
 				)	
 			) 
@@ -592,8 +594,8 @@
 					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \vi1,
 					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=55}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+						Pseq(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=55}).select({|n,i| n<=104}),inf), 							\dur, Pseq([Pn(16,1),Pn(1/8,inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -607,8 +609,8 @@
 					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \vi2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=55}),inf), 
-					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+							n>=55}).select({|n,i| n<=104}),inf), 
+					\dur, Pseq([Pn(16,1),Pn(1/8,inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -623,7 +625,7 @@
 					\voicename, \vi3,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=55}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+							n>=55}),inf), 							\dur, Pseq([Pn(16,1),Prand([1,2,4,8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -638,7 +640,7 @@
 					\voicename, \vi4,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=55}),inf), 
-					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+					\dur, Pseq([Pn(16,1),Prand([1,2,4,8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -682,7 +684,7 @@
 					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \vc,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n<=88}),inf), 
+							n>=36}).select({|n,i| n<=55}),inf), 
 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	

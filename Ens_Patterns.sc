@@ -285,7 +285,7 @@
 
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[2] = Ptpar([
-		0,
+		5,
 		Pdef(\section2_pg, 
 			Pbind(
 				\type, \ctosc, 
@@ -300,8 +300,7 @@
 					"double bass.pizzicato.bartok",
 					"violoncello.flautando"],
 				\dur, Pn(0.01,1)
-			)	
-			 
+			)		 
 		),
 		5.05,
 		Pdef(\section2_freeze, 
@@ -371,6 +370,7 @@
 				Pbind(
 					\instrument, \freqshift, 
 					\group, ~fx,
+					\in, ~master_fx_bus.subBus(4,1),
 					\out, 19,
 					\dur, Pseq([36,16],1),
 					\atk, Pkey(\dur)*0.2,

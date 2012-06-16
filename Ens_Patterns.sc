@@ -312,7 +312,7 @@
 					\out, 18,
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
-					\dur, Pseq([48,~durations[2]],1),
+					\dur, Pseq([36,~durations[2]],1),
 					\times, #[0.2,0.6,0.4],
 					\levels, #[0.1,0.4,0.6,0.9],
 					\atk, 0.1,
@@ -360,7 +360,7 @@
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,\noteon],1),
 					\voicename, \bsn1,
-					\midinote, 38, 									\dur, Pseq([48,16],1),
+					\midinote, 38, 									\dur, Pseq([36,16],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 
@@ -373,7 +373,7 @@
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,\noteon],1),
 					\voicename, \tb1,
-					\midinote, 26, 									\dur, Pseq([48,16],1),
+					\midinote, 26, 									\dur, Pseq([36,16],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 

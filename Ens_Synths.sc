@@ -138,7 +138,7 @@ SynthDef(\freeze, { | bufnum = 0, out = 0, rate = 1, bufdur = 2,
 	var center = SinOsc.kr(cfreq,cphase,cmul,cadd).wrap(0,bufdur);
 	var graindur = 12 / tfreq;
 	var sound = TGrains.ar(2, trig, bufnum, rate: 1, 
-		centerPos: center, dur: graindur, amp: env).sum; // mono!
+		centerPos: center, dur: graindur, amp: 1.0).sum*env; // mono!
 	Out.ar(out, sound);
 }).add;
 

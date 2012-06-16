@@ -312,18 +312,18 @@
 					\out, 18,
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
-					\dur, Pseq([32,~durations[2]],1),
+					\dur, Pseq([32,16],1),
 					\cfreq, Pkey(\bufdur).reciprocal/Pkey(\dur),
-					\cphase, 0.1,
-					\cmul, 0.5,
-					\cadd, 0.5,
-					\atk, 0.1,
-					\sus, 10,
-					\rel, 5, 
-					\amp, Pseq([0.0,1.0],1)
+					\cphase, 0.3,
+					\cmul, Pkey(\bufdur),
+					\cadd, 0,
+					\atk, Pkey(\dur)*0.01,
+					\sus, Pkey(\dur)*0.75,
+					\rel, Pkey(\dur)*0.25, 
+					\amp, Pseq([0.0,2.0],1)
 				)	
 			) 
-		),
+		).play,
 		10.05,
 		Pdef(\section2_fl, 
 			Pfindur(~durations[2], 
@@ -595,7 +595,7 @@
 					\voicename, \vi1,
 					\midinote, 
 						Pseq(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=55}).select({|n,i| n<=104}),inf), 							\dur, Pseq([Pn(16,1),Pn(1/8,inf)],1),
+							n>=55}).select({|n,i| n<=104}),inf), 					\dur, Pseq([Pn(16,1),Pn(1/8,inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			) 

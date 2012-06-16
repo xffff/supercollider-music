@@ -366,6 +366,22 @@
 			) 
 		),
 		5.05,
+		Pdef(\section2_freqshift, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\instrument, \freqshift, 
+					\group, ~fx,
+					\out, 19,
+					\dur, Pseq([36,16],1),
+					\atk, Pkey(\dur)*0.2,
+					\sus, Pkey(\dur)*0.6,
+					\rel, Pkey(\dur)*0.2, 
+					\amp, Pseq([0.0,1.0],1),
+					\freq, (38.midicps*0.5).neg
+				)	
+			) 
+		),
+		5.05,
 		Pdef(\section2_tb1, 
 			Pfindur(~durations[2], 
 				Pbind(

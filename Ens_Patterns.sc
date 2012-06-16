@@ -15,6 +15,7 @@
 ~durations[0] = 60;
 ~durations[1] = 60;
 ~durations[2] = 48;
+~durations[3] = 60;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -563,7 +564,7 @@
 	
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[3] = Ptpar([
-		10,
+		0,
 		Pdef(\section3_pg, 
 			Pbind(
 				\type, \ctosc, 
@@ -582,7 +583,7 @@
 				\dur, Pn(0.01,1)
 			)		 
 		),
-		10.05,
+		0.05,
 		Pdef(\section3_vi1, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -597,7 +598,7 @@
 				)	
 			) 
 		),
-		10.05,
+		0.05,
 		Pdef(\section3_vi2, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -612,7 +613,7 @@
 				)	
 			) 
 		),
-		10.05,
+		0.05,
 		Pdef(\section3_vi3, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -627,7 +628,7 @@
 				)	
 			) 
 		),
-		10.05,
+		0.05,
 		Pdef(\section3_vi4, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -642,7 +643,7 @@
 				)	
 			) 
 		),
-		10.05,
+		0.05,
 		Pdef(\section3_va1, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -657,7 +658,7 @@
 				)	
 			) 
 		),
-		10.05,
+		0.05,
 		Pdef(\section3_va2, 
 			Pfindur(~durations[3], 
 				Pbind(
@@ -672,7 +673,7 @@
 				)	
 			) 
 		),
-		10.05,
+		0.05,
 		Pdef(\section3_vc, 
 			Pfindur(~durations[3], 
 				Pbind(

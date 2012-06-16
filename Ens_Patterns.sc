@@ -65,7 +65,7 @@
 					\atk, ~durations[0] * 0.1,
 					\sus, ~durations[0] * 0.3,
 					\rel, ~durations[0] * 0.8, // slight overlap with s2
-					\amp, 0.4,
+					\amp, 0.45,
 					\warpfactor, (3,5..11).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
@@ -231,7 +231,7 @@
 					\voicename, \vi1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}),inf), 							\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+							n>=81}),inf), 							\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.1,0.6,inf)
 				)	
 			) 
@@ -246,7 +246,7 @@
 					\voicename, \vi2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
-					\dur, Pseq([Pn(6,1),Prand([2,8,16],inf)],1),
+					\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.1,0.6,inf)
 				)	
 			) 
@@ -417,8 +417,26 @@
 					\osccmd, Pseq([\rest,\noteon,\noteon],1),
 					\voicename, \sx2,
 					\midinote, Pseq([0,107,111],1), 
-					\dur, Pseq([16,Pn(16,inf)],inf),
-					\amp, Pseq([0,1,1,1],1)
+					\dur, Pseq([16,Pn(16,2)],inf),
+					\amp, Pseq([0,1,1],1)
+				)	
+			) 
+		),
+		5.05,
+		Pdef(\section2_pitchshift, 
+			Pfindur(~durations[2], 
+				Pbind(
+					\instrument, \pitchshift, 
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(6,1),
+					\out, 20,
+					\dur, Pseq([16,Pn(16,2)],inf),
+					\atk, Pkey(\dur)*0.2,
+					\sus, Pkey(\dur)*0.6,
+					\rel, Pkey(\dur)*0.2, 
+					\amp, Pseq([0,1,1],1),
+					\ratio, [1+0.01.rand,1-0.01.rand], // fatten it out
+					\timeDispersion, 0.001.rand
 				)	
 			) 
 		),

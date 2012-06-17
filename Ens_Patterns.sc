@@ -471,7 +471,7 @@
 					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \vc,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n<=84}),inf), 
+							n<=84}).select({|n,i| n>=36}),inf), 
 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
@@ -480,12 +480,31 @@
 	);
 	
 	////////////////////////////////////////////////////////////////////////////////
-//	~sections[3] = Pfindur(~durations[3],
-//		Ptpar([
-//			
-//		
-//		], 1)
-//	);
+	~sections[3] = Pfindur(~durations[3],
+		Ptpar([
+			0.05,
+			Pdef(\section3_ctl, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \ctl,
+					\midinote, Ptuple([		// there must be a better way to write this...
+								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+									n>=72}).select({|n,i| n<=96}),inf),
+								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+									n>=72}).select({|n,i| n<=96}),inf),
+								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+									n>=72}).select({|n,i| n<=96}),inf),
+								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+									n>=72}).select({|n,i| n<=96}),inf),
+							],1), 
+					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			)
+		], 1)
+	);
 	
 };
 ~load_patterns.fork;

@@ -15,6 +15,7 @@
 ~durations[0] = 60;
 ~durations[1] = 60;
 ~durations[2] = 32;
+~durations[3] = 32;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -499,7 +500,7 @@
 								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 									n>=72}).select({|n,i| n<=96}),inf),
 							],1), 
-					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+					\dur, Pseq([Pn(16,1),Prand([8,16],3)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			)

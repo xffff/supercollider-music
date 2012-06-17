@@ -522,6 +522,76 @@
 					\legato, 2,
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
+			),
+			0.05,
+			Pdef(\section3_ctlwarp,
+				Pbind(
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(12,1),
+					\out, 17,
+					\dur, ~durations[3],
+					\atk, ~durations[3] * 0.1,
+					\sus, ~durations[3] * 0.3,
+					\rel, ~durations[3] * 0.8, // slight overlap with s2
+					\amp, 0.45,
+					\warpfactor, (3,5..11).midiratio,
+					\freqscale, Pkey(\warpfactor)
+				)
+			),
+			0.05,
+			Pdef(\section3_fl, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pwrand([\noteon,\rest],[0.4,0.6],inf),
+					\voicename, \fl,
+					\midinote, 69+Pseq([0,2],inf),
+					\dur, Pseq([16,8,8,8],inf),
+					\legato, 0.75,
+					\amp, Pexprand(0.75,1.0,inf)
+				)	
+			),
+			0.05,
+			Pdef(\section3_flwarp,
+				Pbind(
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(0,1),
+					\out, 17,
+					\dur, ~durations[3],
+					\atk, ~durations[3] * 0.1,
+					\sus, ~durations[3] * 0.3,
+					\rel, ~durations[3] * 0.8, // slight overlap with s2
+					\amp, 0.45,
+					\warpfactor, (3,5..11).midiratio,
+					\freqscale, Pkey(\warpfactor)
+				)
+			),
+			0.05,
+			Pdef(\section3_bcl, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Pn(\noteon,inf)],inf),
+					\voicename, \bcl,
+					\midinote, Pseq([38,39],32), 
+					\dur, Pseq([16,Pn(1/8,64)],inf),
+					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1))],1)
+				)	
+			),
+			0.05,
+			Pdef(\section3_cb, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \cb,
+					\midinote, Pseq(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+									n>=28}).select({|n,i| n<=68}),inf), 
+					\dur, Prand([2,4,6,8,12,16],inf),
+					\amp, Pexprand(0.85,1.0,inf)
+				)	
 			)
 		], 1)
 	);

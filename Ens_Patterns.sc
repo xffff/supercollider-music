@@ -69,69 +69,69 @@
 			),
 			0.05,
 			Pdef(\section0_bfl,  
-					Pbind(
-						\type, \ctosc, 
-						\oscout, ~osc_destination,
-						\osccmd, \noteon,
-						\voicename, \bfl,
-						\midinote, 81+Pseq([0,2,3],inf), 
-						\dur, Pseq([16,8,8,4],inf),
-						\amp, Pexprand(0.1,0.25,inf)
-					)	 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \bfl,
+					\midinote, 81+Pseq([0,2,3],inf), 
+					\dur, Pseq([16,8,8,4],inf),
+					\amp, Pexprand(0.1,0.25,inf)
+				)	 
 			),
 			0.05,
 			Pdef(\section0_bcl, 
-					Pbind(
-						\type, \ctosc, 
-						\oscout, ~osc_destination,
-						\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
-						\voicename, \bcl,
-						\midinote, 81, 
-						\dur, Pseq([8,Prand([4,8,16],inf)],inf),
-						\amp, Pexprand(0.1,0.25,inf)
-					)	 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
+					\voicename, \bcl,
+					\midinote, 81, 
+					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
+					\amp, Pexprand(0.1,0.25,inf)
+				)	 
 			),
 			0.05,
 			Pdef(\section0_va1, 
-					Pbind(
-						\type, \ctosc, 
-						\oscout, ~osc_destination,
-						\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
-						\voicename, \va1,
-						\midinote, 
-							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-								n>=85}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
-						\amp, Pexprand(0.1,0.7,inf)
-					)	 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+					\voicename, \va1,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=85}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
+					\amp, Pexprand(0.1,0.7,inf)
+				)	 
 			)
 		], 1)
 	);
 	
 	////////////////////////////////////////////////////////////////////////////////
-	~sections[1] = Ptpar([
-		8,
-		Pdef(\section1_pg, 
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, \program,
-				\voicename, [\fl,\bfl,\bcl,\sx1,\vi1,\vi2,\va1,\va2],
-				\programname, 
-					#["flute.air noise.closed.vowel varied",
-					"bass.flute.jet whistle",
-					"bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
-					"alto saxophone.slap.percussive slap",
-					"violin.harmonic.artificial.fourth",
-					"violin.harmonic.artificial.fourth",
-					"viola.harmonic.artificial.fourth",
-					"viola.harmonic.artificial.fourth"],
-				\dur, Pn(0.01,1)
-			)	
-			 
-		),
-		8.05,
-		Pdef(\section1_fl, 
-			Pfindur(~durations[1], 
+	~sections[1] = Pfindur(~durations[1],
+		Ptpar([
+			8,
+			Pdef(\section1_pg, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \program,
+					\voicename, [\fl,\bfl,\bcl,\sx1,\vi1,\vi2,\va1,\va2],
+					\programname, 
+						#["flute.air noise.closed.vowel varied",
+						"bass.flute.jet whistle",
+						"bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
+						"alto saxophone.slap.percussive slap",
+						"violin.harmonic.artificial.fourth",
+						"violin.harmonic.artificial.fourth",
+						"viola.harmonic.artificial.fourth",
+						"viola.harmonic.artificial.fourth"],
+					\dur, Pn(0.01,1)
+				)	
+				 
+			),
+			8.05,
+			Pdef(\section1_fl, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -142,11 +142,9 @@
 					\legato, 0.75,
 					\amp, Pexprand(0.75,1.0,inf)
 				)	
-			) 
-		),
-		8.05,
-		Pdef(\section1_bfl, 
-			Pfindur(~durations[1], 
+			),
+			8.05,
+			Pdef(\section1_bfl,  
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -156,11 +154,9 @@
 					\dur, Prand([16,8,32],inf),
 					\amp, Pexprand(0.1,1.0,inf)
 				)	
-			) 
-		),
-		8.05,
-		Pdef(\section1_bcl, 
-			Pfindur(~durations[1], 
+			),
+			8.05,
+			Pdef(\section1_bcl,  
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -170,11 +166,9 @@
 					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	
-			) 
-		),
-		8.05,
-		Pdef(\section1_sx1, 
-			Pfindur(~durations[1], 
+			),
+			8.05,
+			Pdef(\section1_sx1, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -183,12 +177,10 @@
 					\midinote, Pseq([50,51],32), 
 					\dur, Pseq([8,Pn(1/16,32)],inf),
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))],1)
-				)	
-			) 
-		),
-		8.05,
-		Pdef(\section1_tam, 
-			Pfindur(~durations[1], 
+				)				
+			),
+			8.05,
+			Pdef(\section1_tam, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -197,12 +189,10 @@
 					\midinote, 67, 
 					\dur, Pn(16,1),
 					\amp, Pexprand(0.7,1.0,1)
-				)	
-			) 
-		),
-		8.05,
-		Pdef(\section1_recbuf,
-			Pfindur(~durations[1],
+				)				
+			),
+			8.05,
+			Pdef(\section1_recbuf,
 				Pbind(
 					\instrument, \recbuf,
 					\group, ~fx,
@@ -210,11 +200,9 @@
 					\dur, Pn(16,1),
 					\bufnum, ~tamtam_buf
 				)
-			)
-		),
-		8.05,
-		Pdef(\section1_vi1, 
-			Pfindur(~durations[1], 
+			),
+			8.05,
+			Pdef(\section1_vi1,  
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -224,12 +212,10 @@
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 							\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.1,0.6,inf)
-				)	
-			) 
-		),
-		8.05,
-		Pdef(\section1_vi2, 
-			Pfindur(~durations[1], 
+				)	 
+			),
+			8.05,
+			Pdef(\section1_vi2,  
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -239,12 +225,10 @@
 							n>=81}),inf), 
 					\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.1,0.6,inf)
-				)	
-			) 
-		),
-		8.05,
-		Pdef(\section1_va1, 
-			Pfindur(~durations[1], 
+				)	 
+			),
+			8.05,
+			Pdef(\section1_va1,  
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -255,11 +239,9 @@
 							n>=73}),inf), 							\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.1,0.6,inf)
 				)	
-			) 
-		),
-		8.05,
-		Pdef(\section1_va2, 
-			Pfindur(~durations[1], 
+			),
+			8.05,
+			Pdef(\section1_va2,  
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -269,11 +251,11 @@
 							n>=73}),inf), 
 					\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.1,0.6,inf)
-				)	
-			) 
-		)
-	], 1);
-
+				)	 
+			)
+		], 1)
+	);
+	
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[2] = Ptpar([
 		10,

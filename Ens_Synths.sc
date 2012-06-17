@@ -28,7 +28,7 @@ SynthDef(\fxout, { | in = 0, amp = 1, out = 1, dur = inf, free_trig = 0 |
 SynthDef(\hala, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 0.1, rel = 0.1, pan = 0 |
 	var sound;
 	sound = In.ar(in,1);
-	sound = PanAz.ar(~numchans, sound, pan)*EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
+	sound = PanAz.ar(~numchans, sound, pan)*EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
 	Out.ar(out,sound);
 }).add;
 
@@ -38,7 +38,7 @@ SynthDef(\bpf, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 10, rel = 0.1,
 						freq = 100, res = 0.7 | 
 	var sound, env;
 	sound = In.ar(in,1);
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
 	sound = BPF.ar(sound,freq,res) * env;
 	Out.ar(out,sound);
 }).add;
@@ -47,7 +47,7 @@ SynthDef(\rlpf, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 10, rel = 0.1,
 					startfreq = 100, endfreq = 100, res 0.2, time = 10 |
 	var sound, env;
 	sound = In.ar(in,1);
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
 	sound = RLPF.ar(sound,Line.kr(startfreq,endfreq,time),res) * env;
 	Out.ar(out,sound);
 }).add;
@@ -61,7 +61,7 @@ SynthDef(\recbuf, { | in = 0, dur = 5, bufnum = 0 |
 
 SynthDef(\playbuf, { | out = 0, bufnum = 0, rate = 1, atk = 0.1, sus = 0.1, rel = 0.1, amp = 0, loop = 0 |
 	var env, sound;
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp), doneAction:2);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp), doneAction:2);
 	sound = PlayBuf.ar(1,bufnum,BufRateScale.kr(bufnum)*rate, loop: loop) * env;
 	Out.ar(out, sound);
 }).add;
@@ -70,7 +70,7 @@ SynthDef(\pitchshift, { | in = 0, out = 0, ratio = 0, amp = 1, atk = 0.1, sus = 
 						windowSize = 0.2, timeDispersion = 0.0001, pitchDispersion = 0.0001,
 						bpfselect = 0, bpffreq = 500, bpfres = 0.5 |
 	var sound, env;
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
 	sound = In.ar(in, 1);
 	sound = PitchShift.ar(sound, windowSize, ratio, 
 		timeDispersion, pitchDispersion) * env;
@@ -81,7 +81,7 @@ SynthDef(\pitchshift, { | in = 0, out = 0, ratio = 0, amp = 1, atk = 0.1, sus = 
 SynthDef(\freqshift, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
 						freq = 0 |
 	var sound, env;
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
 	sound = In.ar(in, 1);
 	sound = FreqShift.ar(sound, freq) * env;
 	Out.ar(out,sound);
@@ -89,7 +89,7 @@ SynthDef(\freqshift, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.
 
 SynthDef(\convolve, { | in = 0, amp = 0.1, out = 0.1, atk = 0.1, sus = 0.1, rel = 0.1 | 
 	var env, sound, kernel;
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
 	kernel = In.ar(in, 1);
 	sound = Convolution.ar(In.ar(in,1),kernel,4096);
 	Out.ar(out,sound*env);
@@ -104,7 +104,7 @@ SynthDef(\convolve, { | in = 0, amp = 0.1, out = 0.1, atk = 0.1, sus = 0.1, rel 
 SynthDef(\distortion, { | in = 0, out = 0, amount = 0, amp = 0, atk = 10, 
 						sus = 10, rel = 10, dur = 10 |
 	var sound, k, env;
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
 	sound = In.ar(in, 1);
 	k = 2 * amount / (1-amount);
 	sound = (1+k) * sound / (1+(k*sound.abs));
@@ -116,7 +116,7 @@ SynthDef(\fbdelay,{ | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1,
 						delay = 10, maxdelay = 10, amp = 1.0, fb = 0.1, 
 						filterselect = 0, filterfreq = 100 |
 	var env, sound;
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp),doneAction:2);	sound = In.ar(in,1);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);	sound = In.ar(in,1);
 	sound = sound + LocalIn.ar(1);
 	sound = DelayC.ar(sound, maxdelay, delay - ControlDur.ir).tanh;
 	sound = Select.ar(filterselect, [sound, LPF.ar(sound,filterfreq)]);
@@ -132,14 +132,14 @@ SynthDef(\fbdelay,{ | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1,
 SynthDef(\freeze, { | bufnum = 0, out = 0, rate = 1, bufdur = 2,
 					atk = 0, sus = 0, rel = 0, amp = 0.1, cfreq = 0.1, 
 					cphase = 0, cmul = 1, cadd = 1 | 
-	var env = EnvGen.ar(Env.linen(atk,sus,rel,amp), doneAction:2);
+	var env = EnvGen.kr(Env.linen(atk,sus,rel,amp), doneAction:2).poll;
 	var tfreq = 44;
 	var trig = Impulse.kr(tfreq);
-	var center = SinOsc.kr(cfreq,cphase,cmul,cadd).wrap(0,bufdur);
+	var center = LFSaw.kr(cfreq,cphase,cmul,cadd);
 	var graindur = 12 / tfreq;
 	var sound = TGrains.ar(2, trig, bufnum, rate: 1, 
-		centerPos: center, dur: graindur, amp: 1.0).sum*env; // mono!
-	Out.ar(out, sound);
+		centerPos: center, dur: graindur, amp: 1.0).sum; // mono!
+	Out.ar(out, sound*env);
 }).add;
 
 SynthDef(\warp, { | in = 0, out = 0, amp = 0, dur = 10, sus = 0, atk = 0.01, rel = 0.01, 
@@ -148,7 +148,7 @@ SynthDef(\warp, { | in = 0, out = 0, amp = 0, dur = 10, sus = 0, atk = 0.01, rel
 					interp = 4 |
 	var sound, env, buf;
 	buf = LocalBuf(SampleRate.ir*dur,1).clear;
-	env = EnvGen.ar(Env.linen(atk,sus,rel,amp,'sin'), doneAction:2);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'), doneAction:2);
 	sound = In.ar(in, 1);
 	sound = WarpIn.ar(sound,buf,warpfactor,freqscale,windowsize,-1,
 			overlaps,windowrandratio,prelevel,interp);

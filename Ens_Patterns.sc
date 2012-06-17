@@ -159,7 +159,7 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.5,0.5],inf)],1),
+					\osccmd, Pseq([\rest,\noteon,Pwrand([\rest,\noteon],[0.5,0.5],inf)],1),
 					\voicename, \bcl,
 					\midinote, Pseq([121,122],inf), 
 					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
@@ -279,19 +279,19 @@
 			Pdef(\section2_freeze, 
 				Pbind(
 					\instrument, \freeze,
-					\group, ~fx,
+				//	\group, ~fx,
 					\out, 18,
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
-					\dur, Pseq([16,16],1),
-					\cfreq, Pkey(\bufdur).reciprocal/Pkey(\dur),
-					\cphase, 0.3,
+					\dur, 16,
+					\cfreq, (Pkey(\dur).reciprocal*0.5).min(Pkey(\bufdur)),
+					\cphase, 0,
 					\cmul, Pkey(\bufdur),
 					\cadd, 0,
-					\atk, Pkey(\dur)*0.01,
-					\sus, Pkey(\dur)*0.75,
-					\rel, Pkey(\dur)*0.25, 
-					\amp, Pseq([0.0,2.0],1)
+					\atk, Pkey(\dur)*0.2,
+					\sus, Pkey(\dur)*0.6,
+					\rel, Pkey(\dur)*0.2, 
+					\amp, Pseq([1.0],1)
 				)				 
 			),
 			10.05,
@@ -356,7 +356,7 @@
 					\sus, Pkey(\dur)*0.3,
 					\rel, Pkey(\dur)*0.3, 
 					\amp, Pseq([0,Pexprand(0.25,0.75,2)],1),
-					\ratio, [1+0.001.rand,1-0.001.rand], // fatten it out
+					\ratio, [0.5+0.001.rand,0.5-0.001.rand], // fatten it out
 					\timeDispersion, 0.0001.rand
 				)	
 			),

@@ -109,7 +109,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[1] = Pfindur(~durations[1],
 		Ptpar([
-			8,
+			6,
 			Pdef(\section1_pg, 
 				Pbind(
 					\type, \ctosc, 
@@ -129,7 +129,7 @@
 				)	
 				 
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_fl, 
 				Pbind(
 					\type, \ctosc, 
@@ -142,7 +142,7 @@
 					\amp, Pexprand(0.75,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_bfl,  
 				Pbind(
 					\type, \ctosc, 
@@ -154,7 +154,7 @@
 					\amp, Pexprand(0.1,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_bcl,  
 				Pbind(
 					\type, \ctosc, 
@@ -166,7 +166,7 @@
 					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_sx1, 
 				Pbind(
 					\type, \ctosc, 
@@ -178,7 +178,7 @@
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))],1)
 				)				
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_tam, 
 				Pbind(
 					\type, \ctosc, 
@@ -190,7 +190,7 @@
 					\amp, Pexprand(0.7,1.0,1)
 				)				
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_recbuf,
 				Pbind(
 					\instrument, \recbuf,
@@ -200,7 +200,7 @@
 					\bufnum, ~tamtam_buf
 				)
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_vi1,  
 				Pbind(
 					\type, \ctosc, 
@@ -213,7 +213,7 @@
 					\amp, Pexprand(0.1,0.6,inf)
 				)	 
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_vi2,  
 				Pbind(
 					\type, \ctosc, 
@@ -226,7 +226,7 @@
 					\amp, Pexprand(0.1,0.6,inf)
 				)	 
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_va1,  
 				Pbind(
 					\type, \ctosc, 
@@ -239,7 +239,7 @@
 					\amp, Pexprand(0.1,0.6,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section1_va2,  
 				Pbind(
 					\type, \ctosc, 
@@ -258,16 +258,17 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[2] = Pfindur(~durations[2],
 		Ptpar([
-			10,
+			8,
 			Pdef(\section2_pg, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \program,
-					\voicename, [\fl,\bfl,\sx1,\sx2,\cb,\vc],
+					\voicename, [\fl,\bfl,\bcl,\sx1,\sx2,\cb,\vc],
 					\programname, 
 						#["flute.ordinario",
 						"bass.flute.ordinario",
+						"bass clarinet boehm system.ordinario",
 						"alto saxophone.slap.percussive slap",
 						"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 						"double bass.pizzicato.bartok",
@@ -275,7 +276,7 @@
 					\dur, Pn(0.01,1)
 				)		 
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_freeze, 
 				Pbind(
 					\instrument, \freeze,
@@ -294,7 +295,7 @@
 					\amp, Pseq([0.0,1.0],1)
 				)				 
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_fl, 
 				Pbind(
 					\type, \ctosc, 
@@ -307,7 +308,7 @@
 					\amp, Pexprand(0.3,1.0,inf)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_bfl, 
 				Pbind(
 					\type, \ctosc, 
@@ -320,7 +321,19 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			10.05,
+			8.05,
+			Pdef(\section2_bcl, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
+					\voicename, \bcl,
+					\midinote, 81, 
+					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
+					\amp, Pexprand(0.1,0.25,inf)
+				)	 
+			),
+			8.05,
 			Pdef(\section2_sx1, 
 				Pbind(
 					\type, \ctosc, 
@@ -332,7 +345,7 @@
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_sx2, 
 				Pbind(
 					\type, \ctosc, 
@@ -344,7 +357,7 @@
 					\amp, Pseq([0,1],1)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_pitchshift, 
 				Pbind(
 					\instrument, \pitchshift, 
@@ -355,12 +368,12 @@
 					\atk, Pkey(\dur)*0.5,
 					\sus, Pkey(\dur)*0.3,
 					\rel, Pkey(\dur)*0.3, 
-					\amp, Pseq([0,Pexprand(0.25,0.75,2)],1),
+					\amp, Pseq([0,1.0],1),
 					\ratio, [0.5+0.001.rand,0.5-0.001.rand], // fatten it out
 					\timeDispersion, 0.0001.rand
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_cb, 
 				Pbind(
 					\type, \ctosc, 
@@ -372,7 +385,7 @@
 					\amp, Pexprand(0.85,1.0,inf)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_vi1, 
 				Pbind(
 					\type, \ctosc, 
@@ -385,7 +398,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_vi2, 
 				Pbind(
 					\type, \ctosc, 
@@ -398,7 +411,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_vi3, 
 				Pbind(
 					\type, \ctosc, 
@@ -411,7 +424,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_vi4, 
 				Pbind(
 					\type, \ctosc, 
@@ -424,7 +437,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_va1, 
 				Pbind(
 					\type, \ctosc, 
@@ -437,7 +450,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_va2, 
 				Pbind(
 					\type, \ctosc, 
@@ -450,7 +463,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			10.05,
+			8.05,
 			Pdef(\section2_vc, 
 				Pbind(
 					\type, \ctosc, 
@@ -464,7 +477,16 @@
 				)	
 			)
 		], 1)
-	);	
+	);
+	
+	////////////////////////////////////////////////////////////////////////////////
+//	~sections[3] = Pfindur(~durations[3],
+//		Ptpar([
+//			
+//		
+//		], 1)
+//	);
+	
 };
 ~load_patterns.fork;
 )

@@ -132,7 +132,7 @@ SynthDef(\fbdelay,{ | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1,
 SynthDef(\freeze, { | bufnum = 0, out = 0, rate = 1, bufdur = 2,
 					atk = 0, sus = 0, rel = 0, amp = 0.1, cfreq = 0.1, 
 					cphase = 0, cmul = 1, cadd = 1 | 
-	var env = EnvGen.kr(Env.linen(atk,sus,rel,amp), doneAction:2).poll;
+	var env = EnvGen.kr(Env.linen(atk,sus,rel,amp), doneAction:2);
 	var tfreq = 44;
 	var trig = Impulse.kr(tfreq);
 	var center = LFSaw.kr(cfreq,cphase,cmul,cadd);

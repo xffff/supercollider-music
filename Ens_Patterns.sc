@@ -21,27 +21,25 @@
 	
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
-	~sections[0] = Ptpar([
-		// first do program changes to initiate
-		0,
-		Pdef(\section0_pg, 
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, \program,
-				\voicename, [\fl,\bfl,\bcl,\va1],
-				\programname, 
-					#["flute.air noise.closed.vowel varied",
-					"bass.flute.multiphonic",
-					"bass clarinet boehm system.ordinario",
-					"viola.harmonic.artificial.fourth"],
-				\dur, Pn(0.01,1)
-			)	
-			 
-		),
-		0.05,
-		Pdef(\section0_fl, 
-			Pfindur(~durations[0], 
+	~sections[0] = Pfindur(~durations[0],
+		Ptpar([
+			0,
+			Pdef(\section0_pg, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \program,
+					\voicename, [\fl,\bfl,\bcl,\va1],
+					\programname, 
+						#["flute.air noise.closed.vowel varied",
+						"bass.flute.multiphonic",
+						"bass clarinet boehm system.ordinario",
+						"viola.harmonic.artificial.fourth"],
+					\dur, Pn(0.01,1)
+				)	 
+			),
+			0.05,
+			Pdef(\section0_fl, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -52,11 +50,9 @@
 					\legato, 0.75,
 					\amp, Pexprand(0.75,1.0,inf)
 				)	
-			) 
-		),
-		0.05,
-		Pdef(\section0_warp,
-			Pfindur(~durations[0],
+			),
+			0.05,
+			Pdef(\section0_warp,
 				Pbind(
 					\instrument, \warp,
 					\group, ~fx,
@@ -70,52 +66,46 @@
 					\warpfactor, (3,5..11).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
+			),
+			0.05,
+			Pdef(\section0_bfl,  
+					Pbind(
+						\type, \ctosc, 
+						\oscout, ~osc_destination,
+						\osccmd, \noteon,
+						\voicename, \bfl,
+						\midinote, 81+Pseq([0,2,3],inf), 
+						\dur, Pseq([16,8,8,4],inf),
+						\amp, Pexprand(0.1,0.25,inf)
+					)	 
+			),
+			0.05,
+			Pdef(\section0_bcl, 
+					Pbind(
+						\type, \ctosc, 
+						\oscout, ~osc_destination,
+						\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
+						\voicename, \bcl,
+						\midinote, 81, 
+						\dur, Pseq([8,Prand([4,8,16],inf)],inf),
+						\amp, Pexprand(0.1,0.25,inf)
+					)	 
+			),
+			0.05,
+			Pdef(\section0_va1, 
+					Pbind(
+						\type, \ctosc, 
+						\oscout, ~osc_destination,
+						\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+						\voicename, \va1,
+						\midinote, 
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=85}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
+						\amp, Pexprand(0.1,0.7,inf)
+					)	 
 			)
-		),
-		0.05,
-		Pdef(\section0_bfl, 
-			Pfindur(~durations[0], 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \bfl,
-					\midinote, 81+Pseq([0,2,3],inf), 
-					\dur, Pseq([16,8,8,4],inf),
-					\amp, Pexprand(0.1,0.25,inf)
-				)	
-			) 
-		),
-		0.05,
-		Pdef(\section0_bcl, 
-			Pfindur(~durations[0], 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
-					\voicename, \bcl,
-					\midinote, 81, 
-					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
-					\amp, Pexprand(0.1,0.25,inf)
-				)	
-			) 
-		),
-		0.05,
-		Pdef(\section0_va1, 
-			Pfindur(~durations[0], 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
-					\voicename, \va1,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=85}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
-					\amp, Pexprand(0.1,0.7,inf)
-				)	
-			) 
-		)
-	], 1);
+		], 1)
+	);
 	
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[1] = Ptpar([

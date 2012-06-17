@@ -279,19 +279,19 @@
 			Pdef(\section2_freeze, 
 				Pbind(
 					\instrument, \freeze,
-				//	\group, ~fx,
+					\group, ~fx,
 					\out, 18,
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
-					\dur, 16,
-					\cfreq, (Pkey(\dur).reciprocal*0.5).min(Pkey(\bufdur)),
+					\dur, Pn(16,2),
+					\cfreq, Pkey(\bufdur).reciprocal*0.5, 
 					\cphase, 0,
 					\cmul, Pkey(\bufdur),
 					\cadd, 0,
 					\atk, Pkey(\dur)*0.2,
-					\sus, Pkey(\dur)*0.6,
-					\rel, Pkey(\dur)*0.2, 
-					\amp, Pseq([1.0],1)
+					\sus, Pkey(\dur)*0.4,
+					\rel, Pkey(\dur)*0.4, 
+					\amp, Pseq([0.0,1.0],1)
 				)				 
 			),
 			10.05,

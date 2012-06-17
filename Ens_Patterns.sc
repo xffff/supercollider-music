@@ -15,7 +15,7 @@
 ~durations[0] = 60;
 ~durations[1] = 60;
 ~durations[2] = 32;
-~durations[3] = 32;
+~durations[3] = 60;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -483,6 +483,24 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[3] = Pfindur(~durations[3],
 		Ptpar([
+			0,
+			Pdef(\section3_pg, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \program,
+					\voicename, [\fl,\bfl,\bcl,\sx1,\sx2,\vc,\cb],
+					\programname, 
+						#["flute.air noise.closed.vowel varied",
+						"bass.flute.jet whistle",
+						"bass clarinet boehm system.ordinario",
+						"alto saxophone.slap.percussive slap",
+						"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
+						"violoncello.pizzicato",
+						"double bass.pizzicato"],
+					\dur, Pn(0.01,1)
+				)		 
+			),
 			0.05,
 			Pdef(\section3_ctl, 
 				Pbind(
@@ -500,13 +518,13 @@
 								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 									n>=72}).select({|n,i| n<=96}),inf),
 							],1), 
-					\dur, Pseq([Pn(16,1),Prand([8,16],3)],1),
+					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+					\legato, 2,
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			)
 		], 1)
 	);
-	
 };
 ~load_patterns.fork;
 )

@@ -14,8 +14,7 @@
 
 ~durations[0] = 60;
 ~durations[1] = 60;
-~durations[2] = 48;
-~durations[3] = 60;
+~durations[2] = 32;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -284,7 +283,7 @@
 					\out, 18,
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
-					\dur, Pseq([32,16],1),
+					\dur, Pseq([16,16],1),
 					\cfreq, Pkey(\bufdur).reciprocal/Pkey(\dur),
 					\cphase, 0.3,
 					\cmul, Pkey(\bufdur),
@@ -322,43 +321,6 @@
 				)	
 			),
 			10.05,
-			Pdef(\section2_bsn1, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,\noteon],1),
-					\voicename, \bsn1,
-					\midinote, 38, 									\dur, Pseq([32,16],1),
-					\amp, Pexprand(0.7,1.0,inf)
-				)	
-			),
-			10.05,
-			Pdef(\section2_freqshift, 
-				Pbind(
-					\instrument, \freqshift, 
-					\group, ~fx,
-					\in, ~master_fx_bus.subBus(3,1),
-					\out, 19,
-					\dur, Pseq([32,16],1),
-					\atk, Pkey(\dur)*0.2,
-					\sus, Pkey(\dur)*0.6,
-					\rel, Pkey(\dur)*0.2, 
-					\amp, Pseq([0.0,2.0],1),
-					\freq, (38.midicps*0.5).neg
-				)	
-			),
-			10.05,
-			Pdef(\section2_tb1, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,\noteon],1),
-					\voicename, \tb1,
-					\midinote, 26, 									\dur, Pseq([32,16],1),
-					\amp, Pexprand(0.7,1.0,inf)
-				)	
-			),
-			10.05,
 			Pdef(\section2_sx1, 
 				Pbind(
 					\type, \ctosc, 
@@ -375,11 +337,11 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,\noteon,\noteon],1),
+					\osccmd, Pseq([\rest,\noteon],1),
 					\voicename, \sx2,
-					\midinote, Pseq([0,107,111],1), 
-					\dur, Pseq([16,Pn(16,2)],inf),
-					\amp, Pseq([0,1,1],1)
+					\midinote, Pseq([0,107],1), 
+					\dur, Pseq([16,16],1),
+					\amp, Pseq([0,1],1)
 				)	
 			),
 			10.05,
@@ -405,8 +367,8 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \cb,
-					\midinote, Pn(38,inf), 
-					\dur, Pseq([16,Prand([32,16,8],inf)],inf),
+					\midinote, Pwrand([38,26],[0.7,0.3],inf), 
+					\dur, Pn(16,2),
 					\amp, Pexprand(0.85,1.0,inf)
 				)	
 			),

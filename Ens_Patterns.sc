@@ -592,6 +592,22 @@
 					\dur, Prand([2,4,6,8,12,16],inf),
 					\amp, Pexprand(0.85,1.0,inf)
 				)	
+			),
+			0.05,
+			Pdef(\section3_cbwarp,
+				Pbind(
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(11,1),
+					\out, 17,
+					\dur, ~durations[3],
+					\atk, ~durations[3] * 0.1,
+					\sus, ~durations[3] * 0.3,
+					\rel, ~durations[3] * 0.8, // slight overlap with s2
+					\amp, 0.45,
+					\warpfactor, (3,5..11).midiratio,
+					\freqscale, Pkey(\warpfactor)
+				)
 			)
 		], 1)
 	);

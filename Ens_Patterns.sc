@@ -489,11 +489,10 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \program,
-					\voicename, [\fl,\bfl,\bcl,\sx1,\sx2,\vc,\cb],
+					\voicename, [\fl,\bfl,\sx1,\sx2,\vc],
 					\programname, 
 						#["flute.air noise.closed.vowel varied",
 						"bass.flute.jet whistle",
-						"bass clarinet boehm system.ordinario",
 						"alto saxophone.slap.percussive slap",
 						"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 						"violoncello.pizzicato",
@@ -569,36 +568,24 @@
 				)
 			),
 			0.05,
-			Pdef(\section3_bcl, 
+			Pdef(\section3_vc, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],inf),
-					\voicename, \bcl,
-					\midinote, Pseq([38,39],32), 
+					\voicename, \vc,
+					\midinote, Pseq(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+									n>=36}).select({|n,i| n<=73}),inf), 
 					\dur, Pseq([16,Pn(1/8,64)],inf),
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1))],1)
 				)	
 			),
 			0.05,
-			Pdef(\section3_cb, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \cb,
-					\midinote, Pseq(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-									n>=28}).select({|n,i| n<=68}),inf), 
-					\dur, Prand([2,4,6,8,12,16],inf),
-					\amp, Pexprand(0.85,1.0,inf)
-				)	
-			),
-			0.05,
-			Pdef(\section3_cbwarp,
+			Pdef(\section3_vcwarp,
 				Pbind(
 					\instrument, \warp,
 					\group, ~fx,
-					\in, ~master_fx_bus.subBus(11,1),
+					\in, ~master_fx_bus.subBus(10,1),
 					\out, 17,
 					\dur, ~durations[3],
 					\atk, ~durations[3] * 0.1,

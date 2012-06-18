@@ -25,7 +25,7 @@ fork{
 		o.inDevice = "JackRouter";
 		o.outDevice = "JackRouter";
 		o.blockSize = 512;
-		o.hardwareBufferSize = 512;
+		o.hardwareBufferSize = 1024;
 		o.numOutputBusChannels = 32;
 		o.numInputBusChannels = 32;
 		o.memSize;

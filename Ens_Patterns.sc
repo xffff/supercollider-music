@@ -329,7 +329,7 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \bcl,
-					\midinote, 81, 
+					\midinote, Pseq([81,83],1) 
 					\dur, Pn(16,2),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	 
@@ -413,6 +413,22 @@
 				)	
 			),
 			6.05,
+			Pdef(\section2_vi1warp,
+				Pbind(
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(7,1),
+					\out, 17,
+					\dur, Pseq([16,64],1),
+					\atk, Pkey(\dur) * 0.1,
+					\sus, Pkey(\dur) * 0.3,
+					\rel, Pkey(\dur) * 0.6, 
+					\amp, Pseq([0,1.0.rand],1),
+					\warpfactor, (-5,-3..5).midiratio,
+					\freqscale, Pkey(\warpfactor)
+				)
+			),
+			6.05,
 			Pdef(\section2_vi3, 
 				Pbind(
 					\type, \ctosc, 
@@ -437,6 +453,22 @@
 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
+			),
+			6.05,
+			Pdef(\section2_vi2warp,
+				Pbind(
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(8,1),
+					\out, 17,
+					\dur, Pseq([16,64],1),
+					\atk, Pkey(\dur) * 0.1,
+					\sus, Pkey(\dur) * 0.3,
+					\rel, Pkey(\dur) * 0.6, 
+					\amp, Pseq([0,1.0.rand],1),
+					\warpfactor, (-5,-3..5).midiratio,
+					\freqscale, Pkey(\warpfactor)
+				)
 			),
 			6.05,
 			Pdef(\section2_va1, 
@@ -465,6 +497,22 @@
 				)	
 			),
 			6.05,
+			Pdef(\section2_vawarp,
+				Pbind(
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(7,1),
+					\out, 17,
+					\dur, Pseq([16,64],1),
+					\atk, Pkey(\dur) * 0.1,
+					\sus, Pkey(\dur) * 0.3,
+					\rel, Pkey(\dur) * 0.6, 
+					\amp, Pseq([0,1.0.rand],1),
+					\warpfactor, (-5,-3..5).midiratio,
+					\freqscale, Pkey(\warpfactor)
+				)
+			),
+			6.05,
 			Pdef(\section2_vc, 
 				Pbind(
 					\type, \ctosc, 
@@ -483,7 +531,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[3] = Pfindur(~durations[3],
 		Ptpar([
-			0,
+			6,
 			Pdef(\section3_pg, 
 				Pbind(
 					\type, \ctosc, 
@@ -497,7 +545,7 @@
 					\dur, Pn(0.01,1)
 				)		 
 			),
-			0.05,
+			6.05,
 			Pdef(\section3_ctl, 
 				Pbind(
 					\type, \ctosc, 
@@ -519,7 +567,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			0.05,
+			6.05,
 			Pdef(\section3_ctlwarp,
 				Pbind(
 					\instrument, \warp,
@@ -535,7 +583,7 @@
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
-			0.05,
+			6.05,
 			Pdef(\section3_fl, 
 				Pbind(
 					\type, \ctosc, 
@@ -548,7 +596,7 @@
 					\amp, Pexprand(0.75,1.0,inf)
 				)	
 			),
-			0.05,
+			6.05,
 			Pdef(\section3_flwarp,
 				Pbind(
 					\instrument, \warp,
@@ -564,7 +612,7 @@
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
-			0.05,
+			6.05,
 			Pdef(\section3_bfl,  
 				Pbind(
 					\type, \ctosc, 
@@ -576,7 +624,7 @@
 					\amp, Pexprand(0.1,1.0,inf)
 				)	
 			),
-			0.05,
+			6.05,
 			Pdef(\section3_vc, 
 				Pbind(
 					\type, \ctosc, 
@@ -602,7 +650,7 @@
 						],1)
 				)	
 			),
-			0.05,
+			6.05,
 			Pdef(\section3_vcwarp,
 				Pbind(
 					\instrument, \warp,

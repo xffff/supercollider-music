@@ -344,7 +344,7 @@
 					\osccmd, \noteon,
 					\voicename, \sx1,
 					\midinote, Pseq([50,51],32), 
-					\dur, Pseq([8,Pn(1/16,64)],inf),
+					\dur, Pseq([8,Pn(1/8,32)],inf),
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
 				)	
 			),
@@ -529,7 +529,7 @@
 					\sus, ~durations[3] * 0.3,
 					\rel, ~durations[3] * 0.8, // slight overlap with s2
 					\amp, 0.45,
-					\warpfactor, (3,5..11).midiratio,
+					\warpfactor, (3,5..9).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
@@ -621,10 +621,10 @@
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],inf),
 					\voicename, \cb,
-					\midinote, 36, 
+					\midinote, 38, 
 					\dur, Prand([16,8],inf),
 					\legato, 0.1,
-					\amp, Pexprand(0.5,0.7,inf)
+					\amp, Pexprand(0.5,1.0,inf)
 				)	
 			),			
 			~delays[3]+0.05,
@@ -639,7 +639,7 @@
 					\sus, ~durations[3] * 0.3,
 					\rel, ~durations[3] * 0.8, // slight overlap with s2
 					\amp, 0.45,
-					\warpfactor, (-11,-9..11).midiratio,
+					\warpfactor, (-7,-5..7).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
@@ -678,7 +678,7 @@
 					\sus, ~durations[3] * 0.3,
 					\rel, ~durations[3] * 0.8, // slight overlap with s2
 					\amp, 0.45,
-					\warpfactor, (-5,-3..11).midiratio,
+					\warpfactor, (-5,-3..5).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
@@ -691,7 +691,7 @@
 					\voicename, \tam,
 					\midinote, Prand([65,66],inf),
 					\dur, Pseq([Pn(16,1),Prand([4,8,16],inf)],1),
-					\amp, Pexprand(0.1,0.6,inf)
+					\amp, Pexprand(0.1,0.7,inf)
 				)	
 			)
 		], 1)

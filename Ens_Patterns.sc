@@ -14,8 +14,8 @@
 ~delays = 0!32;
 
 ~durations[0] = 60; ~delays[0] = 0;
-~durations[1] = 60; ~delays[1] = 2;
-~durations[2] = 32; ~delays[2] = 6;
+~durations[1] = 60; ~delays[1] = 1;
+~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
 
 
@@ -295,7 +295,7 @@
 					\atk, Pkey(\dur)*0.2,
 					\sus, Pkey(\dur)*0.4,
 					\rel, Pkey(\dur)*0.4, 
-					\amp, Pseq([0.0,1.0],1)
+					\amp, Pseq([0.0,0.75],1)
 				)				 
 			),
 			~delays[2]+0.05,
@@ -506,16 +506,17 @@
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 					\voicename, \ctl,
-					\midinote, Ptuple([		// there must be a better way to write this...
-								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-									n>=72}).select({|n,i| n<=96}),inf),
-								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-									n>=72}).select({|n,i| n<=96}),inf),
-								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-									n>=72}).select({|n,i| n<=96}),inf),
-								Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-									n>=72}).select({|n,i| n<=96}),inf),
-							],1), 
+					\midinote, 
+						Ptuple([		// there must be a better way to write this...
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+						],1), 
 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\legato, 2,
 					\amp, Pexprand(0.7,1.0,inf)
@@ -574,7 +575,7 @@
 					\osccmd, Pseq([\noteon,Prand([\noteon,\rest],inf)],1),
 					\voicename, \bfl,
 					\midinote, Prand([49,52,53,56,59,62],inf), 
-					\dur, Prand([16,8,4,32],inf),
+					\dur, Prand([16,8,4,2],inf),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),

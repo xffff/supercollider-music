@@ -259,7 +259,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[2] = Pfindur(~durations[2],
 		Ptpar([
-			8,
+			6,
 			Pdef(\section2_pg, 
 				Pbind(
 					\type, \ctosc, 
@@ -277,7 +277,7 @@
 					\dur, Pn(0.01,1)
 				)		 
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_freeze, 
 				Pbind(
 					\instrument, \freeze,
@@ -285,8 +285,8 @@
 					\out, 18,
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
-					\dur, Pn(16,2),
-					\cfreq, Pkey(\bufdur).reciprocal*0.5, 
+					\dur, Pseq([16,64],1),
+					\cfreq, Pkey(\dur).reciprocal*0.5, 
 					\cphase, 0,
 					\cmul, Pkey(\bufdur),
 					\cadd, 0,
@@ -296,7 +296,7 @@
 					\amp, Pseq([0.0,1.0],1)
 				)				 
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_fl, 
 				Pbind(
 					\type, \ctosc, 
@@ -309,7 +309,7 @@
 					\amp, Pexprand(0.3,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_bfl, 
 				Pbind(
 					\type, \ctosc, 
@@ -322,19 +322,19 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_bcl, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
+					\osccmd, \noteon,
 					\voicename, \bcl,
 					\midinote, 81, 
-					\dur, Pseq([8,Prand([4,8,16],inf)],inf),
+					\dur, Pn(16,2),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	 
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_sx1, 
 				Pbind(
 					\type, \ctosc, 
@@ -346,7 +346,7 @@
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_sx2, 
 				Pbind(
 					\type, \ctosc, 
@@ -358,7 +358,7 @@
 					\amp, Pseq([0,1],1)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_pitchshift, 
 				Pbind(
 					\instrument, \pitchshift, 
@@ -374,7 +374,7 @@
 					\timeDispersion, 0.0001.rand
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_cb, 
 				Pbind(
 					\type, \ctosc, 
@@ -386,7 +386,7 @@
 					\amp, Pexprand(0.85,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_vi1, 
 				Pbind(
 					\type, \ctosc, 
@@ -399,7 +399,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_vi2, 
 				Pbind(
 					\type, \ctosc, 
@@ -412,7 +412,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_vi3, 
 				Pbind(
 					\type, \ctosc, 
@@ -425,7 +425,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_vi4, 
 				Pbind(
 					\type, \ctosc, 
@@ -438,7 +438,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_va1, 
 				Pbind(
 					\type, \ctosc, 
@@ -451,7 +451,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_va2, 
 				Pbind(
 					\type, \ctosc, 
@@ -464,7 +464,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			8.05,
+			6.05,
 			Pdef(\section2_vc, 
 				Pbind(
 					\type, \ctosc, 
@@ -489,14 +489,11 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \program,
-					\voicename, [\fl,\bfl,\sx1,\sx2,\vc],
+					\voicename, [\fl,\bfl,\vc],
 					\programname, 
 						#["flute.air noise.closed.vowel varied",
 						"bass.flute.jet whistle",
-						"alto saxophone.slap.percussive slap",
-						"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
-						"violoncello.pizzicato",
-						"double bass.pizzicato"],
+						"violoncello.col legno battuto.ordinario"],
 					\dur, Pn(0.01,1)
 				)		 
 			),
@@ -534,7 +531,7 @@
 					\sus, ~durations[3] * 0.3,
 					\rel, ~durations[3] * 0.8, // slight overlap with s2
 					\amp, 0.45,
-					\warpfactor, (3,5..11).midiratio,
+					\warpfactor, (-5,-3..11).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
@@ -568,16 +565,41 @@
 				)
 			),
 			0.05,
+			Pdef(\section3_bfl,  
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\noteon,\rest],inf)],1),
+					\voicename, \bfl,
+					\midinote, Prand([49,52,53,56,59,62],inf), 
+					\dur, Prand([16,8,32],inf),
+					\amp, Pexprand(0.1,1.0,inf)
+				)	
+			),
+			0.05,
 			Pdef(\section3_vc, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],inf),
 					\voicename, \vc,
-					\midinote, Pseq(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-									n>=36}).select({|n,i| n<=73}),inf), 
-					\dur, Pseq([16,Pn(1/8,64)],inf),
-					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1))],1)
+					\midinote, 
+							Pwalk(
+								Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+									n>=36}).select({|n,i| n<=73}),
+								Prand((1..4),inf),
+								Pseq([1,-1],inf),
+							0), 
+					\dur, 
+						Pseq([16,Prand([
+							Prand([Pn(1/8,64),Pn(1/4,32),Pn(1/6,21)],1),
+							Prand([16,32],1)],inf)
+						],inf),
+					\amp, 
+						Pseq([0,
+							Pif(Pbinop('<',Pkey(\dur),16),
+								Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1)),Pn(1,inf))
+						],1)
 				)	
 			),
 			0.05,
@@ -592,7 +614,7 @@
 					\sus, ~durations[3] * 0.3,
 					\rel, ~durations[3] * 0.8, // slight overlap with s2
 					\amp, 0.45,
-					\warpfactor, (3,5..11).midiratio,
+					\warpfactor, (-11,-9..11).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			)

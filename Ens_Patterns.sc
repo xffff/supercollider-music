@@ -491,11 +491,13 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \program,
-					\voicename, [\fl,\bfl,\vc],
+					\voicename, [\fl,\bfl,\sx1,\vc,\cb],
 					\programname, 
 						#["flute.air noise.closed.vowel varied",
 						"bass.flute.jet whistle",
-						"violoncello.col legno battuto.ordinario"],
+						"alto saxophone.slap.percussive slap",
+						"violoncello.col legno battuto.ordinario"
+						"double bass.pizzicato"],
 					\dur, Pn(0.01,1)
 				)		 
 			),
@@ -537,7 +539,19 @@
 					\voicename, \bfl,
 					\midinote, Prand([49,52,53,56,59,62],inf), 
 					\dur, Prand([16,8,4,2],inf),
-					\amp, Pexprand(0.7,1.0,inf)
+					\amp, Pexprand(0.85,1.0,inf)
+				)	
+			),
+			~delays[3]+0.05,
+			Pdef(\section3_sx1, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \sx1,
+					\midinote, Pseq([50,51],32), 
+					\dur, Pseq([8,Pn(1/4,32)],inf),
+					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
 				)	
 			),
 			~delays[3]+0.05,
@@ -566,6 +580,19 @@
 						],1)
 				)	
 			),
+			~delays[3]+0.05,
+			Pdef(\section3_cb, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Pn(\noteon,inf)],inf),
+					\voicename, \cb,
+					\midinote, 36, 
+					\dur, Prand([16,8],inf),
+					\legato, 0.1,
+					\amp, Pexprand(0.5,0.7,inf)
+				)	
+			),			
 			~delays[3]+0.05,
 			Pdef(\section3_vcwarp,
 				Pbind(
@@ -627,7 +654,7 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-					\voicename, \ctl,
+					\voicename, \tam,
 					\midinote, Prand([65,66],inf),
 					\dur, Pseq([Pn(16,1),Prand([4,8,16],inf)],1),
 					\amp, Pexprand(0.1,0.6,inf)

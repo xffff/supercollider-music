@@ -359,7 +359,7 @@
 				)	
 			),
 			6.05,
-			Pdef(\section2_pitchshift, 
+			Pdef(\section2_sxpitchshift, 
 				Pbind(
 					\instrument, \pitchshift, 
 					\group, ~fx,

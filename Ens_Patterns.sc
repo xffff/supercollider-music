@@ -15,7 +15,7 @@
 
 ~durations[0] = 60; ~delays[0] = 0;
 ~durations[1] = 60; ~delays[1] = 2;
-~durations[2] = 32; ~delays[2] = 4;
+~durations[2] = 32; ~delays[2] = 6;
 ~durations[3] = 60; ~delays[3] = 8;
 
 
@@ -287,7 +287,7 @@
 					\out, 18,
 					\bufnum, ~tamtam_buf,
 					\bufdur, ~tamtam_buf.duration,
-					\dur, Pseq([16,64],1),
+					\dur, Pseq([16,16],1),
 					\cfreq, Pkey(\dur).reciprocal*0.5, 
 					\cphase, 0,
 					\cmul, Pkey(\bufdur),
@@ -574,8 +574,8 @@
 					\osccmd, Pseq([\noteon,Prand([\noteon,\rest],inf)],1),
 					\voicename, \bfl,
 					\midinote, Prand([49,52,53,56,59,62],inf), 
-					\dur, Prand([16,8,32],inf),
-					\amp, Pexprand(0.1,1.0,inf)
+					\dur, Prand([16,8,4,32],inf),
+					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
 			~delays[3]+0.05,

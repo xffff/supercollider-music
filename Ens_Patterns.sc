@@ -255,8 +255,8 @@
 					\amp, Pexprand(0.1,0.6,inf)
 				)	 
 			)
-		], 1)
-	);
+		], 1),
+	0);
 	
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[2] = Pfindur(~durations[2],
@@ -491,13 +491,14 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \program,
-					\voicename, [\fl,\bfl,\sx1,\sx2,\va1,\vc,\cb],
+					\voicename, [\fl,\bfl,\sx1,\sx2,\va1,\va2,\vc,\cb],
 					\programname, 
 						#["flute.air noise.closed.vowel varied",
 						"bass.flute.jet whistle",
 						"alto saxophone.slap.percussive slap",
 						"alto saxophone.ordinario",
-						"viola.ordinario",
+						"viola.harmonic.artificial.fourth",
+						"viola.harmonic.artificial.fourth",
 						"violoncello.col legno battuto.ordinario",
 						"double bass.pizzicato"],
 					\dur, Pn(0.01,1)
@@ -513,7 +514,7 @@
 					\midinote, 69+Pseq([0,2],inf),
 					\dur, Pseq([16,8,8,8],inf),
 					\legato, 0.75,
-					\amp, Pexprand(0.75,1.0,inf)
+					\amp, Pexprand(0.85,1.0,inf)
 				)	
 			),
 			~delays[3]+0.05,
@@ -561,11 +562,16 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, \noteon,
+					\osccmd, Pseq([\noteon,Prand([\noteon,\rest],inf)],1),
 					\voicename, \sx2,
-					\midinote, Pseq([81,86],1), 
-					\dur, ~durations[3],
-					\amp, Pseq([0.1],1)
+					\midinote, 
+					Pseq([81,
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=76}).select({|n,i| n<=86}),inf) 
+						],1), 
+					\dur, 16,
+					\legato, Pseq([1,Pexprand(0.1,0.5,inf)],inf),
+					\amp, 0.1
 				)	
 			),
 			~delays[3]+0.05,
@@ -573,13 +579,13 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \va1,
+					\osccmd, Pseq([\rest,Prand([\noteon,\rest],inf)],1),
+					\voicename, [\va1,\va2],
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=76}).select({|n,i| n<=86}),1), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\legato, Pexprand(0.1,1.0,inf),
-					\amp, Pexprand(0.2,0.6,inf)
+							n>=76}).select({|n,i| n<=86}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+					\legato, Pseq([1,Pexprand(0.1,0.5,inf)],inf),
+					\amp, Pexprand(0.3,0.6,inf)
 				)	
 			),
 			~delays[3]+0.05,

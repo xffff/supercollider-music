@@ -275,7 +275,7 @@
 						"alto saxophone.slap.percussive slap",
 						"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 						"double bass.pizzicato.bartok",
-						"violoncello.flautando"],
+						"violoncello.ordinario"],
 					\dur, Pn(0.01,1)
 				)		 
 			),
@@ -496,7 +496,7 @@
 						#["flute.air noise.closed.vowel varied",
 						"bass.flute.jet whistle",
 						"alto saxophone.slap.percussive slap",
-						"violoncello.col legno battuto.ordinario"
+						"violoncello.col legno battuto.ordinario",
 						"double bass.pizzicato"],
 					\dur, Pn(0.01,1)
 				)		 

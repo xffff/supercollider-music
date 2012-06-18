@@ -500,45 +500,6 @@
 				)		 
 			),
 			~delays[3]+0.05,
-			Pdef(\section3_ctl, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-					\voicename, \ctl,
-					\midinote, 
-						Ptuple([		// there must be a better way to write this...
-							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-								n>=72}).select({|n,i| n<=96}),inf),
-							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-								n>=72}).select({|n,i| n<=96}),inf),
-							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-								n>=72}).select({|n,i| n<=96}),inf),
-							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-								n>=72}).select({|n,i| n<=96}),inf),
-						],1), 
-					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\legato, 2,
-					\amp, Pexprand(0.7,1.0,inf)
-				)	
-			),
-			~delays[3]+0.05,
-			Pdef(\section3_ctlwarp,
-				Pbind(
-					\instrument, \warp,
-					\group, ~fx,
-					\in, ~master_fx_bus.subBus(12,1),
-					\out, 17,
-					\dur, ~durations[3],
-					\atk, ~durations[3] * 0.1,
-					\sus, ~durations[3] * 0.3,
-					\rel, ~durations[3] * 0.8, // slight overlap with s2
-					\amp, 0.45,
-					\warpfactor, (-5,-3..11).midiratio,
-					\freqscale, Pkey(\warpfactor)
-				)
-			),
-			~delays[3]+0.05,
 			Pdef(\section3_fl, 
 				Pbind(
 					\type, \ctosc, 
@@ -620,6 +581,57 @@
 					\warpfactor, (-11,-9..11).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
+			),
+			~delays[3]+0.05,
+			Pdef(\section3_ctl, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \ctl,
+					\midinote, 
+						Ptuple([		// there must be a better way to write this...
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+						],1), 
+					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+					\legato, 2,
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			),
+			~delays[3]+0.05,
+			Pdef(\section3_ctlwarp,
+				Pbind(
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(12,1),
+					\out, 17,
+					\dur, ~durations[3],
+					\atk, ~durations[3] * 0.1,
+					\sus, ~durations[3] * 0.3,
+					\rel, ~durations[3] * 0.8, // slight overlap with s2
+					\amp, 0.45,
+					\warpfactor, (-5,-3..11).midiratio,
+					\freqscale, Pkey(\warpfactor)
+				)
+			),
+			~delays[3]+0.05,
+			Pdef(\section3_tt, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \ctl,
+					\midinote, Prand([65,66],inf),
+					\dur, Pseq([Pn(16,1),Prand([4,8,16],inf)],1),
+					\amp, Pexprand(0.1,0.6,inf)
+				)	
 			)
 		], 1)
 	);

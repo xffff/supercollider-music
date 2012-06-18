@@ -17,7 +17,7 @@
 ~durations[1] = 60; ~delays[1] = 1;
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
-
+~durations[4] = 30; ~delays[4] = 0;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -692,6 +692,120 @@
 					\midinote, Prand([65,66],inf),
 					\dur, Pseq([Pn(16,1),Prand([4,8,16],inf)],1),
 					\amp, Pexprand(0.1,0.7,inf)
+				)	
+			)
+		], 1)
+	);
+	////////////////////////////////////////////////////////////////////////////////
+	~sections[4] = Pfindur(~durations[4],
+		Ptpar([
+			~delays[4],
+			Pdef(\section4_pg, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \program,
+					\voicename, [\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc],
+					\programname, 
+						#["violin.harmonic.artificial.fourth",
+						"violin.harmonic.artificial.fourth",
+						"violin.ordinario",
+						"violin.ordinario",
+						"viola.ordinario",
+						"viola.ordinario",
+						"violoncello.ordinario"],
+					\dur, Pn(0.01,1)
+				)		 
+			),	
+			~delays[4]+0.05,
+			Pdef(\section4_vi1, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \vi1,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 							\dur, Pn(16,2),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			),
+			~delays[4]+0.05,
+			Pdef(\section4_vi2, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \vi2,
+					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 
+					\dur, Pn(16,2),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			),
+			~delays[4]+0.05,
+			Pdef(\section4_vi3, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \vi3,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 							\dur, Pn(16,2),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			),
+			~delays[4]+0.05,
+			Pdef(\section4_vi4, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \vi4,
+					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=81}),inf), 
+					\dur, Pn(16,2),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			),
+			~delays[4]+0.05,
+			Pdef(\section4_va1, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \va1,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=73}),inf), 							\dur, Pn(16,2),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			),
+			~delays[4]+0.05,
+			Pdef(\section4_va2, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \va2,
+					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=73}),inf), 
+					\dur, Pn(16,2),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
+			),
+			~delays[4]+0.05,
+			Pdef(\section4_vc, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \vc,
+					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n<=56}).select({|n,i| n>=36}),inf), 
+					\dur, Pn(16,2),
+					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			)
 		], 1)

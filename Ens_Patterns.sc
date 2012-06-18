@@ -11,11 +11,13 @@
 ~scales = 0!32;
 ~sections = 0!32;
 ~durations = 8!32;
+~delays = 0!32;
 
-~durations[0] = 60;
-~durations[1] = 60;
-~durations[2] = 32;
-~durations[3] = 60;
+~durations[0] = 60; ~delays[0] = 0;
+~durations[1] = 60; ~delays[1] = 2;
+~durations[2] = 32; ~delays[2] = 4;
+~durations[3] = 60; ~delays[3] = 6;
+
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -23,7 +25,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[0] = Pfindur(~durations[0],
 		Ptpar([
-			0,
+			~delays[0],
 			Pdef(\section0_pg, 
 				Pbind(
 					\type, \ctosc, 
@@ -38,7 +40,7 @@
 					\dur, Pn(0.01,1)
 				)	 
 			),
-			0.05,
+			~delays[0]+0.05,
 			Pdef(\section0_fl, 
 				Pbind(
 					\type, \ctosc, 
@@ -51,7 +53,7 @@
 					\amp, Pexprand(0.75,1.0,inf)
 				)	
 			),
-			0.05,
+			~delays[0]+0.05,
 			Pdef(\section0_warp,
 				Pbind(
 					\instrument, \warp,
@@ -67,7 +69,7 @@
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
-			0.05,
+			~delays[0]+0.05,
 			Pdef(\section0_bfl,  
 				Pbind(
 					\type, \ctosc, 
@@ -79,7 +81,7 @@
 					\amp, Pexprand(0.1,0.25,inf)
 				)	 
 			),
-			0.05,
+			~delays[0]+0.05,
 			Pdef(\section0_bcl, 
 				Pbind(
 					\type, \ctosc, 
@@ -91,7 +93,7 @@
 					\amp, Pexprand(0.1,0.25,inf)
 				)	 
 			),
-			0.05,
+			~delays[0]+0.05,
 			Pdef(\section0_va1, 
 				Pbind(
 					\type, \ctosc, 
@@ -110,7 +112,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[1] = Pfindur(~durations[1],
 		Ptpar([
-			6,
+			~delays[1],
 			Pdef(\section1_pg, 
 				Pbind(
 					\type, \ctosc, 
@@ -130,7 +132,7 @@
 				)	
 				 
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_fl, 
 				Pbind(
 					\type, \ctosc, 
@@ -143,7 +145,7 @@
 					\amp, Pexprand(0.75,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_bfl,  
 				Pbind(
 					\type, \ctosc, 
@@ -155,7 +157,7 @@
 					\amp, Pexprand(0.1,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_bcl,  
 				Pbind(
 					\type, \ctosc, 
@@ -167,7 +169,7 @@
 					\amp, Pexprand(0.1,0.25,inf)
 				)	
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_sx1, 
 				Pbind(
 					\type, \ctosc, 
@@ -179,7 +181,7 @@
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))],1)
 				)				
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_tam, 
 				Pbind(
 					\type, \ctosc, 
@@ -191,7 +193,7 @@
 					\amp, Pexprand(0.7,1.0,1)
 				)				
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_recbuf,
 				Pbind(
 					\instrument, \recbuf,
@@ -201,7 +203,7 @@
 					\bufnum, ~tamtam_buf
 				)
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_vi1,  
 				Pbind(
 					\type, \ctosc, 
@@ -214,7 +216,7 @@
 					\amp, Pexprand(0.1,0.6,inf)
 				)	 
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_vi2,  
 				Pbind(
 					\type, \ctosc, 
@@ -227,7 +229,7 @@
 					\amp, Pexprand(0.1,0.6,inf)
 				)	 
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_va1,  
 				Pbind(
 					\type, \ctosc, 
@@ -240,7 +242,7 @@
 					\amp, Pexprand(0.1,0.6,inf)
 				)	
 			),
-			6.05,
+			~delays[1]+0.05,
 			Pdef(\section1_va2,  
 				Pbind(
 					\type, \ctosc, 
@@ -259,7 +261,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[2] = Pfindur(~durations[2],
 		Ptpar([
-			6,
+			~delays[2],
 			Pdef(\section2_pg, 
 				Pbind(
 					\type, \ctosc, 
@@ -277,7 +279,7 @@
 					\dur, Pn(0.01,1)
 				)		 
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_freeze, 
 				Pbind(
 					\instrument, \freeze,
@@ -296,7 +298,7 @@
 					\amp, Pseq([0.0,1.0],1)
 				)				 
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_fl, 
 				Pbind(
 					\type, \ctosc, 
@@ -309,7 +311,7 @@
 					\amp, Pexprand(0.3,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_bfl, 
 				Pbind(
 					\type, \ctosc, 
@@ -322,7 +324,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_bcl, 
 				Pbind(
 					\type, \ctosc, 
@@ -334,7 +336,7 @@
 					\amp, Pexprand(0.1,0.25,inf)
 				)	 
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_sx1, 
 				Pbind(
 					\type, \ctosc, 
@@ -346,7 +348,7 @@
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_sx2, 
 				Pbind(
 					\type, \ctosc, 
@@ -358,7 +360,7 @@
 					\amp, Pseq([0,1],1)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_sxpitchshift, 
 				Pbind(
 					\instrument, \pitchshift, 
@@ -374,7 +376,7 @@
 					\timeDispersion, 0.0001.rand
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_cb, 
 				Pbind(
 					\type, \ctosc, 
@@ -386,7 +388,7 @@
 					\amp, Pexprand(0.85,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_vi1, 
 				Pbind(
 					\type, \ctosc, 
@@ -399,7 +401,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_vi2, 
 				Pbind(
 					\type, \ctosc, 
@@ -412,7 +414,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_vi1warp,
 				Pbind(
 					\instrument, \warp,
@@ -428,7 +430,7 @@
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_vi3, 
 				Pbind(
 					\type, \ctosc, 
@@ -441,7 +443,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_vi4, 
 				Pbind(
 					\type, \ctosc, 
@@ -454,7 +456,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_vi2warp,
 				Pbind(
 					\instrument, \warp,
@@ -466,11 +468,11 @@
 					\sus, Pkey(\dur) * 0.3,
 					\rel, Pkey(\dur) * 0.6, 
 					\amp, Pseq([0,1.0.rand],1),
-					\warpfactor, (-5,-3..5).midiratio,
+					\warpfactor, (-9,-7..9).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_va1, 
 				Pbind(
 					\type, \ctosc, 
@@ -483,7 +485,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_va2, 
 				Pbind(
 					\type, \ctosc, 
@@ -496,7 +498,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_vawarp,
 				Pbind(
 					\instrument, \warp,
@@ -508,11 +510,11 @@
 					\sus, Pkey(\dur) * 0.3,
 					\rel, Pkey(\dur) * 0.6, 
 					\amp, Pseq([0,1.0.rand],1),
-					\warpfactor, (-5,-3..5).midiratio,
+					\warpfactor, (-11,-9..11).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
-			6.05,
+			~delays[2]+0.05,
 			Pdef(\section2_vc, 
 				Pbind(
 					\type, \ctosc, 
@@ -531,7 +533,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[3] = Pfindur(~durations[3],
 		Ptpar([
-			6,
+			~delays[3],
 			Pdef(\section3_pg, 
 				Pbind(
 					\type, \ctosc, 
@@ -545,7 +547,7 @@
 					\dur, Pn(0.01,1)
 				)		 
 			),
-			6.05,
+			~delays[3]+0.05,
 			Pdef(\section3_ctl, 
 				Pbind(
 					\type, \ctosc, 
@@ -567,7 +569,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[3]+0.05,
 			Pdef(\section3_ctlwarp,
 				Pbind(
 					\instrument, \warp,
@@ -583,7 +585,7 @@
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
-			6.05,
+			~delays[3]+0.05,
 			Pdef(\section3_fl, 
 				Pbind(
 					\type, \ctosc, 
@@ -596,7 +598,7 @@
 					\amp, Pexprand(0.75,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[3]+0.05,
 			Pdef(\section3_flwarp,
 				Pbind(
 					\instrument, \warp,
@@ -612,7 +614,7 @@
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
-			6.05,
+			~delays[3]+0.05,
 			Pdef(\section3_bfl,  
 				Pbind(
 					\type, \ctosc, 
@@ -624,7 +626,7 @@
 					\amp, Pexprand(0.1,1.0,inf)
 				)	
 			),
-			6.05,
+			~delays[3]+0.05,
 			Pdef(\section3_vc, 
 				Pbind(
 					\type, \ctosc, 
@@ -650,7 +652,7 @@
 						],1)
 				)	
 			),
-			6.05,
+			~delays[3]+0.05,
 			Pdef(\section3_vcwarp,
 				Pbind(
 					\instrument, \warp,

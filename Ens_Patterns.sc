@@ -295,7 +295,7 @@
 					\atk, Pkey(\dur)*0.2,
 					\sus, Pkey(\dur)*0.4,
 					\rel, Pkey(\dur)*0.4, 
-					\amp, Pseq([0.0,0.75],1)
+					\amp, Pseq([0.0,0.5],1)
 				)				 
 			),
 			~delays[2]+0.05,
@@ -491,11 +491,13 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \program,
-					\voicename, [\fl,\bfl,\sx1,\vc,\cb],
+					\voicename, [\fl,\bfl,\sx1,\sx2,\va1,\vc,\cb],
 					\programname, 
 						#["flute.air noise.closed.vowel varied",
 						"bass.flute.jet whistle",
 						"alto saxophone.slap.percussive slap",
+						"alto saxophone.ordinario",
+						"viola.ordinario",
 						"violoncello.col legno battuto.ordinario",
 						"double bass.pizzicato"],
 					\dur, Pn(0.01,1)
@@ -552,6 +554,32 @@
 					\midinote, Pseq([50,51],32), 
 					\dur, Pseq([8,Pn(1/4,32)],inf),
 					\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
+				)	
+			),
+			~delays[3]+0.05,
+			Pdef(\section3_sx2, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \sx2,
+					\midinote, Pseq([81,86],1), 
+					\dur, ~durations[3],
+					\amp, Pseq([0.1],1)
+				)	
+			),
+			~delays[3]+0.05,
+			Pdef(\section3_va1, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \va1,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=76}).select({|n,i| n<=86}),1), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+					\legato, Pexprand(0.1,1.0,inf),
+					\amp, Pexprand(0.2,0.6,inf)
 				)	
 			),
 			~delays[3]+0.05,

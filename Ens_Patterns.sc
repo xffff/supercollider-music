@@ -6,8 +6,8 @@
 
 
 (
-//TempoClock.default.tempo = 1.0;
 ~load_patterns = nil;
+
 ~scales = 0!32;
 ~sections = 0!32;
 ~durations = 8!32;
@@ -16,7 +16,7 @@
 ~durations[0] = 60; ~delays[0] = 0;
 ~durations[1] = 60; ~delays[1] = 2;
 ~durations[2] = 32; ~delays[2] = 4;
-~durations[3] = 60; ~delays[3] = 6;
+~durations[3] = 60; ~delays[3] = 8;
 
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
@@ -415,22 +415,6 @@
 				)	
 			),
 			~delays[2]+0.05,
-			Pdef(\section2_vi1warp,
-				Pbind(
-					\instrument, \warp,
-					\group, ~fx,
-					\in, ~master_fx_bus.subBus(7,1),
-					\out, 17,
-					\dur, Pseq([16,64],1),
-					\atk, Pkey(\dur) * 0.1,
-					\sus, Pkey(\dur) * 0.3,
-					\rel, Pkey(\dur) * 0.6, 
-					\amp, Pseq([0,1.0.rand],1),
-					\warpfactor, (-5,-3..5).midiratio,
-					\freqscale, Pkey(\warpfactor)
-				)
-			),
-			~delays[2]+0.05,
 			Pdef(\section2_vi3, 
 				Pbind(
 					\type, \ctosc, 
@@ -455,22 +439,6 @@
 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
-			),
-			~delays[2]+0.05,
-			Pdef(\section2_vi2warp,
-				Pbind(
-					\instrument, \warp,
-					\group, ~fx,
-					\in, ~master_fx_bus.subBus(8,1),
-					\out, 17,
-					\dur, Pseq([16,64],1),
-					\atk, Pkey(\dur) * 0.1,
-					\sus, Pkey(\dur) * 0.3,
-					\rel, Pkey(\dur) * 0.6, 
-					\amp, Pseq([0,1.0.rand],1),
-					\warpfactor, (-9,-7..9).midiratio,
-					\freqscale, Pkey(\warpfactor)
-				)
 			),
 			~delays[2]+0.05,
 			Pdef(\section2_va1, 
@@ -499,22 +467,6 @@
 				)	
 			),
 			~delays[2]+0.05,
-			Pdef(\section2_vawarp,
-				Pbind(
-					\instrument, \warp,
-					\group, ~fx,
-					\in, ~master_fx_bus.subBus(7,1),
-					\out, 17,
-					\dur, Pseq([16,64],1),
-					\atk, Pkey(\dur) * 0.1,
-					\sus, Pkey(\dur) * 0.3,
-					\rel, Pkey(\dur) * 0.6, 
-					\amp, Pseq([0,1.0.rand],1),
-					\warpfactor, (-11,-9..11).midiratio,
-					\freqscale, Pkey(\warpfactor)
-				)
-			),
-			~delays[2]+0.05,
 			Pdef(\section2_vc, 
 				Pbind(
 					\type, \ctosc, 
@@ -527,8 +479,8 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			)
-		], 1)
-	);
+		], 1),
+	0);
 	
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[3] = Pfindur(~durations[3],

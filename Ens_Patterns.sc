@@ -329,7 +329,7 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \bcl,
-					\midinote, Pseq([81,83],1) 
+					\midinote, Pseq([81,83],1), 
 					\dur, Pn(16,2),
 					\amp, Pexprand(0.1,0.25,inf)
 				)	 

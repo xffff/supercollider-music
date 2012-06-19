@@ -17,7 +17,7 @@
 ~durations[1] = 60; ~delays[1] = 1;
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
-~durations[4] = 95; ~delays[4] = 8;
+~durations[4] = 32; ~delays[4] = 8;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -705,90 +705,12 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \program,
-					\voicename, [\fl,\bcl,\bsn1,\sx1,
-						\tr1,\tr2,\tb1,\tb2,
-						\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc],
+					\voicename, [\tr1],
 					\programname, 
-						#[
-						"flute.ordinario",
-						"bass clarinet boehm system.ordinario",
-						"bassoon.ordinario.Schwarz Heckel",
-						"alto saxophone.ordinario",
-						"trumpet in c.ordinario",
-						"trumpet in c.ordinario",
-						"tenor trombone.ordinario",
-						"tenor trombone.ordinario",
-						"violin.harmonic.artificial.fourth",
-						"violin.harmonic.artificial.fourth",
-						"violin.ordinario",
-						"violin.ordinario",
-						"viola.ordinario",
-						"viola.ordinario",
-						"violoncello.ordinario"],
+						#["trumpet in c.ordinario"]
 					\dur, Pn(0.01,1)
 				)		 
 			),	
-			~delays[4]+0.05,
-			Pdef(\section4_fl, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \fl,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*33.midicps}).cpsmidi.select({|n,i| 
-							n>=72}).select({|n,i| n<=96}),inf), 
-					\dur, 
-						Pseq([
-							Pseq((16,14..1),1),
-							Pseq((1,5/8..1/8),1),
-							Pn(1/8,inf)
-						],1).collect{|dur| ~section4_woodwdur = dur; dur},
-					\amp, Pexprand(0.7,1.0,inf)
-				)	
-			),
-			~delays[4]+0.075,
-			Pdef(\section4_bcl, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \bcl,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*33.midicps}).cpsmidi.select({|n,i| 
-							n>=34}).select({|n,i| n<=84}),inf), 
-					\dur, Pfunc{~section4_woodwdur},
-					\amp, Pexprand(0.5,0.7,inf)
-				)	
-			),
-			~delays[4]+0.05,
-			Pdef(\section4_bsn1, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \bsn1,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*33.midicps}).cpsmidi.select({|n,i| 
-							n>=34}).select({|n,i| n<=76}),inf), 
-					\dur, Pfunc{~section4_woodwdur},
-					\amp, Pexprand(0.5,0.7,inf)
-				)	
-			),
-			~delays[4]+0.05,
-			Pdef(\section4_sx1, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \sx1,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*33.midicps}).cpsmidi.select({|n,i| 
-							n>=49}).select({|n,i| n<=89}),inf), 
-					\dur, Pfunc{~section4_woodwdur},
-					\amp, Pexprand(0.5,0.7,inf)
-				)	
-			),
 			~delays[4]+0.05,
 			Pdef(\section4_tr1, 
 				Pbind(
@@ -801,153 +723,44 @@
 							n>=60}).select({|n,i| n<=84}),inf), 
 					\dur, 
 						Pseq([
-							16,
-							Pseq((16,12..1),1),
-							Pseq((1,6/8..1/8),1),
-							Pn(1/8,inf)
+							Pn(16,2)
 						],1).collect{|dur| ~section4_brassdur = dur; dur},
-					\amp, Pexprand(0.3,0.6,inf)
-				)	
-			),
-			~delays[4]+0.075,
-			Pdef(\section4_tr2, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
-					\voicename, \tr2,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
-							n>=60}).select({|n,i| n<=84}),inf), 
-					\dur, Pfunc{~section4_brassdur},
-					\amp, Pexprand(0.3,0.6,inf)
-				)	
-			),
-			~delays[4]+0.075,
-			Pdef(\section4_tb1, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
-					\voicename, \tb1,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
-							n>=24}).select({|n,i| n<=60}),inf), 
-					\dur, Pfunc{~section4_brassdur},
-					\amp, Pexprand(0.3,0.6,inf)
-				)	
-			),
-			~delays[4]+0.075,
-			Pdef(\section4_tb2, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
-					\voicename, \tb2,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
-							n>=24}).select({|n,i| n<=60}),inf), 
-					\dur, Pfunc{~section4_brassdur},
+					\legato, 0.75,
 					\amp, Pexprand(0.3,0.6,inf)
 				)	
 			),
 			~delays[4]+0.05,
-			Pdef(\section4_vi1, 
+			Pdef(\section4_trwarp,
 				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \vi1,
-					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}),inf), 
-					\dur, 
-						Pseq([
-							Pseq((16,13..1),1),
-							Pseq((1.0,7/8..1/8),1),
-							Pn(1/8,inf)
-						],1).collect{|dur| ~section4_stringdur = dur; dur},
-					\amp, Pexprand(0.9,1.0,inf)
-				)	
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(12,1),
+					\out, 17,
+					\dur, ~durations[4],
+					\atk, ~durations[4] * 0.1,
+					\sus, ~durations[4] * 0.3,
+					\rel, ~durations[4] * 0.8, 
+					\amp, 0.45,
+					\warpfactor, (-11,-7..11).midiratio,
+					\freqscale, Pkey(\warpfactor)
+				)
 			),
-			~delays[4]+0.075,
-			Pdef(\section4_vi2, 
+			~delays[4]+0.05,
+			Pdef(\section4_trfreqshift,
 				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \vi2,
-					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}),inf), 
-					\dur, Pfunc{~section4_stringdur},
-					\amp, Pexprand(0.9,1.0,inf)
-				)	
-			),
-			~delays[4]+0.075,
-			Pdef(\section4_vi3, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \vi3,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=72}),inf), 	
-					\dur, Pfunc{~section4_stringdur},
-					\amp, Pexprand(0.9,1.0,inf)
-				)	
-			),
-			~delays[4]+0.075,
-			Pdef(\section4_vi4, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \vi4,
-					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=72}),inf), 
-					\dur, Pfunc{~section4_stringdur},
-					\amp, Pexprand(0.9,1.0,inf)
-				)	
-			),
-			~delays[4]+0.075,
-			Pdef(\section4_va1, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \va1,
-					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=48}),inf), 
-					\dur, Pfunc{~section4_stringdur},
-					\amp, Pexprand(0.9,1.0,inf)
-				)	
-			),
-			~delays[4]+0.075,
-			Pdef(\section4_va2, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \va2,
-					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=48}),inf), 
-					\dur, Pfunc{~section4_stringdur},
-					\amp, Pexprand(0.9,1.0,inf)
-				)	
-			),
-			~delays[4]+0.075,
-			Pdef(\section4_vc, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, \noteon,
-					\voicename, \vc,
-					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n<=56}).select({|n,i| n>=36}),inf), 
-					\dur, Pfunc{~section4_stringdur},
-					\amp, Pexprand(0.9,1.0,inf)
-				)	
+					\instrument, \freqshift,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(12,1),
+					\out, 17,
+					\dur, 0.1,
+					\atk, Pkey(\dur)*0.1,
+					\sus, Pkey(\dur)*0.8,
+					\rel, Pkey(\dur)*0.2, 
+					\amp, 0.45,
+					\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
+						Pseq(~durations[4]/(80.midicps..98.midicps).size!(80.midicps..98.midicps).size,inf),
+						1)-81.midicps
+				)
 			),
 			~delays[4]+0.05,
 			Pdef(\section4_ctl, 
@@ -981,7 +794,7 @@
 					\voicename, \tam,
 					\midinote, Prand((60..64),inf),
 					\dur, 16,
-					\amp, Pexprand(0.75,1.0,2)
+					\amp, Pexprand(0.1,0.5,2)
 				)	
 			)
 		], 1)

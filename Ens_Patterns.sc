@@ -854,7 +854,7 @@
 					\osccmd, \program,
 					\voicename, [\tb1],
 					\programname, 
-						#[tenor trombone.hit on mouthpiece],
+						#["tenor trombone.hit on mouthpiece"],
 					\dur, Pn(0.01,1)
 				)		 
 			),	

@@ -129,13 +129,13 @@ SynthDef(\fbdelay,{ | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1,
 //	
 //}).add;
 
-SynthDef(\grain, { | bufnum = 0, atk = 0, sus = 0, rel = 0, 
+SynthDef(\grain, { | bufnum = 0, atk = 0, sus = 0, rel = 0, center = 0,
 					amp = 0, out = 0, ratelow = 1, ratehigh = 1, 
 					graindur = 1, grainfreq = 1 |
 	var trig = Dust.kr(grainfreq);
 	var env = EnvGen.kr(Env.linen(atk,sus,rel,amp), doneAction:2);
-	var sound = TGrains.ar(2, trig, bufnum, rate: ExpRand(ratelow,ratehigh), 
-		dur: graindur, amp: 1.0).sum; // mono!
+	var sound = TGrains.ar(2, trig, bufnum, rate: LFNoise0.kr(grainfreq).range(ratelow, ratehigh), 
+		centerPos: center, dur: graindur, amp: 1.0).sum; // mono!
 	Out.ar(out, sound*env);
 }).add;
 

@@ -870,10 +870,10 @@
 					\sus, Pkey(\dur)*0.9,
 					\rel, Pkey(\dur)*0.5,
 					\grainfreq, 16,
-					\ratehigh, 1.0,
-					\ratelow, 0.5,
+					\ratehigh, 1.5,
+					\ratelow, 0.75,
 					\graindur, 16,
-					\center, 5
+					\center, 6
 				)
 			),
 			~delays[5]+0.05,

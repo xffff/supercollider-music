@@ -17,7 +17,7 @@
 ~durations[1] = 60; ~delays[1] = 1;
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
-~durations[4] = 72; ~delays[4] = 8;
+~durations[4] = 95; ~delays[4] = 8;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -746,7 +746,13 @@
 								\lin,
 								1
 							),
-							Pn(0.5,inf)
+							Pseg(
+								Pseq((1,5/8..1/8),inf),
+								Pseq(((1,5/8..1/8).sum/3)!3,inf),
+								\lin,
+								1
+							),
+							Pn(1/8,inf)
 						],1).collect{|dur| ~section4_woodwdur = dur; dur},
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
@@ -812,7 +818,13 @@
 								\lin,
 								1
 							),
-							Pn(0.5,inf)
+																			Pseg(
+								Pseq((1,6/8..1/8),inf),
+								Pseq(((1,6/8..1/8).sum)/4!4,inf),
+								\lin,
+								1
+							),
+							Pn(1/8,inf)
 						],1).collect{|dur| ~section4_brassdur = dur; dur},
 					\amp, Pexprand(0.3,0.6,inf)
 				)	
@@ -876,7 +888,13 @@
 								\lin,
 								1
 							),
-							Pn(0.5,inf)
+							Pseg(
+								Pseq((1.0,7/8..1/8),inf),
+								Pseq(((1.0,7/8..1/8).sum/8)!8,inf),
+								\lin,
+								1
+							),
+							Pn(1/8,inf)
 						],1).collect{|dur| ~section4_stringdur = dur; dur},
 					\amp, Pexprand(0.9,1.0,inf)
 				)	

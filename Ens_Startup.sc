@@ -24,7 +24,7 @@ fork{
 		//o.outDevice = "Soundflower (16ch)";
 		o.inDevice = "JackRouter";
 		o.outDevice = "JackRouter";
-		o.blockSize = 512;
+		o.blockSize = 1024;
 		o.hardwareBufferSize = 1024;
 		o.numOutputBusChannels = 32;
 		o.numInputBusChannels = 32;

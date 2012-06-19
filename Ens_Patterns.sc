@@ -779,16 +779,17 @@
 			),
 			~delays[4]+0.05,
 			Pdef(\section4_trfreqshift,
-				Pbind(
-					\instrument, \freqshift,
+				PmonoArtic(
+					\freqshift,
 					\group, ~fx,
 					\in, ~master_fx_bus.subBus(4,1),
 					\out, 19,
-					\dur, 0.1,
-					\atk, Pkey(\dur)*0.5,
-					\sus, Pkey(\dur)*0.01,
-					\rel, Pkey(\dur)*0.5, 
-					\amp, Pseq(1/(~durations[4]/0.1)!(~durations[4]/0.1),~durations[4]/0.1),
+					\dur, 0.25,
+					\legato, 1.0,
+					\atk, ~durations[4]*0.8,
+					\sus, ~durations[4]*0.01,
+					\rel, ~durations[4]*0.2, 
+					\amp, 1.0,
 					\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
 						Pseq(~durations[4]/(80.midicps..98.midicps).size!(80.midicps..98.midicps).size,inf),
 						1)-81.midicps
@@ -817,6 +818,16 @@
 					\amp, Pseg(Pseq((1.0,0.99..0.01),inf),Pn(1/8,inf),\exp,1)
 				)	
 			),
+			~delays[4]+0.075,
+			Pdef(\section4_ctlrec,
+				Pbind(
+					\instrument, \recbuf,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(12,1),
+					\dur, Pn(16,1),
+					\bufnum, ~ctl_buf
+				)
+			),
 			~delays[4]+0.05,
 			Pdef(\section4_tt, 
 				Pbind(
@@ -831,6 +842,51 @@
 			)
 		], 1)
 	);
+	
+	////////////////////////////////////////////////////////////////////////////////
+	~sections[5] = Pfindur(~durations[5],
+		Ptpar([
+			~delays[5],
+			Pdef(\section5_pg, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \program,
+					\voicename, [\tb1],
+					\programname, 
+						#[tenor trombone.hit on mouthpiece],
+					\dur, Pn(0.01,1)
+				)		 
+			),	
+			~delays[5]+0.075,
+			Pdef(\section4_grain,
+				Pbind(
+					\instrument, \grain,
+					\group, ~fx,
+					\out, 21,
+					\bufnum, ~ctl_buf,
+					\dur, Pn(16,1),				
+					\atk, Pkey(\dur)*0.1,
+					\sus, Pkey(\dur)*0.9,
+					\rel, Pkey(\dur)*0.5,
+					\grainfreq, 8,
+					\ratehigh, 1.5,
+					\ratelow, 0.75,
+				)
+			),
+			~delays[5]+0.05,
+			Pdef(\section5_tb1, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \tb1,
+					\midinote, Pseq([45,44],1),
+					\dur, 8,
+					\amp, Pn(1,2)
+				)	
+			)
+
 };
 ~load_patterns.fork;
 )

@@ -818,7 +818,7 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
-					\voicename, \tr1,
+					\voicename, \tb1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*38.midicps}).cpsmidi.select({|n,i| 
 							n>=24}).select({|n,i| n<=81}),inf), 
@@ -832,7 +832,7 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
-					\voicename, \tr2,
+					\voicename, \tb2,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*38.midicps}).cpsmidi.select({|n,i| 
 							n>=24}).select({|n,i| n<=81}),inf), 

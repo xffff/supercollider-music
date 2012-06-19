@@ -17,7 +17,7 @@
 ~durations[1] = 60; ~delays[1] = 1;
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
-~durations[4] = 72; ~delays[4] = 4;
+~durations[4] = 72; ~delays[4] = 8;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -738,11 +738,20 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*33.midicps}).cpsmidi.select({|n,i| 
 							n>=72}).select({|n,i| n<=96}),inf), 
-					\dur, Pseg(Pseq((16,14..1),inf),Pseq((16,14..1),inf),\lin,1),
+					\dur, 
+						Pseq([
+							Pseg(
+								Pseq((16,14..1),inf),
+								Pseq(((16,14..1).sum/8)!8,inf),
+								\lin,
+								1
+							),
+							Pn(0.5,inf)
+						],1).collect{|dur| ~section4_woodwdur = dur; dur},
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_bcl, 
 				Pbind(
 					\type, \ctosc, 
@@ -752,7 +761,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*33.midicps}).cpsmidi.select({|n,i| 
 							n>=34}).select({|n,i| n<=84}),inf), 
-					\dur, Pseg(Pseq((16,14..1),inf),Pseq((16,14..1),inf),\lin,1),
+					\dur, Pfunc{~section4_woodwdur},
 					\amp, Pexprand(0.5,0.7,inf)
 				)	
 			),
@@ -766,7 +775,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*33.midicps}).cpsmidi.select({|n,i| 
 							n>=34}).select({|n,i| n<=76}),inf), 
-					\dur, Pseg(Pseq((16,14..1),inf),Pseq((16,14..1),inf),\lin,1),
+					\dur, Pfunc{~section4_woodwdur},
 					\amp, Pexprand(0.5,0.7,inf)
 				)	
 			),
@@ -780,7 +789,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*33.midicps}).cpsmidi.select({|n,i| 
 							n>=49}).select({|n,i| n<=89}),inf), 
-					\dur, Pseg(Pseq((16,14..1),inf),Pseq((16,14..1),inf),\lin,1),
+					\dur, Pfunc{~section4_woodwdur},
 					\amp, Pexprand(0.5,0.7,inf)
 				)	
 			),
@@ -792,13 +801,23 @@
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 					\voicename, \tr1,
 					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*38.midicps}).cpsmidi.select({|n,i| 
+						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
 							n>=60}).select({|n,i| n<=84}),inf), 
-					\dur, Pseq([16,Pseg(Pseq((16,12..1),inf),Pseq((16,12..1),inf),\lin,1)],1),
-					\amp, Pexprand(0.5,0.7,inf)
+					\dur, 
+						Pseq([
+							16,
+							Pseg(
+								Pseq((16,12..1),inf),
+								Pseq(((16,12..1).sum)/4!4,inf),
+								\lin,
+								1
+							),
+							Pn(0.5,inf)
+						],1).collect{|dur| ~section4_brassdur = dur; dur},
+					\amp, Pexprand(0.3,0.6,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_tr2, 
 				Pbind(
 					\type, \ctosc, 
@@ -806,13 +825,13 @@
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 					\voicename, \tr2,
 					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*38.midicps}).cpsmidi.select({|n,i| 
+						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
 							n>=60}).select({|n,i| n<=84}),inf), 
-					\dur, Pseq([16,Pseg(Pseq((16,12..1),inf),Pseq((16,12..1),inf),\lin,1)],1),
-					\amp, Pexprand(0.5,0.7,inf)
+					\dur, Pfunc{~section4_brassdur},
+					\amp, Pexprand(0.3,0.6,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_tb1, 
 				Pbind(
 					\type, \ctosc, 
@@ -820,13 +839,13 @@
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 					\voicename, \tb1,
 					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*38.midicps}).cpsmidi.select({|n,i| 
-							n>=24}).select({|n,i| n<=81}),inf), 
-					\dur, Pseq([16,Pseg(Pseq((16,12..1),inf),Pseq((16,12..1),inf),\lin,1)],1),
-					\amp, Pexprand(0.5,0.7,inf)
+						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
+							n>=24}).select({|n,i| n<=60}),inf), 
+					\dur, Pfunc{~section4_brassdur},
+					\amp, Pexprand(0.3,0.6,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_tb2, 
 				Pbind(
 					\type, \ctosc, 
@@ -834,10 +853,10 @@
 					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 					\voicename, \tb2,
 					\midinote, 
-						Prand(Array.fill(64,{|i| i=i+1; i*38.midicps}).cpsmidi.select({|n,i| 
-							n>=24}).select({|n,i| n<=81}),inf), 
-					\dur, Pseq([16,Pseg(Pseq((16,12..1),inf),Pseq((16,12..1),inf),\lin,1)],1),
-					\amp, Pexprand(0.5,0.7,inf)
+						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
+							n>=24}).select({|n,i| n<=60}),inf), 
+					\dur, Pfunc{~section4_brassdur},
+					\amp, Pexprand(0.3,0.6,inf)
 				)	
 			),
 			~delays[4]+0.05,
@@ -849,11 +868,20 @@
 					\voicename, \vi1,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
-					\dur, Pseq([Pseg(Pseq((16,13..1),inf),Pseq((16,13..1),inf),\lin,1),0.5],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\dur, 
+						Pseq([
+							Pseg(
+								Pseq((16,13..1),inf),
+								Pseq(((16,13..1).sum/6)!6,inf),
+								\lin,
+								1
+							),
+							Pn(0.5,inf)
+						],1).collect{|dur| ~section4_stringdur = dur; dur},
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_vi2, 
 				Pbind(
 					\type, \ctosc, 
@@ -862,11 +890,11 @@
 					\voicename, \vi2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
-					\dur, Pseq([Pseg(Pseq((16,13..1),inf),Pseq((16,13..1),inf),\lin,1),0.5],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\dur, Pfunc{~section4_stringdur},
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_vi3, 
 				Pbind(
 					\type, \ctosc, 
@@ -875,12 +903,12 @@
 					\voicename, \vi3,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}),inf), 	
-					\dur, Pseq([Pseg(Pseq((16,13..1),inf),Pseq((16,13..1),inf),\lin,1),0.5],1),
-					\amp, Pexprand(0.7,1.0,inf)
+							n>=72}),inf), 	
+					\dur, Pfunc{~section4_stringdur},
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_vi4, 
 				Pbind(
 					\type, \ctosc, 
@@ -888,12 +916,12 @@
 					\osccmd, \noteon,
 					\voicename, \vi4,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=81}),inf), 
-					\dur, Pseq([Pseg(Pseq((16,13..1),inf),Pseq((16,13..1),inf),\lin,1),0.5],1),
-					\amp, Pexprand(0.7,1.0,inf)
+							n>=72}),inf), 
+					\dur, Pfunc{~section4_stringdur},
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_va1, 
 				Pbind(
 					\type, \ctosc, 
@@ -902,12 +930,12 @@
 					\voicename, \va1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=73}),inf), 
-					\dur, Pseq([Pseg(Pseq((16,13..1),inf),Pseq((16,13..1),inf),\lin,1),0.5],1),
-					\amp, Pexprand(0.7,1.0,inf)
+							n>=48}),inf), 
+					\dur, Pfunc{~section4_stringdur},
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_va2, 
 				Pbind(
 					\type, \ctosc, 
@@ -915,12 +943,12 @@
 					\osccmd, \noteon,
 					\voicename, \va2,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=73}),inf), 
-					\dur, Pseq([Pseg(Pseq((16,13..1),inf),Pseq((16,13..1),inf),\lin,1),0.5],1),
-					\amp, Pexprand(0.7,1.0,inf)
+							n>=48}),inf), 
+					\dur, Pfunc{~section4_stringdur},
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
-			~delays[4]+0.05,
+			~delays[4]+0.075,
 			Pdef(\section4_vc, 
 				Pbind(
 					\type, \ctosc, 
@@ -929,8 +957,8 @@
 					\voicename, \vc,
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n<=56}).select({|n,i| n>=36}),inf), 
-					\dur, Pseq([Pseg(Pseq((16,13..1),inf),Pseq((16,13..1),inf),\lin,1),0.5],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\dur, Pfunc{~section4_stringdur},
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
 			~delays[4]+0.05,
@@ -953,7 +981,7 @@
 						],1), 
 					\dur, 16,
 					\legato, 2,
-					\amp, Pexprand(0.7,1.0,1)
+					\amp, Pn(1.0,2)
 				)	
 			)	
 		], 1)

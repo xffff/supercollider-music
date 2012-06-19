@@ -17,7 +17,7 @@
 ~durations[1] = 60; ~delays[1] = 1;
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
-~durations[4] = 32; ~delays[4] = 0;
+~durations[4] = 64; ~delays[4] = 0;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -540,7 +540,7 @@
 					\atk, ~durations[3] * 0.1,
 					\sus, ~durations[3] * 0.3,
 					\rel, ~durations[3] * 0.8, // slight overlap with s2
-					\amp, 0.5,
+					\amp, 0.7,
 					\ratio, [1,1.5,2,2.5],
 					\windowSize, 4.0,
 					\pitchDispersion, {4.0.rand}.dup(4),
@@ -616,20 +616,7 @@
 						],1)
 				)	
 			),
-			~delays[3]+0.05,
-			Pdef(\section3_cb, 
-				Pbind(
-					\type, \ctosc, 
-					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pn(\noteon,inf)],inf),
-					\voicename, \cb,
-					\midinote, 38, 
-					\dur, Prand([16,8],inf),
-					\legato, 0.1,
-					\amp, Pexprand(0.5,1.0,inf)
-				)	
-			),			
-			~delays[3]+0.05,
+			~delays[3]+0.025,
 			Pdef(\section3_vcwarp,
 				Pbind(
 					\instrument, \warp,
@@ -645,6 +632,19 @@
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
+			~delays[3]+0.05,
+			Pdef(\section3_cb, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\rest,Pn(\noteon,inf)],inf),
+					\voicename, \cb,
+					\midinote, 38, 
+					\dur, Prand([16,8],inf),
+					\legato, 0.1,
+					\amp, Pexprand(0.5,1.0,inf)
+				)	
+			),			
 			~delays[3]+0.05,
 			Pdef(\section3_ctl, 
 				Pbind(
@@ -727,7 +727,7 @@
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=76}).select({|n,i| n<=86}),inf) 
 						],1), 
-					\dur, 16,
+					\dur, Pn(16,inf),
 					\legato, Pseq([1,Pexprand(0.1,0.5,inf)],inf),
 					\amp, 0.1
 				)	
@@ -742,7 +742,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=76}).select({|n,i| n<=86}),inf), 
-					\dur, 16,
+					\dur, Pn(16,inf),
 					\legato, Pseq([1,Pexprand(0.1,0.5,inf)],inf),
 					\amp, 0.1
 				)	
@@ -755,9 +755,9 @@
 					\in, ~master_fx_bus.subBus(6,1),
 					\out, 17,
 					\dur, ~durations[4],
-					\atk, ~durations[4] * 0.1,
+					\atk, ~durations[4] * 0.4,
 					\sus, ~durations[4] * 0.3,
-					\rel, ~durations[4] * 0.8, 
+					\rel, ~durations[4] * 0.3, 
 					\amp, 0.45,
 					\warpfactor, [-5,-3,3,5].midiratio,
 					\freqscale, Pkey(\warpfactor)
@@ -773,8 +773,8 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
 							n>=60}).select({|n,i| n<=84}),inf), 
-					\dur, 32,
-					\amp, Pexprand(0.1,0.2,1)
+					\dur, Pn(32,2),
+					\amp, Pexprand(0.1,0.2,inf)
 				)	
 			),
 			~delays[4]+0.05,
@@ -785,10 +785,10 @@
 					\in, ~master_fx_bus.subBus(4,1),
 					\out, 19,
 					\dur, 0.1,
-					\atk, Pkey(\dur)*0.3,
-					\sus, Pkey(\dur)*0.5,
-					\rel, Pkey(\dur)*0.3, 
-					\amp, 0.4,
+					\atk, Pkey(\dur)*0.5,
+					\sus, Pkey(\dur)*0.01,
+					\rel, Pkey(\dur)*0.5, 
+					\amp, Pseg(Pseq((0.0,0.01..1.0),inf),Pn(1/8,inf),\exp,1),
 					\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
 						Pseq(~durations[4]/(80.midicps..98.midicps).size!(80.midicps..98.midicps).size,inf),
 						1)-81.midicps
@@ -812,9 +812,9 @@
 							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 								n>=72}).select({|n,i| n<=96}),inf),
 						],1), 
-					\dur, 16,
+					\dur, Pn(16,inf),
 					\legato, 2,
-					\amp, Pn(1.0,2)
+					\amp, Pseg(Pseq((1.0,0.99..0.01),inf),Pn(1/8,inf),\exp,1)
 				)	
 			),
 			~delays[4]+0.05,
@@ -824,9 +824,9 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \tam,
-					\midinote, Prand((60..66),inf),
-					\dur, 16,
-					\amp, Pexprand(0.1,0.25,2)
+					\midinote, Prand([65,66],inf),
+					\dur, 8,
+					\amp, Pseg(Pseq((1.0,0.99..0.01),inf),Pn(1/8,inf),\exp,1)
 				)	
 			)
 		], 1)

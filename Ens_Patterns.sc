@@ -18,6 +18,7 @@
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
 ~durations[4] = 64; ~delays[4] = 0;
+~durations[5] = 64; ~delays[5] = 0;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -346,7 +347,7 @@
 					\voicename, \bsn1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
-							n>=48}).select({|n,i| n<=84}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+							n>=48}).select({|n,i| n<=76}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),

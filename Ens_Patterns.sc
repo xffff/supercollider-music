@@ -788,7 +788,7 @@
 					\atk, Pkey(\dur)*0.5,
 					\sus, Pkey(\dur)*0.01,
 					\rel, Pkey(\dur)*0.5, 
-					\amp, Pseg(Pseq((0.0,0.01..1.0),inf),Pn(1/8,inf),\exp,1),
+					\amp, Pseq(1/(~durations[4]/0.1)!(~durations[4]/0.1),~durations[4]/0.1),
 					\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
 						Pseq(~durations[4]/(80.midicps..98.midicps).size!(80.midicps..98.midicps).size,inf),
 						1)-81.midicps

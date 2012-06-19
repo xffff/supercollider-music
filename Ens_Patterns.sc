@@ -267,11 +267,12 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \program,
-					\voicename, [\fl,\bfl,\bcl,\sx1,\sx2,\cb,\vc],
+					\voicename, [\fl,\bfl,\bcl,\bsn1,\sx1,\sx2,\cb,\vc],
 					\programname, 
 						#["flute.ordinario",
 						"bass.flute.ordinario",
 						"bass clarinet boehm system.ordinario",
+						"bassoon.ordinario.Schwarz Heckel",
 						"alto saxophone.slap.percussive slap",
 						"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 						"double bass.pizzicato.bartok",
@@ -335,6 +336,19 @@
 					\dur, Pn(16,2),
 					\amp, Pexprand(0.1,0.5,inf)
 				)	 
+			),
+			~delays[2]+0.05,
+			Pdef(\section2_bsn1, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+					\voicename, \bsn1,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=48}).select({|n,i| n<=84}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+					\amp, Pexprand(0.7,1.0,inf)
+				)	
 			),
 			~delays[2]+0.05,
 			Pdef(\section2_sx1, 
@@ -887,7 +901,30 @@
 					\dur, 8,
 					\amp, Pn(1,2)
 				)	
-			)
+			),
+			~delays[5]+0.05,
+			Pdef(\section5_ctl, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \ctl,
+					\midinote, 
+						Ptuple([		// there must be a better way to write this...
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+							Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=72}).select({|n,i| n<=96}),inf),
+						],1), 
+					\dur, Pn(16,1),
+					\legato, 2,
+					\amp, Pseg(Pseq((1.0,0.99..0.01),inf),Pn(1/8,inf),\exp,1)
+				)	
+			)			
 		], 1)
 	);
 };

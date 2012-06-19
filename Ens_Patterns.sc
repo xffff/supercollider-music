@@ -308,7 +308,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.3,1.0,inf)
+					\amp, Pexprand(0.4,1.0,inf)
 				)	
 			),
 			~delays[2]+0.05,
@@ -333,7 +333,7 @@
 					\voicename, \bcl,
 					\midinote, Pseq([81,83],1), 
 					\dur, Pn(16,2),
-					\amp, Pexprand(0.1,0.25,inf)
+					\amp, Pexprand(0.1,0.5,inf)
 				)	 
 			),
 			~delays[2]+0.05,
@@ -398,7 +398,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
 			~delays[2]+0.05,
@@ -411,7 +411,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
 			~delays[2]+0.05,
@@ -424,7 +424,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
 			~delays[2]+0.05,
@@ -437,7 +437,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=81}),inf), 
 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
 			~delays[2]+0.05,
@@ -450,7 +450,7 @@
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
 			~delays[2]+0.05,
@@ -463,7 +463,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n>=73}),inf), 
 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			),
 			~delays[2]+0.05,
@@ -476,7 +476,7 @@
 					\midinote, 											Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
 							n<=84}).select({|n,i| n>=36}),inf), 
 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-					\amp, Pexprand(0.7,1.0,inf)
+					\amp, Pexprand(0.9,1.0,inf)
 				)	
 			)
 		], 1),
@@ -509,29 +509,13 @@
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pwrand([\noteon,\rest],[0.4,0.6],inf),
+					\osccmd, Pwrand([\noteon,\rest],[0.6,0.4],inf),
 					\voicename, \fl,
 					\midinote, 69+Pseq([0,2],inf),
 					\dur, Pseq([16,8,8,8],inf),
 					\legato, 0.75,
 					\amp, Pexprand(0.85,1.0,inf)
 				)	
-			),
-			~delays[3]+0.05,
-			Pdef(\section3_flwarp,
-				Pbind(
-					\instrument, \warp,
-					\group, ~fx,
-					\in, ~master_fx_bus.subBus(0,1),
-					\out, 17,
-					\dur, ~durations[3],
-					\atk, ~durations[3] * 0.1,
-					\sus, ~durations[3] * 0.3,
-					\rel, ~durations[3] * 0.8, // slight overlap with s2
-					\amp, 0.45,
-					\warpfactor, (3,5..9).midiratio,
-					\freqscale, Pkey(\warpfactor)
-				)
 			),
 			~delays[3]+0.05,
 			Pdef(\section3_bfl,  
@@ -544,6 +528,24 @@
 					\dur, Prand([16,8,4,2],inf),
 					\amp, Pexprand(0.85,1.0,inf)
 				)	
+			),
+			~delays[3]+0.05,
+			Pdef(\section3_bflpitchshift,
+				Pbind(
+					\instrument, \pitchshift,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(1,1),
+					\out, 20,
+					\dur, ~durations[3],
+					\atk, ~durations[3] * 0.1,
+					\sus, ~durations[3] * 0.3,
+					\rel, ~durations[3] * 0.8, // slight overlap with s2
+					\amp, 0.5,
+					\ratio, [1,1.5,2,2.5],
+					\windowSize, 4.0,
+					\pitchDispersion, {4.0.rand}.dup(4),
+					\timeDispersion, {4.0.rand}.dup(4)
+				)
 			),
 			~delays[3]+0.05,
 			Pdef(\section3_sx1, 
@@ -639,7 +641,7 @@
 					\sus, ~durations[3] * 0.3,
 					\rel, ~durations[3] * 0.8, // slight overlap with s2
 					\amp, 0.45,
-					\warpfactor, (-7,-5..7).midiratio,
+					\warpfactor, (-5,-3..5).midiratio,
 					\freqscale, Pkey(\warpfactor)
 				)
 			),
@@ -666,7 +668,7 @@
 					\amp, Pexprand(0.7,1.0,inf)
 				)	
 			),
-			~delays[3]+0.05,
+			~delays[3]+0.075,
 			Pdef(\section3_ctlwarp,
 				Pbind(
 					\instrument, \warp,
@@ -746,6 +748,22 @@
 				)	
 			),
 			~delays[4]+0.05,
+			Pdef(\section4_sxwarp,
+				Pbind(
+					\instrument, \warp,
+					\group, ~fx,
+					\in, ~master_fx_bus.subBus(6,1),
+					\out, 17,
+					\dur, ~durations[4],
+					\atk, ~durations[4] * 0.1,
+					\sus, ~durations[4] * 0.3,
+					\rel, ~durations[4] * 0.8, 
+					\amp, 0.45,
+					\warpfactor, [-5,-3,3,5].midiratio,
+					\freqscale, Pkey(\warpfactor)
+				)
+			),
+			~delays[4]+0.05,
 			Pdef(\section4_tr1, 
 				Pbind(
 					\type, \ctosc, 
@@ -756,24 +774,8 @@
 						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
 							n>=60}).select({|n,i| n<=84}),inf), 
 					\dur, 32,
-					\amp, Pexprand(0.2,0.6,inf)
+					\amp, Pexprand(0.1,0.2,1)
 				)	
-			),
-			~delays[4]+0.05,
-			Pdef(\section4_trwarp,
-				Pbind(
-					\instrument, \warp,
-					\group, ~fx,
-					\in, ~master_fx_bus.subBus(4,1),
-					\out, 17,
-					\dur, ~durations[4],
-					\atk, ~durations[4] * 0.1,
-					\sus, ~durations[4] * 0.3,
-					\rel, ~durations[4] * 0.8, 
-					\amp, 0.45,
-					\warpfactor, (-11,-7..11).midiratio,
-					\freqscale, Pkey(\warpfactor)
-				)
 			),
 			~delays[4]+0.05,
 			Pdef(\section4_trfreqshift,
@@ -781,12 +783,12 @@
 					\instrument, \freqshift,
 					\group, ~fx,
 					\in, ~master_fx_bus.subBus(4,1),
-					\out, 18,
+					\out, 19,
 					\dur, 0.1,
 					\atk, Pkey(\dur)*0.3,
 					\sus, Pkey(\dur)*0.5,
 					\rel, Pkey(\dur)*0.3, 
-					\amp, 0.45,
+					\amp, 0.4,
 					\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
 						Pseq(~durations[4]/(80.midicps..98.midicps).size!(80.midicps..98.midicps).size,inf),
 						1)-81.midicps

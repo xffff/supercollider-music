@@ -740,18 +740,8 @@
 							n>=72}).select({|n,i| n<=96}),inf), 
 					\dur, 
 						Pseq([
-							Pseg(
-								Pseq((16,14..1),inf),
-								Pseq(((16,14..1).sum/8)!8,inf),
-								\lin,
-								1
-							),
-							Pseg(
-								Pseq((1,5/8..1/8),inf),
-								Pseq(((1,5/8..1/8).sum/3)!3,inf),
-								\lin,
-								1
-							),
+							Pseq((16,14..1),1),
+							Pseq((1,5/8..1/8),1),
 							Pn(1/8,inf)
 						],1).collect{|dur| ~section4_woodwdur = dur; dur},
 					\amp, Pexprand(0.7,1.0,inf)
@@ -812,18 +802,8 @@
 					\dur, 
 						Pseq([
 							16,
-							Pseg(
-								Pseq((16,12..1),inf),
-								Pseq(((16,12..1).sum)/4!4,inf),
-								\lin,
-								1
-							),
-																			Pseg(
-								Pseq((1,6/8..1/8),inf),
-								Pseq(((1,6/8..1/8).sum)/4!4,inf),
-								\lin,
-								1
-							),
+							Pseq((16,12..1),1),
+							Pseq((1,6/8..1/8),1),
 							Pn(1/8,inf)
 						],1).collect{|dur| ~section4_brassdur = dur; dur},
 					\amp, Pexprand(0.3,0.6,inf)
@@ -882,18 +862,8 @@
 							n>=81}),inf), 
 					\dur, 
 						Pseq([
-							Pseg(
-								Pseq((16,13..1),inf),
-								Pseq(((16,13..1).sum/6)!6,inf),
-								\lin,
-								1
-							),
-							Pseg(
-								Pseq((1.0,7/8..1/8),inf),
-								Pseq(((1.0,7/8..1/8).sum/8)!8,inf),
-								\lin,
-								1
-							),
+							Pseq((16,13..1),1),
+							Pseq((1.0,7/8..1/8),1),
 							Pn(1/8,inf)
 						],1).collect{|dur| ~section4_stringdur = dur; dur},
 					\amp, Pexprand(0.9,1.0,inf)
@@ -980,7 +950,7 @@
 				)	
 			),
 			~delays[4]+0.05,
-			Pdef(\section3_ctl, 
+			Pdef(\section4_ctl, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
@@ -1001,7 +971,19 @@
 					\legato, 2,
 					\amp, Pn(1.0,2)
 				)	
-			)	
+			),
+			~delays[4]+0.05,
+			Pdef(\section4_tt, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, \noteon,
+					\voicename, \tam,
+					\midinote, Prand((60..64),inf),
+					\dur, 16,
+					\amp, Pexprand(0.75,1.0,2)
+				)	
+			)
 		], 1)
 	);
 };

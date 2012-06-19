@@ -17,7 +17,7 @@
 ~durations[1] = 60; ~delays[1] = 1;
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
-~durations[4] = 32; ~delays[4] = 8;
+~durations[4] = 32; ~delays[4] = 0;
 
 ~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
 	
@@ -705,28 +705,58 @@
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
 					\osccmd, \program,
-					\voicename, [\tr1],
+					\voicename, [\tr1,\sx1,\sx2],
 					\programname, 
-						#["trumpet in c.ordinario"]
+						#["trumpet in c.ordinario",
+						"alto saxophone.ordinario",
+						"alto saxophone.ordinario"],
 					\dur, Pn(0.01,1)
 				)		 
 			),	
+			~delays[4]+0.05,
+			Pdef(\section4_sx1, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\noteon,\rest],inf)],1),
+					\voicename, \sx1,
+					\midinote, 
+					Pseq([81,
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=76}).select({|n,i| n<=86}),inf) 
+						],1), 
+					\dur, 16,
+					\legato, Pseq([1,Pexprand(0.1,0.5,inf)],inf),
+					\amp, 0.1
+				)	
+			),
+			~delays[4]+0.05,
+			Pdef(\section4_sx2, 
+				Pbind(
+					\type, \ctosc, 
+					\oscout, ~osc_destination,
+					\osccmd, Pseq([\noteon,Prand([\noteon,\rest],inf)],1),
+					\voicename, \sx2,
+					\midinote, 
+						Prand(Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+							n>=76}).select({|n,i| n<=86}),inf), 
+					\dur, 16,
+					\legato, Pseq([1,Pexprand(0.1,0.5,inf)],inf),
+					\amp, 0.1
+				)	
+			),
 			~delays[4]+0.05,
 			Pdef(\section4_tr1, 
 				Pbind(
 					\type, \ctosc, 
 					\oscout, ~osc_destination,
-					\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+					\osccmd, \noteon,
 					\voicename, \tr1,
 					\midinote, 
 						Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
 							n>=60}).select({|n,i| n<=84}),inf), 
-					\dur, 
-						Pseq([
-							Pn(16,2)
-						],1).collect{|dur| ~section4_brassdur = dur; dur},
-					\legato, 0.75,
-					\amp, Pexprand(0.3,0.6,inf)
+					\dur, 32,
+					\amp, Pexprand(0.2,0.6,inf)
 				)	
 			),
 			~delays[4]+0.05,
@@ -734,7 +764,7 @@
 				Pbind(
 					\instrument, \warp,
 					\group, ~fx,
-					\in, ~master_fx_bus.subBus(12,1),
+					\in, ~master_fx_bus.subBus(4,1),
 					\out, 17,
 					\dur, ~durations[4],
 					\atk, ~durations[4] * 0.1,
@@ -750,12 +780,12 @@
 				Pbind(
 					\instrument, \freqshift,
 					\group, ~fx,
-					\in, ~master_fx_bus.subBus(12,1),
-					\out, 17,
+					\in, ~master_fx_bus.subBus(4,1),
+					\out, 18,
 					\dur, 0.1,
-					\atk, Pkey(\dur)*0.1,
-					\sus, Pkey(\dur)*0.8,
-					\rel, Pkey(\dur)*0.2, 
+					\atk, Pkey(\dur)*0.3,
+					\sus, Pkey(\dur)*0.5,
+					\rel, Pkey(\dur)*0.3, 
 					\amp, 0.45,
 					\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
 						Pseq(~durations[4]/(80.midicps..98.midicps).size!(80.midicps..98.midicps).size,inf),
@@ -792,9 +822,9 @@
 					\oscout, ~osc_destination,
 					\osccmd, \noteon,
 					\voicename, \tam,
-					\midinote, Prand((60..64),inf),
+					\midinote, Prand((60..66),inf),
 					\dur, 16,
-					\amp, Pexprand(0.1,0.5,2)
+					\amp, Pexprand(0.1,0.25,2)
 				)	
 			)
 		], 1)

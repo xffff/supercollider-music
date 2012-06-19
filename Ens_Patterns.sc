@@ -886,7 +886,8 @@
 					\amp, Pn(1,2)
 				)	
 			)
-
+		], 1)
+	);
 };
 ~load_patterns.fork;
 )

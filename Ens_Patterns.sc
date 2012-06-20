@@ -170,6 +170,15 @@
 				\dur, Pseq([8,Pn(1/16,32)],inf),
 				\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))],1)
 			),
+		// saxophone -> record
+			~delays[1]+0.05,
+			Pbind(
+				\instrument, \recbuf,
+				\group, ~fx,
+				\in, ~master_fx_bus.subBus(6,1),
+				\dur, Pseq([8,2],1),
+				\bufnum, ~sax_buf
+			),
 		// tam-tam
 			~delays[1]+0.05,
 			Pbind(
@@ -349,19 +358,19 @@
 				\dur, Pseq([16,16],1),
 				\amp, Pseq([0,1],1)
 			),
-		// saxophone -> pitch shift
+		// saxophone -> frequency shift
 			~delays[2]+0.05,
 			Pbind(
-				\instrument, \pitchshift, 
+				\instrument, \freqshift, 
 				\group, ~fx,
 				\in, ~master_fx_bus.subBus(6,1),
-				\out, 20,
+				\out, 19,
 				\dur, Pseq([16,Pn(16,2)],inf),
 				\atk, Pkey(\dur)*0.5,
 				\sus, Pkey(\dur)*0.3,
 				\rel, Pkey(\dur)*0.3, 
 				\amp, Pseq([0,1.0],1),
-				\ratio, [0.5+0.001.rand,0.5-0.001.rand], // fatten it out
+				\ratio, 36.midicps-81.midicps, // fatten it out
 				\timeDispersion, 0.0001.rand
 			),
 		// violin 1
@@ -681,6 +690,24 @@
 					"alto saxophone.ordinario"],
 				\dur, Pn(0.01,1)
 			),	
+		// granular synthesis	
+			~delays[4]+0.075,
+			Pbind(
+				\instrument, \grain,
+				\group, ~fx,
+				\out, 21,
+				\bufnum, ~sax_buf,
+				\amp, 1.0,
+				\dur, Pseq([14,36],1),				
+				\atk, Pkey(\dur)*0.0001,
+				\sus, Pkey(\dur)*0.9,
+				\rel, Pkey(\dur)*0.5,
+				\grainfreq, 16,
+				\ratehigh, 1.5,
+				\ratelow, 0.75,
+				\graindur, 16,
+				\center, 0
+			),
 		// saxophone 1
 			~delays[4]+0.05,
 			Pbind(
@@ -817,20 +844,22 @@
 			),
 		// granular synthesis	
 			~delays[5]+0.075,
-			Pbind(
-				\instrument, \grain,
+			PmonoArtic(
+				\grain,
 				\group, ~fx,
 				\out, 21,
 				\bufnum, ~ctl_buf,
-				\dur, Pn(32,1),				
-				\atk, Pkey(\dur)*0.0001,
-				\sus, Pkey(\dur)*0.9,
-				\rel, Pkey(\dur)*0.5,
+				\dur, Pn(1/8,inf),
+				\amp, 1.0,				
+				\atk, 32*0.0001,
+				\sus, 32*0.9,
+				\rel, 32*0.5,
 				\grainfreq, 16,
-				\ratehigh, 1.5,
-				\ratelow, 0.75,
-				\graindur, 16,
-				\center, 6
+				\ratehigh, Pseq((2.0,1.9..1),1),
+				\ratelow, Pseq((0.5,0.545..1),1),
+				\graindur, Pseq((32..2),1),
+				\center, 6,
+				\legato, 2
 			),
 		// trombone 1
 			~delays[5]+0.05,

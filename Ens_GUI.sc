@@ -8,6 +8,12 @@ var initButton, stopButton, playButton, ctButton, routeButton;
 ~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece";
 ~contimbre_path = "/Volumes/Time Machine Backups/conTimbre";
 
+	postln("/****************************************************/");
+	postln("/* Ensemble                                         */");
+	postln("/* Michael Murphy 2012                              */");
+	postln("/****************************************************/");
+	postln(""); postln("");
+
 	w=Window(" ", Rect(100, 200, 85, 160));
 	w.view.decorator = FlowLayout(w.view.bounds);
 	w.view.decorator.gap = 10@10;
@@ -16,10 +22,10 @@ var initButton, stopButton, playButton, ctButton, routeButton;
 	initButton.states = [["init",Color.black,Color.white]];
 	initButton.action = { |butt|
 		fork{
-			("jackd -d coreaudio -r 48000 -p 1024").runInTerminal;
-			2.wait;
-			"open /Applications/Jack/JackPilot.app".unixCmd;
-			2.wait;
+			postln("Starting jackd... (3s)");
+			("/usr/local/bin/jackd -d coreaudio -r 48000 -p 1024").unixCmd;
+			3.wait;
+			postln("Startup...");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Startup.sc");
 			postln("Compiled... starting scsynth...");
 			~startup.fork;
@@ -44,20 +50,19 @@ var initButton, stopButton, playButton, ctButton, routeButton;
 			postln("Routing audio...");
 			for(1,16, { |i, j| 
 				// first connect MaxMSP to Reaper
-				i=i+1; // start from 1 not 0
-				("jack_connect MaxMSP:out"++i++" "++"REAPER:in"++i).systemCmd;
+				unixCmd("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"REAPER:in"++i, false);
 				
 				// connect MaxMSP to scsynth
-				("jack_connect MaxMSP:out"++i++" "++"scsynth:in"++i).systemCmd;
+				unixCmd("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"scsynth:in"++i, false);
 				
-				j=j+17; // fx in is reaper channels 17-32
 				// connect scsynth to Reaper
-				("jack_connect scsynth:out"++i++" "++"REAPER:in"++j).systemCmd;
+				j=j+16; // fx in is reaper channels 17-32
+				unixCmd("/usr/local/bin/jack_connect scsynth:out"++i++" "++"REAPER:in"++j, false);
 				}
-			)
-			("jack_connect REAPER:out1"++" "++"system:playback_1").systemCmd;
-			("jack_connect REAPER:out2"++" "++"system:playback_2").systemCmd;
-		}
+			);
+			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
+			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
+		};
 	};
 
 		w.view.decorator.nextLine;
@@ -85,9 +90,12 @@ var initButton, stopButton, playButton, ctButton, routeButton;
 
 	//When this window closes, cleanup
 	w.onClose = { 
-		postln("Window Closed!");
+		postln("Cleaning up...");
 		if(~stop_all != nil, {~stop_all.fork;});
 		if(~cleanup != nil, {~cleanup.fork;});
+		s.freeAll; s.quit;		
+		("killall jackd").unixCmd;
+		postln("Bye!");
 	};
 )
 

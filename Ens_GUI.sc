@@ -56,14 +56,13 @@ var initButton, stopButton, playButton, ctButton, routeButton, queryButton;
 				// connect MaxMSP to scsynth
 				unixCmd("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"scsynth:in"++i, false);
 				
-				// connect scsynth to Reaper
-				j=j+16; // fx in is reaper channels 17-32
-				unixCmd("/usr/local/bin/jack_connect scsynth:out"++i++" "++"REAPER:in"++j, false);
+				unixCmd("/usr/local/bin/jack_connect scsynth:out"++i++" "++"REAPER:in"++i, false);
 				}
 			);
 			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
 			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
-
+			
+			3.wait;
 			postln("Ready for playback!");
 		};
 	};

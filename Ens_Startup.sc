@@ -34,13 +34,13 @@
 		
 	////////////////////////////////////////////////////
 	~contimbre_initialise = {
-		postln("Starting conTimbre... (20s)");
+		postln("Starting conTimbre... ");
 		("open "++"\""++~contimbre_path++"/#ePlayer.maxpat"++"\"").unixCmd;
-		20.wait;
+		10.wait;
 		
-		postln("Loading orchestra... (20s)");
+		postln("Loading orchestra... ");
 		("open "++"\""++~path++"/Ens_load_orchestra.maxpat"++"\"").unixCmd;
-		20.wait;
+		10.wait;
 		
 		postln("Setting up OSC... ");
 		~osc_setup = fork{

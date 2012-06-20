@@ -4,7 +4,7 @@
 /************************************	*/
 
 (
-var initButton, stopButton, playButton, ctButton, routeButton;
+var initButton, stopButton, playButton, ctButton, routeButton, queryButton;
 ~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece";
 ~contimbre_path = "/Volumes/Time Machine Backups/conTimbre";
 
@@ -14,7 +14,7 @@ var initButton, stopButton, playButton, ctButton, routeButton;
 	postln("/****************************************************/");
 	postln(""); postln("");
 
-	w=Window(" ", Rect(100, 200, 85, 160));
+	w=Window(" ", Rect(100, 200, 85, 190));
 	w.view.decorator = FlowLayout(w.view.bounds);
 	w.view.decorator.gap = 10@10;
 		
@@ -87,6 +87,15 @@ var initButton, stopButton, playButton, ctButton, routeButton;
 		~stop_all.fork;
 		postln("Stop!");
 	};
+	
+			w.view.decorator.nextLine;
+
+	queryButton = Button(w, 70 @ 20);
+	queryButton.states = [["query nodes",Color.black,Color.white]];
+	queryButton.action = { |butt|
+		s.queryAllNodes;
+	};
+
 	
 	//Bring the window to the front
 	w.front;

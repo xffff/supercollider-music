@@ -1,0 +1,64 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red191\green0\blue0;\red0\green0\blue0;\red0\green0\blue255;
+\red255\green102\blue0;\red96\green96\blue96;\red0\green0\blue191;\red102\green102\blue191;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 /************************************	*/\cf3 \
+\cf2 /* Percussion Piece	             	*/\cf3 \
+\cf2 /*	GUI							*/\cf3 \
+\cf2 /************************************	*/\cf3 \
+\
+(\
+\cf4 var\cf3  loadButton, stopButton, playButton, guiButton;\
+\cf5 ~path\cf3  = \cf6 "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece"\cf3 ;\
+\
+s.waitForBoot(\
+\
+	w=\cf7 Window\cf3 (\cf6 "Ensemble Piece; michael murphy 2012"\cf3 , \cf7 Rect\cf3 (100, 200, 290, 90));\
+	w.view.decorator = \cf7 FlowLayout\cf3 (w.view.bounds);\
+	w.view.decorator.gap = 10@10;\
+		\
+	loadButton = \cf7 Button\cf3 (w, 70 @ 20);\
+	loadButton.states = [[\cf6 "INIT"\cf3 ,\cf7 Color\cf3 .black,\cf7 Color\cf3 .white]];\
+	loadButton.action = \{ \cf4 |butt|\cf3 \
+		\cf8 thisProcess\cf3 .interpreter.executeFile(\cf5 ~path\cf3  ++ \cf6 "/PerC_Startup.sc"\cf3 );\
+	\};\
+	\
+	guiButton = \cf7 Button\cf3 (w, 70 @ 20);\
+	guiButton.states = [[\cf6 "PDEFGUI"\cf3 ,\cf7 Color\cf3 .black,\cf7 Color\cf3 .white]];\
+	guiButton.action = \{ \cf4 |butt|\cf3 \
+		\cf7 PdefAllGui\cf3 (8);\
+	\};\
+	\
+		w.view.decorator.nextLine;\
+\
+	playButton = \cf7 Button\cf3 (w, 70 @ 20);\
+	playButton.states = [[\cf6 "PLAY"\cf3 ,\cf7 Color\cf3 .black,\cf7 Color\cf3 .white]];\
+	playButton.action = \{ \cf4 |butt|\cf3 \
+		\cf5 ~sequencer_stream\cf3  = \cf5 ~sequencer\cf3 .play;	\
+		postln(\cf6 "Play!"\cf3 );\
+\
+	\};\
+	\
+		w.view.decorator.nextLine;\
+		\
+	stopButton = \cf7 Button\cf3 (w, 70 @ 20);\
+	stopButton.states = [[\cf6 "STOP"\cf3 ,\cf7 Color\cf3 .black,\cf7 Color\cf3 .white]];\
+	stopButton.action = \{ \cf4 |butt|\cf3 \
+		\cf5 ~stop_all\cf3 .fork;\
+		postln(\cf6 "Stop!"\cf3 );\
+	\};\
+	\
+	\cf2 //Bring the window to the front\cf3 \
+	w.front;\
+\
+	\cf2 //When this window closes, cleanup\cf3 \
+	w.onClose = \{ \
+		postln(\cf6 "Window Closed!"\cf3 );\
+		\cf5 ~stop_all\cf3 .fork;\
+		\cf5 ~cleanup\cf3 .fork;\
+	\};\
+)\
+)\
+}

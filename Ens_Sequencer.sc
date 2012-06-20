@@ -6,16 +6,14 @@
 (
 ~stop_all = {
 	~sequencer_stream.stop;
-	Pdef.all.do(_.stop);
-	~mOut.size.do{ |i| ~mOut[i].allNotesOff(0) };
+	~osc_destination.sendMsg("all_notes_off");
 };
 ~stop_all.fork; 
-CmdPeriod.doOnce({~stop_all.fork;});
 
 ~sequencer = Pseq([
-//	Pfuncn({"________________".postln; 0 }, 1),
-//	Pfuncn({"Section 0".postln; 0 }, 1),
-//	~sections[0],
+	Pfuncn({"________________".postln; 0 }, 1),
+	Pfuncn({"Section 0".postln; 0 }, 1),
+	~sections[0],
 	Pfuncn({"Section 1".postln; 0 }, 1),
 	~sections[1],
 	Pfuncn({"Section 2".postln; 0 }, 1),

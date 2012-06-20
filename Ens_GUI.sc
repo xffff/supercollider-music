@@ -7,6 +7,7 @@
 var initButton, stopButton, playButton, ctButton, routeButton, queryButton;
 ~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece";
 ~contimbre_path = "/Volumes/Time Machine Backups/conTimbre";
+CmdPeriod.doOnce({~stop_all.fork;});
 
 	postln("/****************************************************/");
 	postln("/* Ensemble                                         */");

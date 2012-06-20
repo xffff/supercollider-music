@@ -34,11 +34,11 @@
 		
 	////////////////////////////////////////////////////
 	~contimbre_initialise = {
-		postln("Starting conTimbre... ");
+		postln("Starting conTimbre... (20s)");
 		("open "++"\""++~contimbre_path++"/#ePlayer.maxpat"++"\"").unixCmd;
-		10.wait;
+		20.wait;
 		
-		postln("Loading orchestra... ");
+		postln("Loading orchestra... (20s)");
 		("open "++"\""++~path++"/Ens_load_orchestra.maxpat"++"\"").unixCmd;
 		20.wait;
 		

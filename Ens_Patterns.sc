@@ -697,17 +697,17 @@
 				\group, ~fx,
 				\out, 21,
 				\bufnum, ~sax_buf,
-				\amp, Pseq([0,0.6],1),
+				\amp, Pseq([0,Pn(0.6,inf)],1),
 				\dur, Pseq([14,Pn(1/8,inf)],1),		
 				\atk, ~durations[4]*0.0001,
 				\sus, ~durations[4]*0.9,
 				\rel, ~durations[4]*0.5,
-				\grainfreq, Pseg(Pseq((1..16),1),Pseq(2!16,1),1),
+				\grainfreq, Pseg(Pseq((1..16),inf),Pseq(2!16,inf),1),
 				\ratehigh, 1.5,
 				\ratelow, 0.025,
 				\graindur, 16,
 				\center, 0
-			),
+			).play,
 		// saxophone 1
 			~delays[4]+0.05,
 			Pbind(

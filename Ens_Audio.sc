@@ -14,7 +14,7 @@
 ~dryaudio = nil;
 
 fork{
-	~cleanup = fork{
+	~cleanup = {
 		postln("Cleaning up");
 		s.newAllocators;
 		~input.free; ~fx.free; ~output.free;
@@ -24,6 +24,7 @@ fork{
 		s.sync; 
 		postln("Done cleaning up");
 	};
+	~cleanup.fork;
 	
 	0.05.wait; // make sure we're cleaned up before we do the rest
 	

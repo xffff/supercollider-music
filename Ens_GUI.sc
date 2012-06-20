@@ -29,6 +29,7 @@ var initButton, stopButton, playButton, ctButton, routeButton, queryButton;
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Startup.sc");
 			postln("Compiled... starting scsynth...");
 			~startup.fork;
+			("open \"/Users/Michael_Murphy/Documents/REAPER Media/Ensemble_Piece/Ensemble_Piece_3232/Ensemble_Piece_3232.RPP\"").unixCmd;
 		}
 	};
 	
@@ -75,7 +76,7 @@ var initButton, stopButton, playButton, ctButton, routeButton, queryButton;
 			~initialise.fork;
 			s.sync;
 			~sequencer_stream = ~sequencer.play;	
-		}
+		};
 		postln("Play!");
 	};
 	
@@ -91,7 +92,7 @@ var initButton, stopButton, playButton, ctButton, routeButton, queryButton;
 			w.view.decorator.nextLine;
 
 	queryButton = Button(w, 70 @ 20);
-	queryButton.states = [["query nodes",Color.black,Color.white]];
+	queryButton.states = [["query",Color.black,Color.white]];
 	queryButton.action = { |butt|
 		s.queryAllNodes;
 	};
@@ -106,7 +107,10 @@ var initButton, stopButton, playButton, ctButton, routeButton, queryButton;
 		if(~stop_all != nil, {~stop_all.fork;});
 		if(~cleanup != nil, {~cleanup.fork;});
 		s.freeAll; s.quit;		
+		("killall MaxMSP").unixCmd;
+		("killall REAPER").unixCmd;
 		("killall jackd").unixCmd;
+		Environment.clear;
 		postln("Bye!");
 	};
 )

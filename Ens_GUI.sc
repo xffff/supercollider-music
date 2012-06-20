@@ -49,16 +49,18 @@ var initButton, stopButton, playButton, ctButton, routeButton, queryButton;
 	routeButton.action = { |butt|
 		fork{
 			postln("Routing audio...");
-			for(1,16, { |i, j| 
-				// first connect MaxMSP to Reaper
+			for(1,16, { | i | 
+				// first connect MaxMSP to scsynth and Reaper
 				unixCmd("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"REAPER:in"++i, false);
-				
-				// connect MaxMSP to scsynth
 				unixCmd("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"scsynth:in"++i, false);
-				
+				}
+			);
+			for(1,32, { | i | 
+				// connect scsynth to reaper 1-32
 				unixCmd("/usr/local/bin/jack_connect scsynth:out"++i++" "++"REAPER:in"++i, false);
 				}
 			);
+
 			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
 			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
 			

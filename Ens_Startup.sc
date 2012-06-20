@@ -53,11 +53,6 @@
 	////////////////////////////////////////////////////
 	~initialise = {
 		s.waitForBoot(
-			postln("/****************************************************/");
-			postln("/* Ensemble                                         */");
-			postln("/* Michael Murphy 2012                              */");
-			postln("/****************************************************/");
-			postln(""); postln("");
 			postln("STARTUP...");
 			postln("________________");	
 			postln("Loading Synths... ");

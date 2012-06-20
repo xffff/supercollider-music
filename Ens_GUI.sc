@@ -63,6 +63,7 @@ var initButton, stopButton, playButton, ctButton, routeButton;
 			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
 			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
 		};
+		postln("Ready for playback!");
 	};
 
 		w.view.decorator.nextLine;
@@ -70,9 +71,11 @@ var initButton, stopButton, playButton, ctButton, routeButton;
 	playButton = Button(w, 70 @ 20);
 	playButton.states = [["play",Color.black,Color.white]];
 	playButton.action = { |butt|
-		~intialise.fork;
-		s.sync;
-		~sequencer_stream = ~sequencer.play;	
+		fork{	
+			~initialise.fork;
+			s.sync;
+			~sequencer_stream = ~sequencer.play;	
+		}
 		postln("Play!");
 	};
 	

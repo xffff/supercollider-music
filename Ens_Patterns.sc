@@ -57,7 +57,7 @@
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(0,1),
+				\in, ~master_dry_bus.subBus(0,1),
 				\out, 17,
 				\dur, ~durations[0],
 				\atk, ~durations[0] * 0.1,
@@ -175,7 +175,7 @@
 			Pbind(
 				\instrument, \recbuf,
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(6,1),
+				\in, ~master_dry_bus.subBus(6,1),
 				\dur, Pseq([8,2],1),
 				\bufnum, ~sax_buf
 			),
@@ -195,7 +195,7 @@
 			Pbind(
 				\instrument, \recbuf,
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(13,1),
+				\in, ~master_dry_bus.subBus(13,1),
 				\dur, Pn(16,1),
 				\bufnum, ~tamtam_buf
 			),
@@ -363,7 +363,7 @@
 			Pbind(
 				\instrument, \freqshift, 
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(6,1),
+				\in, ~master_dry_bus.subBus(6,1),
 				\out, 19,
 				\dur, Pseq([16,Pn(16,2)],inf),
 				\atk, Pkey(\dur)*0.5,
@@ -520,7 +520,7 @@
 			Pbind(
 				\instrument, \pitchshift,
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(1,1),
+				\in, ~master_dry_bus.subBus(1,1),
 				\out, 20,
 				\dur, ~durations[3],
 				\atk, ~durations[3] * 0.1,
@@ -602,7 +602,7 @@
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(10,1),
+				\in, ~master_dry_bus.subBus(10,1),
 				\out, 17,
 				\dur, ~durations[3],
 				\atk, ~durations[3] * 0.1,
@@ -651,7 +651,7 @@
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(12,1),
+				\in, ~master_dry_bus.subBus(12,1),
 				\out, 17,
 				\dur, ~durations[3],
 				\atk, ~durations[3] * 0.1,
@@ -743,7 +743,7 @@
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(6,1),
+				\in, ~master_dry_bus.subBus(6,1),
 				\out, 17,
 				\dur, ~durations[4],
 				\atk, ~durations[4] * 0.4,
@@ -771,7 +771,7 @@
 			PmonoArtic(
 				\freqshift,
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(4,1),
+				\in, ~master_dry_bus.subBus(4,1),
 				\out, 19,
 				\dur, 0.25,
 				\legato, 1.0,
@@ -810,7 +810,7 @@
 			Pbind(
 				\instrument, \recbuf,
 				\group, ~fx,
-				\in, ~master_fx_bus.subBus(12,1),
+				\in, ~master_dry_bus.subBus(12,1),
 				\dur, Pn(16,1),
 				\bufnum, ~ctl_buf
 			),

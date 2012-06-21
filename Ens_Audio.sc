@@ -9,7 +9,7 @@
 ~input = nil; 
 ~fx = nil; 
 ~output = nil; 
-~master_fx_bus = nil; 
+~master_dry_bus = nil; 
 ~buf_a = nil;
 ~dryaudio = nil;
 
@@ -18,7 +18,7 @@ fork{
 		postln("Cleaning up");
 		s.newAllocators;
 		~input.free; ~fx.free; ~output.free;
-		~master_fx_bus.free;
+		~master_dry_bus.free;
 		~tamtam_buf.free;
 		~ctl_buf.free;
 		~sax_buf.free;
@@ -39,7 +39,7 @@ fork{
 		postln("Groups Allocated");
 		
 		// busses
-		~master_fx_bus  = Bus.audio(s,~numfxchans); // fx bus
+		~master_dry_bus  = Bus.audio(s,~numfxchans); // fx bus
 		postln("Busses Set");
 		
 		// buffers
@@ -57,7 +57,7 @@ fork{
 			[
 			\in, #[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], 
 			\amp, 1.0, 
-			\out, ~master_fx_bus,
+			\out, ~master_dry_bus,
 			], target: ~input, addAction: \addToHead);
 			
 			postln("Dry Audio On");

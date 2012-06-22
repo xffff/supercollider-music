@@ -6,6 +6,7 @@
 (
 ~stop_all = {
 	~sequencer_stream.stop;
+	s.freeAll;
 	~osc_destination.sendMsg("all_notes_off");
 };
 ~stop_all.fork; 

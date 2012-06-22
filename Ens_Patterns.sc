@@ -18,7 +18,7 @@
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
 ~durations[4] = 64; ~delays[4] = 0;
-~durations[5] = 64; ~delays[5] = 0;
+~durations[5] = 72; ~delays[5] = 0;
 
 ~hseries = 
 	Array.fill(8, { |i| if(i>0,{i=i+7.rand});
@@ -263,7 +263,8 @@
 				\oscout, ~osc_destination,
 				\osccmd, \program,
 				\voicename, [\fl,\bfl,\bcl,\bsn1,\sx1,\sx2,
-							\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,\cb],
+							\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,
+							\cb],
 				\programname, 
 					#["flute.ordinario",
 					"bass.flute.ordinario",
@@ -290,10 +291,11 @@
 				\bufnum, ~tamtam_buf,
 				\rate, 0.5,
 				\dur, Pseq([16,16],1),
+				\startpos, 2,
 				\atk, Pkey(\dur)*0.2,
 				\sus, Pkey(\dur)*0.4,
-				\rel, Pkey(\dur)*0.4, 
-				\amp, Pseq([0.0,1.0],1)
+				\rel, Pkey(\dur)*0.6, 
+				\amp, Pseq([0.0,1.5],1)
 			),
 		// flute
 			~delays[2]+0.05,
@@ -812,7 +814,8 @@
 				\amp, 
 					Pseq([0,
 						Pif(Pbinop('<',Pkey(\dur),16),
-							Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1)),Pn(1,inf))
+							Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1)),
+							Pn(1,inf))
 					],1)
 			),
 		// crotales
@@ -869,11 +872,42 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\tb1,\vc],
+				\voicename, [\tb1,\tb2,\vc],
 				\programname, 
 					#["tenor trombone.hit on mouthpiece",
+					"tenor trombone.ordinario",
 					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
+			),
+		// playbuf
+			~delays[5]+0.05,
+			Pbind(
+				\instrument, \playbuf,
+				\group, ~fx,
+				\out, 22,
+				\bufnum, ~ctl_buf,
+				\rate, [-14,-24].midiratio, 
+				\dur, Pseq([16,32],1),
+				\startpos, 1,
+				\atk, Pkey(\dur)*0.2,
+				\sus, Pkey(\dur)*0.4,
+				\rel, Pkey(\dur)*0.6, 
+				\amp, Pseq([0.0,1.5],1)
+			),
+		// playbuf
+			~delays[5]+0.05,
+			Pbind(
+				\instrument, \playbuf,
+				\group, ~fx,
+				\out, 22,
+				\bufnum, ~sax_buf,
+				\rate, 0.5,
+				\dur, Pseq([14,32],1),
+				\startpos, 0,
+				\atk, Pkey(\dur)*0.2,
+				\sus, Pkey(\dur)*0.4,
+				\rel, Pkey(\dur)*0.6, 
+				\amp, Pseq([0.0,1.5],1)
 			),
 		// trombone 1
 			~delays[5]+0.05,
@@ -882,9 +916,38 @@
 				\oscout, ~osc_destination,
 				\osccmd, \noteon,
 				\voicename, \tb1,
-				\midinote, Pseq([45,44],1),
+				\midinote, 
+					Pseq([45,44],1),
 				\dur, 8,
 				\amp, Pn(1,2)
+			),
+		// trombone 2
+			~delays[5]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Pwrand([\noteon,\rest],[0.6,0.4],inf)],1),
+				\voicename, \tb2,
+				\midinote, Prand(~hseries[1].select({|n,i| 
+							n>=36}).select({|n,i| n<=60}),inf),
+				\legato, 0.1,
+				\dur, Pseq([Pn(8,6),Pn(1/4,inf)],1),
+				\amp, Pexprand(0.01,0.5,inf)
+			),
+		// trombone -> warp
+			~delays[5]+0.05,
+			Pbind(
+				\instrument, \warp,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(5,1),
+				\out, 17,
+				\dur, ~durations[5],
+				\atk, ~durations[5] * 0.4,
+				\sus, ~durations[5] * 0.3,
+				\rel, ~durations[5] * 0.3, 
+				\amp, 0.45,
+				\warpfactor, [3,5,7,11].midiratio,
+				\freqscale, Pkey(\warpfactor)
 			),
 		// violoncello
 			~delays[5]+0.05,
@@ -895,13 +958,13 @@
 				\voicename, \vc,
 				\midinote, 
 						Pwalk(
-							~hseries[0].select({|n,i| 
+							~hseries[1].select({|n,i| 
 								n>=36}).select({|n,i| n<=73}),
 							Prand((1..4),inf),
 							Pseq([1,-1],inf),
 						0), 
-				\dur, Prand([Pn(1/16,128),Pn(1/8,64),Pn(1/4,32),Pn(1/6,21)],1),
-				\amp, Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1),1)
+				\dur, Prand([Pn(1/16,128),Pn(1/8,64),Pn(1/4,32),Pn(1/2,16),Pn(1,8),Pn(2,4),8],inf),
+				\amp, Pseg(Pseq([0.2,1,0.0],inf),Pseq(4!2,inf))
 			),
 		// crotales
 			~delays[5]+0.05,
@@ -912,13 +975,13 @@
 				\voicename, \ctl,
 				\midinote, 
 					Ptuple([		// there must be a better way to write this...
-						Prand(~hseries[0].select({|n,i| 
+						Prand(~hseries[1].select({|n,i| 
 							n>=72}).select({|n,i| n<=96}),inf),
-						Prand(~hseries[0].select({|n,i| 
+						Prand(~hseries[1].select({|n,i| 
 							n>=72}).select({|n,i| n<=96}),inf),
-						Prand(~hseries[0].select({|n,i| 
+						Prand(~hseries[1].select({|n,i| 
 							n>=72}).select({|n,i| n<=96}),inf),
-						Prand(~hseries[0].select({|n,i| 
+						Prand(~hseries[1].select({|n,i| 
 							n>=72}).select({|n,i| n<=96}),inf),
 					],1), 
 				\dur, Pn(16,1),

@@ -869,7 +869,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\tb1],
+				\voicename, [\tb1,\vc],
 				\programname, 
 					#["tenor trombone.hit on mouthpiece",
 					"violoncello.col legno battuto.ordinario"],
@@ -901,7 +901,7 @@
 							Pseq([1,-1],inf),
 						0), 
 				\dur, Prand([Pn(1/16,128),Pn(1/8,64),Pn(1/4,32),Pn(1/6,21)],1),
-				\amp, Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1)),Pn(1,inf))
+				\amp, Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1),1)
 			),
 		// crotales
 			~delays[5]+0.05,

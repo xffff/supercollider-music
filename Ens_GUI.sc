@@ -4,10 +4,10 @@
 /************************************	*/
 
 (
-var initButton, stopButton, playButton, ctButton, routeButton, queryButton;
+var initButton, stopButton, playButton, ctButton, routeButton, queryButton, meterButton;
 ~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece";
 ~contimbre_path = "/Volumes/Time Machine Backups/conTimbre";
-CmdPeriod.doOnce({~stop_all.fork;});
+CmdPeriod.add({~stop_all.fork;});
 
 	postln("/****************************************************/");
 	postln("/* Ensemble                                         */");
@@ -15,7 +15,7 @@ CmdPeriod.doOnce({~stop_all.fork;});
 	postln("/****************************************************/");
 	postln(""); postln("");
 
-	w=Window(" ", Rect(100, 200, 85, 190));
+	w=Window(" ", Rect(100, 200, 85, 210));
 	w.view.decorator = FlowLayout(w.view.bounds);
 	w.view.decorator.gap = 10@10;
 		
@@ -62,6 +62,7 @@ CmdPeriod.doOnce({~stop_all.fork;});
 				}
 			);
 
+			3.wait;
 			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
 			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
 			
@@ -77,7 +78,7 @@ CmdPeriod.doOnce({~stop_all.fork;});
 	playButton.action = { |butt|
 		fork{	
 			~initialise.fork;
-			2.wait;
+			5.wait;
 			~sequencer_stream = ~sequencer.play;	
 		};
 		postln("Play!");
@@ -89,6 +90,7 @@ CmdPeriod.doOnce({~stop_all.fork;});
 	stopButton.states = [["stop",Color.black,Color.white]];
 	stopButton.action = { |butt|
 		~stop_all.fork;
+		s.freeAll;
 		postln("Stop!");
 	};
 	
@@ -100,21 +102,35 @@ CmdPeriod.doOnce({~stop_all.fork;});
 		s.queryAllNodes;
 	};
 
-	
+			w.view.decorator.nextLine;
+
+	meterButton = Button(w, 70 @ 20);
+	meterButton.states = [["meter",Color.black,Color.white]];
+	meterButton.action = { |butt|
+		s.meter;
+	};
+
 	//Bring the window to the front
 	w.front;
 
 	//When this window closes, cleanup
 	w.onClose = { 
-		postln("Cleaning up...");
-		if(~stop_all != nil, {~stop_all.fork;});
-		if(~cleanup != nil, {~cleanup.fork;});
-		s.freeAll; s.quit;		
-		("killall MaxMSP").unixCmd;
-		("killall REAPER").unixCmd;
-		("killall jackd").unixCmd;
-		Environment.clear;
-		postln("Bye!");
+		fork{
+			postln("Cleaning up...");
+			if(~stop_all != nil, {~stop_all.fork;});
+			if(~cleanup != nil, {~cleanup.fork;});
+			s.freeAll; 		
+			("killall MaxMSP").unixCmd;
+			0.5.wait;
+			("killall REAPER").unixCmd;
+			0.5.wait;
+			("killall jackd").unixCmd;
+			0.5.wait;
+			("killall scsynth").unixCmd;
+			0.5.wait;
+			Environment.clear;
+			postln("Bye!");
+		}
 	};
 )
 

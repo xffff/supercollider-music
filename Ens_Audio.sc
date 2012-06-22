@@ -30,7 +30,7 @@ fork{
 	
 	0.05.wait; // make sure we're cleaned up before we do the rest
 	
-	~start_audio = fork{
+	~start_audio = {
 		(
 		// groups
 		~input = Group.new(s,\addToHead);   // from sampler
@@ -64,6 +64,7 @@ fork{
 			s.queryAllNodes;
 		);
 		
-	}; 
+	};
+	~start_audio.fork; 
 };
 )

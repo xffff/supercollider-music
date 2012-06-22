@@ -29,7 +29,6 @@
 		o.memSize;
 		if(o.memSize<1048576,{o.memSize = 1048576}); // 1GB 2**20
 		s.boot;
-		s.meter;
 	};
 //	~startup.fork;
 		

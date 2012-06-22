@@ -53,12 +53,15 @@ CmdPeriod.add({~stop_all.fork;});
 			for(1,16, { | i | 
 				// first connect MaxMSP to scsynth and Reaper
 				unixCmd("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"REAPER:in"++i, false);
+				0.1.wait;
 				unixCmd("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"scsynth:in"++i, false);
+				0.1.wait;
 				}
 			);
 			for(1,32, { | i | 
 				// connect scsynth to reaper 1-32
 				unixCmd("/usr/local/bin/jack_connect scsynth:out"++i++" "++"REAPER:in"++i, false);
+				0.1.wait;
 				}
 			);
 

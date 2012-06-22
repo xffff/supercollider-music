@@ -101,9 +101,7 @@
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 				\voicename, \va1,
-				\midinote, 
-					Prand(~hseries[0].select({|n,i| 
-						n>=85}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
+				\midinote, Prand(~hseries[0].select({|n,i| n>=85}).select({|n,i| n<=96}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
 				\amp, Pexprand(0.1,0.7,inf)
 			)
 		], 1)
@@ -213,7 +211,7 @@
 				\voicename, \vi1,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
-						n>=81}),inf), 							\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
+						n>=81}).select({|n,i| n<=119}),inf), 				\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.6,inf)
 			),
 		// violin 2
@@ -224,7 +222,7 @@
 				\osccmd, Prand([\rest,\noteon],inf),
 				\voicename, \vi2,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
-						n>=81}),inf), 
+						n>=81}).select({|n,i| n<=119}),inf), 
 				\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.6,inf)
 			),
@@ -237,7 +235,7 @@
 				\voicename, \va1,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
-						n>=73}),inf), 							\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
+						n>=73}).select({|n,i| n<=96}),inf), 				\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.6,inf)			
 			),
 		// viola 2
@@ -248,7 +246,7 @@
 				\osccmd, Prand([\rest,\noteon],inf),
 				\voicename, \va2,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
-						n>=73}),inf), 
+						n>=73}).select({|n,i| n<=119}),inf), 
 				\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.6,inf)
 			)
@@ -387,7 +385,7 @@
 				\voicename, \vi1,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
-						n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+						n>=81}).select({|n,i| n<=119}),inf), 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// violin 2
@@ -398,7 +396,7 @@
 				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 				\voicename, \vi2,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
-						n>=81}),inf), 
+						n>=81}).select({|n,i| n<=119}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
@@ -411,7 +409,7 @@
 				\voicename, \vi3,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
-						n>=81}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+						n>=81}).select({|n,i| n<=119}),inf), 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// violin 4
@@ -422,7 +420,7 @@
 				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 				\voicename, \vi4,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
-						n>=81}),inf), 
+						n>=81}).select({|n,i| n<=119}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
@@ -435,7 +433,7 @@
 				\voicename, \va1,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
-						n>=73}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+						n>=73}).select({|n,i| n<=96}),inf), 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// viola 2
@@ -446,7 +444,7 @@
 				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 				\voicename, \va2,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
-						n>=73}),inf), 
+						n>=73}).select({|n,i| n<=96}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
@@ -713,7 +711,7 @@
 				\ratelow, 0.025,
 				\graindur, 16,
 				\center, 0
-			).play,
+			),
 		// saxophone 1
 			~delays[4]+0.05,
 			Pbind(
@@ -767,7 +765,7 @@
 				\osccmd, \noteon,
 				\voicename, \tr1,
 				\midinote, 
-					Prand(Array.fill(64,{|i| i=i+1; i*40.midicps}).cpsmidi.select({|n,i| 
+					Prand(~hseries[0].select({|n,i| 
 						n>=60}).select({|n,i| n<=84}),inf), 
 				\dur, Pn(32,2),
 				\amp, Pexprand(0.1,0.2,inf)

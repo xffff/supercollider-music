@@ -207,7 +207,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Prand([\rest,\noteon],inf),
+				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 				\voicename, \vi1,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
@@ -219,7 +219,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Prand([\rest,\noteon],inf),
+				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 				\voicename, \vi2,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
 						n>=81}).select({|n,i| n<=119}),inf), 
@@ -231,7 +231,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Prand([\rest,\noteon],inf),
+				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 				\voicename, \va1,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
@@ -243,7 +243,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Prand([\rest,\noteon],inf),
+				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 				\voicename, \va2,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
 						n>=73}).select({|n,i| n<=119}),inf), 
@@ -272,13 +272,13 @@
 					"bassoon.ordinario.Schwarz Heckel",
 					"alto saxophone.slap.percussive slap",
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
-					"violin.harmonic.artificial.fourth",
-					"violin.harmonic.artificial.fourth",
-					"violin.ordinario",
-					"violin.ordinario",
-					"viola.harmonic.artificial.fourth",
-					"viola.harmonic.artificial.fourth",
-					"violoncello.ordinario",
+//					"violin.harmonic.artificial.fourth",
+//					"violin.harmonic.artificial.fourth",
+//					"violin.ordinario",
+//					"violin.ordinario",
+//					"viola.harmonic.artificial.fourth",
+//					"viola.harmonic.artificial.fourth",
+//					"violoncello.ordinario",
 					"double bass.pizzicato.bartok"],
 				\dur, Pn(0.01,1)
 			),
@@ -886,13 +886,13 @@
 				\group, ~fx,
 				\out, 22,
 				\bufnum, ~ctl_buf,
-				\rate, [-14,-24].midiratio, 
-				\dur, Pseq([16,32],1),
+				\rate, -24.midiratio, 
+				\dur, 32,
 				\startpos, 1,
 				\atk, Pkey(\dur)*0.2,
 				\sus, Pkey(\dur)*0.4,
 				\rel, Pkey(\dur)*0.6, 
-				\amp, Pseq([0.0,0.75],1)
+				\amp, 0.2
 			),
 		// playbuf
 			~delays[5]+0.05,
@@ -901,13 +901,13 @@
 				\group, ~fx,
 				\out, 22,
 				\bufnum, ~sax_buf,
-				\rate, 0.5,
+				\rate, [-24,-14,-12].midiratio,
 				\dur, Pseq([14,32],1),
 				\startpos, 0,
 				\atk, Pkey(\dur)*0.2,
 				\sus, Pkey(\dur)*0.4,
 				\rel, Pkey(\dur)*0.6, 
-				\amp, Pseq([0.0,1.5],1)
+				\amp, Pseq([0.0,2.5],1)
 			),
 		// trombone 1
 			~delays[5]+0.05,
@@ -928,11 +928,11 @@
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\rest,Pwrand([\noteon,\rest],[0.6,0.4],inf)],1),
 				\voicename, \tb2,
-				\midinote, Prand(~hseries[1].select({|n,i| 
+				\midinote, Prand(~hseries[0].select({|n,i| 
 							n>=36}).select({|n,i| n<=60}),inf),
 				\legato, 0.1,
 				\dur, Pseq([Pn(8,6),Pn(1/4,inf)],1),
-				\amp, Pexprand(0.01,0.75,inf)
+				\amp, Pexprand(0.01,0.3,inf)
 			),
 		// trombone -> warp
 			~delays[5]+0.05,

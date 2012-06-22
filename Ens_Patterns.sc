@@ -101,7 +101,7 @@
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 				\voicename, \va1,
-				\midinote, Prand(~hseries[0].select({|n,i| n>=85}).select({|n,i| n<=96}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
+				\midinote, Prand(~hseries[0].select({|n,i| n>=81}).select({|n,i| n<=96}),inf), 							\dur, Pseq([Pn(16,1),Prand([8,16,32],inf)],1),
 				\amp, Pexprand(0.1,0.7,inf)
 			)
 		], 1)
@@ -274,23 +274,19 @@
 					"violoncello.ordinario"],
 				\dur, Pn(0.01,1)
 			),
-		// freeze
+		// playbuf
 			~delays[2]+0.05,
 			Pbind(
-				\instrument, \freeze,
+				\instrument, \playbuf,
 				\group, ~fx,
-				\out, 18,
+				\out, 22,
 				\bufnum, ~tamtam_buf,
-				\bufdur, ~tamtam_buf.duration,
+				\rate, 0.5,
 				\dur, Pseq([16,16],1),
-				\cfreq, Pkey(\dur).reciprocal*0.5, 
-				\cphase, 0,
-				\cmul, Pkey(\bufdur),
-				\cadd, 0,
 				\atk, Pkey(\dur)*0.2,
 				\sus, Pkey(\dur)*0.4,
 				\rel, Pkey(\dur)*0.4, 
-				\amp, Pseq([0.0,0.75],1)
+				\amp, Pseq([0.0,1.0],1)
 			),
 		// flute
 			~delays[2]+0.05,
@@ -706,10 +702,10 @@
 				\atk, Pkey(\dur)*0.0001,
 				\sus, Pkey(\dur)*0.9,
 				\rel, Pkey(\dur)*0.5,
-				\grainfreq, 8,
+				\grainfreq, 4,
 				\ratehigh, 1.5,
 				\ratelow, 0.025,
-				\graindur, 16,
+				\graindur, 2,
 				\center, 0
 			),
 		// saxophone 1
@@ -870,25 +866,6 @@
 				\programname, 
 					#["tenor trombone.hit on mouthpiece"],
 				\dur, Pn(0.01,1)
-			),
-		// granular synthesis	
-			~delays[5]+0.075,
-			PmonoArtic(
-				\grain,
-				\group, ~fx,
-				\out, 21,
-				\bufnum, ~ctl_buf,
-				\dur, Pn(1/8,inf),
-				\amp, 0.75,				
-				\atk, 0.01,
-				\sus, ~durations[5]*0.2,
-				\rel, ~durations[5]*0.8,
-				\grainfreq, Pseg(Pseq((32..2),inf),Pseq(1!31,inf),1),
-				\ratehigh, Pseg(Pseq((1.5,1.454..1),inf),Pseq(2.6!12,inf),1),
-				\ratelow, Pseg(Pseq((0.5,0.545..1),inf),Pseq(2.6!12,inf),1),
-				\graindur, 16,
-				\center, Pseg(Pseq((16,15.7..0.1),inf),Pseq(0.5!100,inf),1),
-				\legato, 1
 			),
 		// trombone 1
 			~delays[5]+0.05,

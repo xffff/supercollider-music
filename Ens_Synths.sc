@@ -59,10 +59,13 @@ SynthDef(\recbuf, { | in = 0, dur = 5, bufnum = 0 |
 	RecordBuf.ar(In.ar(in),bufnum,0,doneAction:2,loop:0);
 }).add;
 
-SynthDef(\playbuf, { | out = 0, bufnum = 0, rate = 1, atk = 0.1, sus = 0.1, rel = 0.1, amp = 0, loop = 0 |
+SynthDef(\playbuf, { | out = 0, bufnum = 0, rate = 1, 
+						atk = 0.1, sus = 0.1, rel = 0.1, 
+						amp = 0, loop = 0, startpos = 0 |
 	var env, sound;
 	env = EnvGen.kr(Env.linen(atk,sus,rel,amp), doneAction:2);
-	sound = PlayBuf.ar(1,bufnum,BufRateScale.kr(bufnum)*rate, loop: loop) * env;
+	sound = PlayBuf.ar(1,bufnum,
+		BufRateScale.kr(bufnum)*rate, loop: loop, startPos: startpos) * env;
 	Out.ar(out, sound);
 }).add;
 
@@ -143,11 +146,11 @@ SynthDef(\freeze, { | bufnum = 0, out = 0, rate = 1, bufdur = 2,
 					atk = 0, sus = 0, rel = 0, amp = 0.1, cfreq = 0.1, 
 					cphase = 0, cmul = 1, cadd = 1 | 
 	var env = EnvGen.kr(Env.linen(atk,sus,rel,amp), doneAction:2);
-	var tfreq = 44;
+	var tfreq = 100;
 	var trig = Impulse.kr(tfreq);
 	var center = LFSaw.kr(cfreq,cphase,cmul,cadd);
-	var graindur = 12 / tfreq;
-	var sound = TGrains.ar(2, trig, bufnum, rate: 1, 
+	var graindur = 10 / tfreq;
+	var sound = TGrains.ar(2, trig, bufnum, rate: rate, 
 		centerPos: center, dur: graindur, amp: 1.0).sum; // mono!
 	Out.ar(out, sound*env);
 }).add;

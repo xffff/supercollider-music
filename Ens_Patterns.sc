@@ -211,7 +211,7 @@
 				\voicename, \vi1,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
-						n>=81}).select({|n,i| n<=119}),inf), 				\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
+						n>=81}).select({|n,i| n<=119}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.6,inf)
 			),
 		// violin 2
@@ -223,7 +223,7 @@
 				\voicename, \vi2,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
 						n>=81}).select({|n,i| n<=119}),inf), 
-				\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
+				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.6,inf)
 			),
 		// viola 1
@@ -235,7 +235,7 @@
 				\voicename, \va1,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
-						n>=73}).select({|n,i| n<=96}),inf), 				\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
+						n>=73}).select({|n,i| n<=96}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.6,inf)			
 			),
 		// viola 2
@@ -247,7 +247,7 @@
 				\voicename, \va2,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
 						n>=73}).select({|n,i| n<=119}),inf), 
-				\dur, Pseq([Pn(6,1),Prand([8,16],inf)],1),
+				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.6,inf)
 			)
 		], 1),
@@ -262,7 +262,8 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\bfl,\bcl,\bsn1,\sx1,\sx2,\cb,\vc],
+				\voicename, [\fl,\bfl,\bcl,\bsn1,\sx1,\sx2,
+							\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,\cb],
 				\programname, 
 					#["flute.ordinario",
 					"bass.flute.ordinario",
@@ -270,8 +271,14 @@
 					"bassoon.ordinario.Schwarz Heckel",
 					"alto saxophone.slap.percussive slap",
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
-					"double bass.pizzicato.bartok",
-					"violoncello.ordinario"],
+					"violin.harmonic.artificial.fourth",
+					"violin.harmonic.artificial.fourth",
+					"violin.ordinario",
+					"violin.ordinario",
+					"viola.harmonic.artificial.fourth",
+					"viola.harmonic.artificial.fourth",
+					"violoncello.ordinario",
+					"double bass.pizzicato.bartok"],
 				\dur, Pn(0.01,1)
 			),
 		// playbuf
@@ -702,7 +709,7 @@
 				\atk, Pkey(\dur)*0.0001,
 				\sus, Pkey(\dur)*0.9,
 				\rel, Pkey(\dur)*0.5,
-				\grainfreq, 4,
+				\grainfreq, 3,
 				\ratehigh, 1.5,
 				\ratelow, 0.025,
 				\graindur, 2,
@@ -864,7 +871,8 @@
 				\osccmd, \program,
 				\voicename, [\tb1],
 				\programname, 
-					#["tenor trombone.hit on mouthpiece"],
+					#["tenor trombone.hit on mouthpiece",
+					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
 			),
 		// trombone 1
@@ -877,6 +885,23 @@
 				\midinote, Pseq([45,44],1),
 				\dur, 8,
 				\amp, Pn(1,2)
+			),
+		// violoncello
+			~delays[5]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \vc,
+				\midinote, 
+						Pwalk(
+							~hseries[0].select({|n,i| 
+								n>=36}).select({|n,i| n<=73}),
+							Prand((1..4),inf),
+							Pseq([1,-1],inf),
+						0), 
+				\dur, Prand([Pn(1/16,128),Pn(1/8,64),Pn(1/4,32),Pn(1/6,21)],1),
+				\amp, Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1)),Pn(1,inf))
 			),
 		// crotales
 			~delays[5]+0.05,

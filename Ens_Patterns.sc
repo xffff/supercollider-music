@@ -257,7 +257,7 @@
 	~sections[2] = Pfindur(~durations[2],
 		Ptpar([
 		// program changes
-			~delays[2],
+			0, // give some delay because of the massive amount of prog changes
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -291,11 +291,11 @@
 				\bufnum, ~tamtam_buf,
 				\rate, 0.5,
 				\dur, Pseq([16,16],1),
-				\startpos, 2,
+				\startpos, 4,
 				\atk, Pkey(\dur)*0.2,
 				\sus, Pkey(\dur)*0.4,
 				\rel, Pkey(\dur)*0.6, 
-				\amp, Pseq([0.0,1.5],1)
+				\amp, Pseq([0.0,2.0],1)
 			),
 		// flute
 			~delays[2]+0.05,
@@ -707,7 +707,7 @@
 				\out, 21,
 				\bufnum, ~sax_buf,
 				\amp, Pseq([0,Pn(0.6,inf)],1),
-				\dur, Pseq([14,36],1),		
+				\dur, Pseq([12,36],1),		
 				\atk, Pkey(\dur)*0.0001,
 				\sus, Pkey(\dur)*0.9,
 				\rel, Pkey(\dur)*0.5,
@@ -892,7 +892,7 @@
 				\atk, Pkey(\dur)*0.2,
 				\sus, Pkey(\dur)*0.4,
 				\rel, Pkey(\dur)*0.6, 
-				\amp, Pseq([0.0,1.5],1)
+				\amp, Pseq([0.0,0.75],1)
 			),
 		// playbuf
 			~delays[5]+0.05,
@@ -932,7 +932,7 @@
 							n>=36}).select({|n,i| n<=60}),inf),
 				\legato, 0.1,
 				\dur, Pseq([Pn(8,6),Pn(1/4,inf)],1),
-				\amp, Pexprand(0.01,0.5,inf)
+				\amp, Pexprand(0.01,0.75,inf)
 			),
 		// trombone -> warp
 			~delays[5]+0.05,

@@ -20,8 +20,13 @@
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 64; ~delays[5] = 0;
 
-~pelog = Array.fill(10, {|i| Scale.pelog.degrees + (12*i) }).lace.sort;
-	
+~hseries = 
+	Array.fill(8, { |i| i=i+7.rand;
+		Array.fill(64,{|j| j=j+1; 
+			j * Array.fill(100,{|n| n=n+1; n*26.midicps})[i+(j-1)];
+		}).cpsmidi;
+	});
+
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[0] = Pfindur(~durations[0],
@@ -287,7 +292,7 @@
 				\atk, Pkey(\dur)*0.2,
 				\sus, Pkey(\dur)*0.4,
 				\rel, Pkey(\dur)*0.4, 
-				\amp, Pseq([0.0,0.5],1)
+				\amp, Pseq([0.0,0.75],1)
 			),
 		// flute
 			~delays[2]+0.05,
@@ -683,26 +688,27 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\tr1,\sx1,\sx2],
+				\voicename, [\tr1,\sx1,\sx2,\vc],
 				\programname, 
 					#["trumpet in c.ordinario",
 					"alto saxophone.ordinario",
-					"alto saxophone.ordinario"],
+					"alto saxophone.ordinario",
+					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
 			),	
 		// granular synthesis	
 			~delays[4]+0.075,
-			PmonoArtic(
-				\grain,
+			Pbind(
+				\instrument, \grain,
 				\group, ~fx,
 				\out, 21,
 				\bufnum, ~sax_buf,
 				\amp, Pseq([0,Pn(0.6,inf)],1),
-				\dur, Pseq([14,Pn(1/8,inf)],1),		
-				\atk, ~durations[4]*0.0001,
-				\sus, ~durations[4]*0.9,
-				\rel, ~durations[4]*0.5,
-				\grainfreq, Pseg(Pseq((1..16),inf),Pseq(2!16,inf),1),
+				\dur, Pseq([14,36],1),		
+				\atk, Pkey(\dur)*0.0001,
+				\sus, Pkey(\dur)*0.9,
+				\rel, Pkey(\dur)*0.5,
+				\grainfreq, 8,
 				\ratehigh, 1.5,
 				\ratelow, 0.025,
 				\graindur, 16,
@@ -782,6 +788,31 @@
 				\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
 					Pseq(~durations[4]/(80.midicps..98.midicps).size!(80.midicps..98.midicps).size,inf),
 					1)-81.midicps
+			),
+		// violoncello
+			~delays[4]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],inf),
+				\voicename, \vc,
+				\midinote, 
+						Pwalk(
+							Array.fill(64,{|i| i=i+1; i*26.midicps}).cpsmidi.select({|n,i| 
+								n>=36}).select({|n,i| n<=73}),
+							Prand((1..4),inf),
+							Pseq([1,-1],inf),
+						0), 
+				\dur, 
+					Pseq([16,Prand([
+						Prand([Pn(1/8,64),Pn(1/4,32),Pn(1/6,21)],1),
+						Prand([16,32],1)],inf)
+					],inf),
+				\amp, 
+					Pseq([0,
+						Pif(Pbinop('<',Pkey(\dur),16),
+							Pseg(Pseq([0.2,1,0.0],1),Pseq(2!4,1)),Pn(1,inf))
+					],1)
 			),
 		// crotales
 			~delays[4]+0.05,

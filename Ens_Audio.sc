@@ -19,9 +19,7 @@ fork{
 		s.newAllocators;
 		~input.free; ~fx.free; ~output.free;
 		~master_dry_bus.free;
-		~tamtam_buf.free;
-		~ctl_buf.free;
-		~sax_buf.free;
+		Buffer.freeAll;
 		~dryaudio.free;
 		s.sync; 
 		postln("Done cleaning up");

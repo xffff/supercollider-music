@@ -8,6 +8,13 @@
 (
 ~load_patterns = nil;
 
+~hseries = 
+	Array.fill(8, { |i| if(i>0,{i=i+7.rand});
+		Array.fill(64,{|j| j=j+1; 
+			j * Array.fill(100,{|n| n=n+1; n*26.midicps})[i+(j-1)];
+		}).cpsmidi;
+	});
+
 ~scales = 0!32;
 ~sections = 0!32;
 ~durations = 8!32;
@@ -19,13 +26,6 @@
 ~durations[3] = 60; ~delays[3] = 8;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 0;
-
-~hseries = 
-	Array.fill(8, { |i| if(i>0,{i=i+7.rand});
-		Array.fill(64,{|j| j=j+1; 
-			j * Array.fill(100,{|n| n=n+1; n*26.midicps})[i+(j-1)];
-		}).cpsmidi;
-	});
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////

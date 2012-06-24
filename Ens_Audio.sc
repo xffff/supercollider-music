@@ -10,6 +10,7 @@
 ~fx = nil; 
 ~output = nil; 
 ~master_dry_bus = nil; 
+~master_fx_bus = nil; 
 ~buf_a = nil;
 ~dryaudio = nil;
 
@@ -19,6 +20,7 @@ fork{
 		s.newAllocators;
 		~input.free; ~fx.free; ~output.free;
 		~master_dry_bus.free;
+		~master_fx_bus.free;
 		Buffer.freeAll;
 		~dryaudio.free;
 		s.sync; 
@@ -37,7 +39,8 @@ fork{
 		postln("Groups Allocated");
 		
 		// busses
-		~master_dry_bus  = Bus.audio(s,~numfxchans); // fx bus
+		~master_dry_bus  = Bus.audio(s,~numfxchans); // dry bus
+		~master_fx_bus  = Bus.audio(s,64); // dry bus
 		postln("Busses Set");
 		
 		// buffers

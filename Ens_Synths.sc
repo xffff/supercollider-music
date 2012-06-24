@@ -22,6 +22,12 @@ SynthDef(\fxout, { | in = 0, amp = 1, out = 1, dur = inf, free_trig = 0 |
 
 ///////// synths /////////
 
+SynthDef(\pulse, { | out = 0, amp = 0, atk = 0, sus = 0, rel = 0
+					freq = 0, portamento = 0 |
+	var env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
+	var sound = Pulse.ar(Lag.kr(freq,portamento),0.5)*env;
+	Out.ar(out, sound)
+}).add;
 
 // hala
 
@@ -90,10 +96,11 @@ SynthDef(\freqshift, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.
 	Out.ar(out,sound);
 }).add;
 
-SynthDef(\convolve, { | in = 0, amp = 0.1, out = 0.1, atk = 0.1, sus = 0.1, rel = 0.1 | 
+SynthDef(\convolve, { | in = 0, convin = 1, amp = 0.1, out = 0, 
+						atk = 0.1, sus = 0.1, rel = 0.1 | 
 	var env, sound, kernel;
 	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
-	kernel = In.ar(in, 1);
+	kernel = In.ar(convin, 1);
 	sound = Convolution.ar(In.ar(in,1),kernel,4096);
 	Out.ar(out,sound*env);
 }).add;

@@ -25,7 +25,7 @@
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
 ~durations[4] = 64; ~delays[4] = 0;
-~durations[5] = 72; ~delays[5] = 6;
+~durations[5] = 72; ~delays[5] = 4;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -1127,6 +1127,20 @@
 				\dur, Prand([Pn(1/16,128),Pn(1/8,64),Pn(1/4,32),Pn(1/2,16),Pn(1,8),Pn(2,4),8],inf),
 				\amp, Pseg(Pseq([0.2,1,0.0],inf),Pseq(4!2,inf))
 			),
+		// violoncello -> convolve 
+			~delays[5]+0.05,
+			Pbind(
+				\instrument, \convolve,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(5,1),
+				\convin, ~master_fx_bus.subBus(1,1), // pulse -> rlpf -> convolve
+				\out, 16,
+				\dur, ~durations[5],
+				\atk, ~durations[5] * 0.4,
+				\sus, ~durations[5] * 0.3,
+				\rel, ~durations[5] * 0.3, 
+				\amp, 0.45
+			),
 		// crotales
 			~delays[5]+0.05,
 			Pbind(
@@ -1148,6 +1162,34 @@
 				\dur, Pn(16,1),
 				\legato, 2,
 				\amp, Pseg(Pseq((1.0,0.99..0.01),inf),Pn(1/8,inf),\exp,1)
+			),
+			~delays[5]+0.05,
+			Pbind(
+				\instrument, \pulse,
+				\group, ~input,
+				\out, ~master_dry_bus.subBus(9,1), // pulse -> rlpf 
+				\dur, ~durations[5],
+				\atk, ~durations[5] * 0.4,
+				\sus, ~durations[5] * 0.3,
+				\rel, ~durations[5] * 0.3, 
+				\freq, Prand(~hseries[1].select({|n,i| 
+							n>=72}).select({|n,i| n<=96}),inf).collect({ | frequency | 
+								~pulse_freq=frequency; frequency}),
+				\amp, 0.45
+			),
+			~delays[5]+0.055,
+			Pbind(
+				\instrument, \rlpf,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(9,1), // pulse -> rlpf
+				\out, ~master_fx_bus.subBus(1,1), // rlpf -> conv
+				\dur, 16,
+				\atk, Pkey(\dur) * 0.4,
+				\sus, Pkey(\dur) * 0.3,
+				\rel, Pkey(\dur) * 0.3, 
+				\amp, 0.45,
+				\startfreq, Pfunc({~pulse_freq})*Prand((1.1..4.0),inf),
+				\endfreq, Pfunc({~pulse_freq})*Prand((1.1..4.0),inf)
 			)	
 		], 1)
 	);

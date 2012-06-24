@@ -100,9 +100,9 @@ CmdPeriod.add({~stop_all.fork;});
 			w.view.decorator.nextLine;
 
 	queryButton = Button(w, 70 @ 20);
-	queryButton.states = [["query",Color.black,Color.white]];
+	queryButton.states = [["tree",Color.black,Color.white]];
 	queryButton.action = { |butt|
-		s.queryAllNodes;
+		s.plotTree(0.5);
 	};
 
 			w.view.decorator.nextLine;

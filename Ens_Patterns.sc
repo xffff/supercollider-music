@@ -263,17 +263,14 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\bcl,\bsn1,\sx1,\sx2,
-							\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,
+				\voicename, [\fl,\bcl,\sx1,\sx2,
+							\vi1,\vi2,\va1,\va2,\vc,
 							\cb],
 				\programname, 
 					#["flute.ordinario",
 					"bass clarinet boehm system.ordinario",
-					"bassoon.ordinario.Schwarz Heckel",
 					"alto saxophone.slap.percussive slap",
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
-					"violin.ordinario",
-					"violin.ordinario",
 					"violin.ordinario",
 					"violin.ordinario",
 					"viola.ordinario",
@@ -318,18 +315,6 @@
 				\voicename, \bcl,
 				\midinote, Pseq([81,83],1), 
 				\dur, Pn(16,2),
-				\amp, Pexprand(0.1,0.3,inf)
-			),
-		// bassoon 1
-			~delays[2]+0.025,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-				\voicename, \bsn1,
-				\midinote, 
-					Prand(~hseries[0].select({|n,i| 
-						n>=48}).select({|n,i| n<=76}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.3,inf)
 			),
 		// saxophone 1
@@ -392,32 +377,6 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\dur, 16,
-				\amp, Pexprand(0.2,0.7,inf)
-			),
-		// violin 3
-			~delays[2]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-				\voicename, \vi3,
-				\midinote, 
-					Prand(~hseries[0].select({|n,i| 
-						n>=55}).select({|n,i| n<=104}),inf), 
-				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.2,0.7,inf)
-			),
-		// violin 4
-			~delays[2]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-				\voicename, \vi4,
-				\midinote, 
-					Prand(~hseries[0].select({|n,i| 
-						n>=55}).select({|n,i| n<=104}),inf), 
-				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.2,0.7,inf)
 			),
 		// viola 1

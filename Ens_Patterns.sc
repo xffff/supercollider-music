@@ -307,7 +307,7 @@
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
 						n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.1,0.5,inf)
+				\amp, Pexprand(0.1,0.3,inf)
 			),
 		// bass clarinet
 			~delays[2]+0.025,
@@ -318,7 +318,7 @@
 				\voicename, \bcl,
 				\midinote, Pseq([81,83],1), 
 				\dur, Pn(16,2),
-				\amp, Pexprand(0.1,0.5,inf)
+				\amp, Pexprand(0.1,0.3,inf)
 			),
 		// bassoon 1
 			~delays[2]+0.025,
@@ -330,7 +330,7 @@
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
 						n>=48}).select({|n,i| n<=76}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.2,0.5,inf)
+				\amp, Pexprand(0.1,0.3,inf)
 			),
 		// saxophone 1
 			~delays[2]+0.025,
@@ -1259,24 +1259,6 @@
 				\sus, Pkey(\dur)*0.4,
 				\rel, Pkey(\dur)*0.6, 
 				\amp, Pn(1,1)
-			),
-		// grain	
-			~delays[6]+0.075,
-			Pbind(
-				\instrument, \grain,
-				\group, ~fx,
-				\out, 21,
-				\bufnum, ~ctl_buf,
-				\amp, Pseq([0,Pn(0.15,inf)],1),
-				\dur, Pseq([32,36],1),		
-				\atk, Pkey(\dur)*0.0001,
-				\sus, Pkey(\dur)*0.9,
-				\rel, Pkey(\dur)*0.5,
-				\grainfreq, 4,
-				\ratehigh, 1.5,
-				\ratelow, 0.025,
-				\graindur, 16,
-				\center, 0
 			),
 		// flute
 			~delays[6]+0.05,

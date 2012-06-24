@@ -1165,7 +1165,7 @@
 			PmonoArtic(
 				\hala,
 				\group, ~output,
-				\in, ~master_fx_bus(3,1),
+				\in, ~master_fx_bus.subBus(3,1),
 				\out, 28, 
 				\dur, ~durations[5]/381,
 				\atk, ~durations[5] * 0.01,

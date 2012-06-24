@@ -23,7 +23,7 @@
 ~durations[0] = 60; ~delays[0] = 0;
 ~durations[1] = 60; ~delays[1] = 1;
 ~durations[2] = 32; ~delays[2] = 12;
-~durations[3] = 60; ~delays[3] = 8;
+~durations[3] = 60; ~delays[3] = 12;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
 ~durations[6] = 60; ~delays[6] = 0;
@@ -123,8 +123,8 @@
 					"bass.flute.jet whistle",
 					"bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
 					"alto saxophone.slap.percussive slap",
-					"violin.harmonic.artificial.fourth",
-					"violin.harmonic.artificial.fourth",
+					"violin.pizzicato",
+					"violin.pizzicato",
 					"viola.harmonic.artificial.fourth",
 					"viola.harmonic.artificial.fourth"],
 				\dur, Pn(0.01,1)				 
@@ -279,7 +279,7 @@
 					"violin.ordinario",
 					"viola.ordinario",
 					"viola.ordinario",
-					"violoncello.ordinario",
+					"violoncello.pizzicato",
 					"double bass.pizzicato.bartok"],
 				\dur, Pn(0.01,1)
 			),
@@ -1279,7 +1279,7 @@
 				\voicename, \fl,
 				\midinote, 
 					Prand(~hseries[1].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([16,Prand([8,16],inf)],1),
+						n>=59}).select({|n,i| n<=96}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.4,1.0,inf)
 			),
 		// bass flute
@@ -1291,7 +1291,7 @@
 				\voicename, \bfl,
 				\midinote, 
 					Prand(~hseries[1].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),inf), 					\dur, Pseq([16,Prand([8,16],inf)],1),
+						n>=48}).select({|n,i| n<=84}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.7,1.0,inf)
 			),
 		// bass clarinet
@@ -1323,7 +1323,7 @@
 				\voicename, \bsn1,
 				\midinote, 
 					Prand(~hseries[1].select({|n,i| 
-						n>=48}).select({|n,i| n<=76}),inf), 					\dur, Pseq([16,Prand([8,16],inf)],1),
+						n>=48}).select({|n,i| n<=76}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.7,1.0,inf)
 			),
 		// violin 1

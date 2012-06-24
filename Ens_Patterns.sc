@@ -1223,13 +1223,16 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bcl,\vi1,\vi1,\vi2,\vi3,\vi4,\vc,\cb],
+				\voicename, [\fl,\bfl,\bcl,\bsn1,\bcl,
+					\vi1,\vi2,\vi3,\vi4,\vc,\cb],
 				\programname, 
-					#[
+					#["flute.ordinario",
+					"bass.flute.ordinario",
 					"bass clarinet boehm system.ordinario",
+					"bassoon.ordinario.Schwarz Heckel",
+					"violin.ordinario",
 					"violin.pizzicato",
-					"violin.pizzicato",
-					"violin.pizzicato",
+					"violin.ordinario",
 					"violin.pizzicato",
 					"violoncello.pizzicato",
 					"double bass.pizzicato"],
@@ -1250,6 +1253,30 @@
 				\rel, Pkey(\dur)*0.6, 
 				\amp, Pn(1,1)
 			),
+		// flute
+			~delays[6]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+				\voicename, \fl,
+				\midinote, 
+					Prand(~hseries[1].select({|n,i| 
+						n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+				\amp, Pexprand(0.4,1.0,inf)
+			),
+		// bass flute
+			~delays[6]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+				\voicename, \bfl,
+				\midinote, 
+					Prand(~hseries[1].select({|n,i| 
+						n>=48}).select({|n,i| n<=84}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+				\amp, Pexprand(0.7,1.0,inf)
+			),
 		// bass clarinet
 			~delays[6]+0.05,
 			Pbind(
@@ -1269,6 +1296,18 @@
 						Pwrand(1/[4,2],[0.2,0.8],inf)],inf).collect({|dur| 
 							~bcl_dur=dur; dur}),
 				\amp, Pexprand(0.2,0.75,inf)
+			),
+		// bassoon 1
+			~delays[6]+0.025,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+				\voicename, \bsn1,
+				\midinote, 
+					Prand(~hseries[1].select({|n,i| 
+						n>=48}).select({|n,i| n<=76}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+				\amp, Pexprand(0.7,1.0,inf)
 			),
 		// violin 1
 			~delays[6]+0.05,

@@ -691,11 +691,13 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\tr1,\sx1,\sx2,\vc],
+				\voicename, [\tr1,\sx1,\sx2,\vi1,\vi2,\vc],
 				\programname, 
 					#["trumpet in c.ordinario",
 					"alto saxophone.ordinario",
 					"alto saxophone.ordinario",
+					"violin.ordinario",
+					"violin.ordinario",			
 					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
 			),	
@@ -791,6 +793,54 @@
 				\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
 					Pseq(~durations[4]/(80.midicps..98.midicps).size!(80.midicps..98.midicps).size,inf),
 					1)-81.midicps
+			),
+		// violin 1
+			~delays[4]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+				\voicename, \vi1,
+				\midinote, 
+					Pseq([55,
+						Pseg(
+							Pseq([
+								Prand(
+									~hseries[0].select({|n,i| n>=55}).select({|n,i| n<=104})),
+									symmetricDifference(
+										~hseries[0],~hseries[1]
+									).select({|n,i| n>=55}).select({|n,i| n<=104})
+							], inf),
+							~durations[4]/2,
+							inf
+						)
+					],1),
+				\dur, Pseq([Pn(16,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\amp, Pexprand(0.9,1.0,inf)
+			),
+		// violin 2
+			~delays[4]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+				\voicename, \vi2,
+				\midinote, 
+					Pseq([55,
+						Pseg(
+							Pseq([
+								Prand(
+									~hseries[0].select({|n,i| n>=55}).select({|n,i| n<=104})),
+									symmetricDifference(
+										~hseries[0],~hseries[1]
+									).select({|n,i| n>=55}).select({|n,i| n<=104})
+							], inf),
+							~durations[4]/2,
+							inf
+						)
+					],1),
+				\dur, Pseq([Pn(16,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// violoncello
 			~delays[4]+0.05,

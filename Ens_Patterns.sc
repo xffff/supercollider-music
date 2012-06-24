@@ -1229,7 +1229,7 @@
 				\midinote, 
 					Prand((~hseries[1]-48).select({|n,i| 
 						n>=59}).select({|n,i| n<=96}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
-				\amp, Pexprand(0.4,1.0,inf)
+				\amp, Pexprand(0.4,1.0,2)
 			),
 		// bass flute
 			~delays[6]+0.05,
@@ -1241,7 +1241,7 @@
 				\midinote, 
 					Prand((~hseries[1]-48).select({|n,i| 
 						n>=48}).select({|n,i| n<=84}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
-				\amp, Pexprand(0.7,1.0,inf)
+				\amp, Pexprand(0.7,1.0,2)
 			),
 		// bass clarinet
 			~delays[6]+0.05,
@@ -1261,7 +1261,7 @@
 					Pseq([8,
 						Pwrand(1/[4,2],[0.2,0.8],inf)],inf).collect({|dur| 
 							~bcl_dur=dur; dur}),
-				\amp, Pexprand(0.2,0.75,inf)
+				\amp, Pexprand(0.2,0.75,2)
 			),
 		// bassoon 1
 			~delays[6]+0.025,
@@ -1273,7 +1273,7 @@
 				\midinote, 
 					Prand((~hseries[1]-48).select({|n,i| 
 						n>=48}).select({|n,i| n<=76}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
-				\amp, Pexprand(0.7,1.0,inf)
+				\amp, Pexprand(0.7,1.0,2)
 			),
 		// violin 1
 			~delays[6]+0.05,

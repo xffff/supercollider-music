@@ -263,11 +263,12 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\bcl,\sx1,\sx2,
+				\voicename, [\fl,\bfl,\bcl,\sx1,\sx2,
 							\vi1,\vi2,\va1,\va2,\vc,
 							\cb],
 				\programname, 
 					#["flute.ordinario",
+					"bass.flute.jet whistle",
 					"bass clarinet boehm system.ordinario",
 					"alto saxophone.slap.percussive slap",
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
@@ -305,6 +306,17 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.1,0.3,inf)
+			),
+		// bass flute
+			~delays[1]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \bfl,
+				\midinote, Prand([49,52,53,56,59,62],inf), 
+				\dur, Prand([16,8,32],inf),
+				\amp, Pn(1.0,1)
 			),
 		// bass clarinet
 			~delays[2]+0.025,

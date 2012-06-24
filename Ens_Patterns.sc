@@ -1125,22 +1125,8 @@
 							Prand((1..4),inf),
 							Pseq([1,-1],inf),
 						0), 
-				\dur, Prand([Pn(1/16,128),Pn(1/8,64),Pn(1/4,32),Pn(1/2,16),Pn(1,8),Pn(2,4),8],inf),
+				\dur, Prand([Pn(1/16,128),Pn(1/8,64),Pn(1/4,32),Pn(1/2,16),Pn(1,8),Pn(2,4),8],inf).collect({|dur| ~vcdur=dur; dur}),
 				\amp, Pseg(Pseq([0.2,1,0.0],inf),Pseq(4!2,inf))
-			),
-		// violoncello -> convolve 
-			~delays[5]+0.05,
-			Pbind(
-				\instrument, \convolve,
-				\group, ~fx,
-				\in, ~master_dry_bus.subBus(10,1),
-				\convin, ~master_fx_bus.subBus(1,1), // pulse -> rlpf -> convolve
-				\out, 16,
-				\dur, ~durations[5],
-				\atk, ~durations[5] * 0.6,
-				\sus, ~durations[5] * 0.1,
-				\rel, ~durations[5] * 0.3, 
-				\amp, 0.4
 			),
 		// violoncello -> pitchshift 
 			~delays[5]+0.05,
@@ -1198,22 +1184,22 @@
 				\amp, Pseg(Pseq((1.0,0.99..0.01),inf),Pn(1/8,inf),\exp,1)
 			),
 		// pulse
-			~delays[5]+0.05,
+			~delays[5]+0.055,
 			Pbind(
 				\instrument, \pulse,
 				\group, ~input,
 				\out, ~master_dry_bus.subBus(14,1), // pulse -> rlpf 
-				\dur, Prand([1,2,4,8,16],inf),
-				\atk, Pkey(\dur) * 0.4,
-				\sus, Pkey(\dur) * 0.3,
-				\rel, Pkey(\dur), 
+				\dur, Pfunc({~vcdur}),
+				\atk, Pkey(\dur) * 0.01,
+				\sus, Pkey(\dur) * 0.01,
+				\rel, Pkey(\dur) * 1.01, 
 				\freq, Prand(
 						union(~hseries[0],~hseries[1]).select({|n,i| 
 							n>=40}).select({|n,i| n<=100}),inf).midicps.collect({|freq| 
 								~pulse_freq=freq; freq}),
 				\amp, 0.6
 			),
-		// rlpf
+		// pulse -> rlpf
 			~delays[5]+0.055,
 			Pbind(
 				\instrument, \rlpf,
@@ -1227,6 +1213,20 @@
 				\amp, 0.6,
 				\startfreq, Pfunc({~pulse_freq})*Prand((1.1..4.0),inf),
 				\endfreq, Pfunc({~pulse_freq})*Prand((1.5..4.0),inf)
+			),
+		// violoncello & pulse -> convolve 
+			~delays[5]+0.05,
+			Pbind(
+				\instrument, \convolve,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(10,1),
+				\convin, ~master_fx_bus.subBus(1,1), // pulse -> rlpf -> convolve
+				\out, 16,
+				\dur, ~durations[5],
+				\atk, ~durations[5] * 0.6,
+				\sus, ~durations[5] * 0.1,
+				\rel, ~durations[5] * 0.3, 
+				\amp, 0.4
 			)	
 		], 1)
 	);

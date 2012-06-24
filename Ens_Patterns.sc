@@ -320,7 +320,7 @@
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
 						n>=48}).select({|n,i| n<=84}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.7,1.0,inf)
+				\amp, Pexprand(0.2,1.0,inf)
 			),
 		// bass clarinet
 			~delays[2]+0.025,
@@ -343,7 +343,7 @@
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
 						n>=48}).select({|n,i| n<=76}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.7,1.0,inf)
+				\amp, Pexprand(0.2,1.0,inf)
 			),
 		// saxophone 1
 			~delays[2]+0.025,
@@ -392,7 +392,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\dur, 16,
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.2,1.0,inf)
 			),
 		// violin 2
 			~delays[2]+0.05,
@@ -405,7 +405,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\dur, 16,
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.2,1.0,inf)
 			),
 		// violin 3
 			~delays[2]+0.05,
@@ -418,7 +418,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=55}).select({|n,i| n<=104}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.2,1.0,inf)
 			),
 		// violin 4
 			~delays[2]+0.05,
@@ -431,7 +431,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=55}).select({|n,i| n<=104}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.2,1.0,inf)
 			),
 		// viola 1
 			~delays[2]+0.075,
@@ -444,7 +444,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=48}).select({|n,i| n<=94}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.2,1.0,inf)
 			),
 		// viola 2
 			~delays[2]+0.075,
@@ -457,7 +457,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=48}).select({|n,i| n<=94}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.2,1.0,inf)
 			),
 		// violoncello
 			~delays[2]+0.075,
@@ -469,7 +469,7 @@
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
 						n<=84}).select({|n,i| n>=36}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.2,1.0,inf)
 			),
 		// contrabass
 			~delays[2]+0.075,
@@ -480,7 +480,7 @@
 				\voicename, \cb,
 				\midinote, Pwrand([38,26],[0.7,0.3],inf), 
 				\dur, Pn(16,2),
-				\amp, Pexprand(0.85,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			)	
 		], 1),
 	0);

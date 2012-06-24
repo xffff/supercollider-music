@@ -25,7 +25,7 @@
 ~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 8;
 ~durations[4] = 64; ~delays[4] = 0;
-~durations[5] = 72; ~delays[5] = 0;
+~durations[5] = 72; ~delays[5] = 6;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -272,12 +272,12 @@
 					"bassoon.ordinario.Schwarz Heckel",
 					"alto saxophone.slap.percussive slap",
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
-					"violin.harmonic.artificial.fourth",
-					"violin.harmonic.artificial.fourth",
 					"violin.ordinario",
 					"violin.ordinario",
-					"viola.harmonic.artificial.fourth",
-					"viola.harmonic.artificial.fourth",
+					"violin.ordinario",
+					"violin.ordinario",
+					"viola.ordinario",
+					"viola.ordinario",
 					"violoncello.ordinario",
 					"double bass.pizzicato.bartok"],
 				\dur, Pn(0.01,1)
@@ -378,33 +378,34 @@
 				\sus, Pkey(\dur)*0.3,
 				\rel, Pkey(\dur)*0.3, 
 				\amp, Pseq([0,1.0],1),
-				\ratio, 48.midicps-81.midicps, // fatten it out
-				\timeDispersion, 0.0001.rand
+				\freq, 81.midicps*0.25.neg // fatten it out
 			),
-		// violin 1
-			~delays[2]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-				\voicename, \vi1,
-				\midinote, 
-					Prand(~hseries[0].select({|n,i| 
-						n>=81}).select({|n,i| n<=119}),inf), 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
-			),
-		// violin 2
-			~delays[2]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-				\voicename, \vi2,
-				\midinote, 											Prand(~hseries[0].select({|n,i| 
-						n>=81}).select({|n,i| n<=119}),inf), 
-				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
-			),
+//		// violin 1
+//			~delays[2]+0.05,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
+//				\voicename, \vi1,
+//				\midinote, 
+//					Prand(~hseries[0].select({|n,i| 
+//						n>=81}).select({|n,i| n<=119}),inf), 
+//				\dur, 16,
+//				\amp, Pexprand(0.9,1.0,inf)
+//			),
+//		// violin 2
+//			~delays[2]+0.05,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
+//				\voicename, \vi2,
+//				\midinote, 
+//					Prand(~hseries[0].select({|n,i| 
+//						n>=81}).select({|n,i| n<=119}),inf), 
+//				\dur, 16,
+//				\amp, Pexprand(0.9,1.0,inf)
+//			),
 		// violin 3
 			~delays[2]+0.05,
 			Pbind(
@@ -414,7 +415,8 @@
 				\voicename, \vi3,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
-						n>=81}).select({|n,i| n<=119}),inf), 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+						n>=55}).select({|n,i| n<=104}),inf), 
+				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// violin 4
@@ -424,8 +426,9 @@
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 				\voicename, \vi4,
-				\midinote, 											Prand(~hseries[0].select({|n,i| 
-						n>=81}).select({|n,i| n<=119}),inf), 
+				\midinote, 
+					Prand(~hseries[0].select({|n,i| 
+						n>=55}).select({|n,i| n<=104}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
@@ -438,7 +441,8 @@
 				\voicename, \va1,
 				\midinote, 
 					Prand(~hseries[0].select({|n,i| 
-						n>=73}).select({|n,i| n<=96}),inf), 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+						n>=48}).select({|n,i| n<=94}),inf), 
+				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// viola 2
@@ -448,8 +452,9 @@
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 				\voicename, \va2,
-				\midinote, 											Prand(~hseries[0].select({|n,i| 
-						n>=73}).select({|n,i| n<=96}),inf), 
+				\midinote, 	
+					Prand(~hseries[0].select({|n,i| 
+						n>=48}).select({|n,i| n<=94}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),

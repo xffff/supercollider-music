@@ -1148,7 +1148,7 @@
 				\pitchshift,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(10,1),
-				\out, ~master_fx_bus(3,1), // pitchshift -> hala
+				\out, ~master_fx_bus.subBus(3,1), // pitchshift -> hala
 				\dur, ~durations[5]/381,
 				\atk, ~durations[5] * 0.4,
 				\sus, ~durations[5] * 0.3,

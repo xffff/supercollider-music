@@ -691,11 +691,13 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\tr1,\sx1,\sx2,\vi1,\vi2,\vc],
+				\voicename, [\tr1,\sx1,\sx2,\vi1,\vi2,\vi3,\vi4,\vc],
 				\programname, 
 					#["trumpet in c.ordinario",
 					"alto saxophone.ordinario",
 					"alto saxophone.ordinario",
+					"violin.ordinario",
+					"violin.ordinario",
 					"violin.ordinario",
 					"violin.ordinario",			
 					"violoncello.col legno battuto.ordinario"],
@@ -816,7 +818,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([Pn(16,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// violin 2
@@ -841,7 +843,57 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([Pn(16,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\amp, Pexprand(0.9,1.0,inf)
+			),
+		// violin 3
+			~delays[4]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+				\voicename, \vi3,
+				\midinote, 
+					Pseg(
+						Pseq([
+							Prand(~hseries[0].select({|n,i| n>=55}).select({|n,i| n<=104}),1),
+							Prand(
+								symmetricDifference(
+									~hseries[0],
+									~hseries[1]
+								).select({|n,i| n>=55}).select({|n,i| n<=104}),
+							1)
+						], inf),
+						Pseq((~durations[4]/2)!2,inf),
+						\lin,
+						inf
+					),
+				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\amp, Pexprand(0.9,1.0,inf)
+			),
+		// violin 4
+			~delays[4]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+				\voicename, \vi4,
+				\midinote, 
+					Pseg(
+						Pseq([
+							Prand(~hseries[0].select({|n,i| n>=55}).select({|n,i| n<=104}),1),
+							Prand(
+								symmetricDifference(
+									~hseries[0],
+									~hseries[1]
+								).select({|n,i| n>=55}).select({|n,i| n<=104}),
+							1)
+						], inf),
+						Pseq((~durations[4]/2)!2,inf),
+						\lin,
+						inf
+					),
+				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// violoncello

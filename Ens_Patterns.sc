@@ -392,7 +392,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\dur, 16,
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 2
 			~delays[2]+0.05,
@@ -405,7 +405,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\dur, 16,
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 3
 			~delays[2]+0.05,
@@ -418,7 +418,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=55}).select({|n,i| n<=104}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 4
 			~delays[2]+0.05,
@@ -431,7 +431,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=55}).select({|n,i| n<=104}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// viola 1
 			~delays[2]+0.075,
@@ -444,7 +444,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=48}).select({|n,i| n<=94}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// viola 2
 			~delays[2]+0.075,
@@ -457,7 +457,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=48}).select({|n,i| n<=94}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violoncello
 			~delays[2]+0.075,
@@ -469,7 +469,7 @@
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
 						n<=84}).select({|n,i| n>=36}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// contrabass
 			~delays[2]+0.075,
@@ -1092,7 +1092,7 @@
 				\voicename, \tb2,
 				\midinote, Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
 							n>=36}).select({|n,i| n<=80}),inf),
-				\legato, 0.01,
+				\legato, 0.2,
 				\dur, Pseq([Pn(8,6),Pn(1/4,inf)],1),
 				\amp, Pexprand(0.3,0.75,inf)
 			),
@@ -1155,13 +1155,13 @@
 				\hala,
 				\group, ~output,
 				\in, ~master_fx_bus.subBus(3,1),
-				\out, 28, 
+				\out, 27, 
 				\dur, ~durations[5]/381,
 				\atk, ~durations[5] * 0.01,
 				\sus, ~durations[5] * 0.99,
 				\rel, ~durations[5] * 0.01, 
-				\amp, 0.75,
-				\pan, Pbrown(0.0,1.0,0.01,inf),
+				\amp, 1.0,
+				\pan, Pbrown(0.0,1.0,0.05,inf),
 				\legato, 1.1
 			),
 		// crotales
@@ -1280,7 +1280,7 @@
 				\group, ~fx,
 				\out, 21,
 				\bufnum, ~ctl_buf,
-				\amp, Pseq([0,Pn(0.6,inf)],1),
+				\amp, Pseq([0,Pn(0.15,inf)],1),
 				\dur, Pseq([32,36],1),		
 				\atk, Pkey(\dur)*0.0001,
 				\sus, Pkey(\dur)*0.9,

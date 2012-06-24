@@ -22,7 +22,7 @@
 
 ~durations[0] = 60; ~delays[0] = 0;
 ~durations[1] = 60; ~delays[1] = 1;
-~durations[2] = 32; ~delays[2] = 8;
+~durations[2] = 32; ~delays[2] = 12;
 ~durations[3] = 60; ~delays[3] = 8;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
@@ -825,7 +825,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([Pn(32,1),8,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 2
@@ -850,7 +850,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([Pn(32,1),8,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 3
@@ -875,7 +875,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([Pn(32,1),8,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 4
@@ -900,7 +900,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([Pn(32,1),8,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// viola 1
@@ -925,7 +925,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([Pn(32,1),12,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// viola 2
@@ -950,7 +950,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([Pn(32,1),12,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violoncello

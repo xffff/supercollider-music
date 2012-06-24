@@ -378,7 +378,7 @@
 				\sus, Pkey(\dur)*0.3,
 				\rel, Pkey(\dur)*0.3, 
 				\amp, Pseq([0,1.0],1),
-				\ratio, 36.midicps-81.midicps, // fatten it out
+				\ratio, 48.midicps-81.midicps, // fatten it out
 				\timeDispersion, 0.0001.rand
 			),
 		// violin 1
@@ -802,19 +802,20 @@
 				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \vi1,
 				\midinote, 
-					Pseq([55,
-						Pseg(
-							Pseq([
-								Prand(
-									~hseries[0].select({|n,i| n>=55}).select({|n,i| n<=104})),
-									symmetricDifference(
-										~hseries[0],~hseries[1]
-									).select({|n,i| n>=55}).select({|n,i| n<=104})
-							], inf),
-							~durations[4]/2,
-							inf
-						)
-					],1),
+					Pseg(
+						Pseq([
+							Prand(~hseries[0].select({|n,i| n>=55}).select({|n,i| n<=104}),1),
+							Prand(
+								symmetricDifference(
+									~hseries[0],
+									~hseries[1]
+								).select({|n,i| n>=55}).select({|n,i| n<=104}),
+							1)
+						], inf),
+						Pseq((~durations[4]/2)!2,inf),
+						\lin,
+						inf
+					),
 				\dur, Pseq([Pn(16,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),
@@ -826,19 +827,20 @@
 				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \vi2,
 				\midinote, 
-					Pseq([55,
-						Pseg(
-							Pseq([
-								Prand(
-									~hseries[0].select({|n,i| n>=55}).select({|n,i| n<=104})),
-									symmetricDifference(
-										~hseries[0],~hseries[1]
-									).select({|n,i| n>=55}).select({|n,i| n<=104})
-							], inf),
-							~durations[4]/2,
-							inf
-						)
-					],1),
+					Pseg(
+						Pseq([
+							Prand(~hseries[0].select({|n,i| n>=55}).select({|n,i| n<=104}),1),
+							Prand(
+								symmetricDifference(
+									~hseries[0],
+									~hseries[1]
+								).select({|n,i| n>=55}).select({|n,i| n<=104}),
+							1)
+						], inf),
+						Pseq((~durations[4]/2)!2,inf),
+						\lin,
+						inf
+					),
 				\dur, Pseq([Pn(16,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.9,1.0,inf)
 			),

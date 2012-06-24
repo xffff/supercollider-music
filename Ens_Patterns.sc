@@ -272,13 +272,13 @@
 					"bassoon.ordinario.Schwarz Heckel",
 					"alto saxophone.slap.percussive slap",
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
-//					"violin.harmonic.artificial.fourth",
-//					"violin.harmonic.artificial.fourth",
-//					"violin.ordinario",
-//					"violin.ordinario",
-//					"viola.harmonic.artificial.fourth",
-//					"viola.harmonic.artificial.fourth",
-//					"violoncello.ordinario",
+					"violin.harmonic.artificial.fourth",
+					"violin.harmonic.artificial.fourth",
+					"violin.ordinario",
+					"violin.ordinario",
+					"viola.harmonic.artificial.fourth",
+					"viola.harmonic.artificial.fourth",
+					"violoncello.ordinario",
 					"double bass.pizzicato.bartok"],
 				\dur, Pn(0.01,1)
 			),
@@ -322,7 +322,7 @@
 				\amp, Pexprand(0.7,1.0,inf)
 			),
 		// bass clarinet
-			~delays[2]+0.05,
+			~delays[2]+0.025,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -333,7 +333,7 @@
 				\amp, Pexprand(0.1,0.5,inf)
 			),
 		// bassoon 1
-			~delays[2]+0.05,
+			~delays[2]+0.025,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -345,7 +345,7 @@
 				\amp, Pexprand(0.7,1.0,inf)
 			),
 		// saxophone 1
-			~delays[2]+0.05,
+			~delays[2]+0.025,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -356,7 +356,7 @@
 				\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(2!2,1))],1)
 			),
 		// saxophone 2
-			~delays[2]+0.05,
+			~delays[2]+0.025,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -367,7 +367,7 @@
 				\amp, Pseq([0,1],1)
 			),
 		// saxophone -> frequency shift
-			~delays[2]+0.05,
+			~delays[2]+0.025,
 			Pbind(
 				\instrument, \freqshift, 
 				\group, ~fx,
@@ -430,7 +430,7 @@
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// viola 1
-			~delays[2]+0.05,
+			~delays[2]+0.075,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -442,7 +442,7 @@
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// viola 2
-			~delays[2]+0.05,
+			~delays[2]+0.075,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -454,7 +454,7 @@
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// violoncello
-			~delays[2]+0.05,
+			~delays[2]+0.075,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -466,7 +466,7 @@
 				\amp, Pexprand(0.9,1.0,inf)
 			),
 		// contrabass
-			~delays[2]+0.05,
+			~delays[2]+0.075,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -821,7 +821,7 @@
 						inf
 					),
 				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 2
 			~delays[4]+0.05,
@@ -846,7 +846,7 @@
 						inf
 					),
 				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 3
 			~delays[4]+0.05,
@@ -871,7 +871,7 @@
 						inf
 					),
 				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 4
 			~delays[4]+0.05,
@@ -896,7 +896,7 @@
 						inf
 					),
 				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// viola 1
 			~delays[4]+0.05,
@@ -921,7 +921,7 @@
 						inf
 					),
 				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// viola 2
 			~delays[4]+0.05,
@@ -946,7 +946,7 @@
 						inf
 					),
 				\dur, Pseq([Pn(32,1),Prand([Pn(2,2),Pn(3,3),4],inf)],1),
-				\amp, Pexprand(0.9,1.0,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violoncello
 			~delays[4]+0.05,

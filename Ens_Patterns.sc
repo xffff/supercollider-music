@@ -27,7 +27,8 @@
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
 ~durations[6] = 60; ~delays[6] = 0;
-~durations[7] = 60; ~delays[6] = 0;
+~durations[7] = 60; ~delays[7] = 0;
+~durations[8] = 60; ~delays[8] = 0;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////

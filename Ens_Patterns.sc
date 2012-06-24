@@ -711,7 +711,7 @@
 					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
 			),	
-		// granular synthesis	
+		// grain	
 			~delays[4]+0.075,
 			Pbind(
 				\instrument, \grain,
@@ -1273,12 +1273,30 @@
 				\rel, Pkey(\dur)*0.6, 
 				\amp, Pn(1,1)
 			),
+		// grain	
+			~delays[6]+0.075,
+			Pbind(
+				\instrument, \grain,
+				\group, ~fx,
+				\out, 21,
+				\bufnum, ~ctl_buf,
+				\amp, Pseq([0,Pn(0.6,inf)],1),
+				\dur, Pseq([32,36],1),		
+				\atk, Pkey(\dur)*0.0001,
+				\sus, Pkey(\dur)*0.9,
+				\rel, Pkey(\dur)*0.5,
+				\grainfreq, 4,
+				\ratehigh, 1.5,
+				\ratelow, 0.025,
+				\graindur, 16,
+				\center, 0
+			),
 		// flute
 			~delays[6]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+				\osccmd, Pseq([\rest,\noteon,Prand([\rest,\noteon],inf)],1),
 				\voicename, \fl,
 				\midinote, 
 					Prand((~hseries[1]-48).select({|n,i| 
@@ -1290,7 +1308,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+				\osccmd, Pseq([\rest,\noteon,Prand([\rest,\noteon],inf)],1),
 				\voicename, \bfl,
 				\midinote, 
 					Prand((~hseries[1]-48).select({|n,i| 
@@ -1322,7 +1340,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+				\osccmd, Pseq([\rest,\noteon,Prand([\rest,\noteon],inf)],1),
 				\voicename, \bsn1,
 				\midinote, 
 					Prand((~hseries[1]-48).select({|n,i| 

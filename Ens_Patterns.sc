@@ -1093,7 +1093,7 @@
 							n>=36}).select({|n,i| n<=60}),inf),
 				\legato, 0.1,
 				\dur, Pseq([Pn(8,6),Pn(1/4,inf)],1),
-				\amp, Pexprand(0.01,0.3,inf)
+				\amp, Pexprand(0.3,0.6,inf)
 			),
 		// trombone -> warp
 			~delays[5]+0.05,
@@ -1132,14 +1132,32 @@
 			Pbind(
 				\instrument, \convolve,
 				\group, ~fx,
-				\in, ~master_dry_bus.subBus(5,1),
+				\in, ~master_dry_bus.subBus(10,1),
 				\convin, ~master_fx_bus.subBus(1,1), // pulse -> rlpf -> convolve
 				\out, 16,
 				\dur, ~durations[5],
 				\atk, ~durations[5] * 0.4,
 				\sus, ~durations[5] * 0.3,
 				\rel, ~durations[5] * 0.3, 
-				\amp, 0.45
+				\amp, 0.2
+			),
+		// violoncello -> pitchshift 
+			~delays[5]+0.05,
+			PmonoArtic(
+				\pitchshift,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(10,1),
+				\out, 20,
+				\dur, ~durations[5]/381,
+				\atk, ~durations[5] * 0.7,
+				\sus, ~durations[5] * 0.3,
+				\rel, ~durations[5] * 0.3, 
+				\amp, 0.5,
+				\ratio, 2.0,
+				\windowSize, 2.0,
+				\timeDispersion, Pseq((0.00001,0.005..1.9),1),
+				\pitchDispersion, Pseq((0.00001,0.005..1.9),1),
+				\legato, 1.1
 			),
 		// crotales
 			~delays[5]+0.05,
@@ -1167,27 +1185,28 @@
 			Pbind(
 				\instrument, \pulse,
 				\group, ~input,
-				\out, ~master_dry_bus.subBus(9,1), // pulse -> rlpf 
-				\dur, ~durations[5],
-				\atk, ~durations[5] * 0.4,
-				\sus, ~durations[5] * 0.3,
-				\rel, ~durations[5] * 0.3, 
-				\freq, Prand(~hseries[1].select({|n,i| 
-							n>=72}).select({|n,i| n<=96}),inf).collect({ | frequency | 
-								~pulse_freq=frequency; frequency}),
-				\amp, 0.45
+				\out, ~master_dry_bus.subBus(14,1), // pulse -> rlpf 
+				\dur, Prand([1,2,4,8,16],inf),
+				\atk, Pkey(\dur) * 0.4,
+				\sus, Pkey(\dur) * 0.3,
+				\rel, Pkey(\dur), 
+				\freq, Prand(
+						union(~hseries[0],~hseries[1]).select({|n,i| 
+							n>=20}).select({|n,i| n<=60}),inf).midicps.collect({|freq| 
+								~pulse_freq=freq; freq}),
+				\amp, 0.6
 			),
 			~delays[5]+0.055,
 			Pbind(
 				\instrument, \rlpf,
 				\group, ~fx,
-				\in, ~master_dry_bus.subBus(9,1), // pulse -> rlpf
+				\in, ~master_dry_bus.subBus(14,1), // pulse -> rlpf
 				\out, ~master_fx_bus.subBus(1,1), // rlpf -> conv
 				\dur, 16,
 				\atk, Pkey(\dur) * 0.4,
 				\sus, Pkey(\dur) * 0.3,
 				\rel, Pkey(\dur) * 0.3, 
-				\amp, 0.45,
+				\amp, 0.6,
 				\startfreq, Pfunc({~pulse_freq})*Prand((1.1..4.0),inf),
 				\endfreq, Pfunc({~pulse_freq})*Prand((1.1..4.0),inf)
 			)	

@@ -46,7 +46,7 @@ SynthDef(\bpf, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 10, rel = 0.1,
 	sound = In.ar(in,1);
 	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
 	sound = BPF.ar(sound,freq,res) * env;
-	Out.ar(out,sound);
+	ReplaceOut.ar(out,sound);
 }).add;
 
 SynthDef(\rlpf, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 10, rel = 0.1, 
@@ -55,7 +55,7 @@ SynthDef(\rlpf, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 10, rel = 0.1,
 	sound = In.ar(in,1);
 	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
 	sound = RLPF.ar(sound,Line.kr(startfreq,endfreq,time),res) * env;
-	Out.ar(out,sound);
+	ReplaceOut.ar(out,sound);
 }).add;
 
 ////////// fx /////////

@@ -801,7 +801,7 @@
 				\rel, ~durations[4]*0.2, 
 				\amp, 1.0,
 				\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
-					Pseq(~durations[4]/(80.midicps..98.midicps).size!(80.midicps..98.midicps).size,inf),
+					Pseq(~durations[4]/1519!1519,inf), // (80,98).size
 					1)-81.midicps
 			),
 		// violin 1
@@ -1125,7 +1125,10 @@
 							Prand((1..4),inf),
 							Pseq([1,-1],inf),
 						0), 
-				\dur, Prand([Pn(1/16,128),Pn(1/8,64),Pn(1/4,32),Pn(1/2,16),Pn(1,8),Pn(2,4),8],inf).collect({|dur| ~vcdur=dur; dur}),
+				\dur, 
+					Prand([Pn(1/16,128),Pn(1/8,64),
+						Pn(1/4,32),Pn(1/2,16),
+						Pn(1,8),Pn(2,4),8],inf).collect({|dur| ~vcdur=dur; dur}),
 				\amp, Pseg(Pseq([0.2,1,0.0],inf),Pseq(4!2,inf))
 			),
 		// violoncello -> pitchshift 
@@ -1226,7 +1229,7 @@
 				\atk, ~durations[5] * 0.6,
 				\sus, ~durations[5] * 0.1,
 				\rel, ~durations[5] * 0.3, 
-				\amp, 0.4
+				\amp, 0.5
 			)	
 		], 1)
 	);
@@ -1278,7 +1281,7 @@
 				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 				\voicename, \fl,
 				\midinote, 
-					Prand(~hseries[1].select({|n,i| 
+					Prand((~hseries[1]-48).select({|n,i| 
 						n>=59}).select({|n,i| n<=96}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.4,1.0,inf)
 			),
@@ -1290,7 +1293,7 @@
 				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 				\voicename, \bfl,
 				\midinote, 
-					Prand(~hseries[1].select({|n,i| 
+					Prand((~hseries[1]-48).select({|n,i| 
 						n>=48}).select({|n,i| n<=84}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.7,1.0,inf)
 			),
@@ -1322,7 +1325,7 @@
 				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
 				\voicename, \bsn1,
 				\midinote, 
-					Prand(~hseries[1].select({|n,i| 
+					Prand((~hseries[1]-48).select({|n,i| 
 						n>=48}).select({|n,i| n<=76}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
 				\amp, Pexprand(0.7,1.0,inf)
 			),

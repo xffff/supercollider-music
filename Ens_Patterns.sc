@@ -26,9 +26,9 @@
 ~durations[3] = 60; ~delays[3] = 12;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
-~durations[6] = 60; ~delays[6] = 2;
+~durations[6] = 60; ~delays[6] = 4;
 ~durations[7] = 40; ~delays[7] = 0;
-~durations[8] = 60; ~delays[8] = 0;
+~durations[8] = 60; ~delays[8] = 8;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -610,7 +610,6 @@
 				\voicename, \cb,
 				\midinote, 38, 
 				\dur, Prand([16,8],inf),
-				\legato, 0.1,
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// crotales			
@@ -1265,29 +1264,29 @@
 				\amp, Pexprand(0.35,0.8,inf)
 			),
 		// trombone 1
-			~delays[8]+0.05,
+			~delays[6]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, Pwrand([\noteon,\rest],[0.6,0.4],inf),
 				\voicename, \tb1,
-				\midinote, Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
+				\midinote, Prand(union(~hseries[0]-48,~hseries[1]-48).select({|n,i| 
 							n>=36}).select({|n,i| n<=80}),inf),
 				\legato, 0.2,
 				\dur, 1/4,
 				\amp, Pexprand(0.3,0.75,inf)
 			),
 		// trombone -> warp
-			~delays[8]+0.05,
+			~delays[6]+0.05,
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(5,1),
 				\out, 17,
-				\dur, ~durations[8],
-				\atk, ~durations[8] * 0.01,
-				\sus, ~durations[8] * 0.9,
-				\rel, ~durations[8] * 0.5, 
+				\dur, ~durations[6],
+				\atk, ~durations[6],
+				\sus, ~durations[6] * 0.1,
+				\rel, ~durations[6] * 0.5, 
 				\amp, 0.6,
 				\warpfactor, (-7,-5..7).midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -1302,6 +1301,21 @@
 				\midinote, Pfunc({~bcl_note}),
 				\dur, Pfunc({~bcl_dur}),
 				\amp, Pexprand(0.85,1.0,inf)
+			),
+		// double bass -> warp
+			~delays[6]+0.05,
+			Pbind(
+				\instrument, \warp,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(11,1),
+				\out, 17,
+				\dur, ~durations[6],
+				\atk, ~durations[6],
+				\sus, ~durations[6] * 0.1,
+				\rel, ~durations[6] * 0.5, 
+				\amp, 0.6,
+				\warpfactor, (-7,-5..7).midiratio,
+				\freqscale, Pkey(\warpfactor)
 			)
 		], 1)
 	);
@@ -1500,71 +1514,71 @@
 					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
 			),
-		// violin 1
-			~delays[8]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pwrand([\noteon,\rest],[0.9,0.1],inf),
-				\voicename, \vi1,
-				\midinote, 
-					Prand([
-						Pwalk(
-							~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=94}),
-							Prand([1,2,3],(16,24..128).choose),
-							Pseq([1,-1],inf),
-							~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=94}).size.rand
-						),
-						Pwalk(
-							~hseries[1].select({|n,i| n>=48}).select({|n,i| n<=94}),
-							Prand([1,2,3],(16,24..128).choose),
-							Pseq([1,-1],inf),
-							~hseries[1].select({|n,i| n>=48}).select({|n,i| n<=94}).size.rand
-						)
-					],inf),						
-				\dur, Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf),
-				\amp, Pexprand(0.25,0.75,inf)
-			),
-		// violin -> warp
-			~delays[8]+0.05,
-			Pbind(
-				\instrument, \warp,
-				\group, ~fx,
-				\in, ~master_dry_bus.subBus(7,1),
-				\out, 
-					[~master_fx_bus.subBus(1,1),
-					~master_fx_bus.subBus(1,2),
-					~master_fx_bus.subBus(1,3),
-					~master_fx_bus.subBus(1,4),
-					~master_fx_bus.subBus(1,5)],
-				\dur, ~durations[8],
-				\atk, ~durations[8] * 0.5,
-				\sus, ~durations[8] * 0.01,
-				\rel, ~durations[8] * 1.0, 
-				\amp, 0.4,
-				\warpfactor, (-36,-24..-12).midiratio,
-				\freqscale, Pkey(\warpfactor)
-			),
-		// warp -> hala
-			~delays[8]+0.05,
-			PmonoArtic(
-				\hala,
-				\group, ~output,
-				\in, 
-					[~master_fx_bus.subBus(1,1),
-					~master_fx_bus.subBus(1,2),
-					~master_fx_bus.subBus(1,3),
-					~master_fx_bus.subBus(1,4),
-					~master_fx_bus.subBus(1,5)],	
-				\out, 26, 
-				\dur, ~durations[8] / 381,
-				\atk, ~durations[8] * 0.01,
-				\sus, ~durations[8] * 0.99,
-				\rel, ~durations[8] * 0.01, 
-				\amp, 1.0,
-				\pan, Pbrown(0.0,1.0,0.05,inf),
-				\legato, 1.1
-			),	
+//		// violin 1
+//			~delays[8]+0.05,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, Pwrand([\noteon,\rest],[0.9,0.1],inf),
+//				\voicename, \vi1,
+//				\midinote, 
+//					Prand([
+//						Pwalk(
+//							~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=94}),
+//							Prand([1,2,3],(16,24..128).choose),
+//							Pseq([1,-1],inf),
+//							~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=94}).size.rand
+//						),
+//						Pwalk(
+//							~hseries[1].select({|n,i| n>=48}).select({|n,i| n<=94}),
+//							Prand([1,2,3],(16,24..128).choose),
+//							Pseq([1,-1],inf),
+//							~hseries[1].select({|n,i| n>=48}).select({|n,i| n<=94}).size.rand
+//						)
+//					],inf),						
+//				\dur, Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf),
+//				\amp, Pexprand(0.5,0.75,inf)
+//			),
+//		// violin -> warp
+//			~delays[8]+0.05,
+//			Pbind(
+//				\instrument, \warp,
+//				\group, ~fx,
+//				\in, ~master_dry_bus.subBus(7,1),
+//				\out, 
+//					[~master_fx_bus.subBus(1,1),
+//					~master_fx_bus.subBus(1,2),
+//					~master_fx_bus.subBus(1,3),
+//					~master_fx_bus.subBus(1,4),
+//					~master_fx_bus.subBus(1,5)],
+//				\dur, ~durations[8],
+//				\atk, ~durations[8] * 0.5,
+//				\sus, ~durations[8] * 0.01,
+//				\rel, ~durations[8] * 1.0, 
+//				\amp, 0.4,
+//				\warpfactor, (-36,-24..-12).midiratio,
+//				\freqscale, Pkey(\warpfactor)
+//			),
+//		// warp -> hala
+//			~delays[8]+0.05,
+//			PmonoArtic(
+//				\hala,
+//				\group, ~output,
+//				\in, 
+//					[~master_fx_bus.subBus(1,1),
+//					~master_fx_bus.subBus(1,2),
+//					~master_fx_bus.subBus(1,3),
+//					~master_fx_bus.subBus(1,4),
+//					~master_fx_bus.subBus(1,5)],	
+//				\out, 26, 
+//				\dur, ~durations[8] / 381,
+//				\atk, ~durations[8] * 0.01,
+//				\sus, ~durations[8] * 0.99,
+//				\rel, ~durations[8] * 0.01, 
+//				\amp, 1.0,
+//				\pan, Pbrown(0.0,1.0,0.05,inf),
+//				\legato, 1.1
+//			),	
 		// viola 1
 			~delays[8]+0.05,
 			Pbind(
@@ -1587,7 +1601,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([32,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([16,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),
 		// viola 2
@@ -1600,19 +1614,19 @@
 				\midinote, 
 					Pseg(
 						Pseq([
-							Prand((~hseries[3]-48).select({|n,i| n>=48}).select({|n,i| n<=60}),1),
+							Prand((~hseries[3]-48).select({|n,i| n>=48}).select({|n,i| n<=70}),1),
 							Prand(
 								union(
 									~hseries[0],
-									~hseries[2]-24
-								).select({|n,i| n>=48}).select({|n,i| n<=60}),
+									~hseries[2]-48
+								).select({|n,i| n>=48}).select({|n,i| n<=70}),
 							inf)
 						], inf),
 						Pseq((~durations[8]/4)!2,inf),
 						\lin,
 						inf
 					),
-				\dur, Pseq([32,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
+				\dur, Pseq([16,Prand([1,Pn(2,2),Pn(3,3),4],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),								
 		// violoncello

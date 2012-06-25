@@ -9,7 +9,7 @@
 ~load_patterns = nil;
 
 ~hseries = 
-	Array.fill(8, { |i| if(i>0,{i=i*4.rand.max(1)});
+	Array.fill(8, { |i| if(i>0,{i=i*2.rand.max(1)});
 		Array.fill(64,{|j| j=j+1; 
 			j * Array.fill(100,{|n| n=n+1; n*26.midicps})[i+(j-1)];
 		}).cpsmidi;
@@ -29,7 +29,7 @@
 ~durations[6] = 60; ~delays[6] = 8;
 ~durations[7] = 40; ~delays[7] = 0;
 ~durations[8] = 60; ~delays[8] = 6;
-~durations[9] = 60; ~delays[9] = 6;
+~durations[9] = 60; ~delays[9] = 0;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -1253,8 +1253,8 @@
 				\programname, 
 					#["bass clarinet boehm system.ordinario",
 					"tenor trombone.ordinario",
-					"violoncello.ordinario",
-					"double bass.pizzicato"],
+					"violoncello.pizzicato",
+					"double bass.ordinario"],
 				\dur, Pn(0.01,1)
 			),
 		// playbuf
@@ -1287,7 +1287,7 @@
 						inf)
 					],1).collect({|note| ~bcl_note=note; note}),
 				\dur, 8,
-				\amp, Pexprand(0.35,0.95,1)
+				\amp, Pexprand(0.35,0.6,1)
 			),
 		// trombone 1
 			~delays[6]+0.05,
@@ -1297,9 +1297,11 @@
 				\osccmd, Pwrand([\noteon,\rest],[0.6,0.4],inf),
 				\voicename, \tb1,
 				\midinote, Prand(union(~hseries[0]-48,~hseries[1]-48).select({|n,i| 
-							n>=36}).select({|n,i| n<=80}),inf),
+							n>=36}).select({|n,i| n<=80}),inf).collect({|note| 
+								~tb_note=note; note}),
 				\legato, 0.2,
-				\dur, Pwrand([1/4,1/2],[0.75,0.25],inf),
+				\dur, Pwrand([1/4,1/2],[0.75,0.25],inf).collect({|dur| 
+						~tb_dur=dur; dur}),
 				\amp, Pexprand(0.3,0.75,inf)
 			),
 		// trombone -> warp
@@ -1324,9 +1326,24 @@
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\noteon,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
 				\voicename, \vc,
-				\midinote, Pfunc({~bcl_note}),
-				\dur, 8,
-				\amp, Pexprand(0.3,0.5,1)
+				\midinote, Pfunc({~tb_note}),
+				\dur, Pseq([8,Pn(Pfunc({~tb_dur}),inf)],1),
+				\amp, Pexprand(0.4,0.6,inf)
+			),
+		// violoncello -> warp
+			~delays[6]+0.05,
+			Pbind(
+				\instrument, \warp,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(10,1),
+				\out, 17,
+				\dur, ~durations[6],
+				\atk, ~durations[6],
+				\sus, ~durations[6] * 0.1,
+				\rel, ~durations[6] * 0.5, 
+				\amp, 0.75,
+				\warpfactor, (1,3..11).midiratio,
+				\freqscale, Pkey(\warpfactor)
 			),
 		// double bass
 			~delays[6]+0.055,
@@ -1337,22 +1354,7 @@
 				\voicename, \cb,
 				\midinote, Pfunc({~bcl_note}),
 				\dur, 8,
-				\amp, Pexprand(0.85,1.0,1)
-			),
-		// double bass -> warp
-			~delays[6]+0.05,
-			Pbind(
-				\instrument, \warp,
-				\group, ~fx,
-				\in, ~master_dry_bus.subBus(11,1),
-				\out, 17,
-				\dur, ~durations[6],
-				\atk, ~durations[6],
-				\sus, ~durations[6] * 0.1,
-				\rel, ~durations[6] * 0.5, 
-				\amp, 0.75,
-				\warpfactor, (1,3..11).midiratio,
-				\freqscale, Pkey(\warpfactor)
+				\amp, Pexprand(0.4,0.5,1)
 			)
 		], 1)
 	); 
@@ -1780,7 +1782,7 @@
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
-				\in, ~master_dry_bus.subBus(9,1),
+				\in, ~master_dry_bus.subBus(4,1),
 				\out, 17,
 				\dur, ~durations[9],
 				\atk, ~durations[9] * 0.25,

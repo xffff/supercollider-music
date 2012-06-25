@@ -28,7 +28,7 @@
 ~durations[5] = 72; ~delays[5] = 4;
 ~durations[6] = 60; ~delays[6] = 4;
 ~durations[7] = 40; ~delays[7] = 0;
-~durations[8] = 60; ~delays[8] = 8;
+~durations[8] = 60; ~delays[8] = 6;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -378,7 +378,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\dur, 16,
-				\amp, Pexprand(0.2,0.7,inf)
+				\amp, Pexprand(0.4,0.7,inf)
 			),
 		// violin 2
 			~delays[2]+0.05,
@@ -391,7 +391,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\dur, 16,
-				\amp, Pexprand(0.2,0.7,inf)
+				\amp, Pexprand(0.4,0.7,inf)
 			),
 		// viola 1
 			~delays[2]+0.075,
@@ -404,7 +404,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=48}).select({|n,i| n<=94}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.2,0.7,inf)
+				\amp, Pexprand(0.4,0.7,inf)
 			),
 		// viola 2
 			~delays[2]+0.075,
@@ -417,7 +417,7 @@
 					Prand(~hseries[0].select({|n,i| 
 						n>=48}).select({|n,i| n<=94}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.2,0.7,inf)
+				\amp, Pexprand(0.4,0.7,inf)
 			),
 		// violoncello
 			~delays[2]+0.075,
@@ -429,7 +429,7 @@
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
 						n<=84}).select({|n,i| n>=36}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-				\amp, Pexprand(0.2,0.7,inf)
+				\amp, Pexprand(0.4,0.7,inf)
 			),
 		// contrabass
 			~delays[2]+0.075,
@@ -440,7 +440,7 @@
 				\voicename, \cb,
 				\midinote, Pwrand([38,26],[0.7,0.3],inf), 
 				\dur, Pn(16,2),
-				\amp, Pexprand(0.1,0.4,inf)
+				\amp, Pexprand(0.1,0.3,inf)
 			)	
 		], 1),
 	0);
@@ -1255,7 +1255,7 @@
 							).select({|n,i| n>=34}).select({|n,i| n<=60}),
 						inf)
 					],1).collect({|note| ~bcl_note=note; note}),
-				\legato, Pseq([0.8,Pexprand(0.2,0.7,inf)],1), 
+				\legato, Pseq([0.8,Pexprand(0.4,1.0,inf)],1), 
 				\dur, 
 					Pseq([8,
 						Pwrand([1/4,1/2,1,2],[0.2,0.8,0.05,0.01].normalizeSum,inf)
@@ -1282,15 +1282,30 @@
 				\instrument, \warp,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(5,1),
-				\out, 17,
+				\out, ~master_fx_bus.subBus(5,1),
 				\dur, ~durations[6],
 				\atk, ~durations[6],
 				\sus, ~durations[6] * 0.1,
 				\rel, ~durations[6] * 0.5, 
-				\amp, 0.6,
+				\amp, 0.5,
 				\warpfactor, (-7,-5..7).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
+		// warp -> hala
+			~delays[6]+0.05,
+			PmonoArtic(
+				\hala,
+				\group, ~output,
+				\in, ~master_fx_bus.subBus(5,1),
+				\out, 26, 
+				\dur, ~durations[6] / 381,
+				\atk, ~durations[6] * 0.01,
+				\sus, ~durations[6] * 0.99,
+				\rel, ~durations[6] * 0.5, 
+				\amp, 1.0,
+				\pan, Pbrown(0.0,1.0,0.05,inf),
+				\legato, 1.1
+			),									
 		// double bass
 			~delays[6]+0.055,
 			Pbind(
@@ -1308,15 +1323,30 @@
 				\instrument, \warp,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(11,1),
-				\out, 17,
+				\out, ~master_fx_bus.subBus(11,1),
 				\dur, ~durations[6],
 				\atk, ~durations[6],
 				\sus, ~durations[6] * 0.1,
 				\rel, ~durations[6] * 0.5, 
-				\amp, 0.6,
-				\warpfactor, (-7,-5..7).midiratio,
+				\amp, 0.75,
+				\warpfactor, (1,3..11).midiratio,
 				\freqscale, Pkey(\warpfactor)
-			)
+			),
+		// warp -> hala
+			~delays[6]+0.05,
+			PmonoArtic(
+				\hala,
+				\group, ~output,
+				\in, ~master_fx_bus.subBus(11,1),
+				\out, 26, 
+				\dur, ~durations[6] / 381,
+				\atk, ~durations[6] * 0.01,
+				\sus, ~durations[6] * 0.99,
+				\rel, ~durations[6] * 0.5, 
+				\amp, 1.0,
+				\pan, Pbrown(0.0,1.0,0.05,inf),
+				\legato, 1.1
+			)									
 		], 1)
 	);
 	
@@ -1584,7 +1614,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pwrand([\noteon,\rest],[0.75,0.25],inf),
+				\osccmd, Pseq([\noteon,Pwrand([\noteon,\rest],[0.75,0.25],inf)],1),
 				\voicename, \va1,
 				\midinote, 
 					Pseg(
@@ -1609,7 +1639,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pwrand([\noteon,\rest],[0.75,0.25],inf),
+				\osccmd, Pseq([\noteon,Pwrand([\noteon,\rest],[0.75,0.25],inf)],1),
 				\voicename, \va2,
 				\midinote, 
 					Pseg(

@@ -1238,11 +1238,11 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pn(\noteon,2)],1),
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \fl,
 				\midinote, 
 					Prand((~hseries[1]-48).select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
+						n>=59}).select({|n,i| n<=96}),inf), 				\dur, Pseq(16!3,1),
 				\amp, Pexprand(0.4,1.0,inf)
 			),
 		// bass flute
@@ -1250,11 +1250,11 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pn(\noteon,2)],1),
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \bfl,
 				\midinote, 
 					Prand((~hseries[1]-48).select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
+						n>=48}).select({|n,i| n<=84}),inf), 				\dur, Pseq(16!3,1),
 				\amp, Pexprand(0.7,1.0,inf)
 			),
 		// bass clarinet
@@ -1282,11 +1282,11 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pn(\noteon,2)],1),
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \bsn1,
 				\midinote, 
 					Prand((~hseries[1]-48).select({|n,i| 
-						n>=48}).select({|n,i| n<=76}),inf), 				\dur, Pseq([16,Prand([8,16],inf)],1),
+						n>=48}).select({|n,i| n<=76}),inf), 				\dur, Pseq(16!3,1),
 				\amp, Pexprand(0.7,1.0,inf)
 			),
 		// violin 1

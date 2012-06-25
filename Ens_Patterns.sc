@@ -1252,7 +1252,6 @@
 				\programname, 
 					#["bass clarinet boehm system.ordinario",
 					"tenor trombone.ordinario",
-					"violoncello.pizzicato",
 					"double bass.pizzicato"],
 				\dur, Pn(0.01,1)
 			),
@@ -1313,7 +1312,7 @@
 				\instrument, \warp,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(5,1),
-				\out, ~master_fx_bus.subBus(5,1),
+				\out, 17,
 				\dur, ~durations[6],
 				\atk, ~durations[6],
 				\sus, ~durations[6] * 0.1,
@@ -1322,21 +1321,6 @@
 				\warpfactor, (-7,-5..7).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
-		// warp -> hala
-			~delays[6]+0.05,
-			PmonoArtic(
-				\hala,
-				\group, ~output,
-				\in, ~master_fx_bus.subBus(5,1),
-				\out, 26, 
-				\dur, ~durations[6] / 381,
-				\atk, ~durations[6] * 0.01,
-				\sus, ~durations[6] * 0.99,
-				\rel, ~durations[6] * 0.5, 
-				\amp, 1.0,
-				\pan, Pbrown(-1.0,1.0,0.05,inf),
-				\legato, 1.1
-			),									
 		// double bass
 			~delays[6]+0.055,
 			Pbind(
@@ -1354,7 +1338,7 @@
 				\instrument, \warp,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(11,1),
-				\out, ~master_fx_bus.subBus(11,1),
+				\out, 17,
 				\dur, ~durations[6],
 				\atk, ~durations[6],
 				\sus, ~durations[6] * 0.1,
@@ -1362,22 +1346,7 @@
 				\amp, 0.75,
 				\warpfactor, (1,3..11).midiratio,
 				\freqscale, Pkey(\warpfactor)
-			),
-		// warp -> hala
-			~delays[6]+0.05,
-			PmonoArtic(
-				\hala,
-				\group, ~output,
-				\in, ~master_fx_bus.subBus(11,1),
-				\out, 26, 
-				\dur, ~durations[6] / 381,
-				\atk, ~durations[6] * 0.01,
-				\sus, ~durations[6] * 0.99,
-				\rel, ~durations[6] * 0.5, 
-				\amp, 1.0,
-				\pan, Pbrown(-1.0,1.0,0.05,inf),
-				\legato, 1.1
-			)									
+			)
 		], 1)
 	); 
 	
@@ -1668,7 +1637,7 @@
 //						\lin,
 //						inf
 //					),
-				\dur, Pseq([16,Prand([1,1/2,1/4,4],inf)],1),
+				\dur, Pseq([16,Pxrand([1,1/2,4],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),
 		// viola 2
@@ -1700,7 +1669,7 @@
 //						\lin,
 //						inf
 //					),
-				\dur, Pseq([16,Prand([1,1/2,1/4,4],inf)],1),
+				\dur, Pseq([16,Pxrand([1,1/2,2,4],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),								
 		// violoncello

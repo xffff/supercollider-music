@@ -1364,40 +1364,15 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bsn1,\bsn2,\vi1,\vi2,\vi3,\vi4,\vc,\cb],
+				\voicename, [\vi1,\vi2,\vi3,\vi4,\vc,\cb],
 				\programname, 
-					#[
-					"bassoon.multiphonic.Schwarz Heckel",
-					"bassoon.multiphonic.Schwarz Heckel",
-					"violin.pizzicato",
+					#["violin.pizzicato",
 					"violin.pizzicato",
 					"violin.pizzicato",
 					"violin.pizzicato",
 					"violoncello.pizzicato",
 					"double bass.pizzicato"],
 				\dur, Pn(0.01,1)
-			),
-		// bassoon 1
-			~delays[7]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pwrand([\noteon,\rest],[0.75,0.25],inf),
-				\voicename, \bsn1,
-				\midinote, Prand((88..96),inf),
-				\dur, Pwrand((2,4..16),(3..10).normalizeSum,inf),
-				\amp, Pexprand(0.85,1.0,inf)
-			),
-		// bassoon 2
-			~delays[7]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pwrand([\noteon,\rest],[0.75,0.25],inf),
-				\voicename, \bsn2,
-				\midinote, Prand((88..96),inf),
-				\dur, Pwrand((2,4..16),(3..10).normalizeSum,inf),
-				\amp, Pexprand(0.85,1.0,inf)
 			),
 		// violin 1
 			~delays[7]+0.05,
@@ -1597,7 +1572,7 @@
 						)
 					],inf),						
 				\dur, Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf),
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.25,0.75,inf)
 			),
 		// violin -> warp
 			~delays[8]+0.05,
@@ -1616,7 +1591,7 @@
 				\sus, ~durations[8] * 0.01,
 				\rel, ~durations[8] * 1.0, 
 				\amp, 0.4,
-				\warpfactor, (-36,-24..12).reject({|n,i| n==0}).midiratio,
+				\warpfactor, (-36,-24..-12).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
 		// warp -> hala

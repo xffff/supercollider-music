@@ -72,7 +72,7 @@
 				\atk, ~durations[0] * 0.1,
 				\sus, ~durations[0] * 0.3,
 				\rel, ~durations[0] * 0.8, // slight overlap with s2
-				\amp, 0.45,
+				\amp, 0.65,
 				\warpfactor, (3,5..11).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),

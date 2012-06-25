@@ -1070,7 +1070,7 @@
 				\out, 22,
 				\bufnum, ~sax_buf,
 				\rate, [-24,-14,-12].midiratio,
-				\dur, Pseq([14,32,64],1),
+				\dur, Pseq([14,32,32],1),
 				\startpos, 0,
 				\atk, Pkey(\dur)*0.2,
 				\sus, Pkey(\dur)*0.4,
@@ -1286,9 +1286,8 @@
 							).select({|n,i| n>=34}).select({|n,i| n<=50}),
 						inf)
 					],1).collect({|note| ~bcl_note=note; note}),
-				\legato, Pseq([0.8,Pexprand(0.4,1.0,inf)],1), 
 				\dur, 8,
-				\amp, Pexprand(0.35,0.8,1)
+				\amp, Pexprand(0.35,0.95,1)
 			),
 		// trombone 1
 			~delays[6]+0.05,
@@ -1327,7 +1326,7 @@
 				\voicename, \vc,
 				\midinote, Pfunc({~bcl_note}),
 				\dur, 8,
-				\amp, Pexprand(0.85,1.0,1)
+				\amp, Pexprand(0.3,0.5,1)
 			),
 		// double bass
 			~delays[6]+0.055,

@@ -1351,7 +1351,7 @@
 	);
 	
 	////////////////////////////////////////////////////////////////////////////////
-	~sections[7] = Pfindur(~durations[6],
+	~sections[7] = Pfindur(~durations[7],
 		Ptpar([
 		// program changes
 			~delays[7],
@@ -1528,7 +1528,7 @@
 	);
 	
 	////////////////////////////////////////////////////////////////////////////////
-	~sections[8] = Pfindur(~durations[6],
+	~sections[8] = Pfindur(~durations[8],
 		Ptpar([
 		// program changes
 			~delays[8],
@@ -1717,6 +1717,37 @@
 				\pan, Pbrown(-1.0,1.0,0.05,inf),
 				\legato, 1.1
 			)									
+		], 1),
+	);
+
+	////////////////////////////////////////////////////////////////////////////////
+	~sections[9] = Pfindur(~durations[9],
+		Ptpar([
+//		// program changes
+//			~delays[9],
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, \program,
+//				\voicename, [\tam],
+//				\programname, 
+//					#["violin.pizzicato",
+//					"viola.ordinario",
+//					"viola.ordinario",
+//					"violoncello.col legno battuto.ordinario"],
+//				\dur, Pn(0.01,1)
+//			),
+		// tam-tam
+			~delays[9]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \tam,
+				\midinote, 67, 
+				\dur, Pn(16,1),
+				\amp, Pexprand(0.7,1.0,1)		
+			)
 		], 1),
 	);
 };

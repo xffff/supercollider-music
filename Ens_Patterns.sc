@@ -1766,7 +1766,7 @@
 					Prand(~hseries[3].select({|n,i| 
 						n>=60}).select({|n,i| n<=84}),inf), 
 				\dur, Pn(32,2),
-				\amp, Pexprand(0.1,0.2,inf)
+				\amp, Pexprand(0.3,0.6,inf)
 			),
 		// trombone 1
 			~delays[9]+0.05,
@@ -1779,7 +1779,7 @@
 					Prand(~hseries[3].select({|n,i| 
 						n>=30}).select({|n,i| n<=80}),inf), 
 				\dur, Pn(32,2),
-				\amp, Pexprand(0.1,0.2,inf)
+				\amp, Pexprand(0.3,0.7,inf)
 			),
 		// violin 1
 			~delays[9]+0.05,

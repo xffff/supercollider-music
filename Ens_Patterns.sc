@@ -1069,7 +1069,7 @@
 				\out, 22,
 				\bufnum, ~sax_buf,
 				\rate, [-24,-14,-12].midiratio,
-				\dur, Pseq([14,32,32],1),
+				\dur, Pseq([14,32,64],1),
 				\startpos, 0,
 				\atk, Pkey(\dur)*0.2,
 				\sus, Pkey(\dur)*0.4,
@@ -1143,7 +1143,7 @@
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(10,1),
 				\out, ~master_fx_bus.subBus(3,1), // pitchshift -> hala
-				\dur, ~durations[5]/381,
+				\dur, ~durations[5] / 381,
 				\atk, ~durations[5] * 0.4,
 				\sus, ~durations[5] * 0.3,
 				\rel, ~durations[5] * 0.3, 
@@ -1161,7 +1161,7 @@
 				\group, ~output,
 				\in, ~master_fx_bus.subBus(3,1),
 				\out, 26, 
-				\dur, ~durations[5]/381,
+				\dur, ~durations[5] / 381,
 				\atk, ~durations[5] * 0.01,
 				\sus, ~durations[5] * 0.99,
 				\rel, ~durations[5] * 0.01, 
@@ -1282,7 +1282,7 @@
 						Pxrand(
 							union(
 								~hseries[0]-48,~hseries[1]-48,
-							).select({|n,i| n>=34}).select({|n,i| n<=60}),
+							).select({|n,i| n>=34}).select({|n,i| n<=50}),
 						inf)
 					],1).collect({|note| ~bcl_note=note; note}),
 				\legato, Pseq([0.8,Pexprand(0.4,1.0,inf)],1), 
@@ -1521,7 +1521,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pwrand([1/4,1/2,1,2],[0.2,0.8,0.05,0.01].normalizeSum,inf),
+				\dur, Pwrand([1/2,4,1,2],[0.2,0.8,0.05,0.01].normalizeSum,inf),
 				\amp, Pexprand(0.85,1.0,inf)
 			)
 		], 1),
@@ -1614,7 +1614,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Pwrand([\noteon,\rest],[0.75,0.25],inf)],1),
+				\osccmd, Pseq([\noteon,Pwrand([\noteon,\rest],[0.5,0.5],inf)],1),
 				\voicename, \va1,
 				\midinote, 
 					Prand(
@@ -1623,21 +1623,7 @@
 							~hseries[2]-48
 						).select({|n,i| n>=48}).select({|n,i| n<=70}),
 					inf),
-//					Pseg(
-//						Pseq([
-//							Prand(~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=60}),1),
-//							Prand(
-//								union(
-//									~hseries[1],
-//									~hseries[2]-48
-//								).select({|n,i| n>=48}).select({|n,i| n<=60}),
-//							inf)
-//						], inf),
-//						Pseq((~durations[8]/4)!2,inf),
-//						\lin,
-//						inf
-//					),
-				\dur, Pseq([16,Pxrand([1,1/2,4],inf)],1),
+				\dur, Pseq([16,Pxrand([1,2,4],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),
 		// viola 2
@@ -1652,26 +1638,25 @@
 								union(
 									~hseries[0],
 									~hseries[2]-48
-								).select({|n,i| n>=48}).select({|n,i| n<=70}),
-							inf),
-
-//					Pseg(
-//						Pseq([
-//							Prand((~hseries[3]-48).select({|n,i| n>=48}).select({|n,i| n<=70}),1),
-//							Prand(
-//								union(
-//									~hseries[0],
-//									~hseries[2]-48
-//								).select({|n,i| n>=48}).select({|n,i| n<=70}),
-//							inf)
-//						], inf),
-//						Pseq((~durations[8]/4)!2,inf),
-//						\lin,
-//						inf
-//					),
+								).select({|n,i| n>=48}).select({|n,i| n<=70}),							inf),
 				\dur, Pseq([16,Pxrand([1,1/2,2,4],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
-			),								
+			),	
+		// viola -> warp
+			~delays[8]+0.05,
+			Pbind(
+				\instrument, \warp,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(10,1),
+				\out, 17,
+				\dur, ~durations[8],
+				\atk, ~durations[8],
+				\sus, ~durations[8] * 0.1,
+				\rel, ~durations[8] * 0.5, 
+				\amp, 0.5,
+				\warpfactor, [-36,-24,-12,12].midiratio,
+				\freqscale, Pkey(\warpfactor)
+			),							
 		// violoncello
 			~delays[8]+0.05,
 			Pbind(
@@ -1708,7 +1693,7 @@
 				\atk, ~durations[8] * 0.4,
 				\sus, ~durations[8] * 0.3,
 				\rel, ~durations[8] * 0.3, 
-				\amp, 1.0,
+				\amp, 2.0,
 				\ratio, 2.0!3,
 				\windowSize, 2.0,
 				\timeDispersion, Pseq((0.00001,0.005..1.9),1),
@@ -1778,7 +1763,7 @@
 				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
 				\voicename, \vi1,
 				\midinote, 
-					Prand(~hseries[0].select({|n,i| 
+					Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\dur, 16,
 				\amp, Pexprand(0.4,0.7,inf)
@@ -1791,35 +1776,35 @@
 				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
 				\voicename, \vi2,
 				\midinote, 
-					Prand(~hseries[0].select({|n,i| 
+					Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\dur, 16,
 				\amp, Pexprand(0.4,0.7,inf)
 			),
-		// viola 1
-			~delays[9]+0.075,
+		// violin 3
+			~delays[9]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-				\voicename, \va1,
+				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
+				\voicename, \vi3,
 				\midinote, 
-					Prand(~hseries[0].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
-				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
+						n>=70}).select({|n,i| n<=104}),inf), 
+				\dur, 16,
 				\amp, Pexprand(0.4,0.7,inf)
 			),
-		// viola 2
-			~delays[9]+0.075,
+		// violin 4
+			~delays[9]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-				\voicename, \va2,
-				\midinote, 	
-					Prand(~hseries[0].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
-				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
+				\voicename, \vi4,
+				\midinote, 
+					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
+						n>=70}).select({|n,i| n<=104}),inf), 
+				\dur, 16,
 				\amp, Pexprand(0.4,0.7,inf)
 			),
 		// violoncello
@@ -1830,6 +1815,18 @@
 				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
 				\voicename, \vc,
 				\midinote, 											Prand(~hseries[0].select({|n,i| 
+						n<=84}).select({|n,i| n>=36}),inf), 
+				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+				\amp, Pexprand(0.4,0.7,inf)
+			),
+		// double bass
+			~delays[9]+0.075,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+				\voicename, \vc,
+				\midinote, 											Prand(~hseries[1].select({|n,i| 
 						n<=84}).select({|n,i| n>=36}),inf), 
 				\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 				\amp, Pexprand(0.4,0.7,inf)

@@ -510,7 +510,7 @@
 				\instrument, \pitchshift,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(1,1),
-				\out, 20,
+				\out, ~master_fx_bus.subBus(1,1),
 				\dur, ~durations[3],
 				\atk, ~durations[3] * 0.1,
 				\sus, ~durations[3] * 0.3,
@@ -521,6 +521,21 @@
 				\pitchDispersion, {4.0.rand}.dup(4),
 				\timeDispersion, {4.0.rand}.dup(4)
 			),
+		// pitch shift -> hala
+			~delays[3]+0.05,
+			PmonoArtic(
+				\hala,
+				\group, ~output,
+				\in, ~master_fx_bus.subBus(1,1),
+				\out, 26, 
+				\dur, ~durations[8] / 100,
+				\atk, ~durations[8] * 0.01,
+				\sus, ~durations[8] * 0.99,
+				\rel, ~durations[8] * 0.01, 
+				\amp, 1.0,
+				\pan, Pbrown(-1.0,1.0,0.1,inf),
+				\legato, 1.1
+			),									
 		// saxophone 1
 			~delays[3]+0.05,
 			Pbind(
@@ -598,7 +613,7 @@
 				\sus, ~durations[3] * 0.3,
 				\rel, ~durations[3] * 0.8, // slight overlap with s2
 				\amp, 0.45,
-				\warpfactor, (-7,-5..7).midiratio,
+				\warpfactor, (-5,-3..5).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
 		// warp -> hala
@@ -789,8 +804,9 @@
 				\sus, ~durations[4]*0.01,
 				\rel, ~durations[4]*0.2, 
 				\amp, 1.0,
-				\freq, Pseg(Pseq((80.midicps..98.midicps),inf),
-					Pseq(~durations[4]/1519!1519,inf), // (80,98).size
+				\freq, 
+					Pseg(Pseq((80.midicps..98.midicps),inf),
+						Pseq(~durations[4]/1519!1519,inf), // (80,98).size
 					1)-81.midicps
 			),
 		// violin 1
@@ -1362,8 +1378,8 @@
 				\pan, Pbrown(-1.0,1.0,0.05,inf),
 				\legato, 1.1
 			)									
-		], 1)
-	);
+		], 1),
+	~durations[7]); // allow for fx overlap
 	
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[7] = Pfindur(~durations[7],
@@ -1652,7 +1668,7 @@
 //						\lin,
 //						inf
 //					),
-				\dur, Pseq([16,Prand([1,1/2,4],inf)],1),
+				\dur, Pseq([16,Prand([1,1/2,1/4,4],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),
 		// viola 2
@@ -1684,7 +1700,7 @@
 //						\lin,
 //						inf
 //					),
-				\dur, Pseq([16,Prand([1,1/2,4],inf)],1),
+				\dur, Pseq([16,Prand([1,1/2,1/4,4],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),								
 		// violoncello

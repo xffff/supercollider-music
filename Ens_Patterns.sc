@@ -26,7 +26,7 @@
 ~durations[3] = 60; ~delays[3] = 12;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
-~durations[6] = 60; ~delays[6] = 0;
+~durations[6] = 60; ~delays[6] = 2;
 ~durations[7] = 60; ~delays[7] = 0;
 ~durations[8] = 60; ~delays[8] = 0;
 
@@ -1677,7 +1677,7 @@
 				\sus, ~durations[8] * 0.25,
 				\rel, ~durations[8] * 0.5, 
 				\amp, 0.6,
-				\warpfactor, [-7,-12,-24,-36].midiratio,
+				\warpfactor, (-36,-24..12).reject({|n,i| n==0}).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
 		// warp -> hala
@@ -1723,8 +1723,8 @@
 						inf
 					),
 				\dur, Pseq([16,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf)],1),
-				\amp, Pseg(Pseq([0.2,0.75,0.0],inf),Pseq(8!2,inf))
-			)
+				\amp, Pseg(Pseq([0.2,1.0,0.0],inf),Pseq(8!2,inf))
+			),
 		// violoncello -> pitchshift 
 			~delays[8]+0.05,
 			PmonoArtic(
@@ -1732,11 +1732,11 @@
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(10,1),
 				\out, ~master_fx_bus.subBus(0,1), // pitchshift -> hala
-				\dur, ~durations[8]/381,
+				\dur, ~durations[8] / 381,
 				\atk, ~durations[8] * 0.4,
 				\sus, ~durations[8] * 0.3,
 				\rel, ~durations[8] * 0.3, 
-				\amp, 0.75,
+				\amp, 1.0,
 				\ratio, 2.0!3,
 				\windowSize, 2.0,
 				\timeDispersion, Pseq((0.00001,0.005..1.9),1),

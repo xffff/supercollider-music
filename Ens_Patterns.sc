@@ -1378,8 +1378,8 @@
 				\pan, Pbrown(-1.0,1.0,0.05,inf),
 				\legato, 1.1
 			)									
-		], 1),
-	~durations[7]); // allow for fx overlap
+		], 1)
+	); 
 	
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[7] = Pfindur(~durations[7],

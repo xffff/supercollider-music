@@ -1364,15 +1364,41 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,\cb],
+				\voicename, [\bsn1,\bsn2,
+					\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,\cb],
 				\programname, 
-					#["violin.pizzicato",
+					#[
+					"bassoon.multiphonic.Schawrz Heckel",
+					"bassoon.multiphonic.Schawrz Heckel",
+					"violin.pizzicato",
 					"violin.pizzicato",
 					"violin.pizzicato",
 					"violin.pizzicato",
 					"violoncello.pizzicato",
 					"double bass.pizzicato"],
 				\dur, Pn(0.01,1)
+			),
+		// bassoon 1
+			~delays[7]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pwrand([\noteon,\rest],[0.75,0.25],inf),
+				\voicename, \bsn1,
+				\midinote, Prand((88..96),inf),
+				\dur, Pwrand((2,4..16),(3..10).normalizeSum,inf),
+				\amp, Pexprand(0.85,1.0,inf)
+			),
+		// bassoon 2
+			~delays[7]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pwrand([\noteon,\rest],[0.75,0.25],inf),
+				\voicename, \bsn2,
+				\midinote, Prand((88..96),inf),
+				\dur, Pwrand((2,4..16),(3..10).normalizeSum,inf),
+				\amp, Pexprand(0.85,1.0,inf)
 			),
 		// violin 1
 			~delays[7]+0.05,
@@ -1587,10 +1613,10 @@
 					~master_fx_bus.subBus(1,4),
 					~master_fx_bus.subBus(1,5)],
 				\dur, ~durations[8],
-				\atk, ~durations[8] * 0.75,
-				\sus, ~durations[8] * 0.25,
-				\rel, ~durations[8] * 0.5, 
-				\amp, 0.6,
+				\atk, ~durations[8] * 0.5,
+				\sus, ~durations[8] * 0.01,
+				\rel, ~durations[8] * 1.0, 
+				\amp, 0.4,
 				\warpfactor, (-36,-24..12).reject({|n,i| n==0}).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
@@ -1626,9 +1652,9 @@
 						Pseq([
 							Prand(~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=60}),1),
 							Prand(
-								symmetricDifference(
-									~hseries[0],
-									~hseries[2]
+								union(
+									~hseries[1],
+									~hseries[2]-48
 								).select({|n,i| n>=48}).select({|n,i| n<=60}),
 							inf)
 						], inf),
@@ -1649,11 +1675,11 @@
 				\midinote, 
 					Pseg(
 						Pseq([
-							Prand(~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=60}),1),
+							Prand((~hseries[3]-48).select({|n,i| n>=48}).select({|n,i| n<=60}),1),
 							Prand(
-								symmetricDifference(
+								union(
 									~hseries[0],
-									~hseries[2]
+									~hseries[2]-24
 								).select({|n,i| n>=48}).select({|n,i| n<=60}),
 							inf)
 						], inf),

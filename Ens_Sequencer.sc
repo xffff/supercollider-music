@@ -24,10 +24,10 @@
 //	~sections[4],
 //	Pfuncn({"Section 5".postln; 0 }, 1),
 //	~sections[5],
-//	Pfuncn({"Section 6".postln; 0 }, 1),
-//	~sections[6],
-//	Pfuncn({"Section 7".postln; 0 }, 1),
-//	~sections[7],
+	Pfuncn({"Section 6".postln; 0 }, 1),
+	~sections[6],
+	Pfuncn({"Section 7".postln; 0 }, 1),
+	~sections[7],
 	Pfuncn({"Section 8".postln; 0 }, 1),
 	~sections[8]
 

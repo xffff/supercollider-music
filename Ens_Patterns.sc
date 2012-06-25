@@ -1646,13 +1646,13 @@
 					Prand([
 						Pwalk(
 							~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=94}),
-							Prand([1,2,3],Prand((16,24..128),inf)),
+							Prand([1,2,3],(16,24..128).choose),
 							Pseq([1,-1],inf),
 							~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=94}).size.rand
 						),
 						Pwalk(
 							~hseries[1].select({|n,i| n>=48}).select({|n,i| n<=94}),
-							Prand([1,2,3],Prand((16,24..128),inf)),
+							Prand([1,2,3],(16,24..128).choose),
 							Pseq([1,-1],inf),
 							~hseries[1].select({|n,i| n>=48}).select({|n,i| n<=94}).size.rand
 						)
@@ -1660,12 +1660,27 @@
 				\dur, Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf),
 				\amp, Pexprand(0.25,0.75,inf)
 			),
+		// violin -> warp
+			~delays[8]+0.05,
+			Pbind(
+				\instrument, \warp,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(7,1),
+				\out, 17,
+				\dur, ~durations[8],
+				\atk, ~durations[8] * 0.75,
+				\sus, ~durations[8] * 0.25,
+				\rel, ~durations[8] * 0.5, 
+				\amp, 0.45,
+				\warpfactor, [-12,-24,-36].midiratio,
+				\freqscale, Pkey(\warpfactor)
+			),
 		// violoncello
 			~delays[8]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pwrand([\noteon,\rest],[0.75,0.25],inf),
+				\osccmd, Pseq([\rest,Pwrand([\noteon,\rest],[0.75,0.25],inf)],1),
 				\voicename, \vc,
 				\midinote, 
 					Pseg(
@@ -1682,7 +1697,7 @@
 						\lin,
 						inf
 					),
-				\dur, Prand([Pn(1/8,64),Pn(1/4,32),Pn(1/2,16),Pn(1,8),Pn(2,4),8],inf),
+				\dur, Pseq([16,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf)],1),
 				\amp, Pseg(Pseq([0.2,0.75,0.0],inf),Pseq(8!2,inf))
 			)			
 		], 1),

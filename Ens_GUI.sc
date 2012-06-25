@@ -24,7 +24,7 @@ CmdPeriod.add({~stop_all.fork;});
 	initButton.action = { |butt|
 		fork{
 			postln("Starting jackd... (3s)");
-			("/usr/local/bin/jackd -R -P -10 -d coreaudio -r 48000 -p 1024").unixCmd;
+			("/usr/local/bin/jackd -R -P 0 -d coreaudio -r 48000 -p 1024").unixCmd;
 			3.wait;
 			postln("Startup...");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Startup.sc");

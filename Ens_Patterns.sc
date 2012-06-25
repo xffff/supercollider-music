@@ -1109,13 +1109,13 @@
 				\pitchDispersion, Pseq((0.00001,0.005..1.9),1),
 				\legato, 1.1
 			),
-		// hala
+		// pitchshift -> hala
 			~delays[5]+0.05,
 			PmonoArtic(
 				\hala,
 				\group, ~output,
 				\in, ~master_fx_bus.subBus(3,1),
-				\out, 27, 
+				\out, 26, 
 				\dur, ~durations[5]/381,
 				\atk, ~durations[5] * 0.01,
 				\sus, ~durations[5] * 0.99,
@@ -1203,7 +1203,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\bfl,\bcl,\bsn1,\bcl,
+				\voicename, [\fl,\bfl,\bcl,\bsn1,
 					\vi1,\vi2,\vi3,\vi4,\vc,\cb],
 				\programname, 
 					#["flute.ordinario",
@@ -1233,65 +1233,67 @@
 				\rel, Pkey(\dur)*0.6, 
 				\amp, Pn(1,1)
 			),
-		// flute
-			~delays[6]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
-				\voicename, \fl,
-				\midinote, 
-					Prand((~hseries[1]-48).select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),inf), 				\dur, Pseq(16!3,1),
-				\legato, Pseq([0.5,0.85],inf),
-				\amp, Pexprand(0.4,1.0,inf)
-			),
-		// bass flute
-			~delays[6]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
-				\voicename, \bfl,
-				\midinote, 
-					Prand((~hseries[1]-48).select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),inf), 				\dur, Pseq(16!3,1),
-				\legato, Pseq([0.5,0.85],inf),
-				\amp, Pexprand(0.7,1.0,inf)
-			),
+//		// flute
+//			~delays[6]+0.05,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+//				\voicename, \fl,
+//				\midinote, 
+//					Prand((~hseries[1]-48).select({|n,i| 
+//						n>=59}).select({|n,i| n<=96}),inf), 				\dur, Pseq(16!3,1),
+//				\legato, Pseq([0.5,0.85],inf),
+//				\amp, Pexprand(0.4,1.0,inf)
+//			),
+//		// bass flute
+//			~delays[6]+0.05,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+//				\voicename, \bfl,
+//				\midinote, 
+//					Prand((~hseries[1]-48).select({|n,i| 
+//						n>=48}).select({|n,i| n<=84}),inf), 				\dur, Pseq(16!3,1),
+//				\legato, Pseq([0.5,0.85],inf),
+//				\amp, Pexprand(0.7,1.0,inf)
+//			),
 		// bass clarinet
 			~delays[6]+0.045,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pwrand([\rest,\noteon],[0.25,0.75],inf),
+				\osccmd, Pseq([\noteon,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
 				\voicename, \bcl,
 				\midinote, 
-					Pxrand(
-						union(
-							~hseries[0]-48,~hseries[1]-48,
-						).select({|n,i| n>=34}).select({|n,i| n<=60}),
-					inf).collect({|note| ~bcl_note=note; note}),
+					Pseq([26,
+						Pxrand(
+							union(
+								~hseries[0]-48,~hseries[1]-48,
+							).select({|n,i| n>=34}).select({|n,i| n<=60}),
+						inf)
+					],1).collect({|note| ~bcl_note=note; note}),
 				\legato, Pseq([0.8,Pexprand(0.2,0.7,inf)],1), 
 				\dur, 
 					Pseq([8,
-						Pwrand(1/[4,2],[0.2,0.8],inf)],
+						Pwrand([1/4,1/2,Pn(1/3,3),1,2,4],[0.2,0.8],inf)],
 					inf).collect({|dur| ~bcl_dur=dur; dur}),
 				\amp, Pexprand(0.35,0.8,inf)
 			),
-		// bassoon 1
-			~delays[6]+0.025,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
-				\voicename, \bsn1,
-				\midinote, 
-					Prand((~hseries[1]-48).select({|n,i| 
-						n>=48}).select({|n,i| n<=76}),inf), 				\dur, Pseq(16!3,1),
-				\legato, Pseq([0.5,0.85],inf),
-				\amp, Pexprand(0.7,1.0,inf)
-			),
+//		// bassoon 1
+//			~delays[6]+0.025,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
+//				\voicename, \bsn1,
+//				\midinote, 
+//					Prand((~hseries[1]-48).select({|n,i| 
+//						n>=48}).select({|n,i| n<=76}),inf), 				\dur, Pseq(16!3,1),
+//				\legato, Pseq([0.5,0.85],inf),
+//				\amp, Pexprand(0.7,1.0,inf)
+//			),
 		// violin 1
 			~delays[6]+0.05,
 			Pbind(
@@ -1307,7 +1309,7 @@
 					inf),
 				\dur, Pseq([32,Pn(Pfunc({~bcl_dur}),inf)],1),
 				\lag, Pseq(10/~hseries[1],inf),
-				\amp, Pexprand(0.25,0.75,inf)
+				\amp, Pexprand(0.5,0.75,inf)
 			),
 		// violin 2
 			~delays[6]+0.05,
@@ -1324,7 +1326,7 @@
 					inf),
 				\dur, Pseq([32,Pn(Pfunc({~bcl_dur}),inf)],1),
 				\lag, Pseq(20/~hseries[1],inf),
-				\amp, Pexprand(0.25,0.75,inf)
+				\amp, Pexprand(0.5,0.75,inf)
 			),
 		// violin 3
 			~delays[6]+0.05,
@@ -1341,7 +1343,7 @@
 					inf),
 				\dur, Pseq([24,Pn(Pfunc({~bcl_dur}),inf)],1),
 				\lag, Pseq(30/~hseries[1],inf),
-				\amp, Pexprand(0.25,0.75,inf)
+				\amp, Pexprand(0.5,0.75,inf)
 			),
 		// violin 4
 			~delays[6]+0.05,
@@ -1358,7 +1360,7 @@
 					inf),
 				\dur, Pseq([24,Pn(Pfunc({~bcl_dur}),inf)],1),
 				\lag, Pseq(40/~hseries[1],inf),
-				\amp, Pexprand(0.25,0.75,inf)
+				\amp, Pexprand(0.5,0.75,inf)
 			),
 		// violoncello
 			~delays[6]+0.05,
@@ -1375,7 +1377,7 @@
 					inf),
 				\dur, Pseq([16,Pn(Pfunc({~bcl_dur}),inf)],1),
 				\lag, Pseq(50/~hseries[1],inf),
-				\amp, Pexprand(0.25,0.75,inf)
+				\amp, Pexprand(0.5,0.75,inf)
 			),
 		// double bass
 			~delays[6]+0.055,
@@ -1656,7 +1658,7 @@
 						)
 					],inf),						
 				\dur, Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf),
-				\amp, Pexprand(0.25,0.75,inf)
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin -> warp
 			~delays[8]+0.05,
@@ -1664,15 +1666,40 @@
 				\instrument, \warp,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(7,1),
-				\out, 17,
+				\out, 
+					[~master_fx_bus.subBus(1,1),
+					~master_fx_bus.subBus(1,2),
+					~master_fx_bus.subBus(1,3),
+					~master_fx_bus.subBus(1,4),
+					~master_fx_bus.subBus(1,5)],
 				\dur, ~durations[8],
 				\atk, ~durations[8] * 0.75,
 				\sus, ~durations[8] * 0.25,
 				\rel, ~durations[8] * 0.5, 
-				\amp, 0.45,
+				\amp, 0.6,
 				\warpfactor, [-7,-12,-24,-36].midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
+		// warp -> hala
+			~delays[8]+0.05,
+			PmonoArtic(
+				\hala,
+				\group, ~output,
+				\in, 
+					[~master_fx_bus.subBus(1,1),
+					~master_fx_bus.subBus(1,2),
+					~master_fx_bus.subBus(1,3),
+					~master_fx_bus.subBus(1,4),
+					~master_fx_bus.subBus(1,5)],	
+				\out, 26, 
+				\dur, ~durations[8] / 381,
+				\atk, ~durations[8] * 0.01,
+				\sus, ~durations[8] * 0.99,
+				\rel, ~durations[8] * 0.01, 
+				\amp, 1.0,
+				\pan, Pbrown(0.0,1.0,0.05,inf),
+				\legato, 1.1
+			),									
 		// violoncello
 			~delays[8]+0.05,
 			Pbind(
@@ -1697,7 +1724,40 @@
 					),
 				\dur, Pseq([16,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf)],1),
 				\amp, Pseg(Pseq([0.2,0.75,0.0],inf),Pseq(8!2,inf))
-			)			
+			)
+		// violoncello -> pitchshift 
+			~delays[8]+0.05,
+			PmonoArtic(
+				\pitchshift,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(10,1),
+				\out, ~master_fx_bus.subBus(0,1), // pitchshift -> hala
+				\dur, ~durations[8]/381,
+				\atk, ~durations[8] * 0.4,
+				\sus, ~durations[8] * 0.3,
+				\rel, ~durations[8] * 0.3, 
+				\amp, 0.75,
+				\ratio, 2.0!3,
+				\windowSize, 2.0,
+				\timeDispersion, Pseq((0.00001,0.005..1.9),1),
+				\pitchDispersion, Pseq((0.00001,0.005..1.9),1),
+				\legato, 1.1
+			),
+		// pitchshift -> hala
+			~delays[8]+0.05,
+			PmonoArtic(
+				\hala,
+				\group, ~output,
+				\in, ~master_fx_bus.subBus(0,1),
+				\out, 26, 
+				\dur, ~durations[8] / 381,
+				\atk, ~durations[8] * 0.01,
+				\sus, ~durations[8] * 0.99,
+				\rel, ~durations[8] * 0.01, 
+				\amp, 1.0,
+				\pan, Pbrown(0.0,1.0,0.05,inf),
+				\legato, 1.1
+			)									
 		], 1),
 	);
 };

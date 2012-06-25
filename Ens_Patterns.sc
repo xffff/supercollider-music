@@ -577,7 +577,7 @@
 				\instrument, \warp,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(10,1),
-				\out, 17,
+				\out, ~master_fx_bus.subBus(10,1),
 				\dur, ~durations[3],
 				\atk, ~durations[3] * 0.1,
 				\sus, ~durations[3] * 0.3,
@@ -586,6 +586,21 @@
 				\warpfactor, (-7,-5..7).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
+		// warp -> hala
+			~delays[3]+0.05,
+			PmonoArtic(
+				\hala,
+				\group, ~output,
+				\in, ~master_fx_bus.subBus(10,1),
+				\out, 26, 
+				\dur, ~durations[8] / 100,
+				\atk, ~durations[8] * 0.01,
+				\sus, ~durations[8] * 0.99,
+				\rel, ~durations[8] * 0.01, 
+				\amp, 1.0,
+				\pan, Pbrown(0.0,1.0,0.01,inf),
+				\legato, 1.1
+			),									
 		// contrabass
 			~delays[3]+0.05,
 			Pbind(

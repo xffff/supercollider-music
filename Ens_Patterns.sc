@@ -598,7 +598,7 @@
 				\sus, ~durations[8] * 0.99,
 				\rel, ~durations[8] * 0.01, 
 				\amp, 1.0,
-				\pan, Pbrown(0.0,1.0,0.01,inf),
+				\pan, Pbrown(-1.0,1.0,0.01,inf),
 				\legato, 1.1
 			),									
 		// contrabass
@@ -1135,7 +1135,7 @@
 				\sus, ~durations[5] * 0.99,
 				\rel, ~durations[5] * 0.01, 
 				\amp, 1.0,
-				\pan, Pbrown(0.0,1.0,0.05,inf),
+				\pan, Pbrown(-1.0,1.0,0.05,inf),
 				\legato, 1.1
 			),
 		// crotales
@@ -1303,7 +1303,7 @@
 				\sus, ~durations[6] * 0.99,
 				\rel, ~durations[6] * 0.5, 
 				\amp, 1.0,
-				\pan, Pbrown(0.0,1.0,0.05,inf),
+				\pan, Pbrown(-1.0,1.0,0.05,inf),
 				\legato, 1.1
 			),									
 		// double bass
@@ -1344,7 +1344,7 @@
 				\sus, ~durations[6] * 0.99,
 				\rel, ~durations[6] * 0.5, 
 				\amp, 1.0,
-				\pan, Pbrown(0.0,1.0,0.05,inf),
+				\pan, Pbrown(-1.0,1.0,0.05,inf),
 				\legato, 1.1
 			)									
 		], 1)
@@ -1714,7 +1714,7 @@
 				\sus, ~durations[8] * 0.99,
 				\rel, ~durations[8] * 0.01, 
 				\amp, 1.0,
-				\pan, Pbrown(0.0,1.0,0.05,inf),
+				\pan, Pbrown(-1.0,1.0,0.05,inf),
 				\legato, 1.1
 			)									
 		], 1),

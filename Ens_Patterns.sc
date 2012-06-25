@@ -26,7 +26,7 @@
 ~durations[3] = 60; ~delays[3] = 12;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
-~durations[6] = 60; ~delays[6] = 4;
+~durations[6] = 60; ~delays[6] = 8;
 ~durations[7] = 40; ~delays[7] = 0;
 ~durations[8] = 60; ~delays[8] = 6;
 
@@ -1273,7 +1273,7 @@
 				\midinote, Prand(union(~hseries[0]-48,~hseries[1]-48).select({|n,i| 
 							n>=36}).select({|n,i| n<=80}),inf),
 				\legato, 0.2,
-				\dur, 1/4,
+				\dur, Pwrand([1/4,1/2],[0.75,0.25],inf),
 				\amp, Pexprand(0.3,0.75,inf)
 			),
 		// trombone -> warp

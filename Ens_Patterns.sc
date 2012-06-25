@@ -29,6 +29,7 @@
 ~durations[6] = 60; ~delays[6] = 8;
 ~durations[7] = 40; ~delays[7] = 0;
 ~durations[8] = 60; ~delays[8] = 6;
+~durations[9] = 60; ~delays[9] = 6;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -1248,11 +1249,12 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bcl,\tb1,\cb],
+				\voicename, [\bcl,\tb1,\vc,\cb],
 				\programname, 
 					#["bass clarinet boehm system.ordinario",
 					"tenor trombone.ordinario",
-					"double bass.molto sul ponticello"],
+					"violoncello.ordinario",
+					"double bass.pizzicato"],
 				\dur, Pn(0.01,1)
 			),
 		// playbuf
@@ -1315,6 +1317,17 @@
 				\amp, 0.5,
 				\warpfactor, (-7,-5..7).midiratio,
 				\freqscale, Pkey(\warpfactor)
+			),
+		// violoncello
+			~delays[6]+0.055,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\noteon,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
+				\voicename, \vc,
+				\midinote, Pfunc({~bcl_note}),
+				\dur, 8,
+				\amp, Pexprand(0.85,1.0,1)
 			),
 		// double bass
 			~delays[6]+0.055,
@@ -1760,9 +1773,24 @@
 				\midinote, 
 					Prand(~hseries[3].select({|n,i| 
 						n>=60}).select({|n,i| n<=84}),inf), 
-				\dur, Pn(16,2),
+				\dur, Pn(16,inf),
 				\amp, Pexprand(0.3,0.6,inf)
 			),
+		// trumpet -> warp
+			~delays[8]+0.05,
+			Pbind(
+				\instrument, \warp,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(9,1),
+				\out, 17,
+				\dur, ~durations[9],
+				\atk, ~durations[9] * 0.25,
+				\sus, ~durations[9] * 0.01,
+				\rel, ~durations[9] * 0.6, 
+				\amp, 0.5,
+				\warpfactor, [-12,-7].midiratio,
+				\freqscale, Pkey(\warpfactor)
+			),							
 		// trombone 1
 			~delays[9]+0.05,
 			Pbind(
@@ -1773,7 +1801,7 @@
 				\midinote, 
 					Prand(~hseries[3].select({|n,i| 
 						n>=30}).select({|n,i| n<=80}),inf), 
-				\dur, Pn(16,2),
+				\dur, Pn(16,inf),
 				\amp, Pexprand(0.3,0.5,inf)
 			),
 		// violin 1

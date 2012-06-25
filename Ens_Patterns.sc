@@ -1316,7 +1316,7 @@
 				\sus, ~durations[6] * 0.1,
 				\rel, ~durations[6] * 0.5, 
 				\amp, 0.5,
-				\warpfactor, (-7,-5..7).midiratio,
+				\warpfactor, (-5,-3..5).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
 		// violoncello
@@ -1328,7 +1328,7 @@
 				\voicename, \vc,
 				\midinote, Pfunc({~tb_note}),
 				\dur, Pseq([8,Pn(Pfunc({~tb_dur}),inf)],1),
-				\amp, Pexprand(0.4,0.6,inf)
+				\amp, Pexprand(0.4,0.65,inf)
 			),
 		// violoncello -> warp
 			~delays[6]+0.05,
@@ -1352,7 +1352,7 @@
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\noteon,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
 				\voicename, \cb,
-				\midinote, Pfunc({~bcl_note}),
+				\midinote, Pfunc({~bcl_note})-12,
 				\dur, 8,
 				\amp, Pexprand(0.4,0.5,1)
 			)

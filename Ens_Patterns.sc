@@ -9,7 +9,7 @@
 ~load_patterns = nil;
 
 ~hseries = 
-	Array.fill(8, { |i| if(i>0,{i=i+7.rand});
+	Array.fill(8, { |i| if(i>0,{i=i*4.rand.max(1)});
 		Array.fill(64,{|j| j=j+1; 
 			j * Array.fill(100,{|n| n=n+1; n*26.midicps})[i+(j-1)];
 		}).cpsmidi;

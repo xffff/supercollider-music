@@ -1252,7 +1252,7 @@
 				\programname, 
 					#["bass clarinet boehm system.ordinario",
 					"tenor trombone.ordinario",
-					"double bass.pizzicato"],
+					"double bass.molto sul ponticello"],
 				\dur, Pn(0.01,1)
 			),
 		// playbuf
@@ -1278,20 +1278,15 @@
 				\osccmd, Pseq([\noteon,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
 				\voicename, \bcl,
 				\midinote, 
-					Pseq([26,
-						Pxrand(
+					Pseq([Pxrand(
 							union(
 								~hseries[0]-48,~hseries[1]-48,
 							).select({|n,i| n>=34}).select({|n,i| n<=50}),
 						inf)
 					],1).collect({|note| ~bcl_note=note; note}),
 				\legato, Pseq([0.8,Pexprand(0.4,1.0,inf)],1), 
-				\dur, 
-					Pseq([8,
-						Pwrand([1/4,1/2,1,2],[0.2,0.8,0.05,0.01].normalizeSum,inf)
-					],
-					inf).collect({|dur| ~bcl_dur=dur; dur}),
-				\amp, Pexprand(0.35,0.8,inf)
+				\dur, 8,
+				\amp, Pexprand(0.35,0.8,1)
 			),
 		// trombone 1
 			~delays[6]+0.05,
@@ -1329,8 +1324,8 @@
 				\osccmd, Pseq([\noteon,Pwrand([\rest,\noteon],[0.25,0.75],inf)],1),
 				\voicename, \cb,
 				\midinote, Pfunc({~bcl_note}),
-				\dur, Pfunc({~bcl_dur}),
-				\amp, Pexprand(0.85,1.0,inf)
+				\dur, 8,
+				\amp, Pexprand(0.85,1.0,1)
 			),
 		// double bass -> warp
 			~delays[6]+0.05,
@@ -1765,7 +1760,7 @@
 				\midinote, 
 					Prand(~hseries[3].select({|n,i| 
 						n>=60}).select({|n,i| n<=84}),inf), 
-				\dur, Pn(32,2),
+				\dur, Pn(16,2),
 				\amp, Pexprand(0.3,0.6,inf)
 			),
 		// trombone 1
@@ -1778,8 +1773,8 @@
 				\midinote, 
 					Prand(~hseries[3].select({|n,i| 
 						n>=30}).select({|n,i| n<=80}),inf), 
-				\dur, Pn(32,2),
-				\amp, Pexprand(0.3,0.7,inf)
+				\dur, Pn(16,2),
+				\amp, Pexprand(0.3,0.5,inf)
 			),
 		// violin 1
 			~delays[9]+0.05,

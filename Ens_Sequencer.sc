@@ -29,8 +29,6 @@
 	Pfuncn({"Section 7".postln; 0 }, 1),
 	~sections[7],
 	Pfuncn({"Section 8".postln; 0 }, 1),
-	~sections[8],
-	Pfuncn({"Section 9 (1)".postln; 0 }, 1),
-	~sections[1]
+	~sections[8]
 ], 1);
 )

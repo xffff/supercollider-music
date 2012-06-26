@@ -1545,127 +1545,38 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\vi1,\va1,\va2,\vc],
+				\voicename, [\sx1,\vc],
 				\programname, 
-					#["violin.pizzicato",
-					"viola.ordinario",
-					"viola.ordinario",
+					#["alto saxophone.slap.percussive slap",
 					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
 			),
-//		// violin 1
-//			~delays[8]+0.05,
-//			Pbind(
-//				\type, \ctosc, 
-//				\oscout, ~osc_destination,
-//				\osccmd, Pwrand([\noteon,\rest],[0.9,0.1],inf),
-//				\voicename, \vi1,
-//				\midinote, 
-//					Prand([
-//						Pwalk(
-//							~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=94}),
-//							Prand([1,2,3],(16,24..128).choose),
-//							Pseq([1,-1],inf),
-//							~hseries[0].select({|n,i| n>=48}).select({|n,i| n<=94}).size.rand
-//						),
-//						Pwalk(
-//							~hseries[1].select({|n,i| n>=48}).select({|n,i| n<=94}),
-//							Prand([1,2,3],(16,24..128).choose),
-//							Pseq([1,-1],inf),
-//							~hseries[1].select({|n,i| n>=48}).select({|n,i| n<=94}).size.rand
-//						)
-//					],inf),						
-//				\dur, Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf),
-//				\amp, Pexprand(0.5,0.75,inf)
-//			),
-//		// violin -> warp
-//			~delays[8]+0.05,
-//			Pbind(
-//				\instrument, \warp,
-//				\group, ~fx,
-//				\in, ~master_dry_bus.subBus(7,1),
-//				\out, 
-//					[~master_fx_bus.subBus(1,1),
-//					~master_fx_bus.subBus(1,2),
-//					~master_fx_bus.subBus(1,3),
-//					~master_fx_bus.subBus(1,4),
-//					~master_fx_bus.subBus(1,5)],
-//				\dur, ~durations[8],
-//				\atk, ~durations[8] * 0.5,
-//				\sus, ~durations[8] * 0.01,
-//				\rel, ~durations[8] * 1.0, 
-//				\amp, 0.4,
-//				\warpfactor, (-36,-24..-12).midiratio,
-//				\freqscale, Pkey(\warpfactor)
-//			),
-//		// warp -> hala
-//			~delays[8]+0.05,
-//			PmonoArtic(
-//				\hala,
-//				\group, ~output,
-//				\in, 
-//					[~master_fx_bus.subBus(1,1),
-//					~master_fx_bus.subBus(1,2),
-//					~master_fx_bus.subBus(1,3),
-//					~master_fx_bus.subBus(1,4),
-//					~master_fx_bus.subBus(1,5)],	
-//				\out, 26, 
-//				\dur, ~durations[8] / 381,
-//				\atk, ~durations[8] * 0.01,
-//				\sus, ~durations[8] * 0.99,
-//				\rel, ~durations[8] * 0.01, 
-//				\amp, 1.0,
-//				\pan, Pbrown(0.0,1.0,0.05,inf),
-//				\legato, 1.1
-//			),	
-		// viola 1
+		// saxophone
 			~delays[8]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Pwrand([\noteon,\rest],[0.5,0.5],inf)],1),
-				\voicename, \va1,
-				\midinote, 
-					Prand(
-						union(
-							~hseries[1]-24,
-							~hseries[2]-48
-						).select({|n,i| n>=48}).select({|n,i| n<=70}),
-					inf),
-				\dur, Pseq([16,Pxrand([1,2,4],inf)],1),
-				\amp, Pexprand(0.75,1.0,inf)
+				\osccmd, Pn(\noteon,inf),
+				\voicename, \sx1,
+				\midinote, Pseq([50,51],32), 
+				\dur, Pn(1/16,32),
+				\amp, Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))
 			),
-		// viola 2
-			~delays[8]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Pwrand([\noteon,\rest],[0.75,0.25],inf)],1),
-				\voicename, \va2,
-				\midinote, 
-							Prand(
-								union(
-									~hseries[0],
-									~hseries[2]-48
-								).select({|n,i| n>=48}).select({|n,i| n<=70}),							inf),
-				\dur, Pseq([16,Pxrand([1,1/2,2,4],inf)],1),
-				\amp, Pexprand(0.75,1.0,inf)
-			),	
-		// viola -> warp
+		// saxophone -> warp
 			~delays[8]+0.05,
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
-				\in, ~master_dry_bus.subBus(9,1),
+				\in, ~master_dry_bus.subBus(6,1),
 				\out, 17,
 				\dur, ~durations[8],
-				\atk, ~durations[8] * 0.25,
-				\sus, ~durations[8],
-				\rel, ~durations[9] * 0.5, 
-				\amp, 0.8,
-				\warpfactor, [-24,-12].midiratio,
+				\atk, 0.01,
+				\sus, ~durations[8] * 0.1,
+				\rel, ~durations[8] * 0.99, 
+				\amp, 0.75,
+				\warpfactor, (-1,-3..-24).midiratio,
 				\freqscale, Pkey(\warpfactor)
-			),							
+			),
 		// violoncello
 			~delays[8]+0.05,
 			Pbind(
@@ -1699,10 +1610,10 @@
 				\in, ~master_dry_bus.subBus(10,1),
 				\out, ~master_fx_bus.subBus(10,1), // pitchshift -> hala
 				\dur, ~durations[8] / 381,
-				\atk, ~durations[8] * 0.4,
-				\sus, ~durations[8] * 0.3,
+				\atk, ~durations[8] * 0.2,
+				\sus, ~durations[8] * 0.5,
 				\rel, ~durations[8] * 0.3, 
-				\amp, 2.0,
+				\amp, 4.0,
 				\ratio, 2.0!3,
 				\windowSize, 2.0,
 				\timeDispersion, Pseq((0.00001,0.005..1.9),1),

@@ -1793,10 +1793,10 @@
 				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \bd,
 				\midinote, Prand([61,62],inf),
-				\dur, Pseq([45,Pseq([Pn(1,6),2],inf)],1),
+				\dur, Pseq([45,Pseq([Pn(1,12),2],inf)],1),
 				\amp, 
 					Pseq([0,Pseg(Pseq([0.01,1.0],inf),
-						Pseq((~durations[8]-45/2)!2,inf),\lin,inf).trace],1)
+						Pseq(~durations[8]-45!2,inf),\lin,inf)],1)
 			)									
 		], 1),
 	);

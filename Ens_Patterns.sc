@@ -1786,11 +1786,11 @@
 				\freqscale, Pkey(\warpfactor)
 			),
 		// bass drum
-			~delays[7]+0.05,
+			~delays[8]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1)
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \bd,
 				\midinote, Prand([61,62],inf),
 				\dur, Pseq([45,Pn(1/2,6),8],1),

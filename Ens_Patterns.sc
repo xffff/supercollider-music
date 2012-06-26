@@ -28,7 +28,7 @@
 ~durations[5] = 72; ~delays[5] = 4;
 ~durations[6] = 60; ~delays[6] = 8;
 ~durations[7] = 40; ~delays[7] = 0;
-~durations[8] = 60; ~delays[8] = 6;
+~durations[8] = 60; ~delays[8] = 0;
 ~durations[9] = 60; ~delays[9] = 0;
 
 ~load_patterns = {
@@ -1315,7 +1315,7 @@
 				\atk, ~durations[6],
 				\sus, ~durations[6] * 0.1,
 				\rel, ~durations[6] * 0.5, 
-				\amp, 0.5,
+				\amp, 0.65,
 				\warpfactor, (-5,-3..5).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
@@ -1328,7 +1328,7 @@
 				\voicename, \vc,
 				\midinote, Pfunc({~tb_note}),
 				\dur, Pseq([8,Pn(Pfunc({~tb_dur}),inf)],1),
-				\amp, Pexprand(0.4,0.65,inf)
+				\amp, Pexprand(0.4,0.6,inf)
 			),
 		// violoncello -> warp
 			~delays[6]+0.05,
@@ -1341,7 +1341,7 @@
 				\atk, ~durations[6],
 				\sus, ~durations[6] * 0.1,
 				\rel, ~durations[6] * 0.5, 
-				\amp, 0.75,
+				\amp, 0.6,
 				\warpfactor, (1,3..11).midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
@@ -1354,7 +1354,7 @@
 				\voicename, \cb,
 				\midinote, Pfunc({~bcl_note})-12,
 				\dur, 8,
-				\amp, Pexprand(0.4,0.5,1)
+				\amp, Pexprand(0.4,0.6,1)
 			)
 		], 1)
 	); 
@@ -1545,11 +1545,28 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\sx1,\vc],
+				\voicename, [\bfl,\tr1,\tr2,\tb1,\tb2,\sx1,\vc],
 				\programname, 
-					#["alto saxophone.slap.percussive slap",
+					#[
+					"bass.flute.jet whistle",
+					"trumpet in c.ordinario",
+					"trumpet in c.ordinario",
+					"tenor trombone.ordinario",		
+					"tenor trombone.ordinario",		
+					"alto saxophone.slap.percussive slap",
 					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
+			),
+		// bass flute
+			~delays[8]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,\noteon,Prand([\noteon,\rest],inf)],1),
+				\voicename, \bfl,
+				\midinote, Prand([49,52,53,56,59,62],inf), 
+				\dur, Prand([4,8,8],inf),
+				\amp, 1.0
 			),
 		// saxophone
 			~delays[8]+0.05,
@@ -1559,8 +1576,8 @@
 				\osccmd, Pn(\noteon,inf),
 				\voicename, \sx1,
 				\midinote, Pseq([50,51],32), 
-				\dur, Pn(1/16,32),
-				\amp, Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))
+				\dur, Pn(1/8,32),
+				\amp, Pseg(Pseq([0.2,1,0.0],1),Pseq(1!4,1))
 			),
 		// saxophone -> warp
 			~delays[8]+0.05,
@@ -1570,11 +1587,11 @@
 				\in, ~master_dry_bus.subBus(6,1),
 				\out, 17,
 				\dur, ~durations[8],
-				\atk, 0.01,
+				\atk, ~durations[8] * 0.2,
 				\sus, ~durations[8] * 0.1,
 				\rel, ~durations[8] * 0.99, 
 				\amp, 0.75,
-				\warpfactor, (-1,-3..-24).midiratio,
+				\warpfactor, [-12,-24,-36,-7,-5,-3].midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
 		// violoncello
@@ -1599,7 +1616,7 @@
 						\lin,
 						inf
 					),
-				\dur, Pseq([16,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf)],1),
+				\dur, Pseq([24,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf)],1),
 				\amp, Pexprand(0.25,1.0,inf)
 			),
 		// violoncello -> pitchshift 
@@ -1610,10 +1627,10 @@
 				\in, ~master_dry_bus.subBus(10,1),
 				\out, ~master_fx_bus.subBus(10,1), // pitchshift -> hala
 				\dur, ~durations[8] / 381,
-				\atk, ~durations[8] * 0.2,
+				\atk, ~durations[8] * 0.5,
 				\sus, ~durations[8] * 0.5,
 				\rel, ~durations[8] * 0.3, 
-				\amp, 4.0,
+				\amp, 6.0,
 				\ratio, 2.0!3,
 				\windowSize, 2.0,
 				\timeDispersion, Pseq((0.00001,0.005..1.9),1),
@@ -1628,12 +1645,27 @@
 				\in, ~master_fx_bus.subBus(10,1),
 				\out, 26, 
 				\dur, ~durations[8] / 381,
-				\atk, ~durations[8] * 0.01,
+				\atk, ~durations[8] * 0.5,
 				\sus, ~durations[8] * 0.99,
 				\rel, ~durations[8] * 0.01, 
 				\amp, 1.0,
-				\pan, Pbrown(-1.0,1.0,0.05,inf),
+				\pan, Pbrown(-1.0,1.0,0.15,inf),
 				\legato, 1.1
+			),
+		// pitchshift -> warp 
+			~delays[8]+0.05,
+			Pbind(
+				\instrument, \warp,
+				\group, ~fx,
+				\in, ~master_fx_bus.subBus(10,1),
+				\out, 17,
+				\dur, ~durations[8],
+				\atk, ~durations[8] * 0.6,
+				\sus, ~durations[8] * 0.1,
+				\rel, ~durations[8] * 0.99, 
+				\amp, 0.75,
+				\warpfactor, [-12,-24,-36,-7,-5,-3].midiratio,
+				\freqscale, Pkey(\warpfactor)
 			)									
 		], 1),
 	);

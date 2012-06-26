@@ -1314,7 +1314,7 @@
 				\dur, ~durations[6],
 				\atk, ~durations[6],
 				\sus, ~durations[6] * 0.1,
-				\rel, ~durations[6] * 0.5, 
+				\rel, ~durations[6], 
 				\amp, 0.65,
 				\warpfactor, (-5,-3..5).midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -1441,7 +1441,7 @@
 				\atk, ~durations[7],
 				\sus, ~durations[7] * 0.01,
 				\rel, ~durations[7] * 0.5, 
-				\amp, 0.5,
+				\amp, 0.65,
 				\warpfactor, [-7,-12].midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),							
@@ -1508,7 +1508,7 @@
 				\atk, ~durations[7],
 				\sus, ~durations[7] * 0.01,
 				\rel, ~durations[7] * 0.5, 
-				\amp, 0.5,
+				\amp, 0.6,
 				\warpfactor, [-12,-24].midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),							
@@ -1793,8 +1793,10 @@
 				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \bd,
 				\midinote, Prand([61,62],inf),
-				\dur, Pseq([45,Pn(1/2,6),8],1),
-				\amp, Pexprand(0.25,0.5,inf)
+				\dur, Pseq([45,Pseq([Pn(1,6),2],inf)],1),
+				\amp, 
+					Pseq([0,Pseg(Pseq([0.01,1.0],inf),
+						Pseq((~durations[8]-45/2)!2,inf),\lin,inf).trace],1)
 			)									
 		], 1),
 	);

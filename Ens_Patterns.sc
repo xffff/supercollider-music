@@ -1575,9 +1575,10 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bfl,\tr1,\tr2,\tb1,\tb2,\sx1,\vc],
+				\voicename, [\fl,\bfl,\tr1,\tr2,\tb1,\tb2,\sx1,\vc],
 				\programname, 
 					#[
+					"flute.ordinario",
 					"bass.flute.jet whistle",
 					"trumpet in c.ordinario",
 					"trumpet in c.ordinario",
@@ -1587,6 +1588,17 @@
 					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
 			),
+		// flute
+			~delays[8]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,\noteon],1),
+				\voicename, \fl,
+				\midinote, 81, 
+				\dur, Prand([32,8],inf),
+				\amp, Pexprand(0.75,1.0,inf)
+			),		
 		// bass flute
 			~delays[8]+0.05,
 			Pbind(
@@ -1595,7 +1607,7 @@
 				\osccmd, Pseq([\rest,\noteon,Prand([\noteon,\rest],inf)],1),
 				\voicename, \bfl,
 				\midinote, Prand([49,52,53,56,59,62],inf), 
-				\dur, Prand([4,8,8],inf),
+				\dur, Prand([64,8,8],inf),
 				\amp, 1.0
 			),
 		// trumpet 1
@@ -1733,7 +1745,7 @@
 						inf
 					),
 				\dur, 
-					Pseq([32,Prand([Pn(1/8,8),Pn(1/6,6),
+					Pseq([48,Prand([Pn(1/8,8),Pn(1/6,6),
 						Pn(1/3,3),1,2,4,Pn(1/4,4),Pn(1/5,5)],inf)],1),
 				\amp, Pexprand(0.25,1.0,inf)
 			),

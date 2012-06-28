@@ -29,7 +29,7 @@
 ~durations[6] = 60; ~delays[6] = 2;
 ~durations[7] = 40; ~delays[7] = 0;
 ~durations[8] = 60; ~delays[8] = 0;
-~durations[9] = 60; ~delays[9] = 0;
+~durations[9] = 120; ~delays[9] = 0;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -1595,7 +1595,7 @@
 				\osccmd, \noteon,
 				\voicename, \fl,
 				\midinote, 69+Pseq([0,2],inf),
-				\dur, Prand([28,12],inf),
+				\dur, Prand([28,12],2),
 				\legato, 0.75,
 				\amp, Pexprand(0.75,1.0,inf)
 			),			
@@ -1843,7 +1843,7 @@
 					"violin.excessive pressure",
 					"viola.harmonic.artificial.fourth",
 					"viola.harmonic.artificial.fourth",
-					"violoncello.ordinario",
+					"violoncello.flautando",
 					"double bass.molto sul ponticello"],
 				\dur, Pn(0.01,1)
 			),
@@ -1857,8 +1857,8 @@
 				\midinote, 
 					Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
-				\dur, 16,
-				\amp, Pexprand(0.1,0.5,inf)
+				\dur, Pseq([16,Prand([4,2,8],inf)],inf),
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 2
 			~delays[9]+0.05,
@@ -1870,8 +1870,8 @@
 				\midinote, 
 					Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
-				\dur, 16,
-				\amp, Pexprand(0.1,0.5,inf)
+				\dur, Pseq([16,Prand([4,2,8],inf)],inf),
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 3
 			~delays[9]+0.05,
@@ -1884,7 +1884,7 @@
 					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\legato, 0.2,
-				\dur, Pseq([16,Prand([4,2,8],inf)],inf),
+				\dur, Pseq([16,Prand(1/[4,2,1],inf)],inf),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 4
@@ -1898,7 +1898,7 @@
 					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
 				\legato, 0.2,
-				\dur, Pseq([16,Prand([4,2,8],inf)],inf),
+				\dur, Pseq([16,Prand(1/[4,2,1],inf)],inf),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// viola 1
@@ -1906,21 +1906,21 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Prand([\rest,\noteon],1)],1),
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \va1,
 				\midinote, 
 					Prand(difference(~hseries[0],~hseries[3]-48).select({|n,i| 
 						n>=73}).select({|n,i| n<=109}),inf), 
 				\legato, 0.2,
 				\dur, Pseq([8,Prand([4,2,8],inf)],inf),
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.75,1.0,inf)
 			),
 		// viola 2
 			~delays[9]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Prand([\rest,\noteon],1)],1),
+				\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 				\voicename, \va2,
 				\midinote, 
 					Prand(union(~hseries[0],~hseries[3]-48).select({|n,i| 
@@ -1928,24 +1928,55 @@
 				\legato, 0.2,
 				\lag, Prand(1/[16,8,4,2,1],inf),
 				\dur, Pseq([8,Prand([4,2,8],inf)],inf),
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, Pexprand(0.75,1.0,inf)
 			),
-		// viola -> fbdelay 
+		// viola -> warp 
+			~delays[9]+0.05,
+			Pbind(
+				\instrument, \warp,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(9,1),
+				\out, ~master_fx_bus.subBus(9,1),
+				\dur, ~durations[9],
+				\atk, ~durations[9] * 0.75,
+				\sus, ~durations[9] * 0.1,
+				\rel, ~durations[9] * 0.99, 
+				\amp, 0.75,
+				\maxdelay, 11,
+				\warpfactor, [-12,-24,-36,-7].midiratio,
+				\freqscale, Pkey(\warpfactor)
+			),
+		// warp -> fbdelay 
 			~delays[9]+0.05,
 			Pbind(
 				\instrument, \fbdelay,
 				\group, ~fx,
-				\in, ~master_dry_bus.subBus(9,1),
-				\out, 20,
+				\in, ~master_fx_bus.subBus(9,1),
+				\out, ~master_fx_bus.subBus(23,1),
 				\dur, ~durations[9],
-				\atk, ~durations[9] * 0.6,
+				\atk, ~durations[9] * 0.75,
 				\sus, ~durations[9] * 0.1,
 				\rel, ~durations[9] * 0.99, 
-				\amp, 0.75,
+				\amp, 1.0,
+				\maxdelay, 11,
 				\delay, (3,5..11),
 				\fb, 0.25
-			),						
-		// violoncello
+			),	
+		// fbdelay -> hala 
+			~delays[9]+0.05,
+			PmonoArtic(
+				\hala,
+				\group, ~output,
+				\in, ~master_fx_bus.subBus(23,1),
+				\out, 26, 
+				\dur, ~durations[9] / 120,
+				\atk, ~durations[9] * 0.5,
+				\sus, ~durations[9] * 0.99,
+				\rel, ~durations[9] * 0.01, 
+				\amp, 0.75,
+				\pan, Pbrown(-1.0,1.0,0.15,inf),
+				\legato, 1.1
+			),											// violoncello
 			~delays[9]+0.075,
 			Pbind(
 				\type, \ctosc, 
@@ -1962,7 +1993,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+				\osccmd, \noteon,
 				\voicename, \cb,
 				\midinote, 26, 
 				\dur, ~durations[9],
@@ -1974,12 +2005,12 @@
 				\pitchshift,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(11,1),
-				\out, 17,
+				\out, 20,
 				\dur, ~durations[9] / 381,
-				\atk, ~durations[9] * 0.5,
+				\atk, ~durations[9] * 0.45,
 				\sus, ~durations[9] * 0.2,
 				\rel, ~durations[9] * 0.3, 
-				\amp, 0.75,
+				\amp, 1.0,
 				\ratio, Prand([0.5,0.499,0.501],inf),
 				\legato, 1.1
 			)			

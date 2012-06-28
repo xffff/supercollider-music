@@ -28,7 +28,7 @@
 ~durations[5] = 72; ~delays[5] = 4;
 ~durations[6] = 60; ~delays[6] = 2;
 ~durations[7] = 40; ~delays[7] = 0;
-~durations[8] = 60; ~delays[8] = 0;
+~durations[8] = 80; ~delays[8] = 0;
 ~durations[9] = 120; ~delays[9] = 0;
 
 ~load_patterns = {
@@ -1846,6 +1846,17 @@
 					"violoncello.flautando",
 					"double bass.molto sul ponticello"],
 				\dur, Pn(0.01,1)
+			),
+		// flute
+			~delays[9]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Prand([\rest,\noteon],1)],1),
+				\voicename, \vi1,
+				\midinote, 93, 
+				\dur, Pseq([80,40],inf),
+				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 1
 			~delays[9]+0.05,

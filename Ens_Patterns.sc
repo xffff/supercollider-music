@@ -1575,9 +1575,9 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bfl,\bcl,\tr1,\tr2,\tb1,\tb2,\sx1,\vc],
+				\voicename, [\fl,\bfl,\bcl,\tr1,\tr2,\tb1,\tb2,\sx1,\vc],
 				\programname, 
-					#[
+					#["flute.air noise.closed.vowel varied",
 					"bass.flute.multiphonic",
 					"bass clarinet boehm system.ordinario",					"trumpet in c.ordinario",
 					"trumpet in c.ordinario",
@@ -1587,6 +1587,18 @@
 					"violoncello.col legno battuto.ordinario"],
 				\dur, Pn(0.01,1)
 			),
+		// flute
+			~delays[8]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \fl,
+				\midinote, 69+Pseq([0,2],inf),
+				\dur, Prand([28,12],inf),
+				\legato, 0.75,
+				\amp, Pexprand(0.75,1.0,inf)
+			),			
 		// bass flute
 			~delays[8]+0.05,
 			Pbind(
@@ -1955,7 +1967,22 @@
 				\midinote, 26, 
 				\dur, ~durations[9],
 				\amp, 1.0
-			)
+			),
+		// double bass -> pitchshift 
+			~delays[9]+0.05,
+			PmonoArtic(
+				\pitchshift,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(11,1),
+				\out, 17,
+				\dur, ~durations[9] / 381,
+				\atk, ~durations[9] * 0.5,
+				\sus, ~durations[9] * 0.2,
+				\rel, ~durations[9] * 0.3, 
+				\amp, 0.75,
+				\ratio, Prand([0.5,0.499,0.501],inf),
+				\legato, 1.1
+			)			
 		], 1),
 	);
 };

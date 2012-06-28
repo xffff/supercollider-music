@@ -1856,7 +1856,7 @@
 				\voicename, \vi1,
 				\midinote, 93, 
 				\dur, Pseq([80,40],inf),
-				\amp, Pexprand(0.5,1.0,inf)
+				\amp, 1.0
 			),
 		// violin 1
 			~delays[9]+0.05,
@@ -1954,7 +1954,7 @@
 				\rel, ~durations[9] * 0.99, 
 				\amp, 0.75,
 				\maxdelay, 11,
-				\warpfactor, [-12,-24,-36,-7].midiratio,
+				\warpfactor, [-12,-24,-36,-7,7,12].midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
 		// warp -> fbdelay 
@@ -1965,9 +1965,9 @@
 				\in, ~master_fx_bus.subBus(9,1),
 				\out, ~master_fx_bus.subBus(23,1),
 				\dur, ~durations[9],
-				\atk, ~durations[9] * 0.75,
-				\sus, ~durations[9] * 0.1,
-				\rel, ~durations[9] * 0.99, 
+				\atk, ~durations[9] * 0.99,
+				\sus, 0.01,
+				\rel, ~durations[9] * 0.01, 
 				\amp, 1.0,
 				\maxdelay, 11,
 				\delay, (3,5..11),

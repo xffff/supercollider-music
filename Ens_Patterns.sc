@@ -1596,7 +1596,7 @@
 				\osccmd, Pseq([\rest,\noteon],1),
 				\voicename, \fl,
 				\midinote, 81, 
-				\dur, Prand([32,8],inf),
+				\dur, Prand([24,8],inf),
 				\amp, Pexprand(0.75,1.0,inf)
 			),		
 		// bass flute

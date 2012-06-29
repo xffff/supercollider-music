@@ -295,7 +295,7 @@
 					"violin.ordinario",
 					"viola.ordinario",
 					"viola.ordinario",
-					"violoncello.pizzicato",
+					"violoncello.flautando",
 					"double bass.pizzicato.bartok"],
 				\dur, Pn(0.01,1)
 			),
@@ -2114,7 +2114,8 @@
 					#["tenor trombone.ordinario",
 					"tenor trombone.ordinario",
 					"violin.excessive pressure",
-					"violin.excessive pressure"],
+					"violin.excessive pressure",
+					"double bass.pizzicato.bartok"],
 				\dur, Pn(0.01,1)
 			),
 //		// trombone 1
@@ -2159,7 +2160,7 @@
 					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 						n>=55}).select({|n,i| n<=84}),inf), 
 				\legato, 0.1,
-				\dur, Pseq([32,Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf)],inf),
+				\dur, Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf),
 				\amp, Pexprand(0.5,1.0,inf)
 			),	
 		// violin 3
@@ -2173,8 +2174,19 @@
 					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 						n>=55}).select({|n,i| n<=84}),inf), 
 				\legato, 0.1,
-				\dur, Pseq([32,Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf)],inf),
+				\dur, Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf),
 				\amp, Pexprand(0.5,1.0,inf)
+			),
+		// double bass
+			~delays[9]+0.075,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \cb,
+				\midinote, 26, 
+				\dur, 32,
+				\amp, 1.0
 			)							
 		], 1),
 	);

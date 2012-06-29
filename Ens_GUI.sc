@@ -15,6 +15,7 @@ CmdPeriod.add({~stop_all.fork;});
 	postln("/****************************************************/");
 	postln(""); postln("");
 
+	~clock = ClockFace.new;
 	w=Window(" ", Rect(100, 200, 85, 210));
 	w.view.decorator = FlowLayout(w.view.bounds);
 	w.view.decorator.gap = 10@10;
@@ -99,6 +100,7 @@ CmdPeriod.add({~stop_all.fork;});
 			~initialise.fork;
 			5.wait;
 			~sequencer_stream = ~sequencer.play;	
+			~clock.play;
 		};
 		postln("Play!");
 	};
@@ -110,6 +112,8 @@ CmdPeriod.add({~stop_all.fork;});
 	stopButton.action = { |butt|
 		~stop_all.fork;
 		s.freeAll;
+		~clock.stop;
+		~clock.cursecs_(0);
 		postln("Stop!");
 	};
 	
@@ -147,6 +151,7 @@ CmdPeriod.add({~stop_all.fork;});
 			0.5.wait;
 			("killall scsynth").unixCmd;
 			0.5.wait;
+			~clock.free;
 			Environment.clear;
 			postln("Bye!");
 		}

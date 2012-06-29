@@ -7,6 +7,7 @@
 var initButton, stopButton, playButton, ctButton, routeButton, queryButton, meterButton;
 ~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece";
 ~contimbre_path = "/Volumes/Time Machine Backups/conTimbre";
+~buffersize = 2048;
 CmdPeriod.add({~stop_all.fork;});
 
 	postln("/****************************************************/");
@@ -26,7 +27,7 @@ CmdPeriod.add({~stop_all.fork;});
 		fork{
 			postln("Starting jackd... (3s)");
 			//("/usr/local/bin/jackd -R -P 0 -d coreaudio -d YamahaFWAudioEngine:0 -i 12 -o 12 -r 48000 -p 1024").unixCmd;
-			("/usr/local/bin/jackd -R -P 0 -d coreaudio -r 48000 -p 1024").unixCmd;
+			("/usr/local/bin/jackd -R -P 0 -d coreaudio -r 48000 -p "++~buffersize).unixCmd;
 			3.wait;
 			postln("Startup...");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Startup.sc");

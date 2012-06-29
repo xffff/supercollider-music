@@ -22,10 +22,10 @@
 		o = Server.local.options;
 		o.inDevice = "JackRouter";
 		o.outDevice = "JackRouter";
-		o.blockSize = 1024;
-		o.hardwareBufferSize = 1024;
-		o.numOutputBusChannels = 32;
-		o.numInputBusChannels = 32;
+		o.blockSize = ~buffersize;
+		o.hardwareBufferSize = ~buffersize;
+		o.numOutputBusChannels = 34;
+		o.numInputBusChannels = 34;
 		o.memSize;
 		if(o.memSize<1048576,{o.memSize = 1048576}); // 1GB 2**20
 		s.boot;

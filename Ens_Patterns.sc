@@ -1610,18 +1610,18 @@
 				\dur, Prand([26,12],inf),
 				\amp, Pexprand(0.1,0.25,inf)
 			),
-		// bass clarinet
-			~delays[8]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,\noteon],1),
-				\voicename, \bcl,
-				\midinote, 81, 
-				\dur, Prand([24,12],inf),
-				\amp, Pexprand(0.1,0.25,inf)
-
-			),					
+//		// bass clarinet
+//			~delays[8]+0.05,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, Pseq([\rest,\noteon],1),
+//				\voicename, \bcl,
+//				\midinote, 81, 
+//				\dur, Prand([24,12],inf),
+//				\amp, Pexprand(0.1,0.25,inf)
+//
+//			),					
 		// trumpet 1
 			~delays[8]+0.05,
 			Pbind(
@@ -2010,20 +2010,20 @@
 				\dur, ~durations[9],
 				\amp, 1.0
 			),
-		// double bass -> pitchshift 
+		// double bass -> freqshift 
 			~delays[9]+0.05,
 			PmonoArtic(
-				\pitchshift,
+				\freqshift,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(11,1),
-				\out, 20,
-				\dur, ~durations[9] / 381,
-				\atk, ~durations[9] * 0.45,
+				\out, 19,
+				\dur, ~durations[9] * ~hseries[0].choose,
+				\atk, ~durations[9] * 0.5,
 				\sus, ~durations[9] * 0.2,
-				\rel, ~durations[9] * 0.3, 
+				\rel, ~durations[9] * 0.45, // overlap to stop node not found
 				\amp, 1.0,
-				\ratio, Prand([0.5,0.499,0.501],inf),
-				\legato, 1.1
+				\freq, 26.midicps*Prand([0.25,0.5]++(2,4..64),inf),
+				\legato, 1.0
 			)			
 		], 1),
 	);

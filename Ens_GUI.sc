@@ -101,6 +101,7 @@ CmdPeriod.add({~stop_all.fork;});
 			~initialise.fork;
 			5.wait;
 			~sequencer_stream = ~sequencer.play;	
+			~clock.cursecs_(0);
 			~clock.play;
 		};
 		postln("Play!");
@@ -114,7 +115,6 @@ CmdPeriod.add({~stop_all.fork;});
 		~stop_all.fork;
 		s.freeAll;
 		~clock.stop;
-		~clock.cursecs_(0);
 		postln("Stop!");
 	};
 	

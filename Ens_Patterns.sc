@@ -27,7 +27,7 @@
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
 ~durations[6] = 60; ~delays[6] = 2;
-~durations[7] = 40; ~delays[7] = 0;
+~durations[7] = 50; ~delays[7] = 0;
 ~durations[8] = 80; ~delays[8] = 0;
 ~durations[9] = 120; ~delays[9] = 0;
 
@@ -1314,7 +1314,7 @@
 				\dur, ~durations[6],
 				\atk, ~durations[6],
 				\sus, ~durations[6] * 0.1,
-				\rel, ~durations[6], 
+				\rel, ~durations[7], 
 				\amp, 0.65,
 				\warpfactor, (-5,-3..5).midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -1340,7 +1340,7 @@
 				\dur, ~durations[6],
 				\atk, ~durations[6],
 				\sus, ~durations[6] * 0.1,
-				\rel, ~durations[6] * 0.5, 
+				\rel, ~durations[7], 
 				\amp, 0.6,
 				\warpfactor, (1,3..11).midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -1440,7 +1440,7 @@
 				\dur, ~durations[7],
 				\atk, ~durations[7],
 				\sus, ~durations[7] * 0.01,
-				\rel, ~durations[7] * 0.5, 
+				\rel, 10, 
 				\amp, 0.65,
 				\warpfactor, [-7,-12].midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -1507,7 +1507,7 @@
 				\dur, ~durations[7],
 				\atk, ~durations[7],
 				\sus, ~durations[7] * 0.01,
-				\rel, ~durations[7] * 0.5, 
+				\rel, 20, 
 				\amp, 0.6,
 				\warpfactor, [-12,-24].midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -1652,7 +1652,7 @@
 				\amp, Pexprand(0.3,0.6,inf)
 			),
 		// trumpet -> warp 
-			~delays[8]+0.05,
+			~delays[8]+0.045,
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
@@ -1695,7 +1695,7 @@
 				\amp, Pexprand(0.3,0.5,inf)
 			),
 		// trombone -> warp 
-			~delays[8]+0.05,
+			~delays[8]+0.045,
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
@@ -1721,16 +1721,16 @@
 				\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(1!4,1))],1)
 			),
 		// saxophone -> warp
-			~delays[8]+0.05,
+			~delays[8]+16,
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(6,1),
 				\out, 17,
-				\dur, ~durations[8],
-				\atk, ~durations[8] * 0.2,
-				\sus, ~durations[8] * 0.1,
-				\rel, ~durations[8] * 0.99, 
+				\dur, (~durations[8]-16),
+				\atk, (~durations[8]-16) * 0.2,
+				\sus, (~durations[8]-16) * 0.1,
+				\rel, (~durations[8]-16) * 0.99, 
 				\amp, 1.0,
 				\warpfactor, [-12,-24,-36,-7,-5,-3].midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -1763,16 +1763,16 @@
 				\amp, Pexprand(0.25,1.0,inf)
 			),
 		// violoncello -> pitchshift 
-			~delays[8]+0.05,
+			~delays[8]+48,
 			PmonoArtic(
 				\pitchshift,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(10,1),
 				\out, ~master_fx_bus.subBus(10,1), // pitchshift -> hala
-				\dur, ~durations[8] / 381,
-				\atk, ~durations[8],
-				\sus, ~durations[8] * 0.1,
-				\rel, ~durations[8] * 0.5, 
+				\dur, (~durations[8]-48) / 381,
+				\atk, (~durations[8]-48),
+				\sus, (~durations[8]-48) * 0.1,
+				\rel, (~durations[8]-48) * 0.5, 
 				\amp, 4.0,
 				\ratio, 2.0!3,
 				\windowSize, 2.0,
@@ -1807,7 +1807,7 @@
 				\sus, ~durations[8] * 0.1,
 				\rel, ~durations[8] * 0.99, 
 				\amp, 0.75,
-				\warpfactor, [-12,-24,-36,-7,-5,-3].midiratio,
+				\warpfactor, [-12,-24,-36,-7,-5].midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
 		// bass drum
@@ -1930,7 +1930,7 @@
 				\midinote, 
 					Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
-				\dur, Pseq([16,Prand([4,8,16],inf)],inf),
+				\dur, Pseq([32,Prand([4,8,16],inf)],inf),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// violin 2
@@ -1944,7 +1944,7 @@
 					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 						n>=55}).select({|n,i| n<=84}),inf), 
 				\legato, 0.1,
-				\dur, Pseq([16,Prand(1/[4,2,1],inf)],inf),
+				\dur, Pseq([32,Prand(1/[4,2,1],inf)],inf),
 				\amp, Pexprand(0.5,1.0,inf)
 			),			
 		// violin 3
@@ -2000,7 +2000,7 @@
 						n>=73}).select({|n,i| n<=109}),inf), 
 				\legato, 0.2,
 				\lag, Prand(1/[16,8,4,2,1],inf),
-				\dur, Pseq([8,Prand([4,2,8],inf)],inf),
+				\dur, Pseq([16,Prand([4,2,8],inf)],inf),
 				\amp, Pexprand(0.75,1.0,inf)
 			),
 		// viola -> warp 
@@ -2011,16 +2011,15 @@
 				\in, ~master_dry_bus.subBus(9,1),
 				\out, ~master_fx_bus.subBus(9,1),
 				\dur, ~durations[9],
-				\atk, ~durations[9] * 0.75,
-				\sus, ~durations[9] * 0.1,
-				\rel, ~durations[9] * 0.99, 
+				\atk, ~durations[9] * 0.7,
+				\sus, 0.01,
+				\rel, ~durations[9] * 0.3, 
 				\amp, 0.75,
-				\maxdelay, 11,
 				\warpfactor, [-12,-24,-36,-7,7,12].midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
 		// warp -> fbdelay 
-			~delays[9]+0.05,
+			~delays[9]+0.15,
 			Pbind(
 				\instrument, \fbdelay,
 				\group, ~fx,
@@ -2036,7 +2035,7 @@
 				\fb, 0.25
 			),	
 		// fbdelay -> hala 
-			~delays[9]+0.05,
+			~delays[9]+0.15,
 			PmonoArtic(
 				\hala,
 				\group, ~output,

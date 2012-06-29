@@ -2084,7 +2084,7 @@
 				\amp, 1.0,
 				\freq, 26.midicps*Pseg(Prand(1/(1,3..65)++(2,4..64),inf),
 					Prand(1/(1..10),inf),\exp,inf),
-				\legato, 4.0
+				\legato, 2.0
 			),
 		// tam-tam
 			~delays[9]+0.05,

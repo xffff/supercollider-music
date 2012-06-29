@@ -1831,12 +1831,12 @@
 	~sections[9] = Pfindur(~durations[9],
 		Ptpar([
 		// program changes
-			~delays[9]+0.05,
+			~delays[9],
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\tb1,\tb2,\tr1,\tr2,
+				\voicename, [\fl,\tr1,\tr2,\tb1,\tb2,
 					\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,\cb],
 				\programname, 
 					#["flute.ordinario",
@@ -1845,9 +1845,9 @@
 					"tenor trombone.ordinario",
 					"tenor trombone.ordinario",		
 					"violin.ordinario",
-					"violin.ordinario",
 					"violin.excessive pressure",
 					"violin.excessive pressure",
+					"violin.ordinario",			
 					"viola.harmonic.artificial.fourth",
 					"viola.harmonic.artificial.fourth",
 					"violoncello.flautando",
@@ -1875,7 +1875,6 @@
 				\midinote, 
 					Pseq(~hseries[0].select({|n,i| 
 						n>=36}).select({|n,i| n<=71}),inf), 
-				\legato, 0.2,
 				\dur, Pseq([80,Prand([8,4,16],inf)],1),
 				\amp, Pexprand(0.3,0.5,inf)
 			),		
@@ -1889,7 +1888,6 @@
 				\midinote, 
 					Pseq(~hseries[0].select({|n,i| 
 						n>=36}).select({|n,i| n<=71}),inf), 
-				\legato, 0.2,
 				\dur, Pseq([80,Prand([8,4,16],inf)],1),
 				\amp, Pexprand(0.3,0.5,inf)
 			),									
@@ -1903,7 +1901,6 @@
 				\midinote, 
 					Pseq(~hseries[1].select({|n,i| 
 						n>=72}).select({|n,i| n<=83}),inf), 
-				\legato, 0.2,
 				\dur, Pseq([80,Prand([8,4,16],inf)],1),
 				\amp, Pexprand(0.3,0.5,inf)
 			),		
@@ -1917,7 +1914,6 @@
 				\midinote, 
 					Pseq(~hseries[2].select({|n,i| 
 						n>=72}).select({|n,i| n<=83}),inf), 
-				\legato, 0.2,
 				\dur, Pseq([80,Prand([8,4,16],inf)],1),
 				\amp, Pexprand(0.3,0.5,inf)
 			),							
@@ -2080,7 +2076,7 @@
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(11,1),
 				\out, 19,
-				\dur, ~durations[9] * ~hseries[0].choose,
+				\dur, (~durations[9] * ~hseries[0].choose).range(100,1000),
 				\atk, ~durations[9] * 0.5,
 				\sus, ~durations[9] * 0.2,
 				\rel, ~durations[9] * 0.45, // overlap to stop node not found
@@ -2098,6 +2094,69 @@
 				\midinote, 64, 
 				\dur, Pn(32,1),
 				\amp, Pexprand(0.7,1.0,1)		
+			)			
+		], 1),
+	);
+	////////////////////////////////////////////////////////////////////////////////
+	~sections[10] = Pfindur(~durations[10],
+		Ptpar([
+		// program changes
+			~delays[10],
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \program,
+				\voicename, [\tr1,\tr2,\tb1,\tb2],
+				\programname, 
+					#["trumpet in c.ordinario",
+					"trumpet in c.ordinario",		
+					"tenor trombone.ordinario",
+					"tenor trombone.ordinario"],
+				\dur, Pn(0.01,1)
+			),
+		// trumpet 1
+			~delays[10]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \tr1,
+				\midinote, ~hseries[0][4],
+				\dur, 16,
+				\amp, Pexprand(0.3,0.5,inf)
+			),		
+		// trumpet 2
+			~delays[10]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \tr2,
+				\midinote, ~hseries[0][3],
+				\dur, 16,
+				\amp, Pexprand(0.3,0.5,inf)
+			),									
+		// trombone 1
+			~delays[10]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \tb1,
+				\midinote, ~hseries[0][2],
+				\dur, 16,
+				\amp, Pexprand(0.3,0.5,inf)
+			),		
+		// trombone 2
+			~delays[10]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \tb2,
+				\midinote, ~hseries[0][1],
+				\dur, 16,
+				\amp, Pexprand(0.3,0.5,inf)
 			)			
 		], 1),
 	);

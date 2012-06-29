@@ -2097,6 +2097,19 @@
 				\midinote, 64, 
 				\dur, Pn(32,1),
 				\amp, Pexprand(0.7,1.0,1)		
+			),
+		// bass drum
+			~delays[9]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pn(\noteon,inf),
+				\voicename, \bd,
+				\midinote, Prand([61,62],inf),
+				\dur, Pseq([32,Pseq([Pn(1,12),2],inf)],1),
+				\amp, 
+					Pseq([1,Pseg(Pseq([0.01,1.0],inf),
+						Pseq(~durations[8]-45!2,inf),\lin,inf)],1)
 			)			
 		], 1),
 	);
@@ -2109,7 +2122,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bcl,\tb1,\tb2,\vi1,\vi3],
+				\voicename, [\bcl,\tb1,\tb2,\vi1,\vi3,\cb],
 				\programname, 
 					#["tenor trombone.ordinario",
 					"tenor trombone.ordinario",

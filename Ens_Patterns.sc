@@ -2076,13 +2076,13 @@
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(11,1),
 				\out, 19,
-				\dur, 100/Prand(~hseries[0],inf),
+				\dur, 100/Pseg(Prand(~hseries[0],inf),Prand(10.rand!~hseries[0].size,inf),
 				\atk, ~durations[9] * 0.5,
 				\sus, ~durations[9] * 0.2,
 				\rel, ~durations[9] * 0.45, // overlap to stop node not found
 				\amp, 1.0,
 				\freq, 26.midicps*Prand([0.25,0.5]++(2,4..64),inf),
-				\legato, 1.1
+				\legato, 4.0
 			),
 		// tam-tam
 			~delays[9]+0.05,

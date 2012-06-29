@@ -2131,37 +2131,32 @@
 					"double bass.pizzicato.bartok"],
 				\dur, Pn(0.01,1)
 			),
-//		// trombone 1
-//			~delays[10]+0.05,
-//			Pbind(
-//				\type, \ctosc, 
-//				\oscout, ~osc_destination,
-//				\osccmd, Pwrand([\detuned_noteon,\rest],[0.6,0.4],inf),
-//				\voicename, \tb1,
-//				\midinote, 
-//					Pstutter(Prand((1..16),inf),
-//						Prand(~hseries[0].select({|n,i| 
-//							n>=24}).select({|n,i| n<=81}),inf),inf),
-//				\legato, 0.2,
-//				\dur, Prand([1/4,1/2],inf),
-//				\lag, Prand([0,1/8],inf),
-//				\amp, Pexprand(0.3,0.5,inf)
-//			),		
-//		// trombone 2
-//			~delays[10]+0.05,
-//			Pbind(
-//				\type, \ctosc, 
-//				\oscout, ~osc_destination,
-//				\osccmd, Pwrand([\detuned_noteon,\rest],[0.6,0.4],inf),
-//				\voicename, \tb2,
-//				\midinote, 
-//					Pstutter(Prand((1..16),inf),
-//						Prand(~hseries[0].select({|n,i| 
-//							n>=24}).select({|n,i| n<=81}),inf),inf),
-//				\legato, 0.2,
-//				\dur, Prand([1/4,1/2],inf),
-//				\amp, Pexprand(0.3,0.5,inf)
-//			),
+		// trombone 1
+			~delays[10]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Prand([\noteon,\rest],inf),
+				\voicename, \tb1,
+				\midinote, 
+					Pseq((~hseries[1]-48).select({|n,i| 
+						n>=75}).select({|n,i| n<=83}),inf), 
+				\dur, Prand([8,4,16],inf),
+				\amp, Pexprand(0.3,0.5,inf)
+			),		
+		// trombone 2
+			~delays[10]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Prand([\noteon,\rest],inf),
+				\voicename, \tb2,
+				\midinote, 
+					Pseq((~hseries[2]-48).select({|n,i| 
+						n>=75}).select({|n,i| n<=83}),inf), 
+				\dur, Prand([8,4,16],inf),
+				\amp, Pexprand(0.3,0.5,inf)
+			),							
 		// violin 1
 			~delays[10]+0.05,
 			Pbind(

@@ -1228,6 +1228,7 @@
 			Pbind(
 				\instrument, \convolve,
 				\group, ~fx,
+				\addAction, 1, // must come after rlpf
 				\in, ~master_dry_bus.subBus(10,1),
 				\convin, ~master_fx_bus.subBus(15,1), // pulse -> rlpf -> convolve
 				\out, 16,
@@ -2023,6 +2024,7 @@
 			Pbind(
 				\instrument, \fbdelay,
 				\group, ~fx,
+				\addAction, 1, // must come after warp in this group
 				\in, ~master_fx_bus.subBus(9,1),
 				\out, ~master_fx_bus.subBus(23,1),
 				\dur, ~durations[9],

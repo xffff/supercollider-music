@@ -1956,7 +1956,7 @@
 				\midinote, 
 					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 						n>=55}).select({|n,i| n<=84}),inf), 
-				\legato, 0.01,
+				\legato, 0.1,
 				\dur, Pseq([16,Prand(1/[4,2,1],inf)],inf),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
@@ -1970,7 +1970,7 @@
 				\midinote, 
 					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 						n>=55}).select({|n,i| n<=84}),inf), 
-				\legato, 0.01,
+				\legato, 0.1,
 				\dur, Pseq([16,Prand(1/[4,2,1],inf)],inf),
 				\amp, Pexprand(0.5,1.0,inf)
 			),

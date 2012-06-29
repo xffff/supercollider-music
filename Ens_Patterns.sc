@@ -1846,8 +1846,8 @@
 					"tenor trombone.ordinario",		
 					"violin.ordinario",
 					"violin.excessive pressure",
-					"violin.excessive pressure",
-					"violin.ordinario",			
+					"violin.ordinario",
+					"violin.excessive pressure",	
 					"viola.harmonic.artificial.fourth",
 					"viola.harmonic.artificial.fourth",
 					"violoncello.flautando",
@@ -1899,8 +1899,8 @@
 				\osccmd, Pseq([\rest,Prand([\noteon,\rest],inf)],8),
 				\voicename, \tb1,
 				\midinote, 
-					Pseq(~hseries[1].select({|n,i| 
-						n>=72}).select({|n,i| n<=83}),inf), 
+					Pseq((~hseries[1]-48).select({|n,i| 
+						n>=75}).select({|n,i| n<=83}),inf), 
 				\dur, Pseq([80,Prand([8,4,16],inf)],1),
 				\amp, Pexprand(0.3,0.5,inf)
 			),		
@@ -1912,8 +1912,8 @@
 				\osccmd, Pseq([\rest,Prand([\noteon,\rest],inf)],8),
 				\voicename, \tb2,
 				\midinote, 
-					Pseq(~hseries[2].select({|n,i| 
-						n>=72}).select({|n,i| n<=83}),inf), 
+					Pseq((~hseries[2]-48).select({|n,i| 
+						n>=75}).select({|n,i| n<=83}),inf), 
 				\dur, Pseq([80,Prand([8,4,16],inf)],1),
 				\amp, Pexprand(0.3,0.5,inf)
 			),							
@@ -1943,8 +1943,21 @@
 				\legato, 0.1,
 				\dur, Pseq([32,Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf)],inf),
 				\amp, Pexprand(0.5,1.0,inf)
-			),			
+			),		
 		// violin 3
+			~delays[9]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.6,0.4],inf)],1),
+				\voicename, \vi4,
+				\midinote, 
+					Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
+						n>=70}).select({|n,i| n<=104}),inf), 
+				\dur, Pseq([16,Prand([4,8,16],inf)],inf),
+				\amp, Pexprand(0.5,1.0,inf)
+			),				
+		// violin 4
 			~delays[9]+0.05,
 			Pbind(
 				\type, \ctosc, 
@@ -1958,19 +1971,6 @@
 				\dur, Pseq([32,Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf)],inf),
 				\amp, Pexprand(0.5,1.0,inf)
 			),
-		// violin 4
-			~delays[9]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.6,0.4],inf)],1),
-				\voicename, \vi4,
-				\midinote, 
-					Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
-				\dur, Pseq([16,Prand([4,8,16],inf)],inf),
-				\amp, Pexprand(0.5,1.0,inf)
-			),			
 		// viola 1
 			~delays[9]+0.05,
 			Pbind(
@@ -2078,10 +2078,10 @@
 				\out, 19,
 				\dur, 100/Pseg(Prand(~hseries[0],inf),
 					Prand(10.rand!~hseries[0].size,inf),\exp,inf),
-				\atk, ~durations[9] * 0.5,
-				\sus, ~durations[9] * 0.2,
-				\rel, ~durations[9] * 0.45, // overlap to stop node not found
-				\amp, 1.0,
+				\atk, ~durations[9],
+				\sus, 0.01,
+				\rel, 0.01, 
+				\amp, 2.0,
 				\freq, 26.midicps*Pseg(Prand(1/(1,3..65)++(2,4..64),inf),
 					Prand(1/(1..10),inf),\exp,inf),
 				\legato, 2.0
@@ -2116,28 +2116,6 @@
 					"tenor trombone.ordinario"],
 				\dur, Pn(0.01,1)
 			),
-		// trumpet 1
-			~delays[10]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, \detuned_noteon,
-				\voicename, \tr1,
-				\midinote, ~hseries[0][3],
-				\dur, 16,
-				\amp, Pexprand(0.3,0.5,inf)
-			),		
-		// trumpet 2
-			~delays[10]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, \detuned_noteon,
-				\voicename, \tr2,
-				\midinote, ~hseries[0][2],
-				\dur, 16,
-				\amp, Pexprand(0.3,0.5,inf)
-			),									
 		// trombone 1
 			~delays[10]+0.05,
 			Pbind(
@@ -2145,8 +2123,13 @@
 				\oscout, ~osc_destination,
 				\osccmd, \detuned_noteon,
 				\voicename, \tb1,
-				\midinote, ~hseries[0][1],
-				\dur, 16,
+				\midinote, 
+					Pstutter(Prand((1..16),inf),
+						Prand(~hseries[0].select({|n,i| 
+							n>=24}).select({|n,i| n<=81}),inf),inf),
+				\legato, 0.2,
+				\dur, 1/4,
+				\lag, Prand([0,1/8],inf),
 				\amp, Pexprand(0.3,0.5,inf)
 			),		
 		// trombone 2
@@ -2156,10 +2139,42 @@
 				\oscout, ~osc_destination,
 				\osccmd, \detuned_noteon,
 				\voicename, \tb2,
-				\midinote, ~hseries[0][0],
-				\dur, 16,
+				\midinote, 
+					Pstutter(Prand((1..16),inf),
+						Prand(~hseries[0].select({|n,i| 
+							n>=24}).select({|n,i| n<=81}),inf),inf),
+				\legato, 0.2,
+				\dur, 1/4,
 				\amp, Pexprand(0.3,0.5,inf)
-			)			
+			),
+		// violin 2
+			~delays[10]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+				\voicename, \vi2,
+				\midinote, 
+					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
+						n>=55}).select({|n,i| n<=84}),inf), 
+				\legato, 0.1,
+				\dur, Pseq([32,Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf)],inf),
+				\amp, Pexprand(0.5,1.0,inf)
+			),	
+		// violin 4
+			~delays[10]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
+				\voicename, \vi4,
+				\midinote, 
+					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
+						n>=55}).select({|n,i| n<=84}),inf), 
+				\legato, 0.1,
+				\dur, Pseq([32,Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf)],inf),
+				\amp, Pexprand(0.5,1.0,inf)
+			)							
 		], 1),
 	);
 };

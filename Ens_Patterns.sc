@@ -30,7 +30,7 @@
 ~durations[7] = 50; ~delays[7] = 0;
 ~durations[8] = 80; ~delays[8] = 0;
 ~durations[9] = 120; ~delays[9] = 0;
-~durations[10] = 60; ~delays[10] = 0;
+~durations[10] = 64; ~delays[10] = 0;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -1858,12 +1858,12 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.75,0.25],inf)],1),
+				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.01,0.99],inf)],1),
 				\voicename, \fl,
 				\midinote, 
 					Pwalk((~hseries[1]-48).select({|n,i| 
 						n>=60}).select({|n,i| n<=84}),Pn(1,inf),Pseq([1,-1],inf),0),  
-				\dur, Pseq([64,Pn(1/8,inf)],1),
+				\dur, Pseq([72,Pn(1/8,inf)],1),
 				\amp, Pexprand(0.4,0.6,inf)
 			),
 		// trombone 1
@@ -2096,9 +2096,11 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bcl,\tb1,\tb2,\vi1,\vi3,\cb],
+				\voicename, [\fl,\bcl,\tb1,\tb2,\vi1,\vi3,\cb],
 				\programname, 
-					#["bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
+					#[
+					"flute.ordinario",
+					"bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
 					"tenor trombone.ordinario",
 					"tenor trombone.ordinario",
 					"violin.excessive pressure",
@@ -2106,6 +2108,34 @@
 					"double bass.pizzicato.bartok"],
 				\dur, Pn(0.01,1)
 			),
+		// flute
+			~delays[9]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.01,0.99],inf)],1),
+				\voicename, \fl,
+				\midinote, 
+					Pwalk((~hseries[1]-48).select({|n,i| 
+						n>=60}).select({|n,i| n<=84}),Pn(1,inf),Pseq([1,-1],inf),0),
+				\legato, 0.2,  
+				\dur, Pseq([8,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
+				\amp, Pexprand(0.4,0.6,inf)
+			),
+		// bass clarinet
+			~delays[9]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.01,0.99],inf)],1),
+				\voicename, \bcl,
+				\midinote, 
+					Pwalk((~hseries[1]).select({|n,i| 
+						n>=34}).select({|n,i| n<=60}),Pn(1,inf),Pseq([1,-1],inf),0),
+				\legato, 0.2,  
+				\dur, Pseq([32,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
+				\amp, Pexprand(0.4,0.6,inf)
+			),			
 		// trombone 1
 			~delays[10]+0.05,
 			Pbind(

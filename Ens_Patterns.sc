@@ -1859,7 +1859,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.75,0.25],inf)],1),
-				\voicename, \vi1,
+				\voicename, \fl,
 				\midinote, 
 					Pwalk((~hseries[1]-48).select({|n,i| 
 						n>=60}).select({|n,i| n<=84}),Pn(1,inf),Pseq([1,-1],inf),0),  

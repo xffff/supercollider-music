@@ -1837,12 +1837,10 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\tr1,\tr2,\tb1,\tb2,
+				\voicename, [\fl,\bfl,\tb1,\tb2,
 					\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,\cb],
 				\programname, 
 					#["flute.ordinario",
-					"trumpet in c.ordinario",
-					"trumpet in c.ordinario",		
 					"tenor trombone.ordinario",
 					"tenor trombone.ordinario",		
 					"violin.ordinario",
@@ -1860,38 +1858,14 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Prand([\rest,\noteon],1)],1),
+				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.75,0.25],inf)],1),
 				\voicename, \vi1,
-				\midinote, 93, 
-				\dur, Pseq([80,40],inf),
-				\amp, 1.0
+				\midinote, 
+					Pwalk((~hseries[1]-48).select({|n,i| 
+						n>=60}).select({|n,i| n<=84}),Pn(1,inf),Pseq([1,-1],inf),0),  
+				\dur, Pseq([64,Pn(1/8,inf)],1),
+				\amp, Pexprand(0.4,0.6,inf)
 			),
-//		// trumpet 1
-//			~delays[9]+0.05,
-//			Pbind(
-//				\type, \ctosc, 
-//				\oscout, ~osc_destination,
-//				\osccmd, Pseq([\rest,Prand([\noteon,\rest],inf)],8),
-//				\voicename, \tr1,
-//				\midinote, 
-//					Pseq(~hseries[0].select({|n,i| 
-//						n>=36}).select({|n,i| n<=71}),inf), 
-//				\dur, Pseq([80,Prand([8,4,16],inf)],1),
-//				\amp, Pexprand(0.3,0.5,inf)
-//			),		
-//		// trumpet 2
-//			~delays[9]+0.05,
-//			Pbind(
-//				\type, \ctosc, 
-//				\oscout, ~osc_destination,
-//				\osccmd, Pseq([\rest,Prand([\noteon,\rest],inf)],8),
-//				\voicename, \tr2,
-//				\midinote, 
-//					Pseq(~hseries[0].select({|n,i| 
-//						n>=36}).select({|n,i| n<=71}),inf), 
-//				\dur, Pseq([80,Prand([8,4,16],inf)],1),
-//				\amp, Pexprand(0.3,0.5,inf)
-//			),									
 		// trombone 1
 			~delays[9]+0.05,
 			Pbind(
@@ -2124,7 +2098,8 @@
 				\osccmd, \program,
 				\voicename, [\bcl,\tb1,\tb2,\vi1,\vi3,\cb],
 				\programname, 
-					#["tenor trombone.ordinario",
+					#["bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
+					"tenor trombone.ordinario",
 					"tenor trombone.ordinario",
 					"violin.excessive pressure",
 					"violin.excessive pressure",

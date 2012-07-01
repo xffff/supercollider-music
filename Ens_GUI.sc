@@ -7,7 +7,7 @@
 var initButton, stopButton, playButton, ctButton, routeButton, queryButton, meterButton;
 ~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece";
 ~contimbre_path = "/Volumes/Time Machine Backups/conTimbre";
-~buffersize = 1024;
+~buffersize = 2048;
 CmdPeriod.add({~stop_all.fork;});
 
 	postln("/****************************************************/");
@@ -34,7 +34,7 @@ CmdPeriod.add({~stop_all.fork;});
 			postln("Compiled... starting scsynth...");
 			~startup.fork;
 			("open \"/Users/Michael_Murphy/Documents/REAPER Media/Ensemble_Piece/Ensemble_Piece_3232/Ensemble_Piece_3232.RPP\"").unixCmd;
-		}
+}
 	};
 	
 		w.view.decorator.nextLine;

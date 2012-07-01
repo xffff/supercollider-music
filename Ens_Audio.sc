@@ -17,12 +17,12 @@
 fork{
 	~cleanup = {
 		postln("Cleaning up");
-		s.newAllocators;
 		~input.free; ~fx.free; ~output.free;
 		~master_dry_bus.free;
 		~master_fx_bus.free;
 		Buffer.freeAll;
 		~dryaudio.free;
+		s.newAllocators;
 		s.sync; 
 		postln("Done cleaning up");
 	};
@@ -56,7 +56,7 @@ fork{
 		(
 		~dryaudio = Synth(\dryaudio, 
 			[
-			\in, #[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], 
+			\in, #[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 
 			\amp, 1.0, 
 			\out, ~master_dry_bus,
 			], target: ~input, addAction: \addToHead);

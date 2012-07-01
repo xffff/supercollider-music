@@ -1837,7 +1837,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\bfl,\tb1,\tb2,
+				\voicename, [\fl,\tb1,\tb2,
 					\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,\cb],
 				\programname, 
 					#["flute.ordinario",

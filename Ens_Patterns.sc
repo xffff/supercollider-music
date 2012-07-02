@@ -2139,7 +2139,7 @@
 				\programname, 
 					#[
 					"flute.ordinario",
-					"bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
+					"bass clarinet boehm system.ordinario",
 					"tenor trombone.ordinario",
 					"tenor trombone.ordinario",
 					"violin.excessive pressure",
@@ -2208,9 +2208,48 @@
 				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.01,0.99],inf)],1),
 				\voicename, \bcl,
 				\midinote, 
-					Pwalk((~hseries[1]).select({|n,i| 
-						n>=34}).select({|n,i| n<=60}),Pn(1,inf),Pseq([1,-1],inf),0),
-				\legato, 0.2,  
+					Pseq([
+						Pwalk(
+							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.rand),
+							Pseq([1,-1],inf),
+						0),
+						Pwalk(
+							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.rand),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.rand),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.rand),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.rand),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.rand),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.rand),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.rand),
+							Pseq([1,-1],inf),
+						0)],inf), 
+				\legato, 0.5,  
 				\dur, Pseq([32,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
 				\amp, Pexprand(0.4,0.6,inf)
 			),			

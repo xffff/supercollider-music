@@ -1914,9 +1914,9 @@
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\rest,\noteon],1),
 				\voicename, \bcl,
-				\midinote, Prand((29..31),1), 
+				\midinote, Prand([91,92],2), 
 				\dur, Pseq([80,Prand([8,16],inf)],1),
-				\amp, Pexprand(0.3,0.5,inf)
+				\amp, 1
 			),					
 		// trombone 1
 			~delays[9]+0.05,

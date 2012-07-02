@@ -7,7 +7,7 @@
 var initButton, stopButton, playButton, ctButton, routeButton, queryButton, meterButton;
 ~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece";
 ~contimbre_path = "/Volumes/Time Machine Backups/conTimbre";
-~buffersize = 2048;
+~buffersize = 512;
 CmdPeriod.add({~stop_all.fork;});
 
 	postln("/****************************************************/");
@@ -26,7 +26,7 @@ CmdPeriod.add({~stop_all.fork;});
 	initButton.action = { |butt|
 		fork{
 			postln("Starting jackd... (3s)");
-			("/usr/local/bin/jackd -R -P -10 -d coreaudio -d YamahaFWAudioEngine:0 -i 12 -o 12 -r 48000 -p "++~buffersize).unixCmd;
+			("/usr/local/bin/jackd -R -P -0 -d coreaudio -d YamahaFWAudioEngine:0 -i 12 -o 12 -r 48000 -p "++~buffersize).unixCmd;
 			//("/usr/local/bin/jackd -R -P 0 -d coreaudio -r 48000 -p "++~buffersize).unixCmd;
 			3.wait;
 			postln("Startup...");

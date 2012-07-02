@@ -34,6 +34,8 @@
 	~sections[9],
 	Pfuncn({"Section 10".postln; 0 }, 1),
 	~sections[10],
+	Pfuncn({"Section 11".postln; 0 }, 1),
+	~sections[11],
 	Pfuncn({"End!".postln; ~clock.stop; 0 }, 1)
 ], 1);
 )

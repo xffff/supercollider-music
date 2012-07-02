@@ -1865,42 +1865,42 @@
 				\midinote, 
 					Pxrand([
 						Pwalk(
-							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),
 						Pwalk(
-							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0)],inf), 
@@ -2170,42 +2170,42 @@
 				\midinote, 
 					Pxrand([
 						Pwalk(
-							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),
 						Pwalk(
-							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
-							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=96}),
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0)],inf), 
@@ -2300,11 +2300,9 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\tb1,\tb2,\vi1,\vi3,\cb],
+				\voicename, [\cb],
 				\programname, 
-					#["violin.excessive pressure",
-					"violin.excessive pressure",
-					"double bass.pizzicato"],
+					#["double bass.pizzicato"],
 				\dur, Pn(0.01,1)
 			),
 		// double bass

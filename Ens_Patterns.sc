@@ -1861,8 +1861,47 @@
 				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.01,0.99],inf)],1),
 				\voicename, \fl,
 				\midinote, 
-					Pwalk((~hseries[1]-48).select({|n,i| 
-						n>=60}).select({|n,i| n<=84}),Pn(1,inf),Pseq([1,-1],inf),0),  
+					Pseq([
+						Pwalk(
+							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),
+						Pwalk(
+							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0)],inf), 
 				\dur, Pseq([72,Pn(1/8,inf)],1),
 				\amp, Pexprand(0.4,0.6,inf)
 			),
@@ -2109,21 +2148,60 @@
 				\dur, Pn(0.01,1)
 			),
 		// flute
-			~delays[9]+0.05,
+			~delays[10]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.01,0.99],inf)],1),
 				\voicename, \fl,
 				\midinote, 
-					Pwalk((~hseries[1]-48).select({|n,i| 
-						n>=60}).select({|n,i| n<=84}),Pn(1,inf),Pseq([1,-1],inf),0),
+					Pseq([
+						Pwalk(
+							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),
+						Pwalk(
+							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0),  
+						Pwalk(
+							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=84}),
+							Pn(1,64.choose),
+							Pseq([1,-1],inf),
+						0)],inf), 
 				\legato, 0.2,  
 				\dur, Pseq([8,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
 				\amp, Pexprand(0.4,0.6,inf)
 			),
 		// bass clarinet
-			~delays[9]+0.05,
+			~delays[10]+0.05,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -2191,7 +2269,7 @@
 				\amp, Pexprand(0.5,1.0,inf)
 			),
 		// double bass
-			~delays[9]+0.075,
+			~delays[10]+0.075,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,

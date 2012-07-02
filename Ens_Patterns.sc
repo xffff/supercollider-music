@@ -1915,7 +1915,7 @@
 				\osccmd, Pseq([\rest,\noteon],1),
 				\voicename, \bcl,
 				\midinote, Prand([91,92],2), 
-				\dur, Pseq([80,Prand([8,16],inf)],1),
+				\dur, Pseq([80,Prand([16,32],inf)],1),
 				\amp, 1
 			),					
 		// trombone 1
@@ -2093,7 +2093,7 @@
 				\osccmd, \noteon,
 				\voicename, \cb,
 				\midinote, 26, 
-				\dur, ~durations[9],
+				\dur, 120, //~durations[9]
 				\amp, 1.0
 			),
 		// double bass -> freqshift 
@@ -2148,10 +2148,11 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\fl,\tb1,\tb2,\vi1,\vi3,\cb],
+				\voicename, [\fl,\bfl,\tb1,\tb2,\vi1,\vi3,\cb],
 				\programname, 
 					#[
 					"flute.ordinario",
+					"bass.flute.multiphonic",		
 					"tenor trombone.ordinario",
 					"tenor trombone.ordinario",
 					"violin.excessive pressure",
@@ -2212,6 +2213,17 @@
 				\dur, Pseq([8,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),
+		// bass flute
+			~delays[10]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \bfl,
+				\midinote, 81+Pseq([0,2,3],inf), 
+				\dur, Pseq([16,8,8,4],inf),
+				\amp, Pexprand(0.1,0.25,inf)
+			),			
 		// trombone 1
 			~delays[10]+0.05,
 			Pbind(
@@ -2295,34 +2307,6 @@
 					"double bass.pizzicato"],
 				\dur, Pn(0.01,1)
 			),
-		// violin 1
-			~delays[11]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Prand([\rest,\noteon],inf),
-				\voicename, \vi1,
-				\midinote, 
-					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
-						n>=55}).select({|n,i| n<=84}),inf), 
-				\legato, 0.1,
-				\dur, Prand([1,2,4,8,1/2,1/4],inf),	
-				\amp, Pexprand(0.1,1.0,inf)
-			),	
-		// violin 3
-			~delays[11]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Prand([\rest,\noteon],inf),
-				\voicename, \vi3,
-				\midinote, 
-					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
-						n>=55}).select({|n,i| n<=84}),inf), 
-				\legato, 0.1,
-				\dur, Prand([1,2,4,8,1/2,1/4],inf),	
-				\amp, Pexprand(0.1,1.0,inf)
-			),
 		// double bass
 			~delays[11]+0.075,
 			Pbind(
@@ -2330,12 +2314,54 @@
 				\oscout, ~osc_destination,
 				\osccmd, \noteon,
 				\voicename, \cb,
+				\midinote, 26,  
+				\dur, 16,	
+				\amp, Pexprand(0.75,1.0,1)
+			),
+		// crotales			
+			~delays[11]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \ctl,
 				\midinote, 
-					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
-						n>=26}).select({|n,i| n<=60}),inf),  
-				\dur, Prand([1,2,4,8,1/2,1/4],inf),	
-				\amp, Pexprand(0.75,1.0,inf)
-			)							
+					Ptuple([		// there must be a better way to write this...
+						Prand(~hseries[0].select({|n,i| 
+							n>=72}).select({|n,i| n<=96}),inf),
+						Prand(~hseries[0].select({|n,i| 
+							n>=72}).select({|n,i| n<=96}),inf),
+						Prand(~hseries[0].select({|n,i| 
+							n>=72}).select({|n,i| n<=96}),inf),
+						Prand(~hseries[0].select({|n,i| 
+							n>=72}).select({|n,i| n<=96}),inf),
+					],1), 
+				\dur, 32,
+				\legato, 2,
+				\amp, Pexprand(0.7,1.0,1)
+			),
+		// tam-tam
+			~delays[11]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \tam,
+				\midinote, Prand([60,61],1), 
+				\dur, Pn(32,1),
+				\amp, Pexprand(0.7,1.0,1)		
+			),
+		// bass drum
+			~delays[11]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \bd,
+				\midinote, Prand([61,62],inf),
+				\dur, 32,
+				\amp, Pexprand(0.7,1.0,1)		
+			)									
 		], 1),
 	);
 };

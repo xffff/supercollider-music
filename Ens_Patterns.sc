@@ -1864,42 +1864,42 @@
 					Pseq([
 						Pwalk(
 							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),
 						Pwalk(
 							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0)],inf), 
 				\dur, Pseq([72,Pn(1/8,inf)],1),
@@ -2158,42 +2158,42 @@
 					Pseq([
 						Pwalk(
 							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),
 						Pwalk(
 							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0),  
 						Pwalk(
 							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=84}),
-							Pn(1,64.choose),
+							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0)],inf), 
 				\legato, 0.2,  

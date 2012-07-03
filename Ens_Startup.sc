@@ -29,6 +29,8 @@
 		o.memSize;
 		if(o.memSize<1048576,{o.memSize = 1048576}); // 1GB 2**20
 		s.boot;
+
+			thisProcess.interpreter.executeFile(~path ++ "/ctosc.sc"); 					~osc_destination = NetAddr("127.0.0.1", 7050);
 	};
 //	~startup.fork;
 		
@@ -45,7 +47,6 @@
 		postln("Setting up OSC... ");
 		~osc_setup = fork{
 			("open "++"\""++~path++"/OSCFix.maxpat"++"\"").unixCmd;
-			thisProcess.interpreter.executeFile(~path ++ "/ctosc.sc"); 					~osc_destination = NetAddr("127.0.0.1", 7050);
 		};
 	};
 //	~contimbre_initialise.fork;

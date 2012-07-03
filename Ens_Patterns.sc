@@ -1808,7 +1808,7 @@
 				\dur, ~durations[8],
 				\atk, ~durations[8] * 0.6,
 				\sus, ~durations[8] * 0.1,
-				\rel, ~durations[8] * 0.99, 
+				\rel, ~durations[8] * 0.3, 
 				\amp, 0.75,
 				\warpfactor, [-12,-24,-36,-7,-5].midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -1904,7 +1904,8 @@
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0)],inf), 
-				\dur, Pseq([72,Pn(1/8,inf)],1),
+				\legato, 0.2,  
+				\dur, Pseq([72,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
 				\amp, Pexprand(0.4,0.6,inf)
 			),
 		// bass clarinet
@@ -1977,7 +1978,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.6,0.4],inf)],1),
-				\voicename, \vi4,
+				\voicename, \vi3,
 				\midinote, 
 					Prand(union(~hseries[0],~hseries[1]).select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),inf), 
@@ -1990,7 +1991,7 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, Pseq([\rest,Prand([\rest,\noteon],inf)],1),
-				\voicename, \vi3,
+				\voicename, \vi4,
 				\midinote, 
 					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 						n>=55}).select({|n,i| n<=84}),inf), 

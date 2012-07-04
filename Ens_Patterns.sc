@@ -2355,7 +2355,9 @@
 				\oscout, ~osc_destination,
 				\osccmd, \noteon,
 				\voicename, \vc,
-				\midinote, 38,  
+				\midinote,
+					Prand(union(~hseries[0]-12,~hseries[3]-48).select({|n,i| 
+						n>=36}).select({|n,i| n<=60}),inf), 
 				\dur, Prand((4,16..32),inf),	
 				\amp, Pexprand(0.75,1.0,inf)
 			),
@@ -2366,7 +2368,9 @@
 				\oscout, ~osc_destination,
 				\osccmd, \noteon,
 				\voicename, \cb,
-				\midinote, 26,  
+				\midinote,
+					Prand(union(~hseries[0]-12,~hseries[3]-48).select({|n,i| 
+						n>=36}).select({|n,i| n<=60}),inf), 
 				\dur, 16,	
 				\amp, 1.0
 			),
@@ -2391,7 +2395,7 @@
 						Prand(~hseries[0].select({|n,i| 
 							n>=72}).select({|n,i| n<=96}),Prand((2,4..32),1)),
 					],1)], inf), 
-				\dur, Prand([4,8,2,1],inf),
+				\dur, Prand([4,8,2,1,1/2],inf),
 				\legato, 2,
 				\amp, Pexprand(0.7,1.0,inf)
 			),

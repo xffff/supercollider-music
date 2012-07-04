@@ -75,6 +75,15 @@ SynthDef(\playbuf, { | out = 0, bufnum = 0, rate = 1,
 	Out.ar(out, sound);
 }).add;
 
+SynthDef(\magfreeze, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1, trig = 0 | 
+	var sound, env, chain;
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
+	sound = In.ar(in, 1);
+	chain = FFT(LocalBuf(2048), in);
+	chain = PV_MagFreeze(chain, trig);
+	Out.ar(out, env * IFFT(chain));
+}).add;
+
 SynthDef(\pitchshift, { | in = 0, out = 0, ratio = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
 						windowSize = 0.2, timeDispersion = 0.0001, pitchDispersion = 0.0001,
 						bpfselect = 0, bpffreq = 500, bpfres = 0.5 |
@@ -105,12 +114,6 @@ SynthDef(\convolve, { | in = 0, convin = 1, amp = 0.1, out = 0,
 	Out.ar(out,sound*env);
 }).add;
 
-// partconv
-//SynthDef(\partconv, { | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1, amp = 0,
-//						bufnum = 0|
-//	PartConv
-//}).add;
-
 SynthDef(\distortion, { | in = 0, out = 0, amount = 0, amp = 0, atk = 10, 
 						sus = 10, rel = 10, dur = 10 |
 	var sound, k, env;
@@ -133,11 +136,6 @@ SynthDef(\fbdelay,{ | in = 0, out = 0, atk = 0.1, sus = 0.1, rel = 0.1,
 	LocalOut.ar(sound)*fb;
 	Out.ar(out,sound*env);
 }).add;
-
-
-//SynthDef(\grainer, { | bufnum = 0, out = 0, rate = 1, freq = 10, atk = 0.1, sus = 0.1, rel = 0.1 | 
-//	
-//}).add;
 
 SynthDef(\grain, { | bufnum = 0, atk = 0, sus = 0, rel = 0, center = 0,
 					amp = 0, out = 0, ratelow = 1, ratehigh = 1, 

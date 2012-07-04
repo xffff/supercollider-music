@@ -2301,9 +2301,10 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bcl,\cb],
+				\voicename, [\bcl,\vc,\cb],
 				\programname, 
 					#["bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
+					"violoncello.excessive pressure",
 					"double bass.pizzicato"],
 				\dur, Pn(0.01,1)
 			),
@@ -2325,7 +2326,7 @@
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(2,1),
 				\out, [~master_fx_bus.subBus(2,1),18],
-				\dur, Pseq([0.2,64],1),
+				\dur, Pseq([0.5,64],1),
 				\atk, 0.001,
 				\sus, 32,
 				\rel, 32, 
@@ -2349,6 +2350,17 @@
 					Prand(1/(1..10),inf),\exp,inf),
 				\legato, 2.0
 			),		
+		// violoncello
+			~delays[11]+0.075,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \vc,
+				\midinote, 38,  
+				\dur, 64,	
+				\amp, 1.0
+			),
 		// double bass
 			~delays[11]+0.075,
 			Pbind(
@@ -2368,19 +2380,22 @@
 				\osccmd, \noteon,
 				\voicename, \ctl,
 				\midinote, 
+				Prand([
+					Prand(~hseries[0].select({|n,i| 
+						n>=72}).select({|n,i| n<=96}),Prand((2,4..32),1)),
 					Ptuple([		// there must be a better way to write this...
 						Prand(~hseries[0].select({|n,i| 
-							n>=72}).select({|n,i| n<=96}),inf),
+							n>=72}).select({|n,i| n<=96}),Prand((2,4..32),1)),
 						Prand(~hseries[0].select({|n,i| 
-							n>=72}).select({|n,i| n<=96}),inf),
+							n>=72}).select({|n,i| n<=96}),Prand((2,4..32),1)),
 						Prand(~hseries[0].select({|n,i| 
-							n>=72}).select({|n,i| n<=96}),inf),
+							n>=72}).select({|n,i| n<=96}),Prand((2,4..32),1)),
 						Prand(~hseries[0].select({|n,i| 
-							n>=72}).select({|n,i| n<=96}),inf),
-					],1), 
-				\dur, 32,
+							n>=72}).select({|n,i| n<=96}),Prand((2,4..32),1)),
+					],1)], inf), 
+				\dur, Prand([16,32,8,4],inf),
 				\legato, 2,
-				\amp, Pexprand(0.7,1.0,1)
+				\amp, Pexprand(0.7,1.0,inf)
 			),
 //		// tam-tam
 //			~delays[11]+0.05,

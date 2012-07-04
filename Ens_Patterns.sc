@@ -2111,7 +2111,7 @@
 				\rel, 0.01, 
 				\amp, 2.0,
 				\freq, 26.midicps*Pseg(Prand(1/(1,3..65)++(2,4..64),inf),
-					Prand(1/(1..10),inf),\exp,inf),
+					Prand(10/(1..10),inf),\exp,inf),
 				\legato, 2.0
 			),
 		// tam-tam
@@ -2308,46 +2308,46 @@
 					"double bass.pizzicato"],
 				\dur, Pn(0.01,1)
 			),
-		// bass clarinet
-			~delays[11]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, \noteon,
-				\voicename, \bcl,
-				\midinote, Prand([91,92],1), 
-				\dur, 32,
-				\amp, 1
-			),	
-		// bass clarinet -> magfreeze 
-			~delays[11]+0.05,
-			Pbind(
-				\instrument, \magfreeze,
-				\group, ~fx,
-				\in, ~master_dry_bus.subBus(2,1),
-				\out, [~master_fx_bus.subBus(2,1),18],
-				\dur, Pseq([0.5,64],1),
-				\atk, 0.001,
-				\sus, 32,
-				\rel, 32, 
-				\amp, 2.0,
-				\trig, Pseq([0,1],1)
-			),		
-		// magfreeze -> freqshift 
-			~delays[11]+0.05,
-			PmonoArtic(
-				\freqshift,
-				\group, ~fx,
-				\in, ~master_fx_bus.subBus(2,1),
-				\out, 19,
-				\dur, 8,
-				\atk, ~durations[11],
-				\sus, 0.01,
-				\rel, 0.01, 
-				\amp, 2.0,
-				\freq, 26.midicps*Pseg(Prand(1/(2,4..64),inf),Prand(10/(1..10),inf),\exp,inf),
-				\legato, 2.0
-			),		
+//		// bass clarinet
+//			~delays[11]+0.05,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, \noteon,
+//				\voicename, \bcl,
+//				\midinote, Prand([91,92],1), 
+//				\dur, 32,
+//				\amp, 1
+//			),	
+//		// bass clarinet -> magfreeze 
+//			~delays[11]+0.05,
+//			Pbind(
+//				\instrument, \magfreeze,
+//				\group, ~fx,
+//				\in, ~master_dry_bus.subBus(2,1),
+//				\out, [~master_fx_bus.subBus(2,1),18],
+//				\dur, Pseq([0.5,64],1),
+//				\atk, 0.001,
+//				\sus, 32,
+//				\rel, 32, 
+//				\amp, 2.0,
+//				\trig, Pseq([0,1],1)
+//			),		
+//		// magfreeze -> freqshift 
+//			~delays[11]+0.05,
+//			PmonoArtic(
+//				\freqshift,
+//				\group, ~fx,
+//				\in, ~master_fx_bus.subBus(2,1),
+//				\out, 19,
+//				\dur, 8,
+//				\atk, ~durations[11],
+//				\sus, 0.01,
+//				\rel, 0.01, 
+//				\amp, 2.0,
+//				\freq, 26.midicps*Pseg(Prand(1/(2,4..64),inf),Prand(10/(1..10),inf),\exp,inf),
+//				\legato, 2.0
+//			),		
 		// violoncello
 			~delays[11]+0.075,
 			Pbind(
@@ -2391,7 +2391,7 @@
 						Prand(~hseries[0].select({|n,i| 
 							n>=72}).select({|n,i| n<=96}),Prand((2,4..32),1)),
 					],1)], inf), 
-				\dur, Prand([16,32,8,4],inf),
+				\dur, Prand([4,8,2,1],inf),
 				\legato, 2,
 				\amp, Pexprand(0.7,1.0,inf)
 			),

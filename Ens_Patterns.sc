@@ -2340,14 +2340,12 @@
 				\group, ~fx,
 				\in, ~master_fx_bus.subBus(2,1),
 				\out, 19,
-				\dur, 100/Pseg(Prand(~hseries[0],inf),
-					Prand(10.rand!~hseries[0].size,inf),\exp,inf),
+				\dur, 8,
 				\atk, ~durations[11],
 				\sus, 0.01,
 				\rel, 0.01, 
 				\amp, 2.0,
-				\freq, 26.midicps*Pseg(Prand(1/(1,3..65)++(2,4..64),inf),
-					Prand(1/(1..10),inf),\exp,inf),
+				\freq, 26.midicps*Pseg(Prand(1/(2,4..64),inf),Prand(10/(1..10),inf),\exp,inf),
 				\legato, 2.0
 			),		
 		// violoncello
@@ -2358,8 +2356,8 @@
 				\osccmd, \noteon,
 				\voicename, \vc,
 				\midinote, 38,  
-				\dur, 64,	
-				\amp, 1.0
+				\dur, Prand((4,16..32),inf),	
+				\amp, Pexprand(0.75,1.0,inf)
 			),
 		// double bass
 			~delays[11]+0.075,

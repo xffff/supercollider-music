@@ -2040,7 +2040,7 @@
 				\sus, 0.01,
 				\rel, ~durations[9] * 0.3, 
 				\amp, 0.75,
-				\warpfactor, [-12,-24,-36,-7,7,12].midiratio,
+				\warpfactor, [-12,-24,-36,12].midiratio,
 				\freqscale, Pkey(\warpfactor)
 			),
 		// warp -> fbdelay 
@@ -2301,11 +2301,54 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\cb],
+				\voicename, [\bcl,\cb],
 				\programname, 
-					#["double bass.pizzicato"],
+					#["bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
+					"double bass.pizzicato"],
 				\dur, Pn(0.01,1)
 			),
+		// bass clarinet
+			~delays[11]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \bcl,
+				\midinote, Prand([91,92],1), 
+				\dur, 32,
+				\amp, 1
+			),	
+		// bass clarinet -> magfreeze 
+			~delays[11]+0.05,
+			Pbind(
+				\instrument, \magfreeze,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(2,1),
+				\out, [~master_fx_bus.subBus(2,1),18],
+				\dur, Pseq([0.2,64],1),
+				\atk, 0.001,
+				\sus, 32,
+				\rel, 32, 
+				\amp, 2.0,
+				\trig, Pseq([0,1],1)
+			),		
+		// magfreeze -> freqshift 
+			~delays[11]+0.05,
+			PmonoArtic(
+				\freqshift,
+				\group, ~fx,
+				\in, ~master_fx_bus.subBus(2,1),
+				\out, 19,
+				\dur, 100/Pseg(Prand(~hseries[0],inf),
+					Prand(10.rand!~hseries[0].size,inf),\exp,inf),
+				\atk, ~durations[11],
+				\sus, 0.01,
+				\rel, 0.01, 
+				\amp, 2.0,
+				\freq, 26.midicps*Pseg(Prand(1/(1,3..65)++(2,4..64),inf),
+					Prand(1/(1..10),inf),\exp,inf),
+				\legato, 2.0
+			),		
 		// double bass
 			~delays[11]+0.075,
 			Pbind(
@@ -2315,7 +2358,7 @@
 				\voicename, \cb,
 				\midinote, 26,  
 				\dur, 16,	
-				\amp, Pexprand(0.75,1.0,1)
+				\amp, 1.0
 			),
 		// crotales			
 			~delays[11]+0.05,
@@ -2339,17 +2382,17 @@
 				\legato, 2,
 				\amp, Pexprand(0.7,1.0,1)
 			),
-		// tam-tam
-			~delays[11]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, \noteon,
-				\voicename, \tam,
-				\midinote, Prand([60,61],1), 
-				\dur, Pn(32,1),
-				\amp, Pexprand(0.7,1.0,1)		
-			),
+//		// tam-tam
+//			~delays[11]+0.05,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, \noteon,
+//				\voicename, \tam,
+//				\midinote, Prand([60,61],1), 
+//				\dur, Pn(32,1),
+//				\amp, Pexprand(0.7,1.0,1)		
+//			),
 		// bass drum
 			~delays[11]+0.05,
 			Pbind(

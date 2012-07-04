@@ -79,7 +79,7 @@ SynthDef(\magfreeze, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.
 	var sound, env, chain;
 	env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
 	sound = In.ar(in, 1);
-	chain = FFT(LocalBuf(2048), in);
+	chain = FFT(LocalBuf(4096), sound);
 	chain = PV_MagFreeze(chain, trig);
 	Out.ar(out, env * IFFT(chain));
 }).add;

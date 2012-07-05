@@ -23,7 +23,7 @@
 ~durations[0] = 60; ~delays[0] = 0;
 ~durations[1] = 60; ~delays[1] = 0;
 ~durations[2] = 32; ~delays[2] = 12;
-~durations[3] = 60; ~delays[3] = 8;
+~durations[3] = 60; ~delays[3] = 12;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
 ~durations[6] = 60; ~delays[6] = 2;
@@ -2037,9 +2037,9 @@
 				\in, ~master_dry_bus.subBus(9,1),
 				\out, ~master_fx_bus.subBus(9,1),
 				\dur, ~durations[9],
-				\atk, ~durations[9] * 0.7,
-				\sus, 0.01,
-				\rel, ~durations[9] * 0.5, 
+				\atk, ~durations[9] * 0.4,
+				\sus, ~durations[9] * 0.3,
+				\rel, ~durations[9] * 0.3, 
 				\amp, 0.75,
 				\warpfactor, [-12,-24,-36,12].midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -2053,9 +2053,9 @@
 				\in, ~master_fx_bus.subBus(9,1),
 				\out, ~master_fx_bus.subBus(23,1),
 				\dur, ~durations[9],
-				\atk, ~durations[9] * 0.7,
-				\sus, 0.01,
-				\rel, ~durations[9] * 0.5, 
+				\atk, ~durations[9] * 0.4,
+				\sus, ~durations[9] * 0.3,
+				\rel, ~durations[9] * 0.3, 
 				\amp, 1.0,
 				\maxdelay, 11,
 				\delay, (3,5..11),
@@ -2071,7 +2071,7 @@
 				\dur, ~durations[9] / 120,
 				\atk, ~durations[9] * 0.01,
 				\sus, ~durations[9] * 0.99,
-				\rel, ~durations[9] * 0.25, 
+				\rel, ~durations[9] * 0.01, 
 				\amp, 1.0,
 				\pan, Pbrown(-1.0,1.0,0.15,inf),
 				\legato, 1.1

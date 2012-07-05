@@ -107,6 +107,13 @@ SynthDef(\gverb, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
 	Out.ar(out, sound*env);
 }).add;
 
+SynthDef(\crusher, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1, 
+						bitdepth = 32, gate = 1 |
+		var env, sound;
+		env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
+		signal = In.ar(in, 1).trunc(0.5**Lag.kr(bitdepth)) * env;
+		Out.ar(out, signal);
+}).add;
 
 SynthDef(\pitchshift, { | in = 0, out = 0, ratio = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
 						windowSize = 0.2, timeDispersion = 0.0001, pitchDispersion = 0.0001,

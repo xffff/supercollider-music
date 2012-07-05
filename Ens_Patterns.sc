@@ -1833,7 +1833,7 @@
 	~sections[9] = Pfindur(~durations[9],
 		Ptpar([
 		// program changes
-			~delays[9],
+			0,
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
@@ -2033,6 +2033,7 @@
 			Pbind(
 				\instrument, \warp,
 				\group, ~fx,
+				\addAction, 0, 
 				\in, ~master_dry_bus.subBus(9,1),
 				\out, ~master_fx_bus.subBus(9,1),
 				\dur, ~durations[9],
@@ -2061,7 +2062,7 @@
 				\fb, 0.25
 			),	
 		// fbdelay -> hala 
-			~delays[9]+0.15,
+			~delays[9]+0.25,
 			PmonoArtic(
 				\hala,
 				\group, ~output,
@@ -2105,7 +2106,7 @@
 				\in, ~master_dry_bus.subBus(11,1),
 				\out, 19,
 				\dur, 100/Pseg(Prand(~hseries[0],inf),
-					Prand(10.rand!~hseries[0].size,inf),\exp,inf),
+					Prand((1..10),inf),\exp,inf),
 				\atk, ~durations[9],
 				\sus, 0.01,
 				\rel, 0.01, 
@@ -2136,7 +2137,7 @@
 				\dur, Pseq([32,Pseq([Pn(1,12),2],inf)],1),
 				\amp, 
 					Pseq([1,Pseg(Pseq([0.01,1.0],inf),
-						Pseq(~durations[8]-45!2,inf),\lin,inf)],1)
+						Pseq(~durations[9]-45!2,inf),\lin,inf)],1)
 			)			
 		], 1),
 	);
@@ -2400,7 +2401,7 @@
 				\osccmd, \noteon,
 				\voicename, \tam,
 				\midinote, Prand([65,66],1), 
-				\dur, Pn(32,1),
+				\dur, Prand([4,8,2,1,1/2],inf),
 				\amp, Pexprand(0.7,1.0,1)		
 			),
 		// bass drum

@@ -22,7 +22,7 @@
 
 ~durations[0] = 60; ~delays[0] = 0;
 ~durations[1] = 60; ~delays[1] = 0;
-~durations[2] = 32; ~delays[2] = 12;
+~durations[2] = 32; ~delays[2] = 8;
 ~durations[3] = 60; ~delays[3] = 12;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
@@ -31,7 +31,7 @@
 ~durations[8] = 80; ~delays[8] = 0;
 ~durations[9] = 120; ~delays[9] = 0;
 ~durations[10] = 32; ~delays[10] = 0;
-~durations[11] = 32; ~delays[11] = 0;
+~durations[11] = 32; ~delays[11] = 1;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -1904,7 +1904,7 @@
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0)],inf), 
-				\legato, 0.2,  
+				\legato, 0.35,  
 				\dur, Pseq([72,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
 				\amp, Pexprand(0.4,0.6,inf)
 			),
@@ -2071,7 +2071,7 @@
 				\atk, ~durations[9] * 0.01,
 				\sus, ~durations[9] * 0.99,
 				\rel, ~durations[9] * 0.01, 
-				\amp, 0.75,
+				\amp, 1.0,
 				\pan, Pbrown(-1.0,1.0,0.15,inf),
 				\legato, 1.1
 			),											// violoncello
@@ -2109,7 +2109,7 @@
 				\atk, ~durations[9],
 				\sus, 0.01,
 				\rel, 0.01, 
-				\amp, 2.0,
+				\amp, 1.5,
 				\freq, 26.midicps*Pseg(Prand(1/(1,3..65)++(2,4..64),inf),
 					Prand(10/(1..10),inf),\exp,inf),
 				\legato, 2.0
@@ -2166,7 +2166,7 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.01,0.99],inf)],1),
+				\osccmd, Pwrand([\rest,\noteon],[0.01,0.99],inf),
 				\voicename, \fl,
 				\midinote, 
 					Pxrand([
@@ -2210,10 +2210,29 @@
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0)],inf), 
-				\legato, 0.2,  
 				\dur, Pseq([8,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),
+		// flute -> reverb
+			~delays[10]+0.05,
+			Pbind(
+				\instrument, \gverb2,
+				\group, ~fx,
+				\in, ~master_dry_bus.subBus(0,1),
+				\out, 24,
+				\dur, ~durations[10],
+				\atk, 0.01,
+				\sus, ~durations[10]*0.5,
+				\rel, ~durations[10], 
+				\amp, 1.0,
+				\roomsize, 243, 
+				\revtime, 15, 
+				\damping, 0.3, 
+				\inputbw, 0.34, 
+				\drylevel, -80, 
+				\earlylevel, -11, 
+				\taillevel, -9
+			),			
 		// bass flute
 			~delays[10]+0.05,
 			Pbind(
@@ -2301,53 +2320,40 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bcl,\vc,\cb],
+				\voicename, [\bcl,\vi1,\vi3,\vc],
 				\programname, 
 					#["bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
-					"violoncello.excessive pressure",
-					"double bass.pizzicato"],
+					"violin.excessive pressure",
+					"violin.excessive pressure",	
+					"violoncello.excessive pressure"],
 				\dur, Pn(0.01,1)
 			),
-//		// bass clarinet
-//			~delays[11]+0.05,
-//			Pbind(
-//				\type, \ctosc, 
-//				\oscout, ~osc_destination,
-//				\osccmd, \noteon,
-//				\voicename, \bcl,
-//				\midinote, Prand([91,92],1), 
-//				\dur, 32,
-//				\amp, 1
-//			),	
-//		// bass clarinet -> magfreeze 
-//			~delays[11]+0.05,
-//			Pbind(
-//				\instrument, \magfreeze,
-//				\group, ~fx,
-//				\in, ~master_dry_bus.subBus(2,1),
-//				\out, [~master_fx_bus.subBus(2,1),18],
-//				\dur, Pseq([0.5,64],1),
-//				\atk, 0.001,
-//				\sus, 32,
-//				\rel, 32, 
-//				\amp, 2.0,
-//				\trig, Pseq([0,1],1)
-//			),		
-//		// magfreeze -> freqshift 
-//			~delays[11]+0.05,
-//			PmonoArtic(
-//				\freqshift,
-//				\group, ~fx,
-//				\in, ~master_fx_bus.subBus(2,1),
-//				\out, 19,
-//				\dur, 8,
-//				\atk, ~durations[11],
-//				\sus, 0.01,
-//				\rel, 0.01, 
-//				\amp, 2.0,
-//				\freq, 26.midicps*Pseg(Prand(1/(2,4..64),inf),Prand(10/(1..10),inf),\exp,inf),
-//				\legato, 2.0
-//			),		
+		// violin 1
+			~delays[11]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \vi1,
+				\midinote, 
+					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
+						n>=55}).select({|n,i| n<=84}),inf), 
+				\dur, Prand((4,16..32),inf),	
+				\amp, Pexprand(0.1,1.0,inf)
+			),	
+		// violin 3
+			~delays[11]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \vi3,
+				\midinote, 
+					Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
+						n>=55}).select({|n,i| n<=84}),inf), 
+				\dur, Prand((4,16..32),inf),	
+				\amp, Pexprand(0.1,1.0,inf)
+			),			
 		// violoncello
 			~delays[11]+0.075,
 			Pbind(
@@ -2360,19 +2366,6 @@
 						n>=36}).select({|n,i| n<=60}),inf), 
 				\dur, Prand((4,16..32),inf),	
 				\amp, Pexprand(0.75,1.0,inf)
-			),
-		// double bass
-			~delays[11]+0.075,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, \noteon,
-				\voicename, \cb,
-				\midinote,
-					Prand(union(~hseries[0]-12,~hseries[3]-48).select({|n,i| 
-						n>=36}).select({|n,i| n<=60}),inf), 
-				\dur, 16,	
-				\amp, 1.0
 			),
 		// crotales			
 			~delays[11]+0.05,
@@ -2399,17 +2392,17 @@
 				\legato, 2,
 				\amp, Pexprand(0.7,1.0,inf)
 			),
-//		// tam-tam
-//			~delays[11]+0.05,
-//			Pbind(
-//				\type, \ctosc, 
-//				\oscout, ~osc_destination,
-//				\osccmd, \noteon,
-//				\voicename, \tam,
-//				\midinote, Prand([60,61],1), 
-//				\dur, Pn(32,1),
-//				\amp, Pexprand(0.7,1.0,1)		
-//			),
+		// tam-tam
+			~delays[11]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \tam,
+				\midinote, Prand([65,66],1), 
+				\dur, Pn(32,1),
+				\amp, Pexprand(0.7,1.0,1)		
+			),
 		// bass drum
 			~delays[11]+0.05,
 			Pbind(

@@ -84,6 +84,29 @@ SynthDef(\magfreeze, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.
 	Out.ar(out, env * IFFT(chain));
 }).add;
 
+SynthDef(\gverb, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
+					roomsize = 10, revtime = 3, damping = 0.5, inputbw = 0.5, spread = 15, 
+					drylevel, earlylevel, taillevel | 
+	var sound, env;
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
+	sound = In.ar(in, 1);
+
+	sound = GVerb.ar(
+Ê Ê Ê Ê Ê Ê Ê Ê sound,
+Ê Ê Ê Ê Ê Ê Ê Ê roomsize,
+Ê Ê Ê Ê Ê Ê Ê Ê revtime,
+Ê Ê Ê Ê Ê Ê Ê Ê damping,
+Ê Ê Ê Ê Ê Ê Ê Ê inputbw,
+Ê Ê Ê Ê Ê Ê Ê Ê spread,
+Ê Ê Ê Ê Ê Ê Ê Ê drylevel.dbamp,
+Ê Ê Ê Ê Ê Ê Ê Ê earlylevel.dbamp,
+Ê Ê Ê Ê Ê Ê Ê Ê taillevel.dbamp,
+Ê Ê Ê Ê Ê Ê Ê Ê roomsize).sum;
+
+	Out.ar(out, sound*env);
+}).add;
+
+
 SynthDef(\pitchshift, { | in = 0, out = 0, ratio = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
 						windowSize = 0.2, timeDispersion = 0.0001, pitchDispersion = 0.0001,
 						bpfselect = 0, bpffreq = 500, bpfres = 0.5 |
@@ -99,7 +122,7 @@ SynthDef(\pitchshift, { | in = 0, out = 0, ratio = 0, amp = 1, atk = 0.1, sus = 
 SynthDef(\freqshift, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
 						freq = 0 |
 	var sound, env;
-	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
 	sound = In.ar(in, 1);
 	sound = FreqShift.ar(sound, freq) * env;
 	Out.ar(out,sound);

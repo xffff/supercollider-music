@@ -9,7 +9,7 @@
 ~load_patterns = nil;
 
 ~hseries = 
-	Array.fill(8, { |i| if(i>0,{i=i*2.rand.max(1)});
+	Array.fill(8, { |i| if(i>0,{i=i*4.rand.max(1)});
 		Array.fill(64,{|j| j=j+1; 
 			j * Array.fill(100,{|n| n=n+1; n*26.midicps})[i+(j-1)];
 		}).cpsmidi;
@@ -22,8 +22,8 @@
 
 ~durations[0] = 60; ~delays[0] = 0;
 ~durations[1] = 60; ~delays[1] = 0;
-~durations[2] = 32; ~delays[2] = 8;
-~durations[3] = 60; ~delays[3] = 12;
+~durations[2] = 32; ~delays[2] = 12;
+~durations[3] = 60; ~delays[3] = 8;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
 ~durations[6] = 60; ~delays[6] = 2;
@@ -31,7 +31,7 @@
 ~durations[8] = 80; ~delays[8] = 0;
 ~durations[9] = 120; ~delays[9] = 0;
 ~durations[10] = 32; ~delays[10] = 0;
-~durations[11] = 32; ~delays[11] = 1;
+~durations[11] = 32; ~delays[11] = 4;
 
 ~load_patterns = {
 	////////////////////////////////////////////////////////////////////////////////
@@ -2039,7 +2039,7 @@
 				\dur, ~durations[9],
 				\atk, ~durations[9] * 0.7,
 				\sus, 0.01,
-				\rel, ~durations[9] * 0.3, 
+				\rel, ~durations[9] * 0.5, 
 				\amp, 0.75,
 				\warpfactor, [-12,-24,-36,12].midiratio,
 				\freqscale, Pkey(\warpfactor)
@@ -2055,7 +2055,7 @@
 				\dur, ~durations[9],
 				\atk, ~durations[9] * 0.7,
 				\sus, 0.01,
-				\rel, ~durations[9] * 0.3, 
+				\rel, ~durations[9] * 0.5, 
 				\amp, 1.0,
 				\maxdelay, 11,
 				\delay, (3,5..11),
@@ -2144,6 +2144,9 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[10] = Pfindur(~durations[10],
 		Ptpar([
+		// quick fix to stop flute going stupid
+			0,
+			Pfuncn({	~osc_destination.sendMsg("all_notes_off"); 0 }, 1),
 		// program changes
 			~delays[10],
 			Pbind(
@@ -2217,7 +2220,7 @@
 		// flute -> reverb
 			~delays[10]+0.05,
 			Pbind(
-				\instrument, \gverb2,
+				\instrument, \gverb,
 				\group, ~fx,
 				\in, ~master_dry_bus.subBus(0,1),
 				\out, 24,
@@ -2315,6 +2318,9 @@
 	////////////////////////////////////////////////////////////////////////////////
 	~sections[11] = Pfindur(~durations[11],
 		Ptpar([
+		// quick fix to stop flute going stupid
+			0,
+			Pfuncn({	~osc_destination.sendMsg("all_notes_off"); 0 }, 1),
 		// program changes
 			~delays[11],
 			Pbind(
@@ -2402,7 +2408,7 @@
 				\voicename, \tam,
 				\midinote, Prand([65,66],1), 
 				\dur, Prand([4,8,2,1,1/2],inf),
-				\amp, Pexprand(0.7,1.0,1)		
+				\amp, Pexprand(0.7,1.0,inf)		
 			),
 		// bass drum
 			~delays[11]+0.05,

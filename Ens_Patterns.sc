@@ -2327,11 +2327,13 @@
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
 				\osccmd, \program,
-				\voicename, [\bcl,\vi1,\vi3,\vc],
+				\voicename, [\bcl,\vi1,\vi3,\va1,\va2,\vc],
 				\programname, 
 					#["bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
 					"violin.excessive pressure",
-					"violin.excessive pressure",	
+					"violin.excessive pressure",
+					"viola.excessive pressure",	
+					"viola.excessive pressure",	
 					"violoncello.excessive pressure"],
 				\dur, Pn(0.01,1)
 			),
@@ -2360,7 +2362,33 @@
 						n>=55}).select({|n,i| n<=84}),inf), 
 				\dur, Prand((4,16..32),inf),	
 				\amp, Pexprand(0.1,1.0,inf)
-			),			
+			),		
+		// viola 1
+			~delays[11]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \va1,
+				\midinote, 
+					Prand(union(~hseries[2]-12,~hseries[4]-48).select({|n,i| 
+						n>=48}).select({|n,i| n<=94}),inf), 
+				\dur, Prand((4,16..32),inf),	
+				\amp, Pexprand(0.1,1.0,inf)
+			),	
+		// viola 2
+			~delays[11]+0.05,
+			Pbind(
+				\type, \ctosc, 
+				\oscout, ~osc_destination,
+				\osccmd, \noteon,
+				\voicename, \va2,
+				\midinote, 
+					Prand(union(~hseries[2]-12,~hseries[4]-48).select({|n,i| 
+						n>=48}).select({|n,i| n<=94}),inf), 
+				\dur, Prand((4,16..32),inf),	
+				\amp, Pexprand(0.1,1.0,inf)
+			),				
 		// violoncello
 			~delays[11]+0.075,
 			Pbind(

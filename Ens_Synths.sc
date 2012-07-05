@@ -91,17 +91,18 @@ SynthDef(\gverb, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
 	env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
 	sound = In.ar(in, 1);
 
-	sound = GVerb.ar(
-Ê Ê Ê Ê Ê Ê Ê Ê sound,
-Ê Ê Ê Ê Ê Ê Ê Ê roomsize,
-Ê Ê Ê Ê Ê Ê Ê Ê revtime,
-Ê Ê Ê Ê Ê Ê Ê Ê damping,
-Ê Ê Ê Ê Ê Ê Ê Ê inputbw,
-Ê Ê Ê Ê Ê Ê Ê Ê spread,
-Ê Ê Ê Ê Ê Ê Ê Ê drylevel.dbamp,
-Ê Ê Ê Ê Ê Ê Ê Ê earlylevel.dbamp,
-Ê Ê Ê Ê Ê Ê Ê Ê taillevel.dbamp,
-Ê Ê Ê Ê Ê Ê Ê Ê roomsize).sum;
+// USE THE LEXICON PCM FOR NOW... MAYBE SOON TO BE H8000 :D
+//	sound = GVerb.ar(
+//Ê Ê Ê Ê Ê Ê Ê Ê sound,
+//Ê Ê Ê Ê Ê Ê Ê Ê roomsize,
+//Ê Ê Ê Ê Ê Ê Ê Ê revtime,
+//Ê Ê Ê Ê Ê Ê Ê Ê damping,
+//Ê Ê Ê Ê Ê Ê Ê Ê inputbw,
+//Ê Ê Ê Ê Ê Ê Ê Ê spread,
+//Ê Ê Ê Ê Ê Ê Ê Ê drylevel.dbamp,
+//Ê Ê Ê Ê Ê Ê Ê Ê earlylevel.dbamp,
+//Ê Ê Ê Ê Ê Ê Ê Ê taillevel.dbamp,
+//Ê Ê Ê Ê Ê Ê Ê Ê roomsize).sum;
 
 	Out.ar(out, sound*env);
 }).add;

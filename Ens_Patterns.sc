@@ -30,7 +30,7 @@
 ~durations[7] = 50; ~delays[7] = 0;
 ~durations[8] = 80; ~delays[8] = 0;
 ~durations[9] = 120; ~delays[9] = 0;
-~durations[10] = 32; ~delays[10] = 0;
+~durations[10] = 32; ~delays[10] = 8;
 ~durations[11] = 32; ~delays[11] = 4;
 
 ~load_patterns = {
@@ -1290,7 +1290,7 @@
 						inf)
 					],1).collect({|note| ~bcl_note=note; note}),
 				\dur, 16,
-				\amp, Pexprand(0.3,0.6,1)
+				\amp, Pexprand(0.3,0.4,1)
 			),
 		// trombone 1
 			~delays[6]+0.05,
@@ -1357,7 +1357,7 @@
 				\voicename, \cb,
 				\midinote, Pfunc({~bcl_note})-12,
 				\dur, 16,
-				\amp, Pexprand(0.3,0.6,1)
+				\amp, Pexprand(0.4,0.6,1)
 			)
 		], 1)
 	); 
@@ -2071,7 +2071,7 @@
 				\dur, ~durations[9] / 120,
 				\atk, ~durations[9] * 0.01,
 				\sus, ~durations[9] * 0.99,
-				\rel, ~durations[9] * 0.01, 
+				\rel, ~durations[9] * 0.25, 
 				\amp, 1.0,
 				\pan, Pbrown(-1.0,1.0,0.15,inf),
 				\legato, 1.1

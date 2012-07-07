@@ -2316,6 +2316,8 @@
 		], 1),
 	);
 	////////////////////////////////////////////////////////////////////////////////
+	// lets add some fibonacci transitions in here.. ho ho ho
+	// Array.fib(25).reverse.reciprocal;
 	~sections[11] = Pfindur(~durations[11],
 		Ptpar([
 		// quick fix to stop flute going stupid

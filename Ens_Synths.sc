@@ -136,6 +136,40 @@ SynthDef(\freqshift, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.
 	Out.ar(out,sound);
 }).add;
 
+SynthDef(\fpres_pitchshift, { |in = 0, out = 0, atk, sus, rel, 
+							itransp = 0, transp = 0, ftransp = 0,
+              				amp = 0.1, pwidth = 0.25, pvar = 0, tvar = 0,
+              				gate = 1, hishelf = (-3), lowCut = 20|
+
+	var sig, modSig, freq, haspitch, ratio, fratio;
+	var a, b, c;
+	var chain1, chain2;
+	var env;
+	       
+	env = EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
+	       
+	ratio = (itransp + transp).lag(0.5).midiratio;
+	fratio = ftransp.lag(0.5).midiratio;      
+	#a,b = { LocalBuf(1024).clear; }!2;
+	sig = In.ar(in,1);
+	 #freq, haspitch = Tartini.kr( sig, n:4096 );
+	       
+	// generate new fundamental
+	modSig = Impulse.ar( (freq.lag(0.25) * ratio / fratio ) * LFNoise2.kr(2,0.1).midiratio);
+	       
+	chain1 = FFT( a, sig );
+	chain2 = FFT( b, modSig );
+	chain2 = PV_MagMul( chain2, chain1 );
+	       
+	sig = IFFT( chain2 );
+	sig = PitchShift.ar( sig, 0.2, 1, pvar.midiratio - 1, tvar * 0.2 );
+	sig = sig * Line.ar( -1,1,0.5).max(0);
+	sig = BHiShelf.ar( sig, 1200, 1, hishelf );
+	sig = BLowCut.ar( sig, lowCut.lag(1).clip(20,20000), 3 );
+              
+	Out.ar(out, sig * env);
+}).add; 
+
 SynthDef(\convolve, { | in = 0, convin = 1, amp = 0.1, out = 0, 
 						atk = 0.1, sus = 0.1, rel = 0.1 | 
 	var env, sound, kernel;

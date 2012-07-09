@@ -20,17 +20,17 @@
 ~durations = 8!32;
 ~delays = 0!32;
 
-~durations[0] = 60; ~delays[0] = 0;
-~durations[1] = 60; ~delays[1] = 0;
-~durations[2] = 32; ~delays[2] = 12;
-~durations[3] = 60; ~delays[3] = 12;
+~durations[0] = 70; ~delays[0] = 0;
+~durations[1] = 60; ~delays[1] = 6;
+~durations[2] = 32; ~delays[2] = 0;
+~durations[3] = 60; ~delays[3] = 2;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
 ~durations[6] = 60; ~delays[6] = 2;
 ~durations[7] = 50; ~delays[7] = 0;
 ~durations[8] = 80; ~delays[8] = 0;
 ~durations[9] = 120; ~delays[9] = 0;
-~durations[10] = 32; ~delays[10] = 8;
+~durations[10] = 32; ~delays[10] = 0;
 ~durations[11] = 32; ~delays[11] = 4;
 
 ~load_patterns = {
@@ -289,15 +289,15 @@
 				\programname, 
 					#["flute.ordinario",
 					"bass.flute.jet whistle",
-					"bass clarinet boehm system.ordinario",
+					"bass clarinet boehm system.multiphonic.Vilhjalmsson Buffet",
 					"alto saxophone.slap.percussive slap",
 					"alto saxophone.multiphonic.Gubler Selmer_Super_Action_II",
 					"violin.ordinario",
 					"violin.ordinario",
-					"viola.ordinario",
-					"viola.ordinario",
+					"viola.harmonic.artificial.fourth",
+					"viola.harmonic.artificial.fourth",
 					"violoncello.flautando",
-					"double bass.pizzicato.bartok"],
+					"double bass.molto sul ponticello"],
 				\dur, Pn(0.01,1)
 			),
 		// playbuf
@@ -343,10 +343,10 @@
 			Pbind(
 				\type, \ctosc, 
 				\oscout, ~osc_destination,
-				\osccmd, \noteon,
+				\osccmd, Pseq([\rest,Prand([\rest,\noteon],1)],1),
 				\voicename, \bcl,
-				\midinote, Pseq([81,83],1), 
-				\dur, Pn(16,2),
+				\osccmd, Pseq([\rest,\noteon,Pwrand([\rest,\noteon],[0.5,0.5],inf)],1),
+				\dur, 16,
 				\amp, Pexprand(0.1,0.3,inf)
 			),
 		// saxophone 1
@@ -1855,59 +1855,79 @@
 					"double bass.molto sul ponticello"],
 				\dur, Pn(0.01,1)
 			),
-		// flute
-			~delays[9]+0.05,
-			Pbind(
-				\type, \ctosc, 
-				\oscout, ~osc_destination,
-				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.01,0.99],inf)],1),
-				\voicename, \fl,
-				\midinote, 
-					Pxrand([
-						Pwalk(
-							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=96}),
-							Pn(1,64.rand),
-							Pseq([1,-1],inf),
-						0),
-						Pwalk(
-							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=96}),
-							Pn(1,64.rand),
-							Pseq([1,-1],inf),
-						0),  
-						Pwalk(
-							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=96}),
-							Pn(1,64.rand),
-							Pseq([1,-1],inf),
-						0),  
-						Pwalk(
-							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=96}),
-							Pn(1,64.rand),
-							Pseq([1,-1],inf),
-						0),  
-						Pwalk(
-							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=96}),
-							Pn(1,64.rand),
-							Pseq([1,-1],inf),
-						0),  
-						Pwalk(
-							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=96}),
-							Pn(1,64.rand),
-							Pseq([1,-1],inf),
-						0),  
-						Pwalk(
-							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=96}),
-							Pn(1,64.rand),
-							Pseq([1,-1],inf),
-						0),  
-						Pwalk(
-							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=96}),
-							Pn(1,64.rand),
-							Pseq([1,-1],inf),
-						0)],inf), 
-				\legato, 0.35,  
-				\dur, Pseq([72,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
-				\amp, Pexprand(0.4,0.6,inf)
-			),
+//		// flute
+//			~delays[9]+0.05,
+//			Pbind(
+//				\type, \ctosc, 
+//				\oscout, ~osc_destination,
+//				\osccmd, Pseq([\rest,Pwrand([\rest,\noteon],[0.01,0.99],inf)],1),
+//				\voicename, \fl,
+//				\midinote, 
+//					Pxrand([
+//						Pwalk(
+//							(~hseries[0]).select({|n,i| n>=60}).select({|n,i| n<=96}),
+//							Pn(1,64.rand),
+//							Pseq([1,-1],inf),
+//						0),
+//						Pwalk(
+//							(~hseries[1]).select({|n,i| n>=60}).select({|n,i| n<=96}),
+//							Pn(1,64.rand),
+//							Pseq([1,-1],inf),
+//						0),  
+//						Pwalk(
+//							(~hseries[2]-12).select({|n,i| n>=60}).select({|n,i| n<=96}),
+//							Pn(1,64.rand),
+//							Pseq([1,-1],inf),
+//						0),  
+//						Pwalk(
+//							(~hseries[3]-24).select({|n,i| n>=60}).select({|n,i| n<=96}),
+//							Pn(1,64.rand),
+//							Pseq([1,-1],inf),
+//						0),  
+//						Pwalk(
+//							(~hseries[4]-36).select({|n,i| n>=60}).select({|n,i| n<=96}),
+//							Pn(1,64.rand),
+//							Pseq([1,-1],inf),
+//						0),  
+//						Pwalk(
+//							(~hseries[5]-48).select({|n,i| n>=60}).select({|n,i| n<=96}),
+//							Pn(1,64.rand),
+//							Pseq([1,-1],inf),
+//						0),  
+//						Pwalk(
+//							(~hseries[6]-60).select({|n,i| n>=60}).select({|n,i| n<=96}),
+//							Pn(1,64.rand),
+//							Pseq([1,-1],inf),
+//						0),  
+//						Pwalk(
+//							(~hseries[7]-72).select({|n,i| n>=60}).select({|n,i| n<=96}),
+//							Pn(1,64.rand),
+//							Pseq([1,-1],inf),
+//						0)],inf), 
+//				\legato, 0.35,  
+//				\dur, Pseq([72,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3),Pn(1/2,2),1],inf)],1),
+//				\amp, Pexprand(0.4,0.6,inf)
+//			),
+//		// flute -> reverb
+//			~delays[9]+0.05,
+//			Pbind(
+//				\instrument, \gverb,
+//				\group, ~fx,
+//				\in, ~master_dry_bus.subBus(0,1),
+//				\out, 24,
+//				\dur, ~durations[9],
+//				\atk, ~durations[9],
+//				\sus, 0.01,
+//				\rel, 10, 
+//				\amp, 1.0,
+//				\roomsize, 243, 
+//				\revtime, 15, 
+//				\damping, 0.3, 
+//				\inputbw, 0.34, 
+//				\drylevel, -80, 
+//				\earlylevel, -11, 
+//				\taillevel, -9
+//			),			
 		// bass clarinet
 			~delays[9]+0.05,
 			Pbind(
@@ -2214,7 +2234,7 @@
 							Pn(1,64.rand),
 							Pseq([1,-1],inf),
 						0)],inf), 
-				\dur, Pseq([8,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],inf)],1),
+				\dur, Pseq([8,Prand([Pn(1/8,8),Pn(1/6,6),Pn(1/3,3)],1)],1),
 				\amp, Pexprand(0.75,1.0,inf)
 			),
 		// flute -> reverb

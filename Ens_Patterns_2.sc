@@ -1,6 +1,6 @@
 /************************************	*/
 /* Ensemble Piece		             	*/
-/*	PATTERNS	8-15					*/
+/*	PATTERNS	8-12					*/
 /************************************	*/
 
 (
@@ -66,7 +66,7 @@
 			\atk, 0.01,
 			\sus, ~durations[8],
 			\rel, 0.01, 
-			\amp, 1.0,
+			\amp, 1.5,
 			\roomsize, 243, 
 			\revtime, 15, 
 			\damping, 0.3, 
@@ -469,7 +469,7 @@
 			\sus, ~durations[9] * 0.3,
 			\rel, ~durations[9] * 0.3, 
 			\amp, 0.75,
-			\warpfactor, [-12,-24,-36,12].midiratio,
+			\warpfactor, [12,-7,-12,-24,-36,-48].midiratio,
 			\freqscale, Pkey(\warpfactor)
 		),
 	// warp -> fbdelay 
@@ -978,8 +978,8 @@
 				"alto saxophone.ordinario",
 				"violin.excessive pressure",
 				"violin.ordinario",
-				"viola.excessive pressure",	
-				"viola.ordinario",	
+				"violin.excessive pressure",	
+				"violin.ordinario",	
 				"viola.ordinario",
 				"viola.ordinario",
 				"violoncello.ordinario",
@@ -996,15 +996,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),inf), 
+						n>=59}).select({|n,i| n<=96}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),inf), 
+						n>=59}).select({|n,i| n<=96}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),inf), 
+						n>=59}).select({|n,i| n<=96}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),inf), 
+						n>=59}).select({|n,i| n<=96}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),inf), 
+						n>=59}).select({|n,i| n<=96}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,
@@ -1020,15 +1020,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),inf), 
+						n>=48}).select({|n,i| n<=84}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),inf), 
+						n>=48}).select({|n,i| n<=84}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),inf), 
+						n>=48}).select({|n,i| n<=84}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),inf), 
+						n>=48}).select({|n,i| n<=84}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),inf), 
+						n>=48}).select({|n,i| n<=84}),1), 
 				],1),
 			\dur, 16,
 			\amp, 1.0
@@ -1043,15 +1043,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),inf), 
+						n>=34}).select({|n,i| n<=85}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),inf), 
+						n>=34}).select({|n,i| n<=85}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),inf), 
+						n>=34}).select({|n,i| n<=85}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),inf), 
+						n>=34}).select({|n,i| n<=85}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),inf), 
+						n>=34}).select({|n,i| n<=85}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,		
@@ -1067,15 +1067,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,					
@@ -1091,20 +1091,20 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),inf), 
+						n>=34}).select({|n,i| n<=76}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,0.3,inf)
-		),			
+		),	
 	// saxophone 1
 		~delays[12]+0.025,
 		Pbind(
@@ -1115,15 +1115,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,					
@@ -1139,15 +1139,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),inf), 
+						n>=49}).select({|n,i| n<=89}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,					
@@ -1163,15 +1163,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,					
@@ -1187,15 +1187,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,					
@@ -1211,15 +1211,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,					
@@ -1235,15 +1235,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),inf), 
+						n>=70}).select({|n,i| n<=104}),1), 
 				],1),
 			\dur, 16,
 			\legato, 0.99,					
@@ -1259,15 +1259,15 @@
 			\midinote, 
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 				],1),
 			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 			\legato, 0.99,					
@@ -1283,15 +1283,15 @@
 			\midinote, 	
 				Pseq([	
 					Prand(~hseries[0].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 					Prand(~hseries[1].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 					Prand(~hseries[2].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 					Prand(~hseries[3].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 					Prand(~hseries[4].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),inf), 
+						n>=48}).select({|n,i| n<=94}),1), 
 				],1),
 			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
 			\legato, 0.99,					

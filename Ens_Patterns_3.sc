@@ -59,7 +59,7 @@
 						n>=59}).select({|n,i| n<=96}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=59}).select({|n,i| n<=96}),1), 
-				],1),
+				],inf),
 			\dur, Pseq([16,Pxrand([4,8,16],inf)],1).collect({|dur| ~wwdur = dur; dur}),
 			\legato, 0.99,
 			\amp, Pexprand(0.1,1.0,inf)
@@ -83,7 +83,7 @@
 						n>=48}).select({|n,i| n<=84}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=48}).select({|n,i| n<=84}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~wwdur}),
 			\amp, Pexprand(0.1,1.0,inf)
 		),
@@ -106,7 +106,7 @@
 						n>=34}).select({|n,i| n<=85}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=34}).select({|n,i| n<=85}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~wwdur}),
 			\legato, 0.99,		
 			\amp, Pexprand(0.1,1.0,inf)
@@ -130,7 +130,7 @@
 						n>=34}).select({|n,i| n<=76}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=34}).select({|n,i| n<=76}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~wwdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,1.0,inf)
@@ -154,7 +154,7 @@
 						n>=34}).select({|n,i| n<=76}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=34}).select({|n,i| n<=76}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~wwdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,1.0,inf)
@@ -178,7 +178,7 @@
 						n>=24}).select({|n,i| n<=84}),inf), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=24}).select({|n,i| n<=84}),inf), 
-				],1),
+				],inf),
 			\dur, Pseq([16,Prand([4,8,16],inf)],1).collect({|dur| ~brassdur = dur; dur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,0.75,inf)
@@ -202,7 +202,7 @@
 						n>=24}).select({|n,i| n<=84}),inf), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=24}).select({|n,i| n<=84}),inf), 
-				],1),
+				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,0.75,inf)
@@ -226,7 +226,7 @@
 						n>=30}).select({|n,i| n<=80}),inf), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=30}).select({|n,i| n<=80}),inf), 
-				],1),
+				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,0.75,inf)
@@ -250,7 +250,7 @@
 						n>=30}).select({|n,i| n<=80}),inf), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=30}).select({|n,i| n<=80}),inf), 
-				],1),
+				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,0.75,inf)
@@ -274,7 +274,7 @@
 						n>=49}).select({|n,i| n<=89}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=49}).select({|n,i| n<=89}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,0.75,inf)
@@ -298,7 +298,7 @@
 						n>=49}).select({|n,i| n<=89}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=49}).select({|n,i| n<=89}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,0.75,inf)
@@ -322,7 +322,7 @@
 						n>=70}).select({|n,i| n<=104}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),1), 
-				],1),
+				],inf),
 			\dur, Pseq([16,Prand([8,4,16],inf)]).collect({|dur| ~stringsdur = dur; dur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
@@ -346,7 +346,7 @@
 						n>=70}).select({|n,i| n<=104}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
@@ -370,7 +370,7 @@
 						n>=70}).select({|n,i| n<=104}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
@@ -394,7 +394,7 @@
 						n>=70}).select({|n,i| n<=104}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=70}).select({|n,i| n<=104}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
@@ -418,7 +418,7 @@
 						n>=48}).select({|n,i| n<=94}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=48}).select({|n,i| n<=94}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
@@ -442,7 +442,7 @@
 						n>=48}).select({|n,i| n<=94}),1), 
 					Pxrand(~hseries[4].select({|n,i| 
 						n>=48}).select({|n,i| n<=94}),1), 
-				],1),
+				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
@@ -459,7 +459,7 @@
 				~hseries[1][2],
 				~hseries[2][3],
 				~hseries[3][4],
-				~hseries[4][5]],1), 
+				~hseries[4][5]],inf), 
 			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1).collect({|dur| ~bass = dur; dur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
@@ -476,7 +476,7 @@
 				~hseries[1][0],
 				~hseries[2][0],
 				~hseries[3][0],
-				~hseries[4][0]],1),
+				~hseries[4][0]],inf),
 			\dur, Pfunc({~bass}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
@@ -498,10 +498,10 @@
 						~hseries[3]),
 					~hseries[4]).select({|n,i| 
 						n>=72}).select({|n,i| n<=96}),
-					Prand([-2,-1,1,2]),
-					Pseq([-1,1]),
+					Prand([-2,-1,1,2],inf),
+					Pseq([-1,1],inf),
 					0),
-			\dur, Prand(1/[4,Pn(1/8,8),Pn(1/6,6)],inf),
+			\dur, Prand([1,2,4,8,Pn(1/4,4),Pn(1/8,8),Pn(1/6,6)],inf),
 			\legato, 2,
 			\amp, Pexprand(0.7,1.0,inf)
 		),		

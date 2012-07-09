@@ -21,8 +21,8 @@
 ~delays = 0!32;
 
 ~durations[0] = 70; ~delays[0] = 0;
-~durations[1] = 60; ~delays[1] = 6;
-~durations[2] = 32; ~delays[2] = 6;
+~durations[1] = 60; ~delays[1] = 4;
+~durations[2] = 32; ~delays[2] = 4;
 ~durations[3] = 60; ~delays[3] = 2;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;
@@ -80,10 +80,10 @@
 			\group, ~output,
 			\in, ~master_fx_bus.subBus(0,1),
 			\out, 26, 
-			\dur, ~durations[8] / 381,
-			\atk, ~durations[8] * 0.01,
-			\sus, ~durations[8] * 0.99,
-			\rel, ~durations[8] * 0.01, 
+			\dur, ~durations[0] / 381,
+			\atk, ~durations[0] * 0.01,
+			\sus, ~durations[0] * 0.99,
+			\rel, ~durations[0] * 0.01, 
 			\amp, 1.0,
 			\pan, Pbrown(-1.0,1.0,0.05,inf),
 			\legato, 1.1
@@ -526,10 +526,10 @@
 			\group, ~output,
 			\in, ~master_fx_bus.subBus(1,1),
 			\out, 26, 
-			\dur, ~durations[8] / 100,
-			\atk, ~durations[8] * 0.01,
-			\sus, ~durations[8] * 0.99,
-			\rel, ~durations[8] * 0.01, 
+			\dur, ~durations[3] / 100,
+			\atk, ~durations[3] * 0.01,
+			\sus, ~durations[3] * 0.99,
+			\rel, ~durations[3] * 0.01, 
 			\amp, 1.0,
 			\pan, Pbrown(-1.0,1.0,0.1,inf),
 			\legato, 1.1
@@ -621,10 +621,10 @@
 			\group, ~output,
 			\in, ~master_fx_bus.subBus(10,1),
 			\out, 26, 
-			\dur, ~durations[8] / 100,
-			\atk, ~durations[8] * 0.01,
-			\sus, ~durations[8] * 0.99,
-			\rel, ~durations[8] * 0.01, 
+			\dur, ~durations[3] / 100,
+			\atk, ~durations[3] * 0.01,
+			\sus, ~durations[3] * 0.99,
+			\rel, ~durations[3] * 0.01, 
 			\amp, 1.0,
 			\pan, Pbrown(-1.0,1.0,0.01,inf),
 			\legato, 1.1

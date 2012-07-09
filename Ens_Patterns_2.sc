@@ -194,7 +194,7 @@
 			\dur, (~durations[8]-16),
 			\atk, (~durations[8]-16) * 0.2,
 			\sus, (~durations[8]-16) * 0.1,
-			\rel, (~durations[8]-16) * 0.99, 
+			\rel, (~durations[8]-16) * 0.7, 
 			\amp, 1.0,
 			\warpfactor, [-12,-24,-36,-7,-5,-3].midiratio,
 			\freqscale, Pkey(\warpfactor)
@@ -887,7 +887,7 @@
 			\instrument, \crusher,
 			\group, ~fx,
 			\in, ~master_dry_bus.subBus(12,1),
-			\out, 25,
+			\out, ~master_fx_bus.subBus(12,1),
 			\dur, Pfunc({~crotales_dur}),
 			\atk, Pkey(\dur) * 0.1,
 			\sus, Pkey(\dur) * 0.1,
@@ -896,6 +896,26 @@
 			\lag, Pfunc({~crotales_dur.rand}),
 			\bitdepth, Prand((1..4),inf)
 		),	
+	// bitcrush -> reverb
+		~delays[11]+0.05,
+		Pbind(
+			\instrument, \gverb,
+			\group, ~fx,
+			\in, ~master_fx_bus.subBus(12,1),
+			\out, 24,
+			\dur, ~durations[11],
+			\atk, 0.01,
+			\sus, ~durations[11],
+			\rel, 0.01, 
+			\amp, 1.0,
+			\roomsize, 243, 
+			\revtime, 15, 
+			\damping, 0.3, 
+			\inputbw, 0.34, 
+			\drylevel, -80, 
+			\earlylevel, -11, 
+			\taillevel, -9
+		),								
 	// crotales -> pitchshift
 		~delays[11]+0.075,
 		Pbind(

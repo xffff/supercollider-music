@@ -62,9 +62,10 @@
 			postln("Routing Audio... ");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Audio.sc");
 			0.5.wait;
-			postln("Loading Patterns... ");
+			postln("Loading Patterns 0-7... ");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Patterns.sc");
 			0.5.wait;
+			postln("Loading Patterns 7-15... ");		
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Patterns_2.sc");
 			0.5.wait;
 			postln("Loading Sequencer...");

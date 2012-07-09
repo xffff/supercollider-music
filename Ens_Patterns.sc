@@ -1247,7 +1247,8 @@
 ~sections[6] = Pfindur(~durations[6],
 	Ptpar([
 	// stop trombone going weird and ruining everything
-	Pfuncn({~osc_destination.sendMsg("all_notes_off");}), 
+	0,
+	Pfuncn({~osc_destination.sendMsg("all_notes_off");0},1), 
 	// program changes
 		~delays[6],
 		Pbind(
@@ -1367,7 +1368,8 @@
 ~sections[7] = Pfindur(~durations[7],
 	Ptpar([
 	// stop trombone going weird and ruining everything
-	Pfuncn({~osc_destination.sendMsg("all_notes_off");}),
+		0,
+	Pfuncn({~osc_destination.sendMsg("all_notes_off");0},1),
 	// program changes
 		~delays[7],
 		Pbind(

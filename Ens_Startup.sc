@@ -65,6 +65,8 @@
 			postln("Loading Patterns... ");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Patterns.sc");
 			0.5.wait;
+			thisProcess.interpreter.executeFile(~path ++ "/Ens_Patterns_2.sc");
+			0.5.wait;
 			postln("Loading Sequencer...");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Sequencer.sc");
 		);

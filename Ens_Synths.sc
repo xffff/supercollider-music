@@ -133,6 +133,7 @@ SynthDef(\freqshift, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.
 	env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
 	sound = In.ar(in, 1);
 	sound = FreqShift.ar(sound, freq) * env;
+	4.do{sound = DelayC.ar(sound,0.4,0.4.rand,0.25,sound)};
 	Out.ar(out,sound);
 }).add;
 

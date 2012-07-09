@@ -501,7 +501,10 @@
 					Prand([-2,-1,1,2],inf),
 					Pseq([-1,1],inf),
 					0),
-			\dur, Prand([1,2,4,8,Pn(1/4,4),Pn(1/8,8),Pn(1/6,6)],inf),
+			\dur, 
+				Pseq([Pn(1/4,4),
+					Pwrand([Pn(1/8,8),Pn(1/4,16),Pn(1/7,7),Pn(1/3,3),8,3,2,1,Pn(4,2)],
+						{1.0.rand}.dup(9).normalizeSum,inf)],inf),
 			\legato, 2,
 			\amp, Pexprand(0.7,1.0,inf)
 		),		

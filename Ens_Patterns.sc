@@ -454,6 +454,17 @@
 			\midinote, Pwrand([38,26],[0.7,0.3],inf), 
 			\dur, Pn(16,2),
 			\amp, Pexprand(0.1,0.3,inf)
+		),
+	// tam-tam
+		~delays[2]+0.05,
+		Pbind(
+			\type, \ctosc, 
+			\oscout, ~osc_destination,
+			\osccmd, \noteon,
+			\voicename, \tam,
+			\midinote, 65, 
+			\dur, Pn(16,1),
+			\amp, Pexprand(0.7,1.0,1)		
 		)	
 	], 1),
 0);
@@ -1314,7 +1325,7 @@
 			\out, 17,
 			\dur, ~durations[6],
 			\atk, ~durations[6],
-			\sus, ~durations[6] * 0.1,
+			\sus, 0.01,
 			\rel, ~durations[7], 
 			\amp, 0.65,
 			\warpfactor, (-5,-3..5).midiratio,
@@ -1340,7 +1351,7 @@
 			\out, 17,
 			\dur, ~durations[6],
 			\atk, ~durations[6],
-			\sus, ~durations[6] * 0.1,
+			\sus, 0.01,
 			\rel, ~durations[7], 
 			\amp, 0.6,
 			\warpfactor, (1,3..11).midiratio,
@@ -1442,7 +1453,7 @@
 			\out, 17,
 			\dur, ~durations[7],
 			\atk, ~durations[7],
-			\sus, ~durations[7] * 0.01,
+			\sus, 0.01,
 			\rel, 10, 
 			\amp, 0.65,
 			\warpfactor, [-7,-12].midiratio,
@@ -1509,7 +1520,7 @@
 			\out, 17,
 			\dur, ~durations[7],
 			\atk, ~durations[7],
-			\sus, ~durations[7] * 0.01,
+			\sus, 0.01,
 			\rel, 20, 
 			\amp, 0.6,
 			\warpfactor, [-12,-24].midiratio,

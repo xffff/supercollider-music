@@ -6,7 +6,7 @@
 (
 ~durations[8] = 80; ~delays[8] = 0;
 ~durations[9] = 120; ~delays[9] = 0;
-~durations[10] = 32; ~delays[10] = 0;
+~durations[10] = 50; ~delays[10] = 0;
 ~durations[11] = 64; ~delays[11] = 4;
 ~durations[12] = 64; ~delays[12] = 0;
 

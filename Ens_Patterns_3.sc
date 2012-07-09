@@ -16,7 +16,7 @@
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
 			\osccmd, \program,
-			\voicename, [\fl,\bfl,\bcl,\bsn1,\bsn2,\tr1,\tb1,
+			\voicename, [\fl,\bfl,\bcl,\bsn1,\bsn2,\tr1,\tr2,\tb1,\tb2,
 						\sx1,\sx2,\vi1,\vi2,\vi3,\vi4,\va1,\va2,\vc,\cb],
 			\programname, 
 				#["flute.ordinario",
@@ -25,6 +25,8 @@
 				"bassoon.ordinario.Schawrz Heckel",
 				"bassoon.ordinario.Schawrz Heckel",
 				"trumpet in c.ordinario",
+				"trumpet in c.ordinario",		
+				"tenor trombone.ordinario",
 				"tenor trombone.ordinario",
 				"alto saxophone.ordinario",
 				"alto saxophone.ordinario",
@@ -479,8 +481,32 @@
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
 		),
+	// crotales			
+		~delays[13]+0.05,
+		Pbind(
+			\type, \ctosc, 
+			\oscout, ~osc_destination,
+			\osccmd, \noteon,
+			\voicename, \ctl,
+			\midinote, 
+				Pwalk(
+					union(
+						union(
+							union(
+								union(~hseries[0],~hseries[1]),
+							~hseries[2]),
+						~hseries[3]),
+					~hseries[4]).select({|n,i| 
+						n>=72}).select({|n,i| n<=96}),
+					Prand([-2,-1,1,2]),
+					Pseq([-1,1]),
+					0),
+			\dur, Prand(1/[4,Pn(1/8,8),Pn(1/6,6)],inf),
+			\legato, 2,
+			\amp, Pexprand(0.7,1.0,inf)
+		),		
 	// tam-tam
-		~delays[9]+0.05,
+		~delays[13]+0.05,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
@@ -491,7 +517,7 @@
 			\amp, Pexprand(0.7,1.0,1)		
 		),
 	// bass drum
-		~delays[9]+0.05,
+		~delays[13]+0.05,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,

@@ -22,7 +22,7 @@
 
 ~durations[0] = 70; ~delays[0] = 0;
 ~durations[1] = 60; ~delays[1] = 6;
-~durations[2] = 32; ~delays[2] = 0;
+~durations[2] = 32; ~delays[2] = 6;
 ~durations[3] = 60; ~delays[3] = 2;
 ~durations[4] = 64; ~delays[4] = 0;
 ~durations[5] = 72; ~delays[5] = 4;

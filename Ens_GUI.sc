@@ -4,12 +4,12 @@
 /************************************	*/
 
 (
-GUI.qt;
-var initButton, stopButton, playButton, ctButton, routeButton, queryButton, meterButton;
+var initButton, stopButton, playButton, ctButton, routeButton, queryButton, meterButton;GUI.qt;
 ~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece";
 ~contimbre_path = "/Volumes/Time Machine Backups/conTimbre";
 ~buffersize = 2048;
 CmdPeriod.add({~stop_all.fork;});
+GUI.qt;
 
 	postln("/****************************************************/");
 	postln("/* Ensemble                                         */");

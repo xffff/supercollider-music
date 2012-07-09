@@ -48,6 +48,26 @@
 			\dur, Prand([26,12,8],inf),
 			\amp, Pexprand(0.1,0.25,inf)
 		),
+	// bfl -> reverb
+		~delays[9]+0.05,
+		Pbind(
+			\instrument, \gverb,
+			\group, ~fx,
+			\in, ~master_dry_bus.subBus(1,1),
+			\out, 24,
+			\dur, ~durations[8],
+			\atk, 0.01,
+			\sus, ~durations[8],
+			\rel, 0.01, 
+			\amp, 1.0,
+			\roomsize, 243, 
+			\revtime, 15, 
+			\damping, 0.3, 
+			\inputbw, 0.34, 
+			\drylevel, -80, 
+			\earlylevel, -11, 
+			\taillevel, -9
+		),						
 //		// bass clarinet
 //			~delays[8]+0.05,
 //			Pbind(
@@ -430,7 +450,7 @@
 			\taillevel, -9
 		),				
 	// viola -> warp 
-		~delays[9]+0.05,
+		~delays[9]+0.15,
 		Pbind(
 			\instrument, \warp,
 			\group, ~fx,
@@ -446,13 +466,13 @@
 			\freqscale, Pkey(\warpfactor)
 		),
 	// warp -> fbdelay 
-		~delays[9]+0.15,
+		~delays[9]+0.05,
 		Pbind(
 			\instrument, \fbdelay,
 			\group, ~fx,
-			\addAction, 1, // must come after warp in this group
 			\in, ~master_fx_bus.subBus(9,1),
-			\out, ~master_fx_bus.subBus(23,1),
+			\out, [~master_fx_bus.subBus(23,1),~master_fx_bus.subBus(24,1)],
+//			\out, ~master_fx_bus.subBus(23,1),
 			\dur, ~durations[9],
 			\atk, ~durations[9] * 0.4,
 			\sus, ~durations[9] * 0.3,
@@ -467,7 +487,8 @@
 		Pbind(
 			\instrument, \gverb,
 			\group, ~fx,
-			\in, ~master_fx_bus.subBus(23,1),
+			\addAction, 1, // after fbdelay
+			\in, ~master_fx_bus.subBus(24,1),
 			\out, 24,
 			\dur, ~durations[9],
 			\atk, ~durations[9],
@@ -696,7 +717,8 @@
 				Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 					n>=55}).select({|n,i| n<=84}),inf), 
 			\dur, Prand((2,4..8),inf),	
-			\amp, Pexprand(0.1,1.0,inf)
+			\legato, 0.99,
+			\amp, Pexprand(0.75,1.0,inf)
 		),	
 	// violin 2
 		~delays[11]+0.05,
@@ -713,7 +735,8 @@
 				Prand(union(~hseries[0],~hseries[2]-48).select({|n,i| 
 					n>=55}).select({|n,i| n<=84}),inf), 
 			\dur, Prand((2,4..8),inf),	
-			\amp, Pexprand(0.1,1.0,inf)
+			\legato, 0.99,
+			\amp, Pexprand(0.75,1.0,inf)
 		),	
 	// violin 3
 		~delays[11]+0.05,
@@ -730,7 +753,8 @@
 				Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 					n>=55}).select({|n,i| n<=84}),inf), 
 			\dur, Prand((2,4..8),inf),	
-			\amp, Pexprand(0.1,1.0,inf)
+			\legato, 0.99,
+			\amp, Pexprand(0.75,1.0,inf)
 		),	
 	// violin 4
 		~delays[11]+0.05,
@@ -747,7 +771,8 @@
 				Prand(union(~hseries[0],~hseries[2]-48).select({|n,i| 
 					n>=55}).select({|n,i| n<=84}),inf), 
 			\dur, Prand((2,4..8),inf),	
-			\amp, Pexprand(0.1,1.0,inf)
+			\legato, 0.99,
+			\amp, Pexprand(0.75,1.0,inf)
 		),		
 	// viola 1
 		~delays[11]+0.05,
@@ -764,7 +789,8 @@
 				Prand(union(~hseries[2]-12,~hseries[4]-48).select({|n,i| 
 					n>=48}).select({|n,i| n<=94}),inf), 
 			\dur, Prand((2,4..8),inf),	
-			\amp, Pexprand(0.1,1.0,inf)
+			\legato, 0.99,
+			\amp, Pexprand(0.75,1.0,inf)
 		),	
 	// viola 1
 		~delays[11]+0.05,
@@ -780,8 +806,9 @@
 			\midinote, 
 				Prand(union(~hseries[1]-12,~hseries[3]-48).select({|n,i| 
 					n>=48}).select({|n,i| n<=94}),inf), 
-			\dur, Prand((2,4..8),inf),	
-			\amp, Pexprand(0.1,1.0,inf)
+			\dur, Prand((2,4..8),inf),
+			\legato, 0.99,	
+			\amp, Pexprand(0.75,1.0,inf)
 		),	
 	// violoncello
 		~delays[11]+0.075,
@@ -799,8 +826,28 @@
 				Prand(union(~hseries[0]-12,~hseries[3]-48).select({|n,i| 
 					n>=36}).select({|n,i| n<=60}),inf), 
 			\dur, Prand((2,4..8),inf),	
+			\legato, 0.99,
 			\amp, Pexprand(0.75,1.0,inf)
 		),
+	// contrabass
+		~delays[12]+0.075,
+		Pbind(
+			\type, \ctosc, 
+			\oscout, ~osc_destination,
+			\osccmd, 
+				Pwrand([\rest,\noteon], 
+					Pseq([Array.fib(8,1,1).reciprocal,
+						Array.fib(8,1,1).reverse.reciprocal
+						].flop,8).collect(_.normalizeSum),inf),
+
+			\voicename, \cb,
+			\midinote,
+				Prand(union(~hseries[0]-12,~hseries[3]-48).select({|n,i| 
+					n>=26}).select({|n,i| n<=60}),inf), 
+			\dur, Prand((2,4..8),inf),	
+			\legato, 0.99,
+			\amp, Pexprand(0.75,1.0,inf)
+		),			
 	// crotales			
 		~delays[11]+0.05,
 		Pbind(

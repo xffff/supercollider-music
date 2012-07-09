@@ -108,10 +108,10 @@ SynthDef(\gverb, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
 }).add;
 
 SynthDef(\crusher, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1, 
-						bitdepth = 32, gate = 1 |
+						bitdepth = 32, gate = 1, lag = 2 |
 		var env, signal;
 		env = EnvGen.kr(Env.linen(atk,sus,rel,amp,'sin'),doneAction:2);
-		signal = In.ar(in, 1).trunc(0.5**Lag.kr(bitdepth)) * env;
+		signal = In.ar(in, 1).trunc(0.5**Lag.kr(bitdepth,lag)) * env;
 		Out.ar(out, signal);
 }).add;
 

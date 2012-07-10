@@ -1222,7 +1222,7 @@
 			\instrument, \rlpf,
 			\group, ~fx,
 			\in, ~master_dry_bus.subBus(15,1), // pulse -> rlpf
-			\out, [~master_fx_bus.subBus(15,1),15], // rlpf -> conv & dry out
+			\out, ~master_fx_bus.subBus(15,1), // rlpf -> conv & dry out
 			\dur, 16,
 			\atk, Pkey(\dur) * 0.4,
 			\sus, Pkey(\dur) * 0.3,

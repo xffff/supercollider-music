@@ -586,12 +586,45 @@
 				"double bass.ordinario"],
 			\dur, Pn(0.01,1)
 		),
+	// Saw
+		~delays[14]+0.05,
+		Pbind(
+			\instrument, \saw,
+			\group, ~input,
+			\out, [~master_dry_bus.subBus(15,1),15],
+			\atk, ~durations[14],
+			\sus, 0.001,
+			\rel, 0.001,
+			\freq, 26.midicps,
+			\dur, ~durations[14],
+			\amp, 0.6
+		),
+	// saw -> reverb
+		~delays[14]+0.05,
+		Pbind(
+			\instrument, \gverb,
+			\group, ~fx,
+			\in, ~master_dry_bus.subBus(15,1),
+			\out, 24,
+			\dur, ~durations[14],
+			\atk, 0.01,
+			\sus, ~durations[14],
+			\rel, 0.01, 
+			\amp, 1.0,
+			\roomsize, 243, 
+			\revtime, 15, 
+			\damping, 0.3, 
+			\inputbw, 0.34, 
+			\drylevel, -80, 
+			\earlylevel, -11, 
+			\taillevel, -9
+		),								
 	// violin 1
 		~delays[14]+0.05,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
-			\osccmd, Pseq([\detuned_noteon,Prand([\rest,\detuned_noteon],inf)],1),
+			\osccmd, \detuned_noteon,
 			\voicename, \vi1,
 			\midinote, Pseq([
 				~hseries[0][7],
@@ -599,16 +632,16 @@
 				~hseries[2][7],
 				~hseries[3][7],
 				~hseries[4][7]],inf), 
-			\dur, Pseq([16,Prand([8,4,16],inf)]).collect({|dur| ~stringsdur = dur; dur}),
-			\legato, 0.99,					
-			\amp, Pexprand(0.4,1.0,inf)
+			\dur, (Pn(16,inf)*Pseq((1.0,0.95..0.001),1)).collect({|dur| ~stringsdur = dur; dur}),
+			\legato, 0.99*Pseq((1.0,0.99..0.01),1).collect({|dur| ~stringsleg = dur; dur}),
+			\amp, Pexprand(0.6,1.0,inf)
 		),
 	// violin 2
 		~delays[14]+0.075,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
-			\osccmd, Pseq([\detuned_noteon,Prand([\rest,\detuned_noteon],inf)],1),
+			\osccmd, \detuned_noteon,
 			\voicename, \vi2,
 			\midinote, Pseq([
 				~hseries[0][6],
@@ -617,15 +650,50 @@
 				~hseries[3][6],
 				~hseries[4][6]],inf), 
 			\dur, Pfunc({~stringsdur}),
-			\legato, 0.99,					
-			\amp, Pexprand(0.4,1.0,inf)
+			\legato, Pfunc({~stringsleg}),
+			\amp, Pexprand(0.6,1.0,inf)
 		),
+	// vi12 -> warp
+		~delays[14]+0.075,
+		Pbind(
+			\instrument, \warp,
+			\group, ~fx,
+			\in, ~master_dry_bus.subBus(7,1),
+			\out, ~master_fx_bus.subBus(7,1),
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.75,
+			\warpfactor, [-12,12].midiratio,
+			\freqscale, Pkey(\warpfactor)
+		),	
+	// warp -> reverb
+		~delays[14]+0.075,
+		Pbind(
+			\instrument, \gverb,
+			\group, ~fx,
+			\in, ~master_fx_bus.subBus(7,1),
+			\out, 24,
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.5,
+			\roomsize, 243, 
+			\revtime, 15, 
+			\damping, 0.3, 
+			\inputbw, 0.34, 
+			\drylevel, -80, 
+			\earlylevel, -11, 
+			\taillevel, -9
+		),									
 	// violin 3
 		~delays[14]+0.075,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
-			\osccmd, Pseq([\detuned_noteon,Prand([\rest,\detuned_noteon],inf)],1),
+			\osccmd, \detuned_noteon,
 			\voicename, \vi3,
 			\midinote, Pseq([
 				~hseries[0][5],
@@ -634,15 +702,15 @@
 				~hseries[3][5],
 				~hseries[4][5]],inf), 
 			\dur, Pfunc({~stringsdur}),
-			\legato, 0.99,					
-			\amp, Pexprand(0.4,1.0,inf)
+			\legato, Pfunc({~stringsleg}),
+			\amp, Pexprand(0.6,1.0,inf)
 		),
 	// violin 4
 		~delays[14]+0.075,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
-			\osccmd, Pseq([\detuned_noteon,Prand([\rest,\detuned_noteon],inf)],1),
+			\osccmd, \detuned_noteon,
 			\voicename, \vi4,
 			\midinote, Pseq([
 				~hseries[0][4],
@@ -651,15 +719,50 @@
 				~hseries[3][4],
 				~hseries[4][4]],inf), 
 			\dur, Pfunc({~stringsdur}),
-			\legato, 0.99,					
-			\amp, Pexprand(0.4,1.0,inf)
-		),		
+			\legato, Pfunc({~stringsleg}),
+			\amp, Pexprand(0.6,1.0,inf)
+		),	
+	// vi34 -> warp
+		~delays[14]+0.075,
+		Pbind(
+			\instrument, \warp,
+			\group, ~fx,
+			\in, ~master_dry_bus.subBus(8,1),
+			\out, ~master_fx_bus.subBus(8,1),
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.75,
+			\warpfactor, [-12,12].midiratio,
+			\freqscale, Pkey(\warpfactor)
+		),	
+	// vi34 -> reverb
+		~delays[14]+0.075,
+		Pbind(
+			\instrument, \gverb,
+			\group, ~fx,
+			\in, ~master_fx_bus.subBus(8,1),
+			\out, 24,
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.75,
+			\roomsize, 243, 
+			\revtime, 15, 
+			\damping, 0.3, 
+			\inputbw, 0.34, 
+			\drylevel, -80, 
+			\earlylevel, -11, 
+			\taillevel, -9
+		),										
 	// viola 1
 		~delays[14]+0.075,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
-			\osccmd, Pseq([\detuned_noteon,Prand([\rest,\detuned_noteon],inf)],1),
+			\osccmd, \detuned_noteon,
 			\voicename, \va1,
 			\midinote, Pseq([
 				~hseries[0][3],
@@ -668,15 +771,15 @@
 				~hseries[3][3],
 				~hseries[4][3]],inf), 
 			\dur, Pfunc({~stringsdur}),
-			\legato, 0.99,					
-			\amp, Pexprand(0.4,1.0,inf)
+			\legato, Pfunc({~stringsleg}),
+			\amp, Pexprand(0.6,1.0,inf)
 		),
 	// viola 2
 		~delays[14]+0.075,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
-			\osccmd, Pseq([\detuned_noteon,Prand([\rest,\detuned_noteon],inf)],1),
+			\osccmd, \detuned_noteon,
 			\voicename, \va2,
 			\midinote, Pseq([
 				~hseries[0][2],
@@ -685,15 +788,50 @@
 				~hseries[3][2],
 				~hseries[4][2]],inf), 
 			\dur, Pfunc({~stringsdur}),
-			\legato, 0.99,					
-			\amp, Pexprand(0.4,1.0,inf)
+			\legato, Pfunc({~stringsleg}),
+			\amp, Pexprand(0.6,1.0,inf)
 		),
+	// vi34 -> warp
+		~delays[14]+0.075,
+		Pbind(
+			\instrument, \warp,
+			\group, ~fx,
+			\in, ~master_dry_bus.subBus(9,1),
+			\out, ~master_fx_bus.subBus(9,1),
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.75,
+			\warpfactor, [-12,12].midiratio,
+			\freqscale, Pkey(\warpfactor)
+		),
+	// va12 -> reverb
+		~delays[14]+0.075,
+		Pbind(
+			\instrument, \gverb,
+			\group, ~fx,
+			\in, ~master_fx_bus.subBus(9,1),
+			\out, 24,
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.75,
+			\roomsize, 243, 
+			\revtime, 15, 
+			\damping, 0.3, 
+			\inputbw, 0.34, 
+			\drylevel, -80, 
+			\earlylevel, -11, 
+			\taillevel, -9
+		),		
 	// violoncello
 		~delays[14]+0.075,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
-			\osccmd, Pseq([\detuned_noteon,Prand([\rest,\detuned_noteon],inf)],1),
+			\osccmd, \detuned_noteon,
 			\voicename, \vc,
 			\midinote, Pseq([
 				~hseries[0][1],
@@ -702,11 +840,46 @@
 				~hseries[3][1],
 				~hseries[4][1]],inf), 
 			\dur, Pfunc({~stringsdur}),
-			\legato, 0.99,					
-			\amp, Pexprand(0.4,1.0,inf)
+			\legato, Pfunc({~stringsleg}),
+			\amp, Pexprand(0.6,1.0,inf)
+		),
+	// vc -> warp
+		~delays[14]+0.075,
+		Pbind(
+			\instrument, \warp,
+			\group, ~fx,
+			\in, ~master_dry_bus.subBus(10,1),
+			\out, ~master_fx_bus.subBus(10,1),
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.75,
+			\warpfactor, [-12,12].midiratio,
+			\freqscale, Pkey(\warpfactor)
+		),			
+	// vc -> reverb
+		~delays[14]+0.075,
+		Pbind(
+			\instrument, \gverb,
+			\group, ~fx,
+			\in, ~master_fx_bus.subBus(9,1),
+			\out, 24,
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.75,
+			\roomsize, 243, 
+			\revtime, 15, 
+			\damping, 0.3, 
+			\inputbw, 0.34, 
+			\drylevel, -80, 
+			\earlylevel, -11, 
+			\taillevel, -9
 		),
 	// contrabass
-		~delays[14]+0.08,
+		~delays[14]+0.075,
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
@@ -719,9 +892,44 @@
 				~hseries[3][0],
 				~hseries[4][0]],inf),
 			\dur, Pfunc({~stringsdur}),
-			\legato, 0.99,					
-			\amp, Pexprand(0.4,1.0,inf)
-		)
+			\legato, Pfunc({~stringsleg}),
+			\amp, Pexprand(0.6,1.0,inf)
+		),
+	// cb -> warp
+		~delays[14]+0.075,
+		Pbind(
+			\instrument, \warp,
+			\group, ~fx,
+			\in, ~master_dry_bus.subBus(11,1),
+			\out, ~master_fx_bus.subBus(11,1),
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.75,
+			\warpfactor, [-12,12].midiratio,
+			\freqscale, Pkey(\warpfactor)
+		),				
+	// cb -> reverb
+		~delays[14]+0.75,
+		Pbind(
+			\instrument, \gverb,
+			\group, ~fx,
+			\in, ~master_fx_bus.subBus(11,1),
+			\out, 24,
+			\dur, ~durations[14],
+			\atk, ~durations[14],
+			\sus, 0.01,
+			\rel, ~durations[14]*0.5, 
+			\amp, 0.75,
+			\roomsize, 243, 
+			\revtime, 15, 
+			\damping, 0.3, 
+			\inputbw, 0.34, 
+			\drylevel, -80, 
+			\earlylevel, -11, 
+			\taillevel, -9
+		),
 	], 1),
 0);
 )

@@ -29,8 +29,25 @@ SynthDef(\pulse, { | out = 0, amp = 0, atk = 0, sus = 0, rel = 0
 	Out.ar(out, sound)
 }).add;
 
-// hala
+SynthDef(\saw, { | out = 0, amp = 0, atk = 0, sus = 0, rel = 0
+					freq = 0, portamento = 0 |
+	var numvoices = 16;
+	var env = EnvGen.kr(Env.linen(atk,sus,rel,amp,\sin),doneAction:2);
+	var sound = Mix.fill(numvoices, { | i |
+		i=i+1; 
+		RLPF.ar(
+			Saw.ar((freq*i),
+				SinOsc.kr(Rand(0.001,0.1),0,0.5,0.5)*1/numvoices
+			), 
+			SinOsc.kr(1/32).range(freq*1.25,6e3),
+			LFNoise2.kr(Rand(0.001,0.1)).range(0.2,0.7)
+		)*AmpComp.kr(freq*i,freq)
+	});
+	sound = Limiter.ar(sound,0.8,0.02);
+	Out.ar(out, sound*env)
+}).add;
 
+// hala
 SynthDef(\hala, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 0.1, rel = 0.1, pan = 0 |
 	var sound;
 	sound = In.ar(in,1);

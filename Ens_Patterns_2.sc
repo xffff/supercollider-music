@@ -922,7 +922,7 @@
 			\instrument, \pitchshift,
 			\group, ~fx,
 			\in, ~master_dry_bus.subBus(12,1),
-			\out, 20,
+			\out, [20,~master_fx_bus.subBus(12,1)], 
 			\dur, ~durations[11],
 			\atk, ~durations[11],
 			\sus, ~durations[11] * 0.01,
@@ -932,7 +932,27 @@
 			\windowSize, 4.0,
 			\pitchDispersion, {4.0.rand}.dup(4),
 			\timeDispersion, {4.0.rand}.dup(4)
-		),					
+		),	
+	// pitchshift -> reverb
+		~delays[11]+0.05,
+		Pbind(
+			\instrument, \gverb,
+			\group, ~fx,
+			\in, ~master_fx_bus.subBus(12,1),
+			\out, 24,
+			\dur, ~durations[11],
+			\atk, 0.01,
+			\sus, ~durations[11],
+			\rel, 0.01, 
+			\amp, 1.0,
+			\roomsize, 243, 
+			\revtime, 15, 
+			\damping, 0.3, 
+			\inputbw, 0.34, 
+			\drylevel, -80, 
+			\earlylevel, -11, 
+			\taillevel, -9
+		),										
 	// tam-tam
 		~delays[11]+0.05,
 		Pbind(

@@ -7,6 +7,7 @@
 (
 ~durations[13] = 128; ~delays[13] = 0;
 ~durations[14] = 128; ~delays[14] = 0;
+~durations[15] = 64; ~delays[15] = 0;
 
 //////////////////////////////////////////////////////////////////////////////////
 ~sections[13] = Pfindur(~durations[13],
@@ -51,17 +52,17 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),1), 
+						n>=59}).select({|n,i| n<=96}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),1), 
+						n>=59}).select({|n,i| n<=96}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),1), 
+						n>=59}).select({|n,i| n<=96}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),1), 
+						n>=59}).select({|n,i| n<=96}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=59}).select({|n,i| n<=96}),1), 
+						n>=59}).select({|n,i| n<=96}),Prand((1..4),1)), 
 				],inf),
-			\dur, Pseq([16,Pxrand([4,8,16],inf)],1).collect({|dur| ~wwdur = dur; dur}),
+			\dur, Pseq([16,Prand([16,8,4],inf)],1).collect({|dur| ~wwdur = dur; dur}),
 			\legato, 0.99,
 			\amp, Pexprand(0.1,1.0,inf)
 		),
@@ -75,15 +76,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),1), 
+						n>=48}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),1), 
+						n>=48}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),1), 
+						n>=48}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),1), 
+						n>=48}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=48}).select({|n,i| n<=84}),1), 
+						n>=48}).select({|n,i| n<=84}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~wwdur}),
 			\amp, Pexprand(0.1,1.0,inf)
@@ -98,15 +99,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),1), 
+						n>=34}).select({|n,i| n<=85}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),1), 
+						n>=34}).select({|n,i| n<=85}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),1), 
+						n>=34}).select({|n,i| n<=85}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),1), 
+						n>=34}).select({|n,i| n<=85}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=34}).select({|n,i| n<=85}),1), 
+						n>=34}).select({|n,i| n<=85}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~wwdur}),
 			\legato, 0.99,		
@@ -122,15 +123,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~wwdur}),
 			\legato, 0.99,					
@@ -146,15 +147,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=34}).select({|n,i| n<=76}),1), 
+						n>=34}).select({|n,i| n<=76}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~wwdur}),
 			\legato, 0.99,					
@@ -170,17 +171,17 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 				],inf),
-			\dur, Pseq([16,Prand([4,8,16],inf)],1).collect({|dur| ~brassdur = dur; dur}),
+			\dur, Pseq([16,Prand([16,8,4],inf)],1).collect({|dur| ~brassdur = dur; dur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.1,0.75,inf)
 		),
@@ -194,15 +195,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=24}).select({|n,i| n<=84}),inf), 
+						n>=24}).select({|n,i| n<=84}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
@@ -218,15 +219,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
@@ -242,15 +243,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=30}).select({|n,i| n<=80}),inf), 
+						n>=30}).select({|n,i| n<=80}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
@@ -266,15 +267,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
@@ -290,15 +291,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=49}).select({|n,i| n<=89}),1), 
+						n>=49}).select({|n,i| n<=89}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~brassdur}),
 			\legato, 0.99,					
@@ -314,17 +315,17 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 				],inf),
-			\dur, Pseq([16,Prand([8,4,16],inf)]).collect({|dur| ~stringsdur = dur; dur}),
+			\dur, Pseq([16,Prand([16,8,4],inf)],1).collect({|dur| ~stringsdur = dur; dur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
 		),
@@ -338,15 +339,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
@@ -362,15 +363,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
@@ -386,15 +387,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=70}).select({|n,i| n<=104}),1), 
+						n>=70}).select({|n,i| n<=104}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
@@ -410,15 +411,15 @@
 			\midinote, 
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
@@ -434,15 +435,15 @@
 			\midinote, 	
 				Pseq([	
 					Pxrand(~hseries[0].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 					Pxrand(~hseries[1].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 					Pxrand(~hseries[2].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 					Pxrand(~hseries[3].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 					Pxrand(~hseries[4].select({|n,i| 
-						n>=48}).select({|n,i| n<=94}),1), 
+						n>=48}).select({|n,i| n<=94}),Prand((1..4),1)), 
 				],inf),
 			\dur, Pfunc({~stringsdur}),
 			\legato, 0.99,					
@@ -461,7 +462,7 @@
 				~hseries[2][3],
 				~hseries[3][4],
 				~hseries[4][5]],inf), 
-			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1).collect({|dur| ~bass = dur; dur}),
+			\dur, Pseq([16,Prand([16,8,4],inf)],1).collect({|dur| ~bass = dur; dur}),
 			\legato, 0.99,					
 			\amp, Pexprand(0.4,1.0,inf)
 		),
@@ -504,8 +505,8 @@
 					0),
 			\dur, 
 				Pseq([Pn(1/4,4),
-					Pwrand([Pn(1/8,8),Pn(1/4,16),Pn(1/7,7),Pn(1/3,3),8,3,2,1,Pn(4,2)],
-						{1.0.rand}.dup(9).normalizeSum,inf)],inf),
+					Pwrand([16,Pn(1/8,8),Pn(1/4,16),Pn(1/7,7),Pn(1/3,3),8,3,2,1,Pn(4,2)],
+						{1.0.rand}.dup(10).normalizeSum,inf)],inf),
 			\legato, 2,
 			\amp, Pexprand(0.7,1.0,inf)
 		),		
@@ -520,7 +521,7 @@
 			\atk, ~durations[13] * 0.1,
 			\sus, ~durations[13] * 0.1,
 			\rel, ~durations[13] * 0.8, // slight overlap with s2
-			\amp, 0.75,
+			\amp, 1.0,
 			\warpfactor, [-36,-24,-12,-7].midiratio,
 			\freqscale, Pkey(\warpfactor)
 		),
@@ -594,10 +595,10 @@
 			\out, [~master_dry_bus.subBus(15,1),15],
 			\atk, ~durations[14],
 			\sus, 0.001,
-			\rel, 0.001,
+			\rel, 20,
 			\freq, 26.midicps,
 			\dur, ~durations[14],
-			\amp, 0.6
+			\amp, 0.3
 		),
 	// saw -> reverb
 		~delays[14]+0.05,
@@ -609,7 +610,7 @@
 			\dur, ~durations[14],
 			\atk, 0.01,
 			\sus, ~durations[14],
-			\rel, 0.01, 
+			\rel, 40, 
 			\amp, 1.0,
 			\roomsize, 243, 
 			\revtime, 15, 
@@ -632,8 +633,8 @@
 				~hseries[2][7],
 				~hseries[3][7],
 				~hseries[4][7]],inf), 
-			\dur, (Pn(16,inf)*Pseq((1.0,0.95..0.001),1)).collect({|dur| ~stringsdur = dur; dur}),
-			\legato, 0.99*Pseq((1.0,0.99..0.01),1).collect({|dur| ~stringsleg = dur; dur}),
+			\dur, Pn(16,inf).collect({|dur| ~stringsdur = dur; dur}),
+			\legato, 0.99*Pseq([1],inf).collect({|dur| ~stringsleg = dur; dur}),
 			\amp, Pexprand(0.6,1.0,inf)
 		),
 	// violin 2
@@ -653,41 +654,6 @@
 			\legato, Pfunc({~stringsleg}),
 			\amp, Pexprand(0.6,1.0,inf)
 		),
-	// vi12 -> warp
-		~delays[14]+0.075,
-		Pbind(
-			\instrument, \warp,
-			\group, ~fx,
-			\in, ~master_dry_bus.subBus(7,1),
-			\out, ~master_fx_bus.subBus(7,1),
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.75,
-			\warpfactor, [-12,12].midiratio,
-			\freqscale, Pkey(\warpfactor)
-		),	
-	// warp -> reverb
-		~delays[14]+0.075,
-		Pbind(
-			\instrument, \gverb,
-			\group, ~fx,
-			\in, ~master_fx_bus.subBus(7,1),
-			\out, 24,
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.5,
-			\roomsize, 243, 
-			\revtime, 15, 
-			\damping, 0.3, 
-			\inputbw, 0.34, 
-			\drylevel, -80, 
-			\earlylevel, -11, 
-			\taillevel, -9
-		),									
 	// violin 3
 		~delays[14]+0.075,
 		Pbind(
@@ -722,41 +688,6 @@
 			\legato, Pfunc({~stringsleg}),
 			\amp, Pexprand(0.6,1.0,inf)
 		),	
-	// vi34 -> warp
-		~delays[14]+0.075,
-		Pbind(
-			\instrument, \warp,
-			\group, ~fx,
-			\in, ~master_dry_bus.subBus(8,1),
-			\out, ~master_fx_bus.subBus(8,1),
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.75,
-			\warpfactor, [-12,12].midiratio,
-			\freqscale, Pkey(\warpfactor)
-		),	
-	// vi34 -> reverb
-		~delays[14]+0.075,
-		Pbind(
-			\instrument, \gverb,
-			\group, ~fx,
-			\in, ~master_fx_bus.subBus(8,1),
-			\out, 24,
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.75,
-			\roomsize, 243, 
-			\revtime, 15, 
-			\damping, 0.3, 
-			\inputbw, 0.34, 
-			\drylevel, -80, 
-			\earlylevel, -11, 
-			\taillevel, -9
-		),										
 	// viola 1
 		~delays[14]+0.075,
 		Pbind(
@@ -791,41 +722,6 @@
 			\legato, Pfunc({~stringsleg}),
 			\amp, Pexprand(0.6,1.0,inf)
 		),
-	// vi34 -> warp
-		~delays[14]+0.075,
-		Pbind(
-			\instrument, \warp,
-			\group, ~fx,
-			\in, ~master_dry_bus.subBus(9,1),
-			\out, ~master_fx_bus.subBus(9,1),
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.75,
-			\warpfactor, [-12,12].midiratio,
-			\freqscale, Pkey(\warpfactor)
-		),
-	// va12 -> reverb
-		~delays[14]+0.075,
-		Pbind(
-			\instrument, \gverb,
-			\group, ~fx,
-			\in, ~master_fx_bus.subBus(9,1),
-			\out, 24,
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.75,
-			\roomsize, 243, 
-			\revtime, 15, 
-			\damping, 0.3, 
-			\inputbw, 0.34, 
-			\drylevel, -80, 
-			\earlylevel, -11, 
-			\taillevel, -9
-		),		
 	// violoncello
 		~delays[14]+0.075,
 		Pbind(
@@ -842,41 +738,6 @@
 			\dur, Pfunc({~stringsdur}),
 			\legato, Pfunc({~stringsleg}),
 			\amp, Pexprand(0.6,1.0,inf)
-		),
-	// vc -> warp
-		~delays[14]+0.075,
-		Pbind(
-			\instrument, \warp,
-			\group, ~fx,
-			\in, ~master_dry_bus.subBus(10,1),
-			\out, ~master_fx_bus.subBus(10,1),
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.75,
-			\warpfactor, [-12,12].midiratio,
-			\freqscale, Pkey(\warpfactor)
-		),			
-	// vc -> reverb
-		~delays[14]+0.075,
-		Pbind(
-			\instrument, \gverb,
-			\group, ~fx,
-			\in, ~master_fx_bus.subBus(9,1),
-			\out, 24,
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.75,
-			\roomsize, 243, 
-			\revtime, 15, 
-			\damping, 0.3, 
-			\inputbw, 0.34, 
-			\drylevel, -80, 
-			\earlylevel, -11, 
-			\taillevel, -9
 		),
 	// contrabass
 		~delays[14]+0.075,
@@ -895,41 +756,80 @@
 			\legato, Pfunc({~stringsleg}),
 			\amp, Pexprand(0.6,1.0,inf)
 		),
-	// cb -> warp
-		~delays[14]+0.075,
+	], 1),
+0);
+
+//////////////////////////////////////////////////////////////////////////////////
+
+~sections[15] = Pfindur(~durations[15],
+	Ptpar([
+	// program changes
+		0, // give some delay because of the massive amount of prog changes
 		Pbind(
-			\instrument, \warp,
-			\group, ~fx,
-			\in, ~master_dry_bus.subBus(11,1),
-			\out, ~master_fx_bus.subBus(11,1),
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.75,
-			\warpfactor, [-12,12].midiratio,
-			\freqscale, Pkey(\warpfactor)
-		),				
-	// cb -> reverb
-		~delays[14]+0.75,
-		Pbind(
-			\instrument, \gverb,
-			\group, ~fx,
-			\in, ~master_fx_bus.subBus(11,1),
-			\out, 24,
-			\dur, ~durations[14],
-			\atk, ~durations[14],
-			\sus, 0.01,
-			\rel, ~durations[14]*0.5, 
-			\amp, 0.75,
-			\roomsize, 243, 
-			\revtime, 15, 
-			\damping, 0.3, 
-			\inputbw, 0.34, 
-			\drylevel, -80, 
-			\earlylevel, -11, 
-			\taillevel, -9
+			\type, \ctosc, 
+			\oscout, ~osc_destination,
+			\osccmd, \program,
+			\voicename, [\fl,\bfl,\cb],
+			\programname, 
+				#[
+				"flute.air noise.closed.vowel varied",
+				"bass.flute.multiphonic",
+				"double bass.molto sul ponticello"],
+			\dur, Pn(0.01,1)
 		),
+	// grain	
+		~delays[15]+0.075,
+		Pbind(
+			\instrument, \grain,
+			\group, ~fx,
+			\out, 21,
+			\bufnum, ~sax_buf,
+			\amp, 0.6,
+			\dur, 8,		
+			\atk, Pkey(\dur)*0.0001,
+			\sus, Pkey(\dur)*0.9,
+			\rel, Pkey(\dur)*0.5,
+			\grainfreq, 3,
+			\ratehigh, 1.5,
+			\ratelow, 0.025,
+			\graindur, 2,
+			\center, 0
+		),		
+	// flute
+		~delays[15]+0.05,
+		Pbind(
+			\type, \ctosc, 
+			\oscout, ~osc_destination,
+			\osccmd, \noteon,
+			\voicename, \fl,
+			\midinote, 69+Pseq([0,2],inf),
+			\dur, Pseq([16,8,8,8],inf),
+			\legato, 0.75,
+			\amp, Pexprand(0.75,1.0,inf)
+		),		
+	// bass flute
+		~delays[15]+0.05,
+		Pbind(
+			\type, \ctosc, 
+			\oscout, ~osc_destination,
+			\osccmd, \noteon,
+			\voicename, \bfl,
+			\midinote, 81+Pseq([0,2,3],inf), 
+			\dur, Pseq([16,8,8,4],inf),
+			\amp, Pexprand(0.1,0.25,inf)
+		),		
+	// contrabass
+		~delays[15]+0.075,
+		Pbind(
+			\type, \ctosc, 
+			\oscout, ~osc_destination,
+			\osccmd, \detuned_noteon,
+			\voicename, \cb,
+			\midinote, 26,
+			\dur, 32,
+			\legato, 0.99,
+			\amp, 0.5
+		)
 	], 1),
 0);
 )

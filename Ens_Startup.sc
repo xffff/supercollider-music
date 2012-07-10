@@ -68,7 +68,7 @@
 			postln("Loading Patterns 7-12... ");		
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Patterns_2.sc");
 			0.5.wait;
-			postln("Loading Patterns 13-... ");		
+			postln("Loading Patterns 13-15... ");		
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Patterns_3.sc");
 			0.5.wait;			
 			postln("Loading Sequencer...");

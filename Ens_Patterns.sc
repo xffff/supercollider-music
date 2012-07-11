@@ -21,7 +21,7 @@
 ~delays = 0!32;
 
 ~durations[0] = 70; ~delays[0] = 0;
-~durations[1] = 60; ~delays[1] = 4;
+~durations[1] = 60; ~delays[1] = 2;
 ~durations[2] = 32; ~delays[2] = 4;
 ~durations[3] = 60; ~delays[3] = 2;
 ~durations[4] = 64; ~delays[4] = 0;
@@ -1172,7 +1172,7 @@
 			\out, 26, 
 			\dur, ~durations[5] / 381,
 			\atk, ~durations[5] * 0.01,
-			\sus, ~durations[5] * 0.99,
+			\sus, ~durations[5] * 0.98,
 			\rel, ~durations[5] * 0.01, 
 			\amp, 1.0,
 			\pan, Pbrown(-1.0,1.0,0.05,inf),

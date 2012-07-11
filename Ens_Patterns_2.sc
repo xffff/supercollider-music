@@ -436,26 +436,26 @@
 			\dur, Pseq([16,Prand([4,2,8],inf)],inf),
 			\amp, Pexprand(0.75,1.0,inf)
 		),
-	// viola -> reverb
-		~delays[9]+0.05,
-		Pbind(
-			\instrument, \gverb,
-			\group, ~fx,
-			\in, ~master_dry_bus.subBus(9,1),
-			\out, 24,
-			\dur, ~durations[9],
-			\atk, ~durations[9]*0.1,
-			\sus, ~durations[9],
-			\rel, 10, 
-			\amp, 1.0,
-			\roomsize, 243, 
-			\revtime, 15, 
-			\damping, 0.3, 
-			\inputbw, 0.34, 
-			\drylevel, -80, 
-			\earlylevel, -11, 
-			\taillevel, -9
-		),				
+//	// viola -> reverb
+//		~delays[9]+0.05,
+//		Pbind(
+//			\instrument, \gverb,
+//			\group, ~fx,
+//			\in, ~master_dry_bus.subBus(9,1),
+//			\out, 24,
+//			\dur, ~durations[9],
+//			\atk, ~durations[9]*0.1,
+//			\sus, ~durations[9],
+//			\rel, 10, 
+//			\amp, 1.0,
+//			\roomsize, 243, 
+//			\revtime, 15, 
+//			\damping, 0.3, 
+//			\inputbw, 0.34, 
+//			\drylevel, -80, 
+//			\earlylevel, -11, 
+//			\taillevel, -9
+//		),				
 	// viola -> warp 
 		~delays[9]+0.15,
 		Pbind(

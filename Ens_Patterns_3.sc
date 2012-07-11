@@ -6,8 +6,8 @@
 
 (
 ~durations[13] = 128; ~delays[13] = 0;
-~durations[14] = 128; ~delays[14] = 0;
-~durations[15] = 64; ~delays[15] = 0;
+~durations[14] = 82; ~delays[14] = 0;
+~durations[15] = 82; ~delays[15] = 0;
 
 //////////////////////////////////////////////////////////////////////////////////
 ~sections[13] = Pfindur(~durations[13],
@@ -823,12 +823,12 @@
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
-			\osccmd, \detuned_noteon,
+			\osccmd, \noteon,
 			\voicename, \cb,
 			\midinote, 26,
-			\dur, 32,
+			\dur, 64,
 			\legato, 0.99,
-			\amp, 0.5
+			\amp, Pn(0.5,1)
 		)
 	], 1),
 0);

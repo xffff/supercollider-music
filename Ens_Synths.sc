@@ -26,7 +26,7 @@ SynthDef(\mixerchannel, { |in = 0, out = 0, db = -100, dur = inf, free_trig = 0,
 	sound = In.ar(in,1);
 	sound = sound * db.dbamp;
 	sound = PanAz.ar(~numoutchans,sound,pan);
-	Out.ar((out..~numoutchans), sound);
+	Out.ar((0..~numoutchans), sound);
 }).add;
 
 ///////// synths /////////

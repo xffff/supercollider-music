@@ -1,4 +1,14 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
-{\fonttbl}
-{\colortbl;\red255\green255\blue255;}
-}
+/************************************	*/
+/* Ensemble Piece			       	*/
+/*	MIXER						*/
+/************************************	*/
+
+(
+	// every channel requires a synth
+	// these are located in the ~output group
+	// and output to the hardware outputs 
+	// dependant on ~numchans
+	
+	
+
+)

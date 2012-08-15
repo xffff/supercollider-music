@@ -55,7 +55,7 @@ fork{
 		
 		////////////////////////////////////////////////////
 		
-		// persistent synthdefs
+		// start input
 		(
 		~dryaudio = Synth(\dryaudio, 
 			[

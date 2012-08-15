@@ -38,11 +38,12 @@
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
 			\osccmd, \program,
-			\voicename, [\fl,\bfl,\bcl,\va1],
+			\voicename, [\fl,\bfl,\bcl,\sx1,\va1],
 			\programname, 
 				#["flute.air noise.closed.vowel varied",
 				"bass.flute.multiphonic",
 				"bass clarinet boehm system.ordinario",
+				"alto saxophone.slap.percussive slap",
 				"viola.harmonic.artificial.fourth"],
 			\dur, Pn(0.01,1)	 
 		),
@@ -110,6 +111,17 @@
 			\dur, Pseq([8,Prand([4,8,16],inf)],inf),
 			\amp, Pexprand(0.1,0.25,inf)
 		),
+	// saxophone
+		~delays[0]+0.05,
+		Pbind(
+			\type, \ctosc, 
+			\oscout, ~osc_destination,
+			\osccmd, Prand([\rest,\noteon],inf),
+			\voicename, \sx1,
+			\midinote, Prand([50,51],inf), 
+			\dur, Prand([8,16],inf),
+			\amp, Pexprand(0.1,0.25,inf)
+		),		
 	// viola
 		~delays[0]+0.05,
 		Pbind(

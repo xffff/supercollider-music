@@ -20,14 +20,6 @@ SynthDef(\fxout, { | in = 0, amp = 1, out = 1, dur = inf, free_trig = 0 |
 	Out.ar(out, sound);
 }).add;
 
-SynthDef(\channel, { |in = 0, amp = -100, out = 0, dur = inf, free_trig = 0 | 
-	var sound, env;
-	env = FreeSelf.kr(free_trig);
-	sound = In.ar(in,1);
-	sound = sound * amp.dbamp;
-	Out.ar(out, sound);
-}).add;
-
 ///////// synths /////////
 
 SynthDef(\pulse, { | out = 0, amp = 0, atk = 0, sus = 0, rel = 0

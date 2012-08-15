@@ -17,9 +17,10 @@
 fork{
 	~cleanup = {
 		postln("Cleaning up");
-		~input.free; ~fx.free; ~output.free;
+		~input.free; ~fx.free; ~hala.free; ~output.free;
 		~master_dry_bus.free;
 		~master_fx_bus.free;
+		~master_mix_bus.free;
 		Buffer.freeAll;
 		~dryaudio.free;
 		s.newAllocators;
@@ -33,14 +34,16 @@ fork{
 	~start_audio = {
 		(
 		// groups
-		~input = Group.new(s,\addToHead);   // from sampler
-		~fx = Group.new(s, \addToTail);     // fx chain
-		~output = Group.new(s, \addToTail); // output
+		~input = Group.new(s,\addToHead);   	// from sampler
+		~fx = Group.new(s, \addToTail);     	// fx chain
+		~hala = Group.new(s, \addToTail);	// spatialisation
+		~output = Group.new(s, \addToTail); 	// output
 		postln("Groups Allocated");
 		
 		// busses
-		~master_dry_bus  = Bus.audio(s,~numfxchans); // dry bus
-		~master_fx_bus  = Bus.audio(s,64); // dry bus
+		~master_dry_bus  = Bus.audio(s,~numfxchans); 	// dry bus
+		~master_fx_bus  = Bus.audio(s,32); 			// fx bus
+		~master_mix_bus = Bus.audio(s,64); 			// mix bus
 		postln("Busses Set");
 		
 		// buffers

@@ -4,8 +4,6 @@
 /************************************	*/
 
 (
-~numchans = nil;
-~numfxchans = nil;
 ~osc_out = nil;
 ~startup = nil;
 ~midi_setup = nil;
@@ -14,10 +12,7 @@
 ~sequencer_stream = nil;
 
 
-	~startup = {
-		~numchans = 2;
-		~numfxchans = 16;
-		
+	~startup = {		
 		s = Server.local;
 		o = Server.local.options;
 		o.inDevice = "JackRouter";
@@ -62,6 +57,9 @@
 			postln("Routing Audio... ");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Audio.sc");
 			0.5.wait;
+			postln("Loading Mixer... ");
+			thisProcess.interpreter.executeFile(~path ++ "/Ens_Mixer.sc");
+			0.5.wait;			
 			postln("Loading Patterns 0-7... ");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Patterns.sc");
 			0.5.wait;

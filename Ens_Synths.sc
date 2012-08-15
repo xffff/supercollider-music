@@ -25,8 +25,8 @@ SynthDef(\mixerchannel, { |in = 0, out = 0, db = -100, dur = inf, free_trig = 0,
 	env = FreeSelf.kr(free_trig);
 	sound = In.ar(in,1);
 	sound = sound * db.dbamp;
-	sound = PanAz.ar(~numchans,sound,pan);
-	Out.ar((out..~numchans), sound);
+	sound = PanAz.ar(~numoutchans,sound,pan);
+	Out.ar((out..~numoutchans), sound);
 }).add;
 
 ///////// synths /////////
@@ -66,7 +66,7 @@ SynthDef(\saw, { | out = 0, amp = 0, atk = 0, sus = 0, rel = 0
 SynthDef(\hala, { | in = 0, out = 0, amp = 1.0, atk = 0.1, sus = 0.1, rel = 0.1, pan = 0 |
 	var sound;
 	sound = In.ar(in,1);
-	sound = PanAz.ar(~numchans, sound, pan)*EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
+	sound = PanAz.ar(~numoutchans, sound, pan)*EnvGen.kr(Env.linen(atk,sus,rel,amp),doneAction:2);
 	Out.ar(out,sound);
 }).add;
 

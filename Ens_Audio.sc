@@ -8,9 +8,11 @@
 ~start_audio = nil;
 ~input = nil; 
 ~fx = nil; 
+~hala = nil;
 ~output = nil; 
 ~master_dry_bus = nil; 
 ~master_fx_bus = nil; 
+~master_mix_bus = nil;
 ~buf_a = nil;
 ~dryaudio = nil;
 
@@ -41,9 +43,9 @@ fork{
 		postln("Groups Allocated");
 		
 		// busses
-		~master_dry_bus  = Bus.audio(s,~numfxchans); 	// dry bus
-		~master_fx_bus  = Bus.audio(s,32); 			// fx bus
-		~master_mix_bus = Bus.audio(s,64); 			// mix bus
+		~master_dry_bus  = Bus.audio(s,~numfxchans); 	// dry bus (dry -> fx)
+		~master_fx_bus  = Bus.audio(s,32); 			// fx bus (fx -> fx)
+		~master_mix_bus = Bus.audio(s,64); 			// mix bus (all -> output)
 		postln("Busses Set");
 		
 		// buffers

@@ -5,7 +5,10 @@
 
 (
 var initButton, stopButton, playButton, ctButton, routeButton, queryButton, meterButton;GUI.qt;
-~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece";
+~numchans = 32;	// overall track count (fx + dry)
+~numoutchans = 2;	// numver of loudspeakers
+~numfxchans = 16;	// number of fx processors
+~path = "/Users/Michael_Murphy/Documents/SuperCollider/Mieks/Ensemble_Piece"; 
 ~contimbre_path = "/Volumes/Time Machine Backups/conTimbre";
 ~buffersize = 2048;
 CmdPeriod.add({~stop_all.fork;});

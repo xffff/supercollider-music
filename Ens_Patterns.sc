@@ -116,10 +116,10 @@
 		Pbind(
 			\type, \ctosc, 
 			\oscout, ~osc_destination,
-			\osccmd, Prand([\rest,\noteon],inf),
+			\osccmd, Prand([\rest,Pn(\noteon,3)],inf),
 			\voicename, \sx1,
 			\midinote, Prand([50,51],inf), 
-			\dur, Prand([8,16],inf),
+			\dur, Prand([8,16,Pif(Pbinop('==',Pkey(\osccmd),\noteon),Pn(1/6,3),4)],inf),
 			\amp, Pexprand(0.1,0.25,inf)
 		),		
 	// viola
@@ -198,7 +198,7 @@
 			\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 			\voicename, \sx1,
 			\midinote, Pseq([50,51],32), 
-			\dur, Pseq([8,Pn(1/16,32)],inf),
+			\dur, Pseq([12,Pn(1/16,32)],inf),
 			\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))],1)
 		),
 	// saxophone -> record

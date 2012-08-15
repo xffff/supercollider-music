@@ -20,12 +20,13 @@ SynthDef(\fxout, { | in = 0, amp = 1, out = 1, dur = inf, free_trig = 0 |
 	Out.ar(out, sound);
 }).add;
 
-SynthDef(\channel, { |in = 0, amp = -100, out = 0, dur = inf, free_trig = 0 | 
+SynthDef(\mixerchannel, { |in = 0, out = 0, db = -100, dur = inf, free_trig = 0, pan = 0 | 
 	var sound, env;
 	env = FreeSelf.kr(free_trig);
 	sound = In.ar(in,1);
-	sound = sound * amp.dbamp;
-	Out.ar(out, sound);
+	sound = sound * db.dbamp;
+	sound = PanAz.ar(~numchans,sound,pan);
+	Out.ar((out..~numchans), sound);
 }).add;
 
 ///////// synths /////////

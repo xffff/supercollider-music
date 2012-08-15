@@ -529,7 +529,7 @@
 		~delays[13]+0.05,
 		PmonoArtic(
 			\hala,
-			\group, ~output,
+			\group, ~hala,
 			\in, ~master_fx_bus.subBus(12,1),
 			\out, 26, 
 			\dur, ~durations[13] / 381,

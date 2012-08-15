@@ -248,7 +248,7 @@
 		~delays[8]+0.05,
 		PmonoArtic(
 			\hala,
-			\group, ~output,
+			\group, ~hala,
 			\in, ~master_fx_bus.subBus(10,1),
 			\out, 26, 
 			\dur, ~durations[8] / 381,
@@ -514,7 +514,7 @@
 		~delays[9]+0.25,
 		PmonoArtic(
 			\hala,
-			\group, ~output,
+			\group, ~hala,
 			\in, ~master_fx_bus.subBus(23,1),
 			\out, 26, 
 			\dur, ~durations[9] / 120,

@@ -35,7 +35,7 @@ GUI.qt;
 			postln("Compiled... starting scsynth...");
 			~startup.fork;
 			("open \"/Users/Michael_Murphy/Documents/REAPER Media/Ensemble_Piece/Ensemble_Piece_3232/Ensemble_Piece_3232.RPP\"").unixCmd;
-}
+		}
 	};
 	
 		w.view.decorator.nextLine;

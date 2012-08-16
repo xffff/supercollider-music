@@ -756,6 +756,17 @@
 			\legato, Pfunc({~stringsleg}),
 			\amp, Pexprand(0.6,1.0,inf)
 		),
+	// bass drum
+		~delays[14]+0.05,
+		Pbind(
+			\type, \ctosc, 
+			\oscout, ~osc_destination,
+			\osccmd, Pseq([\noteon,Pn(\rest,inf)],1),
+			\voicename, \bd,
+			\midinote, Prand([61,62],inf),
+			\dur, 32,
+			\amp, 1
+		)							
 	], 1),
 0);
 

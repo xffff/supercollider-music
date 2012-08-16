@@ -60,14 +60,17 @@ GUI.qt;
 			for(1,16, { | i | 
 				// first connect MaxMSP to scsynth and Reaper
 				unixCmd("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"REAPER:in"++i, false);
+				postln("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"REAPER:in"++i);
 				0.1.wait;
 				unixCmd("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"scsynth:in"++i, false);
+				postln("/usr/local/bin/jack_connect MaxMSP:out"++i++" "++"scsynth:in"++i);
 				0.1.wait;
 				}
 			);
 			for(1,32, { | i | 
 				// connect scsynth to reaper 1-32
 				unixCmd("/usr/local/bin/jack_connect scsynth:out"++i++" "++"REAPER:in"++i, false);
+				postln("/usr/local/bin/jack_connect scsynth:out"++i++" "++"REAPER:in"++i);
 				0.1.wait;
 				}
 			);
@@ -77,6 +80,7 @@ GUI.qt;
 			for(1,12, { | i | 
 				// connect reaper to soundcard
 				unixCmd("/usr/local/bin/jack_connect REAPER:out"++i++" "++"system:playback_"++i, false);
+				postln("/usr/local/bin/jack_connect REAPER:out"++i++" "++"system:playback_"++i);
 				0.1.wait;
 				}
 			);
@@ -84,6 +88,7 @@ GUI.qt;
 			for(9,12, { | i | 
 				// connect outboard to reaper
 				unixCmd("/usr/local/bin/jack_connect system:capture_"++i++" "++"REAPER:in"++(i+24), false);
+				postln("/usr/local/bin/jack_connect system:capture_"++i++" "++"REAPER:in"++(i+24));
 				0.1.wait;
 				}
 			);
@@ -91,8 +96,6 @@ GUI.qt;
 //			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
 //			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
 			
-			3.wait;
-			postln("Ready for playback!");
 		};
 	};
 

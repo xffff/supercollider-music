@@ -19,8 +19,8 @@
 		o.outDevice = "JackRouter";
 		o.blockSize = ~buffersize;
 		o.hardwareBufferSize = ~buffersize;
-		o.numOutputBusChannels = 34;
-		o.numInputBusChannels = 34;
+		o.numOutputBusChannels = 36; // ~numchans + 4 (2 stereo outboard)
+		o.numInputBusChannels = 36;
 		o.memSize;
 		if(o.memSize<1048576,{o.memSize = 1048576}); // 1GB 2**20
 		s.boot;

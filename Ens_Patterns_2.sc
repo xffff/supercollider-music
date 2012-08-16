@@ -658,7 +658,7 @@
 			\midinote, 
 				Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 					n>=55}).select({|n,i| n<=84}),inf), 
-			\legato, 0.1,
+			\legato, Pexprand(0.1,0.85,inf),
 			\dur, Pwrand(1/[4,2,1]++[4,2,1],[0.5,0.2,0.1].normalizeSum,inf),
 			\amp, Pexprand(0.1,1.0,inf)
 		),	
@@ -672,7 +672,7 @@
 			\midinote, 
 				Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 					n>=55}).select({|n,i| n<=84}),inf), 
-			\legato, 0.1,
+			\legato, Pexprand(0.1,0.85,inf),
 			\dur, Pwrand(1/[4,2,1]++[4,2,1],[0.5,0.2,0.1].normalizeSum,inf),
 			\amp, Pexprand(0.1,1.0,inf)
 		),
@@ -692,6 +692,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 ~sections[11] = Pfindur(~durations[11],
 	Ptpar([
+	0,
+	Pfuncn({~osc_destination.sendMsg("all_notes_off"); 1},1),
 	// program changes
 		~delays[11],
 		Pbind(

@@ -198,7 +198,7 @@
 			\osccmd, Pseq([\rest,Pn(\noteon,inf)],1),
 			\voicename, \sx1,
 			\midinote, Pseq([50,51],32), 
-			\dur, Pseq([16,Pn(1/16,32)],inf),
+			\dur, Pseq([16,Pn(1/8,16)],inf),
 			\amp, Pseq([0,Pseg(Pseq([0.2,1,0.0],1),Pseq(1!2,1))],1)
 		),
 	// saxophone -> record

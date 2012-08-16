@@ -30,8 +30,8 @@ GUI.qt;
 	initButton.action = { |butt|
 		fork{
 			postln("Starting jackd... (3s)");
-			//("/usr/local/bin/jackd -R -P -0 -d coreaudio -d YamahaFWAudioEngine:0 -i 12 -o 12 -r 48000 -p "++~buffersize).unixCmd;
-			("/usr/local/bin/jackd -R -P 0 -d coreaudio -r 48000 -p "++~buffersize).unixCmd;
+			("/usr/local/bin/jackd -R -P -0 -d coreaudio -d YamahaFWAudioEngine:0 -i 12 -o 12 -r 48000 -p "++~buffersize).unixCmd;
+			//("/usr/local/bin/jackd -R -P 0 -d coreaudio -r 48000 -p "++~buffersize).unixCmd;
 			3.wait;
 			postln("Startup...");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Startup.sc");
@@ -74,22 +74,22 @@ GUI.qt;
 
 			1.wait;
 			
-//			for(1,12, { | i | 
-//				// connect reaper to soundcard
-//				unixCmd("/usr/local/bin/jack_connect REAPER:out"++i++" "++"system:playback_"++i, false);
-//				0.1.wait;
-//				}
-//			);
-//			
-//			for(9,10, { | i | 
-//				// connect reverb to reaper
-//				unixCmd("/usr/local/bin/jack_connect system:capture_"++i++" "++"REAPER:in"++(i+24), false);
-//				0.1.wait;
-//				}
-//			);
+			for(1,12, { | i | 
+				// connect reaper to soundcard
+				unixCmd("/usr/local/bin/jack_connect REAPER:out"++i++" "++"system:playback_"++i, false);
+				0.1.wait;
+				}
+			);
 			
-			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
-			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
+			for(9,12, { | i | 
+				// connect outboard to reaper
+				unixCmd("/usr/local/bin/jack_connect system:capture_"++i++" "++"REAPER:in"++(i+24), false);
+				0.1.wait;
+				}
+			);
+			
+//			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
+//			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
 			
 			3.wait;
 			postln("Ready for playback!");

@@ -659,7 +659,7 @@
 				Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 					n>=55}).select({|n,i| n<=84}),inf), 
 			\legato, 0.1,
-			\dur, Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf),
+			\dur, Pwrand(1/[4,2,1]++[4,2,1],[0.5,0.2,0.1].normalizeSum,inf),
 			\amp, Pexprand(0.1,1.0,inf)
 		),	
 	// violin 3
@@ -673,7 +673,7 @@
 				Prand(union(~hseries[1],~hseries[3]-48).select({|n,i| 
 					n>=55}).select({|n,i| n<=84}),inf), 
 			\legato, 0.1,
-			\dur, Pwrand(1/[4,2,1],[0.5,0.2,0.1].normalizeSum,inf),
+			\dur, Pwrand(1/[4,2,1]++[4,2,1],[0.5,0.2,0.1].normalizeSum,inf),
 			\amp, Pexprand(0.1,1.0,inf)
 		),
 	// double bass

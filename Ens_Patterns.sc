@@ -322,40 +322,40 @@
 			\rel, Pkey(\dur)*0.6, 
 			\amp, Pseq([0.0,2.0],1)
 		),
-	// flute
-		~delays[2]+0.05,
-		Pbind(
-			\type, \ctosc, 
-			\oscout, ~osc_destination,
-			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-			\voicename, \fl,
-			\midinote, 
-				Prand(~hseries[0].select({|n,i| 
-					n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-			\amp, Pexprand(0.1,0.3,inf)
-		),
-	// bass flute
-		~delays[2]+0.05,
-		Pbind(
-			\type, \ctosc, 
-			\oscout, ~osc_destination,
-			\osccmd, \noteon,
-			\voicename, \bfl,
-			\midinote, Prand([49,52,53,56,59,62],inf), 
-			\dur, Prand([16,8,32],inf),
-			\amp, Pn(1.0,1)
-		),
-	// bass clarinet
-		~delays[2]+0.025,
-		Pbind(
-			\type, \ctosc, 
-			\oscout, ~osc_destination,
-			\osccmd, Pseq([\rest,Prand([\rest,\noteon],1)],1),
-			\voicename, \bcl,
-			\midinote, Pseq([121,122],inf), 
-			\dur, 16,
-			\amp, Pexprand(0.1,0.3,inf)
-		),
+//	// flute
+//		~delays[2]+0.05,
+//		Pbind(
+//			\type, \ctosc, 
+//			\oscout, ~osc_destination,
+//			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+//			\voicename, \fl,
+//			\midinote, 
+//				Prand(~hseries[0].select({|n,i| 
+//					n>=59}).select({|n,i| n<=96}),inf), 					\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+//			\amp, Pexprand(0.1,0.3,inf)
+//		),
+//	// bass flute
+//		~delays[2]+0.05,
+//		Pbind(
+//			\type, \ctosc, 
+//			\oscout, ~osc_destination,
+//			\osccmd, \noteon,
+//			\voicename, \bfl,
+//			\midinote, Prand([49,52,53,56,59,62],inf), 
+//			\dur, Prand([16,8,32],inf),
+//			\amp, Pn(1.0,1)
+//		),
+//	// bass clarinet
+//		~delays[2]+0.025,
+//		Pbind(
+//			\type, \ctosc, 
+//			\oscout, ~osc_destination,
+//			\osccmd, Pseq([\rest,Prand([\rest,\noteon],1)],1),
+//			\voicename, \bcl,
+//			\midinote, Pseq([121,122],inf), 
+//			\dur, 16,
+//			\amp, Pexprand(0.1,0.3,inf)
+//		),
 	// saxophone 1
 		~delays[2]+0.025,
 		Pbind(
@@ -392,70 +392,70 @@
 //				\amp, Pseq([0,1.0],1),
 //				\freq, 81.midicps*0.25.neg // fatten it out
 //			),
-	// violin 1
-		~delays[2]+0.05,
-		Pbind(
-			\type, \ctosc, 
-			\oscout, ~osc_destination,
-			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
-			\voicename, \vi1,
-			\midinote, 
-				Prand(~hseries[0].select({|n,i| 
-					n>=70}).select({|n,i| n<=104}),inf), 
-			\dur, 16,
-			\amp, Pexprand(0.4,0.7,inf)
-		),
-	// violin 2
-		~delays[2]+0.05,
-		Pbind(
-			\type, \ctosc, 
-			\oscout, ~osc_destination,
-			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
-			\voicename, \vi2,
-			\midinote, 
-				Prand(~hseries[0].select({|n,i| 
-					n>=70}).select({|n,i| n<=104}),inf), 
-			\dur, 16,
-			\amp, Pexprand(0.4,0.7,inf)
-		),
-	// viola 1
-		~delays[2]+0.075,
-		Pbind(
-			\type, \ctosc, 
-			\oscout, ~osc_destination,
-			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-			\voicename, \va1,
-			\midinote, 
-				Prand(~hseries[0].select({|n,i| 
-					n>=48}).select({|n,i| n<=94}),inf), 
-			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-			\amp, Pexprand(0.4,0.7,inf)
-		),
-	// viola 2
-		~delays[2]+0.075,
-		Pbind(
-			\type, \ctosc, 
-			\oscout, ~osc_destination,
-			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-			\voicename, \va2,
-			\midinote, 	
-				Prand(~hseries[0].select({|n,i| 
-					n>=48}).select({|n,i| n<=94}),inf), 
-			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-			\amp, Pexprand(0.4,0.7,inf)
-		),
-	// violoncello
-		~delays[2]+0.075,
-		Pbind(
-			\type, \ctosc, 
-			\oscout, ~osc_destination,
-			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
-			\voicename, \vc,
-			\midinote, 											Prand(~hseries[0].select({|n,i| 
-					n<=84}).select({|n,i| n>=36}),inf), 
-			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
-			\amp, Pexprand(0.4,0.7,inf)
-		),
+//	// violin 1
+//		~delays[2]+0.05,
+//		Pbind(
+//			\type, \ctosc, 
+//			\oscout, ~osc_destination,
+//			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
+//			\voicename, \vi1,
+//			\midinote, 
+//				Prand(~hseries[0].select({|n,i| 
+//					n>=70}).select({|n,i| n<=104}),inf), 
+//			\dur, 16,
+//			\amp, Pexprand(0.4,0.7,inf)
+//		),
+//	// violin 2
+//		~delays[2]+0.05,
+//		Pbind(
+//			\type, \ctosc, 
+//			\oscout, ~osc_destination,
+//			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],1)],1),
+//			\voicename, \vi2,
+//			\midinote, 
+//				Prand(~hseries[0].select({|n,i| 
+//					n>=70}).select({|n,i| n<=104}),inf), 
+//			\dur, 16,
+//			\amp, Pexprand(0.4,0.7,inf)
+//		),
+//	// viola 1
+//		~delays[2]+0.075,
+//		Pbind(
+//			\type, \ctosc, 
+//			\oscout, ~osc_destination,
+//			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+//			\voicename, \va1,
+//			\midinote, 
+//				Prand(~hseries[0].select({|n,i| 
+//					n>=48}).select({|n,i| n<=94}),inf), 
+//			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+//			\amp, Pexprand(0.4,0.7,inf)
+//		),
+//	// viola 2
+//		~delays[2]+0.075,
+//		Pbind(
+//			\type, \ctosc, 
+//			\oscout, ~osc_destination,
+//			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+//			\voicename, \va2,
+//			\midinote, 	
+//				Prand(~hseries[0].select({|n,i| 
+//					n>=48}).select({|n,i| n<=94}),inf), 
+//			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+//			\amp, Pexprand(0.4,0.7,inf)
+//		),
+//	// violoncello
+//		~delays[2]+0.075,
+//		Pbind(
+//			\type, \ctosc, 
+//			\oscout, ~osc_destination,
+//			\osccmd, Pseq([\noteon,Prand([\rest,\noteon],inf)],1),
+//			\voicename, \vc,
+//			\midinote, 											Prand(~hseries[0].select({|n,i| 
+//					n<=84}).select({|n,i| n>=36}),inf), 
+//			\dur, Pseq([Pn(16,1),Prand([8,16],inf)],1),
+//			\amp, Pexprand(0.4,0.7,inf)
+//		),
 	// contrabass
 		~delays[2]+0.075,
 		Pbind(

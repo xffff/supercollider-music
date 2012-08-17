@@ -463,9 +463,10 @@
 			\oscout, ~osc_destination,
 			\osccmd, \noteon,
 			\voicename, \cb,
-			\midinote, Pwrand([38,26],[0.7,0.3],inf), 
-			\dur, Pn(16,2),
-			\amp, Pexprand(0.1,0.3,inf)
+			\midinote, 26, //Pwrand(26,[0.7,0.3],inf), 
+			\legato, 0.9,
+			\dur, 32,
+			\amp, Pexprand(0.4,0.6,inf)
 		),
 	// tam-tam
 		~delays[2]+0.05,

@@ -37,7 +37,7 @@ GUI.qt;
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Startup.sc");
 			postln("Compiled... starting scsynth...");
 			~startup.fork;
-			("open \"/Users/Michael_Murphy/Documents/REAPER Media/Ensemble_Piece/Ensemble_Piece_3232/Ensemble_Piece_3232.RPP\"").unixCmd;
+			//("open \"/Users/Michael_Murphy/Documents/REAPER Media/Ensemble_Piece/Ensemble_Piece_3232/Ensemble_Piece_3232.RPP\"").unixCmd;
 		}
 	};
 	
@@ -92,10 +92,12 @@ GUI.qt;
 				0.1.wait;
 				}
 			);
-			
+
 //			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
 //			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
 			
+			// start mixer channel
+			thisProcess.interpreter.executeFile(~path ++ "/Ens_Mixer.sc");
 		};
 	};
 

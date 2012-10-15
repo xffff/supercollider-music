@@ -57,9 +57,9 @@
 			postln("Routing Audio... ");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Audio.sc");
 			0.5.wait;
-			//postln("Loading Mixer... ");
-			//thisProcess.interpreter.executeFile(~path ++ "/Ens_Mixer.sc");
-			//0.5.wait;			
+			postln("Loading Mixer... ");
+			thisProcess.interpreter.executeFile(~path ++ "/Ens_Mixer.sc");
+			0.5.wait;			
 			postln("Loading Patterns 0-7... ");
 			thisProcess.interpreter.executeFile(~path ++ "/Ens_Patterns.sc");
 			0.5.wait;

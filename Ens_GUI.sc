@@ -94,10 +94,7 @@ GUI.qt;
 			);
 
 //			unixCmd("/usr/local/bin/jack_connect REAPER:out1"++" "++"system:playback_1", false);
-//			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);
-			
-			// start mixer channel
-			thisProcess.interpreter.executeFile(~path ++ "/Ens_Mixer.sc");
+//			unixCmd("/usr/local/bin/jack_connect REAPER:out2"++" "++"system:playback_2", false);			
 		};
 	};
 

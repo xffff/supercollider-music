@@ -49,7 +49,7 @@
 	
 	// flute
 	Synth(\mixerchannel, [
-			\in, 0, // ~master_mix_bus.subBus(0,1),
+			\in, ~master_dry_bus.subBus(0,1), // ~master_mix_bus.subBus(0,1),
 			\db, ~mixchan_db[0],
 			\pan, ~mixchan_pan[0]
 		], 
@@ -59,7 +59,7 @@
 	
 	// bass flute
 	Synth(\mixerchannel, [
-			\in, 1, // ~master_mix_bus.subBus(1,1),
+			\in, ~master_dry_bus.subBus(1,1), // ~master_mix_bus.subBus(1,1),
 			\db, ~mixchan_db[1],
 			\pan, ~mixchan_pan[1]
 		], 
@@ -69,7 +69,7 @@
 
 	// bass clarinet
 	Synth(\mixerchannel, [
-			\in, 2, // ~master_mix_bus.subBus(2,1),
+			\in, ~master_dry_bus.subBus(2,1), // ~master_mix_bus.subBus(2,1),
 			\db, ~mixchan_db[2],
 			\pan, ~mixchan_pan[2]
 		], 
@@ -79,7 +79,7 @@
 
 	// bassoon 1 & 2
 	Synth(\mixerchannel, [
-			\in, 3, // ~master_mix_bus.subBus(3,1),
+			\in, ~master_dry_bus.subBus(3,1), // ~master_mix_bus.subBus(3,1),
 			\db, ~mixchan_db[3],
 			\pan, ~mixchan_pan[3]
 		], 
@@ -89,7 +89,7 @@
 
 	// trumpet 1 & 2
 	Synth(\mixerchannel, [
-			\in, 4, // ~master_mix_bus.subBus(4,1),
+			\in, ~master_dry_bus.subBus(4,1), // ~master_mix_bus.subBus(4,1),
 			\db, ~mixchan_db[4],
 			\pan, ~mixchan_pan[4]
 		], 
@@ -99,7 +99,7 @@
 
 	// trombone 1 & 2
 	Synth(\mixerchannel, [
-			\in, 5, // ~master_mix_bus.subBus(5,1),
+			\in, ~master_dry_bus.subBus(5,1), // ~master_mix_bus.subBus(5,1),
 			\db, ~mixchan_db[5],
 			\pan, ~mixchan_pan[5]
 		], 
@@ -109,7 +109,7 @@
 
 	// sax 1 & 2
 	Synth(\mixerchannel, [
-			\in, 6, // ~master_mix_bus.subBus(6,1),
+			\in, ~master_dry_bus.subBus(6,1), // ~master_mix_bus.subBus(6,1),
 			\db, ~mixchan_db[6],
 			\pan, ~mixchan_pan[6]
 		], 
@@ -119,7 +119,7 @@
 
 	// violin 1 & 2
 	Synth(\mixerchannel, [
-			\in, 7, // ~master_mix_bus.subBus(7,1),
+			\in, ~master_dry_bus.subBus(7,1), // ~master_mix_bus.subBus(7,1),
 			\db, ~mixchan_db[7],
 			\pan, ~mixchan_pan[7]
 		], 
@@ -129,7 +129,7 @@
 
 	// violin 3 & 4
 	Synth(\mixerchannel, [
-			\in, 8, // ~master_mix_bus.subBus(8,1),
+			\in, ~master_dry_bus.subBus(8,1), // ~master_mix_bus.subBus(8,1),
 			\db, ~mixchan_db[8],
 			\pan, ~mixchan_pan[8]
 		], 
@@ -139,7 +139,7 @@
 
 	// viola 1 & 2
 	Synth(\mixerchannel, [
-			\in, 9, // ~master_mix_bus.subBus(9,1),
+			\in, ~master_dry_bus.subBus(9,1), // ~master_mix_bus.subBus(9,1),
 			\db, ~mixchan_db[9],
 			\pan, ~mixchan_pan[9]
 		], 
@@ -149,7 +149,7 @@
 
 	// violoncello
 	Synth(\mixerchannel, [
-			\in, 10, // ~master_mix_bus.subBus(10,1),
+			\in, ~master_dry_bus.subBus(10,1), // ~master_mix_bus.subBus(10,1),
 			\db, ~mixchan_db[10],
 			\pan, ~mixchan_pan[10]
 		], 
@@ -159,7 +159,7 @@
 
 	// double bass
 	Synth(\mixerchannel, [
-			\in, 11, // ~master_mix_bus.subBus(11,1),
+			\in, ~master_dry_bus.subBus(11,1), // ~master_mix_bus.subBus(11,1),
 			\db, ~mixchan_db[11],
 			\pan, ~mixchan_pan[11]
 		], 
@@ -169,7 +169,7 @@
 
 	// crotales
 	Synth(\mixerchannel, [
-			\in, 12, // ~master_mix_bus.subBus(12,1),
+			\in, ~master_dry_bus.subBus(12,1), // ~master_mix_bus.subBus(12,1),
 			\db, ~mixchan_db[12],
 			\pan, ~mixchan_pan[12]
 		], 
@@ -179,7 +179,7 @@
 
 	// tam tam
 	Synth(\mixerchannel, [
-			\in, 13, // ~master_mix_bus.subBus(13,1),
+			\in, ~master_dry_bus.subBus(13,1), // ~master_mix_bus.subBus(13,1),
 			\db, ~mixchan_db[13],
 			\pan, ~mixchan_pan[13]
 		], 
@@ -189,7 +189,7 @@
 
 	// bass drum
 	Synth(\mixerchannel, [
-			\in, 14, // ~master_mix_bus.subBus(14,1),
+			\in, ~master_dry_bus.subBus(14,1), // ~master_mix_bus.subBus(14,1),
 			\db, ~mixchan_db[14],
 			\pan, ~mixchan_pan[14]
 		], 
@@ -199,7 +199,7 @@
 
 	// synthesiser 
 	Synth(\mixerchannel, [
-			\in, 15, // ~master_mix_bus.subBus(15,1),
+			\in, ~master_dry_bus.subBus(15,1), // ~master_mix_bus.subBus(15,1),
 			\db, ~mixchan_db[15],
 			\pan, ~mixchan_pan[15]
 		], 

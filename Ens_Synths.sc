@@ -134,7 +134,7 @@ SynthDef(\gverb, { | in = 0, out = 0, amp = 1, atk = 0.1, sus = 10, rel = 0.1,
 //Ê Ê Ê Ê Ê Ê Ê Ê earlylevel.dbamp,
 //Ê Ê Ê Ê Ê Ê Ê Ê taillevel.dbamp,
 //Ê Ê Ê Ê Ê Ê Ê Ê roomsize).sum;
-//	sound = GVerb.ar(sound,20,20);
+	sound = GVerb.ar(sound,20,20);
 
 	Out.ar(out, sound*env);
 }).add;

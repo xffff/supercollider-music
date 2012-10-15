@@ -199,7 +199,7 @@
 
 	// synthesiser 
 	Synth(\mixerchannel, [
-			\in, ~master_dry_bus.subBus(15,1), // ~master_mix_bus.subBus(15,1),
+			\in, ~master_mix_bus.subBus(15,1),
 			\db, ~mixchan_db[15],
 			\pan, ~mixchan_pan[15]
 		], 

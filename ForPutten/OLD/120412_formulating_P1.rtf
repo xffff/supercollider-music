@@ -1,0 +1,111 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red191\green0\blue0;\red0\green0\blue191;\red0\green115\blue0;
+\red255\green102\blue0;\red51\green51\blue191;\red0\green0\blue255;}
+\deftab560
+\pard\pardeftab560\ql\qnatural
+
+\f0\fs18 \cf2 // section 1\cf0 \
+\
+\cf3 Pdef\cf0 .clear;\
+\cf3 Pdef\cf0 (\cf4 \\section1_drum1\cf0 ).quant_(1);\
+\cf3 Pdef\cf0 (\cf4 \\section1_drum1\cf0 ).play;\
+\cf3 Pdef\cf0 (\cf4 \\section1_drum1\cf0 ).stop;\
+	\
+\cf3 Pdef\cf0 (\cf4 \\section1_drum1\cf0 , \cf3 Pfindur\cf0 (\cf5 ~section1_dur\cf0 , \cf3 Pbind\cf0 (\
+		\cf4 \\type\cf0 , \cf4 \\midi\cf0 ,\cf4 \\midicmd\cf0 , \cf4 \\noteOn\cf0 , \cf4 \\midiout\cf0 , \cf5 ~mOut\cf0 ,	\
+		\cf4 \\chan\cf0 , 0,\
+		\cf4 \\midinote\cf0 , \
+			\cf3 Pif\cf0 (\cf3 Ptime\cf0 (\cf6 inf\cf0 ) < 25, \cf3 Prand\cf0 ([61],\cf6 inf\cf0 ), \
+				\cf3 Pif\cf0 (\cf3 Ptime\cf0 (\cf6 inf\cf0 ) < 25, \cf3 Pseq\cf0 ([60,\cf3 Pwrand\cf0 ([61,63,62,60],[5,5,1,1].normalizeSum,\cf6 inf\cf0 )],1),\
+				\cf3 Pif\cf0 (\cf3 Ptime\cf0 (\cf6 inf\cf0 ) < 25, \cf3 Prand\cf0 ([61,63,69,71,70,62,60],\cf6 inf\cf0 ),\
+				\cf3 Pif\cf0 (\cf3 Ptime\cf0 (\cf6 inf\cf0 ) < 25, \cf3 Prand\cf0 ([61,63,65,67,69,71,66,62,70,60],\cf6 inf\cf0 )\
+			)))),\
+		\cf4 \\dur\cf0 , \cf3 Pwrand\cf0 ([1/4,1/2],[0.9,0.1],\cf6 inf\cf0 ), \
+		\cf4 \\amp\cf0 , \
+			\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 60), \cf3 Pexprand\cf0 (0.75,0.9,\cf6 inf\cf0 ),\
+				\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 70), \cf3 Pexprand\cf0 (0.75,0.9,\cf6 inf\cf0 ),\
+				\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 66), \cf3 Pexprand\cf0 (0.75,0.9,\cf6 inf\cf0 ), \
+					\cf3 Pexprand\cf0 (0.3,0.75,\cf6 inf\cf0 )))\
+			)\
+	))\
+);\
+\
+\cf2 // section 2\cf0 \
+\
+\cf3 Pdef\cf0 (\cf4 \\section2_drum1\cf0 ).quant_(1);\
+\cf3 Pdef\cf0 (\cf4 \\section2_drum1\cf0 ).play;\
+\cf3 Pdef\cf0 (\cf4 \\section2_drum1\cf0 ).stop;\
+	\
+\cf3 Pdef\cf0 (\cf4 \\section2_drum1\cf0 , \cf3 Pfindur\cf0 (\cf5 ~section2_dur\cf0 , \cf3 Pbind\cf0 (\
+		\cf4 \\type\cf0 , \cf4 \\midi\cf0 ,\cf4 \\midicmd\cf0 , \cf4 \\noteOn\cf0 , \cf4 \\midiout\cf0 , \cf5 ~mOut\cf0 ,	\
+		\cf4 \\chan\cf0 , 0,\
+		\cf4 \\midinote\cf0 , \cf3 Pseq\cf0 ([48,\cf3 Pxrand\cf0 ([48,50,52,54,55,60,61,62,63,72,73,74,75],\cf6 inf\cf0 )],1).collect\{ \cf7 |note|\cf0  \cf5 ~midinote\cf0  = note; note \},\
+		\cf4 \\dur\cf0 , \cf3 Pseq\cf0 ([4,\
+				\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 48), \cf3 Pwrand\cf0 ([1,2,1/2],[1,0.5,1].normalizeSum,\cf6 inf\cf0 ),\
+					\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 50), \cf3 Pwrand\cf0 ([1,2,1/2],[1,0.5,1].normalizeSum,\cf6 inf\cf0 ),\
+					\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 52), \cf3 Pwrand\cf0 ([1,2,1/2],[1,0.5,1].normalizeSum,\cf6 inf\cf0 ),\
+						\cf3 Prand\cf0 ([1/2,1/4], \cf6 inf\cf0 )))\
+				)		\
+			],1).collect\{\cf7 |dur|\cf0  \cf5 ~duration\cf0  = dur; dur \}, \
+		\cf4 \\amp\cf0 , \cf3 Pseq\cf0 ([1,\
+				\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 48), \cf3 Pexprand\cf0 (0.75,0.9,\cf6 inf\cf0 ),\
+					\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 50), \cf3 Pexprand\cf0 (0.75,0.9,\cf6 inf\cf0 ),\
+					\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 52), \cf3 Pexprand\cf0 (0.75,0.9,\cf6 inf\cf0 ),\
+						\cf3 Pexprand\cf0 (0.3,0.75,\cf6 inf\cf0 )))\
+				)\
+			],1),\
+		\cf4 \\legato\cf0 , \cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 48), 4,\
+					\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 50), 4,\
+					\cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pkey\cf0 (\cf4 \\midinote\cf0 ), 52), 4,\
+						\cf3 Pkey\cf0 (\cf4 \\dur\cf0 )))\
+				)\
+	))\
+);\
+\
+\cf3 Pdef\cf0 (\cf4 \\section2_fx1\cf0 , \cf3 Pfindur\cf0 (\cf5 ~section2_dur\cf0 , \cf3 Pbind\cf0 (\
+		\cf4 \\instrument\cf0 , \cf4 \\pitchshift\cf0 ,\
+		\cf4 \\group\cf0 , \cf5 ~fx\cf0 ,\
+		\cf4 \\in\cf0 , \cf5 ~master_fx_bus\cf0 ,\
+		\cf4 \\out\cf0 , 2,\
+		\cf4 \\dur\cf0 , \cf3 Pfunc\cf0 \{\cf5 ~duration\cf0 \},\
+		\cf4 \\amp\cf0 , \cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pfunc\cf0 \{\cf5 ~midinote\cf0 \}, 48), 1, \cf3 Pexprand\cf0 (0.25,1.0,\cf6 inf\cf0 )),\
+		\cf4 \\ratio\cf0 , \cf3 Pif\cf0 (\cf3 Pbinop\cf0 (\cf4 '=='\cf0 , \cf3 Pfunc\cf0 \{\cf5 ~midinote\cf0 \}, 48), 0.5, 1.5),\
+		\cf4 \\windowSize\cf0 , 0.5,\
+		\cf4 \\timeDispersion\cf0 , 0.25,\
+		\cf4 \\pitchDispersion\cf0 , 0.01\
+	))\
+);\
+\
+\cf2 // section 3\cf0 \
+\cf3 Pdef\cf0 (\cf4 \\section3_drum1\cf0 , \cf3 Pfindur\cf0 (\cf5 ~section3_dur\cf0 , \cf3 Pbind\cf0 (\
+		\cf4 \\type\cf0 , \cf4 \\midi\cf0 ,\cf4 \\midicmd\cf0 , \cf4 \\noteOn\cf0 , \cf4 \\midiout\cf0 , \cf5 ~mOut\cf0 ,	\
+		\cf4 \\chan\cf0 , 0,\
+		\cf4 \\midinote\cf0 , \cf3 Ptuple\cf0 ([\
+			\cf3 Pstutter\cf0 (\cf3 Prand\cf0 ([1,2,4,8,16],\cf6 inf\cf0 ),\cf3 Prand\cf0 ([48,50,52],\cf6 inf\cf0 ),\cf6 inf\cf0 ),\
+			\cf3 Pstutter\cf0 (\cf3 Prand\cf0 ([1,2,4,8,16],\cf6 inf\cf0 ),\cf3 Prand\cf0 ([40,42,44],\cf6 inf\cf0 ),\cf6 inf\cf0 ),\
+			\cf3 Pstutter\cf0 (\cf3 Prand\cf0 ([1,2,4,8,16],\cf6 inf\cf0 ),\cf3 Prand\cf0 ([40,42,44],\cf6 inf\cf0 ),\cf6 inf\cf0 )		\
+			],\cf6 inf\cf0 ),\
+		\cf4 \\dur\cf0 , \cf3 Pseq\cf0 ([8,\cf3 Pwrand\cf0 ([1,8,2,1/2],[4,3,4,1].normalizeSum,\cf6 inf\cf0 )],1), \
+		\cf4 \\amp\cf0 , \cf3 Pseq\cf0 ([1,\cf3 Pexprand\cf0 (0.5,0.75,\cf6 inf\cf0 )],1),\
+		\cf4 \\legato\cf0 , 2\
+	))\
+);\
+\cf3 Pdef\cf0 (\cf4 \\section3_drum1\cf0 ).play;\
+\
+\cf3 Pdef\cf0 (\cf4 \\section3_fx1\cf0 , \cf3 Pfindur\cf0 (\cf5 ~section3_dur\cf0 , \cf3 Pbind\cf0 (\
+		\cf4 \\instrument\cf0 , \cf4 \\grainer\cf0 ,\
+		\cf4 \\group\cf0 , \cf5 ~fx\cf0 ,\
+		\cf4 \\in\cf0 , \cf5 ~master_fx_bus\cf0 ,\
+		\cf4 \\out\cf0 , 4,\
+		\cf4 \\delta\cf0 , \cf5 ~section3_dur\cf0 , // need this because dur != delta in this instance\
+		\cf4 \\dur\cf0 , 0.1,\
+		\cf4 \\rel\cf0 , \cf5 ~section3_dur\cf0 ,\
+		\cf4 \\amp\cf0 , 0.75,\
+		\cf4 \\freq\cf0 , 15\
+	))\
+);\
+\
+// section 4\
+\
+}

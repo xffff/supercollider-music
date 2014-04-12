@@ -1,0 +1,428 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red191\green0\blue0;\red0\green0\blue0;\red255\green102\blue0;
+\red0\green0\blue191;\red0\green115\blue0;\red96\green96\blue96;\red51\green51\blue191;\red0\green0\blue255;
+\red0\green0\blue191;\red0\green115\blue0;\red51\green51\blue191;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid1\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid2\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 /************************************	*/\cf3 \
+\cf2 /* Percussion Piece	             	*/\cf3 \
+\cf2 /*	MAIN							*/\cf3 \
+\cf2 /************************************	*/\cf3 \
+\pard\pardeftab560\ql\qnatural
+\cf3 \
+(\
+(\
+\cf2 // free these in case they are still there\cf3 \
+s.newAllocators;\
+\pard\pardeftab560\ql\qnatural
+\cf4 ~input\cf3 .free; \cf4 ~fx\cf3 .free; \cf4 ~output\cf3 .free;\
+\cf4 ~master_fx_bus\cf3 .free;\
+\cf4 ~buf_a\cf3 .free;\
+\
+\pard\pardeftab560\ql\qnatural
+\cf2 // groups\cf3 \
+\pard\pardeftab560\ql\qnatural
+\cf4 ~input\cf3  = \cf5 Group\cf3 .new(s,\cf6 \\addToHead\cf3 );   \cf2 // from sampler\cf3 \
+\cf4 ~fx\cf3  = \cf5 Group\cf3 .new(s, \cf6 \\addToTail\cf3 );     \cf2 // fx chain\cf3 \
+\cf4 ~output\cf3  = \cf5 Group\cf3 .new(s, \cf6 \\addToTail\cf3 ); \cf2 // output\cf3 \
+\
+\pard\pardeftab560\ql\qnatural
+\cf2 // busses\cf3 \
+\pard\pardeftab560\ql\qnatural
+\cf4 ~master_fx_bus\cf3   = \cf5 Bus\cf3 .audio(s,\cf4 ~numfxchans\cf3 ); \cf2 // fx bus\cf3 \
+\cf4 ~fx_bus_offset\cf3  = 0;\
+\
+\pard\pardeftab560\ql\qnatural
+\cf2 // buffers\cf3 \
+\pard\pardeftab560\ql\qnatural
+\cf4 ~buf_a\cf3  = \cf5 Buffer\cf3 .alloc(s, s.sampleRate * 12.5, 1);\
+\
+\pard\pardeftab560\ql\qnatural
+\cf2 // post the groups\cf3 \
+s.queryAllNodes;\
+);\
+\
+\cf2 ////////////////////////////////////////////////////\cf3 \
+\
+\cf2 // cleanup in case I quit early\cf3 \
+(\
+\pard\pardeftab560\ql\qnatural
+\cf4 ~dryaudio\cf3 .free; \
+);\
+\
+\pard\pardeftab560\ql\qnatural
+\cf2 // persistent synthdefs\cf3 \
+(\
+\pard\pardeftab560\ql\qnatural
+\cf4 ~dryaudio\cf3  = \cf5 Synth\cf3 (\cf6 \\dryaudio\cf3 , \
+	[\
+	\cf6 \\in\cf3 , [0,1,2,3,4,5,6,7], \cf2 // this needs to be fixed it is not working properly\cf3 \
+	\cf6 \\amp\cf3 , 1.0, \
+	\cf6 \\out\cf3 , \cf4 ~master_fx_bus\cf3 ,\
+	], target: \cf4 ~input\cf3 , addAction: \cf6 \\addToHead\cf3 );\
+);\
+\
+\
+\pard\pardeftab560\ql\qnatural
+\cf2 // section lengths\cf3 \
+(\
+\pard\pardeftab560\ql\qnatural
+\cf4 ~section1_dur\cf3  = 50; \cf2 // these should be converted to an array\cf3 \
+\cf4 ~section2_dur\cf3  = 60;\
+\cf4 ~section3_dur\cf3  = 40;\
+\cf4 ~section4_dur\cf3  = 60;\
+\cf4 ~section5_dur\cf3  = 60;\
+\cf4 ~section6_dur\cf3  = 10;\
+\cf4 ~section7_dur\cf3  = 40;\
+\
+postln(\cf7 "Section Lengths"\cf3 );\
+post(\cf7 "1: "\cf3 ); \cf4 ~section1_dur\cf3 .postln;\
+post(\cf7 "2: "\cf3 ); \cf4 ~section2_dur\cf3 .postln;\
+post(\cf7 "3: "\cf3 ); \cf4 ~section3_dur\cf3 .postln;\
+post(\cf7 "4: "\cf3 ); \cf4 ~section4_dur\cf3 .postln;\
+post(\cf7 "5: "\cf3 ); \cf4 ~section5_dur\cf3 .postln;\
+post(\cf7 "6: "\cf3 ); \cf4 ~section6_dur\cf3 .postln;\
+post(\cf7 "7: "\cf3 ); \cf4 ~section7_dur\cf3 .postln;\
+\
+);\
+\
+\pard\pardeftab560\ql\qnatural
+\cf2 //////////////////////////////////////////////////// MAIN SECTIONS\cf3 \
+(\
+\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section1_drum1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section1_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\type\cf3 , \cf6 \\midi\cf3 ,\cf6 \\midicmd\cf3 , \cf6 \\noteOn\cf3 , \cf6 \\midiout\cf3 , \cf4 ~mOut\cf3 [0],	\
+		\cf6 \\chan\cf3 , 0,\
+		\cf6 \\midinote\cf3 , \
+			\cf5 Pif\cf3 (\cf5 Ptime\cf3 (\cf8 inf\cf3 ) < (\cf4 ~section1_dur\cf3 *0.25), \cf5 Prand\cf3 ([61],\cf8 inf\cf3 ), \
+				\cf5 Pif\cf3 (\cf5 Ptime\cf3 (\cf8 inf\cf3 ) < (\cf4 ~section1_dur\cf3 *0.25), \cf5 Pseq\cf3 ([60,\cf5 Pwrand\cf3 ([61,63,62,60],[5,5,1,1].normalizeSum,\cf8 inf\cf3 )],1),\
+				\cf5 Pif\cf3 (\cf5 Ptime\cf3 (\cf8 inf\cf3 ) < (\cf4 ~section1_dur\cf3 *0.25), \cf5 Prand\cf3 ([61,63,70,62,60],\cf8 inf\cf3 ),\
+				\cf5 Pif\cf3 (\cf5 Ptime\cf3 (\cf8 inf\cf3 ) < (\cf4 ~section1_dur\cf3 *0.25), \cf5 Prand\cf3 ([61,63,65,67,66,62,70,60],\cf8 inf\cf3 ),\
+					\cf5 Prand\cf3 ([64,66],\cf8 inf\cf3 )\
+			)))),\
+		\cf6 \\dur\cf3 , \cf5 Pseq\cf3 ([1,\cf5 Pwrand\cf3 ([1/4,1/2,1,\cf5 Pn\cf3 (1/8,2)],[0.9,0.1,0.05,0.01].normalizeSum,\cf8 inf\cf3 )],1), \
+		\cf6 \\amp\cf3 , \
+			\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 60), \cf5 Pexprand\cf3 (0.75,0.9,\cf8 inf\cf3 ),\
+				\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 70), \cf5 Pexprand\cf3 (0.75,0.9,\cf8 inf\cf3 ),\
+				\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 66), \cf5 Pexprand\cf3 (0.75,0.9,\cf8 inf\cf3 ), \
+					\cf5 Pwrand\cf3 ([0,\cf5 Pexprand\cf3 (0.25,0.75,1)],[1,30].normalizeSum,\cf8 inf\cf3 )))\
+			)\
+	), 0)\
+);\
+);\
+\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section1_fx1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section1_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\instrument\cf3 , \cf6 \\pitchshift\cf3 ,	\
+		\cf6 \\group\cf3 , \cf4 ~fx\cf3 ,\
+		\cf6 \\in\cf3 , \cf4 ~master_fx_bus\cf3 .subBus(0,1),\
+		\cf6 \\out\cf3 , 8,\
+		\cf6 \\dur\cf3 , \cf4 ~section1_dur\cf3 , \cf6 \\delta\cf3 , \cf4 ~section1_dur\cf3 ,\
+		\cf6 \\atk\cf3 , \cf4 ~section1_dur\cf3 ,\
+		\cf6 \\sus\cf3 , 20,\
+		\cf6 \\rel\cf3 , 10,\
+		\cf6 \\amp\cf3 , 0.5,\
+		\cf6 \\ratio\cf3 , \{3.0.rand\}.dup(3),\
+		\cf6 \\windowSize\cf3 , 1.0,\
+		\cf6 \\timeDispersion\cf3 , 1/8,\
+		\cf6 \\pitchDispersion\cf3 , \{3.0.rand\}.dup(3)\
+	),0)\
+);\
+);\
+\
+\
+);\
+\cf2 ////////////////////////////////////////////////////\cf3 \
+(\
+\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section2_drum1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section2_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\type\cf3 , \cf6 \\midi\cf3 ,\cf6 \\midicmd\cf3 , \cf6 \\noteOn\cf3 , \
+		\cf6 \\midinote\cf3 , \
+			\cf5 Pseq\cf3 ([48,\cf5 Pxrand\cf3 ([48,50,52,54,55,60,61,62,63,72,73,74,75],\cf8 inf\cf3 )],1).collect\{ \cf9 |note|\cf3  \
+				\cf4 ~midinote\cf3  = note; note \},\
+		\cf6 \\midiout\cf3 , \
+			\cf5 Pif\cf3 (\cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ) <= 59, \cf4 ~mOut\cf3 [2], \
+				\cf5 Pif\cf3 (\cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ) <= 71, \cf4 ~mOut\cf3 [0],\
+					\cf4 ~mOut\cf3 [1])),	\
+		\cf6 \\chan\cf3 , 0,\
+		\cf6 \\dur\cf3 , \cf5 Pseq\cf3 ([4,\
+				\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 48), \cf5 Pwrand\cf3 ([1,2,1/2],[1,0.5,1].normalizeSum,\cf8 inf\cf3 ),\
+					\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 50), \cf5 Pwrand\cf3 ([1,2,1/2],[1,0.5,1].normalizeSum,\cf8 inf\cf3 ),\
+					\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 52), \cf5 Pwrand\cf3 ([1,2,1/2],[1,0.5,1].normalizeSum,\cf8 inf\cf3 ),\
+						\cf5 Prand\cf3 ([1/2,1/4], \cf8 inf\cf3 )))\
+				)		\
+			],1).collect\{\cf9 |dur|\cf3  \cf4 ~duration\cf3  = dur; dur \}, \
+		\cf6 \\amp\cf3 , \cf5 Pseq\cf3 ([1.0,\
+				\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 48), \cf5 Pexprand\cf3 (0.75,0.9,\cf8 inf\cf3 ),\
+					\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 50), \cf5 Pexprand\cf3 (0.75,0.9,\cf8 inf\cf3 ),\
+					\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 52), \cf5 Pexprand\cf3 (0.75,0.9,\cf8 inf\cf3 ),\
+						\cf5 Pexprand\cf3 (0.3,0.75,\cf8 inf\cf3 )))\
+				)\
+			],1),\
+		\cf6 \\legato\cf3 , \cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 48), 4,\
+					\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 50), 4,\
+					\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 52), 4,\
+						\cf5 Pkey\cf3 (\cf6 \\dur\cf3 )))\
+				)\
+	))\
+);\
+);\
+\
+( \cf2 // -1 here to stop the pop in s3\cf3 \
+\cf5 Pdef\cf3 (\cf6 \\section2_fx1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section2_dur\cf3 -1, \cf5 Pbind\cf3 (\
+		\cf6 \\instrument\cf3 , \cf6 \\tri_pitchshift\cf3 ,\
+		\cf6 \\group\cf3 , \cf4 ~fx\cf3 ,\
+		\cf6 \\in\cf3 , \cf4 ~master_fx_bus\cf3 .subBus(0,3),\
+		\cf6 \\out\cf3 , 8,\
+		\cf6 \\dur\cf3 , \cf5 Pfunc\cf3 \{\cf4 ~duration\cf3 \},\
+		\cf6 \\legato\cf3 , 2.0,\
+		\cf6 \\amp\cf3 , \
+			\cf5 Pif\cf3 (\cf5 Pfunc\cf3 \{\cf4 ~midinote\cf3 \} <= 57, 1.0,\
+				\cf5 Pif\cf3 (\cf5 Pfunc\cf3 \{\cf4 ~midinote\cf3 \} <= 71, \cf5 Pexprand\cf3 (0.5,0.75,\cf8 inf\cf3 ),\
+					\cf5 Pexprand\cf3 (0.5,0.75,\cf8 inf\cf3 ))),\
+		\cf6 \\ratio\cf3 , \
+			\cf5 Pif\cf3 (\cf5 Pfunc\cf3 \{\cf4 ~midinote\cf3 \} <= 57, 0.5,\
+				\cf5 Pif\cf3 (\cf5 Pfunc\cf3 \{\cf4 ~midinote\cf3 \} <= 71, 1.5,\
+					2.0)),\
+		\cf6 \\windowSize\cf3 , \cf5 Pkey\cf3 (\cf6 \\dur\cf3 ),\
+		\cf6 \\timeDispersion\cf3 , \{\cf5 Pkey\cf3 (\cf6 \\dur\cf3 ).rand\}.dup(15),\
+		\cf6 \\pitchDispersion\cf3 , \{4.0.rand\}.dup(15)\
+	))\
+);\
+);\
+\
+); \
+\cf2 ////////////////////////////////////////////////////\cf3 \
+(\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section3_drum1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section3_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\type\cf3 , \cf6 \\midi\cf3 ,\cf6 \\midicmd\cf3 , \cf6 \\noteOn\cf3 , \cf6 \\midiout\cf3 , \cf4 ~mOut\cf3 [2],	\
+		\cf6 \\chan\cf3 , 0,\
+		\cf6 \\midinote\cf3 , \cf5 Pseq\cf3 ([\cf5 Prand\cf3 ([48,50,52],1),\
+					\cf5 Pwrand\cf3 ([48,50,52,55],[10,10,10,1].normalizeSum,\cf8 inf\cf3 )],1),\
+		\cf6 \\dur\cf3 , \cf5 Pseq\cf3 ([8,\cf5 Pwrand\cf3 ([1,8,2,1/2],[4,1,4,1].normalizeSum,\cf8 inf\cf3 )],1).collect\{\cf9 |dur|\cf3  \
+				\cf4 ~duration\cf3  = dur; dur \}, \
+		\cf6 \\amp\cf3 , \cf5 Pseq\cf3 ([1.0,\cf5 Pexprand\cf3 (0.1,1.0,\cf8 inf\cf3 )],1),\
+		\cf6 \\legato\cf3 , 4\
+	))\
+);\
+);\
+\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section3_drum2\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section3_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\type\cf3 , \cf6 \\midi\cf3 ,\cf6 \\midicmd\cf3 , \cf6 \\noteOn\cf3 , \cf6 \\midiout\cf3 , \cf4 ~mOut\cf3 [3],	\
+		\cf6 \\chan\cf3 , 0,\
+		\cf6 \\midinote\cf3 , \
+			\cf5 Ptuple\cf3 ([\
+				\cf5 Pstutter\cf3 (\cf5 Prand\cf3 ([1,2,4],\cf8 inf\cf3 ),\cf5 Prand\cf3 ([40,42,44],\cf8 inf\cf3 ),\cf8 inf\cf3 ), \cf2 // add some tuplets here\cf3 \
+				\cf5 Pstutter\cf3 (\cf5 Prand\cf3 ([1,2,4],\cf8 inf\cf3 ),\
+					\cf5 Pwrand\cf3 ([40,41,42,43,44,45],[2,1,2,1,2,1],\cf8 inf\cf3 ),\cf8 inf\cf3 )		\
+			],\cf8 inf\cf3 ),\
+		\cf6 \\dur\cf3 , \cf5 Pfunc\cf3 \{\cf4 ~duration\cf3 \}, \
+		\cf6 \\amp\cf3 , \cf5 Pseq\cf3 ([1.0,\cf5 Pexprand\cf3 (0.1,1.0,\cf8 inf\cf3 )],1)\
+	))\
+);\
+);\
+\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section3_fx1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section3_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\instrument\cf3 , \cf6 \\warpin\cf3 ,\
+		\cf6 \\group\cf3 , \cf4 ~fx\cf3 ,\
+		\cf6 \\in\cf3 , \cf4 ~master_fx_bus\cf3 .subBus(3,1),\
+		\cf6 \\out\cf3 , 10,\
+		\cf6 \\hpfreq\cf3 , 20,\
+		\cf6 \\dur\cf3 , \cf4 ~section3_dur\cf3 ,\
+		\cf6 \\atk\cf3 , 10,\
+		\cf6 \\sus\cf3 , \cf4 ~section3_dur\cf3 -10,\
+		\cf6 \\amp\cf3 , 0.5,\
+		\cf6 \\warpfactor\cf3 , [\cf5 Scale\cf3 .pelog.degreeToRatio(3,-1),\cf5 Scale\cf3 .pelog.degreeToRatio(3,0)],\
+		\cf6 \\freqscale\cf3 , [\cf5 Scale\cf3 .pelog.degreeToRatio(3,-1),\cf5 Scale\cf3 .pelog.degreeToRatio(3,0)]\
+	))\
+);\
+);\
+\
+\cf0 (\
+\cf10 Pdef\cf0 (\cf11 \\section3_fx2\cf0 , \cf10 Pfindur\cf0 (\cf4 ~section3_dur\cf0 , \cf10 Pbind\cf0 (\
+		\cf11 \\instrument\cf0 , \cf11 \\pitchshift\cf0 ,	\
+		\cf11 \\group\cf0 , \cf4 ~fx\cf0 ,\
+		\cf11 \\in\cf0 , \cf4 ~master_fx_bus\cf0 .subBus(3,1),\
+		\cf11 \\out\cf0 , 8,\
+		\cf11 \\dur\cf0 , \cf4 ~section3_dur\cf0 , \cf11 \\delta\cf0 , \cf4 ~section3_dur\cf0 ,\
+		\cf11 \\atk\cf0 , \cf4 0.1\cf0 ,\
+		\cf11 \\sus\cf0 , (\cf4 ~section3_dur*0.5)\cf0 ,\
+		\cf11 \\rel\cf0 , (\cf4 ~section3_dur*0.5)\cf0 ,\
+		\cf11 \\amp\cf0 , 0.6,\
+		\cf11 \\ratio\cf0 , \{2.0.rand\}.dup(10),\
+		\cf11 \\windowSize\cf0 , 2.0,\
+		\cf11 \\timeDispersion\cf0 , 0.5,\
+		\cf11 \\pitchDispersion\cf0 , \{2.0.rand\}.dup(10)\
+	),0)\
+);\
+);\cf3 \
+\
+);\
+\cf2 ////////////////////////////////////////////////////\cf3 \
+(\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section4_drum1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section4_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\type\cf3 , \cf6 \\midi\cf3 ,\cf6 \\midicmd\cf3 , \cf6 \\noteOn\cf3 , \cf6 \\midiout\cf3 , \cf4 ~mOut\cf3 [3],	\
+		\cf6 \\chan\cf3 , 0,\
+		\cf6 \\midinote\cf3 , \cf5 Pif\cf3 (\cf5 Ptime\cf3 (\cf8 inf\cf3 ) < (\cf4 ~section4_dur\cf3 *0.5), \cf5 Pwrand\cf3 ([46,47,40,42,44],[1,1,2,2,2].normalizeSum,\cf8 inf\cf3 ),\
+					\cf5 Prand\cf3 ([46,47,40,41,42,43,44,45],\cf8 inf\cf3 )),\
+		\cf6 \\dur\cf3 , \cf5 Prand\cf3 ([\cf5 Pn\cf3 (1/3,3),\cf5 Pn\cf3 (1/8,4),\cf5 Pn\cf3 (1/4,2),1/2],\cf8 inf\cf3 ), \
+		\cf6 \\amp\cf3 , \cf5 Pwrand\cf3 ([0,\cf5 Pexprand\cf3 (0.5,0.75,1)],[0.5,0.5],\cf8 inf\cf3 ),\
+		\cf6 \\legato\cf3 , 4\
+	))\
+);\
+);\
+\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section4_fx1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section4_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\instrument\cf3 , \cf6 \\warpin\cf3 ,\
+		\cf6 \\group\cf3 , \cf4 ~fx\cf3 ,\
+		\cf6 \\in\cf3 , \cf4 ~master_fx_bus\cf3 .subBus(3,1),\
+		\cf6 \\out\cf3 , 10,\
+		\cf6 \\hpfreq\cf3 , 20,\
+		\cf6 \\dur\cf3 , \cf4 ~section4_dur\cf3 ,\
+		\cf6 \\atk\cf3 , \cf4 ~section4_dur\cf3 *0.5,\
+		\cf6 \\sus\cf3 , \cf4 ~section4_dur\cf3 *0.5,\
+		\cf6 \\amp\cf3 , 0.5,\
+		\cf6 \\warpfactor\cf3 , [\cf5 Scale\cf3 .pelog.degreeToRatio(4,-1),\cf5 Scale\cf3 .pelog.degreeToRatio(4,0)],\
+		\cf6 \\freqscale\cf3 , [\cf5 Scale\cf3 .pelog.degreeToRatio(4,-1),\cf5 Scale\cf3 .pelog.degreeToRatio(4,0)]\
+	))\
+);\
+);\
+\
+);\
+\cf2 ////////////////////////////////////////////////////\cf3 \
+\
+(\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section5_drum1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section5_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\type\cf3 , \cf6 \\midi\cf3 ,\cf6 \\midicmd\cf3 , \cf6 \\noteOn\cf3 , 	\
+		\cf6 \\chan\cf3 , 0,\
+		\cf6 \\dur\cf3 , \
+			\cf5 Pif\cf3 (\cf5 Ptime\cf3 (\cf8 inf\cf3 ) < (\cf4 ~section5_dur\cf3 *0.5), \cf5 Prand\cf3 ([1/8],\cf8 inf\cf3 ), \
+				\cf5 Pwrand\cf3 ([\cf5 Pn\cf3 (1/8,8),\cf5 Pseq\cf3 ([\cf5 Pn\cf3 (1/12,3),\cf5 Pn\cf3 (1/8,6)],1)],[0.9,0.1],\cf8 inf\cf3 )), \
+		\cf6 \\midinote\cf3 , \
+			\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\dur\cf3 ), 1/12), \cf5 Pstutter\cf3 (3,\cf5 Prand\cf3 ([72,74,84,86],3)),\
+				\cf10 Pif\cf0 (\cf10 Ptime\cf0 (\cf12 inf\cf0 ) < (\cf4 ~section5_dur\cf0 *0.3),\cf3  \cf5 Pn\cf3 (\cf5 Pshuf\cf3 ([58,46,47,40,42,44],\cf5 Prand\cf3 ((1..10),1)),inf),\
+				\cf10 Pif\cf0 (\cf10 Ptime\cf0 (\cf12 inf\cf0 ) < (\cf4 ~section5_dur\cf0 *0.3)\cf3 , \cf5 Pn\cf3 (\cf5 Pshuf\cf3 ([58,46,47,40,42,44,72,74,84,86],\cf5 Prand\cf3 ((1..10),1)),\cf8 inf\cf3 ),\
+					\cf10 Pxrand\cf0 ([58,40,41,42,43,44,45],inf)\cf3 ))),\
+		\cf6 \\midiout\cf3 , \
+			\cf5 Pif\cf3 (\cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ) <= 47, \cf4 ~mOut\cf3 [3], \
+				\cf5 Pif\cf3 (\cf5 Pbinop\cf3 (\cf6 '=='\cf3 , \cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ), 58), \cf4 ~mOut\cf3 [4],\
+				\cf5 Pif\cf3 (\cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ) <= 62, \cf4 ~mOut\cf3 [0],\
+					\cf4 ~mOut\cf3 [1]))),	\
+		\cf6 \\amp\cf3 , \cf5 Pwrand\cf3 ([0,\cf5 Pexprand\cf3 (0.5,0.75,1)],[0.01,0.99],\cf8 inf\cf3 ),\
+		\cf6 \\legato\cf3 , 1\
+	))\
+);\
+);\
+\
+);\
+\cf2 ////////////////////////////////////////////////////\cf3 \
+(\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section6_drum1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section6_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\type\cf3 , \cf6 \\midi\cf3 ,\cf6 \\midicmd\cf3 , \cf6 \\noteOn\cf3 , 	\
+		\cf6 \\chan\cf3 , 0,\
+		\cf6 \\midinote\cf3 , \cf5 Pn\cf3 (\cf5 Pshuf\cf3 ([41,43,45],\cf5 Prand\cf3 ((1..10),1)),\cf8 inf\cf3 ),\
+		\cf6 \\midiout\cf3 , \cf4 ~mOut\cf3 [3],\
+		\cf6 \\dur\cf3 , 1/4, \
+		\cf6 \\amp\cf3 , \cf5 Pexprand\cf3 (0.75,1.0,\cf8 inf\cf3 )\
+	))\
+);\
+);\
+\
+);\
+\cf2 ////////////////////////////////////////////////////\cf3 \
+(\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section7_drum1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section7_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\type\cf3 , \cf6 \\midi\cf3 ,\cf6 \\midicmd\cf3 , \cf6 \\noteOn\cf3 , 	\
+		\cf6 \\chan\cf3 , 0,\
+		\cf6 \\midinote\cf3 , \
+			\cf5 Pseq\cf3 ([\cf5 Pn\cf3 (\cf5 Pshuf\cf3 ([41,43,45],\cf5 Prand\cf3 ((1..10),1)),10),\
+					\cf5 Pn\cf3 (\cf5 Pshuf\cf3 ([41,43,45,61,63,73,75,85,87],\cf5 Prand\cf3 ((1..10),1)),10),\
+					\cf5 Pxrand\cf3 ([41,43,45,48,50,52,55,57,61,63,73,75,85,87],inf)],1).collect\{\cf9 |note|\cf3 \
+						\cf4 ~midinote\cf3  = note; note \},\
+		\cf6 \\midiout\cf3 , \
+			\cf5 Pif\cf3 (\cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ) <= 45, \cf4 ~mOut\cf3 [3], \
+				\cf5 Pif\cf3 (\cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ) <= 57, \cf4 ~mOut\cf3 [2],\
+					\cf5 Pif\cf3 (\cf5 Pkey\cf3 (\cf6 \\midinote\cf3 ) <= 63, \cf4 ~mOut\cf3 [0],\
+						\cf4 ~mOut\cf3 [1]))),	\
+		\cf6 \\dur\cf3 , 1/4, \
+		\cf6 \\amp\cf3 , \cf5 Pexprand\cf3 (0.75,1.0,\cf8 inf\cf3 ),\
+		\cf6 \\legato\cf3 , 1\
+	))\
+);\
+);\
+\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section7_fx1\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section7_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\instrument\cf3 , \cf6 \\quad_pitchshift\cf3 ,\
+		\cf6 \\group\cf3 , \cf4 ~fx\cf3 ,\
+		\cf6 \\in\cf3 , \cf4 ~master_fx_bus\cf3 .subBus(0,4),\
+		\cf6 \\out\cf3 , 8,\
+		\cf6 \\dur\cf3 , 2,\
+		\cf6 \\legato\cf3 , 2.0,\
+		\cf6 \\amp\cf3 , 0.75,\
+		\cf6 \\ratio\cf3 , \cf5 Prand\cf3 ([\cf5 Prand\cf3 (\cf5 Scale\cf3 .pelog.ratios,1),\cf5 Prand\cf3 (2-Scale.pelog.ratios,1)],\cf8 inf\cf3 ),\
+		\cf6 \\windowSize\cf3 , \cf5 Pkey\cf3 (\cf6 \\dur\cf3 ),\
+		\cf6 \\timeDispersion\cf3 , \{\cf5 Pkey\cf3 (\cf6 \\dur\cf3 ).rand\}.dup(12),\
+		\cf6 \\pitchDispersion\cf3 , \{0.25.rand\}.dup(12)\
+	))\
+);\
+);\
+\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section7_fx2\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section4_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\instrument\cf3 , \cf6 \\quad_warpin\cf3 ,\
+		\cf6 \\group\cf3 , \cf4 ~fx\cf3 ,\
+		\cf6 \\in\cf3 , \
+			[\cf4 ~master_fx_bus\cf3 .subBus(0,1),\
+			\cf4 ~master_fx_bus\cf3 .subBus(1,1),\
+			\cf4 ~master_fx_bus\cf3 .subBus(2,1),\
+			\cf4 ~master_fx_bus\cf3 .subBus(3,1)],\
+		\cf6 \\out\cf3 , 10,\
+		\cf6 \\hpfreq\cf3 , 20,\
+		\cf6 \\dur\cf3 , \cf4 ~section7_dur\cf3 ,\
+		\cf6 \\sus\cf3 , \cf4 ~section7_dur\cf3 ,\
+		\cf6 \\amp\cf3 , 0.2,\
+		\cf6 \\warpfactor\cf3 , \{Array.fill(16,\{ |i| \cf10 Scale\cf0 .pelog.degreeToRatio(i%4,)\}).choose\}.dup(4)\cf3 ,\
+		\cf6 \\freqscale\cf3 , \cf5 Pkey\cf3 (\cf6 \\warpfactor\cf3 )\
+	))\
+);\
+);\
+\
+(\
+\cf5 Pdef\cf3 (\cf6 \\section7_fx3\cf3 , \cf5 Pfindur\cf3 (\cf4 ~section7_dur\cf3 , \cf5 Pbind\cf3 (\
+		\cf6 \\instrument\cf3 , \cf6 \\fbdelay\cf3 ,	\
+		\cf6 \\group\cf3 , \cf4 ~fx\cf3 ,\
+		\cf6 \\in\cf3 , \cf4 ~master_fx_bus\cf3 .subBus(2,1),\
+		\cf6 \\out\cf3 , 12,\
+		\cf6 \\dur\cf3 , \cf4 ~section7_dur\cf3 , \cf6 \\delta\cf3 , \cf4 ~section7_dur\cf3 ,\
+		\cf6 \\sus\cf3 , 0.1,\
+		\cf6 \\atk\cf3 , \cf4 ~section7_dur\cf3 ,\
+		\cf6 \\rel\cf3 , 0.1,\
+		\cf6 \\maxdelay\cf3 , \cf5 Scale\cf3 .pelog.degrees.choose,\
+		\cf6 \\delay\cf3 , \cf5 Pkey\cf3 (\cf6 \\maxdelay\cf3 ),\
+		\cf6 \\fb\cf3 , 0.9,\
+		\cf6 \\amp\cf3 , 5\
+	))\
+);\
+);\
+\
+\
+);\
+\cf2 ////////////////////////////////////////////////////\cf3 \
+\
+\pard\tx940\tx1440\pardeftab560\li1440\fi-1440\ql\qnatural
+\ls1\ilvl1\cf3 ) \cf2 // end paren of main function\cf3 \
+}

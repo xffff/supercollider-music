@@ -1,0 +1,45 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red191\green0\blue0;\red0\green0\blue191;\red0\green0\blue0;
+\red0\green0\blue191;\red0\green115\blue0;\red0\green115\blue0;\red255\green102\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 /************************************	*/\cf0 \
+\cf2 /* Percussion Piece	             	*/\cf0 \
+\cf2 /*								*/\cf0 \
+\cf2 /************************************	*/\cf0 \
+\cf2 // SF IN  0-1 (FROM KONTAKT)\cf0 \
+\cf2 // SF OUT 2-15 // 0-1 DRY (FROM KONTAKT) // 2-3 DRY ()\cf0 \
+\cf2 // \cf0 \
+\
+\cf3 Help\cf0 .gui;\
+\pard\pardeftab560\ql\qnatural
+\cf0 \
+\
+(\
+\cf3 Pseq\cf0 ([\
+\cf4 	\cf5 Ptpar\cf4 ([0,\cf5 Pdef\cf4 (\cf6 \\section1_drum1\cf4 ), \
+		0, \cf5 Pdef\cf4 (\cf6 \\section1_fx1\cf4 )],1),\
+	\cf5 Ptpar\cf4 ([0, \cf5 Pdef\cf4 (\cf6 \\section2_drum1\cf4 ), 0.02, \cf5 Pdef\cf4 (\cf6 \\section2_fx1\cf4 )], 1), \
+	\cf5 Ptpar\cf4 ([0, \cf5 Pdef\cf4 (\cf6 \\section3_drum1\cf4 ), 0.02, \cf5 Pdef\cf4 (\cf6 \\section3_drum2\cf4 ),\
+		0.02, \cf5 Pdef\cf4 (\cf6 \\section3_fx1\cf4 ),\
+		0.02, \cf5 Pdef\cf4 (\cf6 \\section3_fx2\cf4 )],1),  \
+	\cf5 Ptpar\cf4 ([2,\cf5 Pdef\cf4 (\cf6 \\section4_drum1\cf4 ),2,\cf5 Pdef\cf4 (\cf6 \\section4_fx1\cf4 )],1),\
+	\cf5 Pdef\cf4 (\cf6 \\section5_drum1\cf4 ),\
+	\cf5 Pdef\cf4 (\cf6 \\section6_drum1\cf4 ),\
+\cf0 	\cf3 Ptpar\cf0 ([0,\cf3 Pdef\cf0 (\cf7 \\section7_drum1\cf0 ),\
+		0.02,\cf3 Pdef\cf0 (\cf7 \\section7_fx1\cf0 ),\
+		0.02,\cf3 Pdef\cf0 (\cf7 \\section7_fx2\cf0 ),\
+		0.02,\cf3 Pdef\cf0 (\cf7 \\section7_fx3\cf0 )],1)\
+], 1).play;\
+)\
+\
+(\
+\cf3 Pdef\cf0 .all.do(\cf3 _stop\cf0 );\
+\pard\pardeftab560\ql\qnatural
+\cf8 ~mOut\cf0 .allNotesOff(0);\
+)\
+\
+s.queryAllNodes;\
+\
+\cf8 ~buf_a\cf0 .plot;}

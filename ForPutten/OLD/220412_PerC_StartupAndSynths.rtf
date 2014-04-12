@@ -1,0 +1,204 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red191\green0\blue0;\red0\green0\blue0;\red0\green0\blue191;
+\red96\green96\blue96;\red255\green102\blue0;\red0\green0\blue255;\red0\green115\blue0;\red0\green0\blue191;
+\red0\green115\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 /************************************	*/\cf3 \
+\cf2 /* Percussion Piece		       	*/\cf3 \
+\cf2 /*	SYNTHS						*/\cf3 \
+\cf2 /************************************	*/\cf3 \
+\
+\cf2 // SF IN  0-1 (FROM KONTAKT)\cf3 \
+\cf2 // SF OUT 2-15 // 0-1 DRY (FROM KONTAKT) // 2-3 DRY ()\cf3 \
+\cf2 // \cf3 \
+\
+(\
+(\
+s = \cf4 Server\cf3 .local;\
+\pard\pardeftab560\ql\qnatural
+\cf3 o = \cf4 Server\cf3 .local.options;\
+o.inDevice = \cf5 "Soundflower (16ch)"\cf3 ;\
+o.outDevice = \cf5 "Soundflower (16ch)"\cf3 ;\
+o.inDevice;\
+o.outDevice;\
+o.numOutputBusChannels = 16;\
+o.numOutputBusChannels;\
+o.numInputBusChannels = 16;\
+o.numInputBusChannels;\
+\
+if(o.memSize<65536,\{o.memSize = 65536\});\
+s.waitForBoot;\
+\
+\cf4 MIDIClient\cf3 .init;\
+\pard\pardeftab560\ql\qnatural
+\cf6 ~mOut\cf3  = \cf4 Array\cf3 .fill(8, \{ \cf7 |i|\cf3  \cf4 MIDIOut\cf3 (i) \});\
+\
+\pard\pardeftab560\ql\qnatural
+\cf4 TempoClock\cf3 .default.tempo = 0.8;\
+\
+\pard\pardeftab560\ql\qnatural
+\cf6 ~samplerate\cf3  = 48000;\
+\cf6 ~numchans\cf3  = 2;\
+\cf6 ~numfxchans\cf3  = 8;\
+\cf6 ~fx_bus_offset\cf3  = 0;\
+);\
+\
+\
+\pard\pardeftab560\ql\qnatural
+\cf2 ////////////////////////////////////////////////////\cf3 \
+s.waitForBoot(\
+\cf4 SynthDef\cf3 (\cf8 \\dryaudio\cf3 , \{ \cf7 | in = #[0,1,2,3,4,5,6,7], amp = 1, out = 1, dur = inf, free_trig = 0 |\cf3 \
+	\cf7 var\cf3  sound, env;\
+	env = \cf4 FreeSelf\cf3 .kr(free_trig);\
+	sound = \cf4 SoundIn\cf3 .ar(in); \
+	\cf4 Out\cf3 .ar(out, sound);\
+\}).add;\
+\
+\cf9 SynthDef\cf0 (\cf10 \\fxout\cf0 , \{ \cf7 | in = 0, amp = 1, out = 1, dur = inf, free_trig = 0 |\cf0 \
+	\cf7 var\cf0  sound, env;\
+	env = \cf9 FreeSelf\cf0 .kr(free_trig);\
+	sound = \cf9 In\cf0 .ar(in); \
+	\cf9 Out\cf0 .ar(out, sound);\
+\}).add;\cf3 \
+\
+\cf2 ///////// synths /////////\cf3 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf4 SynthDef\cf3 (\cf8 \\quadc\cf3 , \{ \cf7 | out = 0, freq = 48000, amp = 0.1, atk = 0.01, dec = 0.5 |\cf3 \
+	\cf7 var\cf3  r,s;\
+	r = \cf4 LFNoise2\cf3 .ar(16).range(3.5441, 4); \'a0 \'a0 \'a0 \
+	s = \cf4 QuadC\cf3 .ar(freq, r.neg, r, 0, 0.1) * \cf4 EnvGen\cf3 .ar(\cf4 Env\cf3 .perc(atk,dec),doneAction:2);\
+	s = s * amp;\
+	s = \cf4 Limiter\cf3 .ar(s,1.0,0.01);\
+\cf4 Out\cf3 .ar(out,s);\
+\}).add;\
+\
+\cf4 SynthDef\cf3 (\cf8 \\sin_exprand16\cf3 , \{ \cf7 | out = 0, bfreq = 500, tfreq = 1000, amp = 0.1, atk = 0.01, dec = 0.5 |\cf3 \
+	\cf7 var\cf3  sound;\
+	sound = \cf4 Mix\cf3 .fill(16, \{\cf4 SinOsc\cf3 .ar(\cf4 ExpRand\cf3 (bfreq,tfreq), 0, 1/16)\}); \
+	sound = sound * \cf4 EnvGen\cf3 .ar(\cf4 Env\cf3 .perc(atk,dec,amp),doneAction:2); \
+	\cf4 Out\cf3 .ar(out,sound);\
+\}).add;\
+\
+\cf4 SynthDef\cf3 (\cf8 \\saw_perc\cf3 , \{ \cf7 | out = 0, freq = 60, amp = 0, filterFreq = 80, res = 0.2, dur = 0.5 |\cf3 \
+	\cf7 var\cf3  sound;\
+	sound = \cf4 Saw\cf3 .ar([freq*0.99,freq, freq*1.01], 1/3).sum;\
+	sound = sound * \cf4 EnvGen\cf3 .ar(\cf4 Env\cf3 .perc(0.01,dur,amp),doneAction:2);\
+	sound = \cf4 RLPF\cf3 .ar(sound, filterFreq.max(freq+1), res);\
+	\cf4 Out\cf3 .ar(out,sound);\
+\}).add;\
+\
+\cf2 ////////// fx /////////\cf3 \
+\
+\pard\pardeftab560\ql\qnatural
+\cf4 SynthDef\cf3 (\cf8 \\pitchshift\cf3 , \{ \cf7 | in = 0, out = 0, ratio = 0, amp = 1, dur = 10, \
+						windowSize = 0.2, timeDispersion = 0.0001, pitchDispersion = 0.0001 |\cf3 \
+	\cf7 var\cf3  sound, env;\
+	\cf2 //env = Line.kr(1,0,dur,doneAction:2);\cf3 \
+	env = \cf4 EnvGen\cf3 .ar(\cf4 Env\cf3 .linen(0.01,dur,0.01),doneAction:2);\
+	sound = \cf4 In\cf3 .ar(in, 1);\
+	sound = \cf4 PitchShift\cf3 .ar(sound, windowSize, ratio, \
+		timeDispersion, pitchDispersion, amp) * env;\
+	\cf4 ReplaceOut\cf3 .ar(out,sound);\
+\}).add;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf3 \
+\pard\pardeftab560\ql\qnatural
+\cf9 SynthDef\cf0 (\cf10 \\tri_pitchshift\cf0 , \{ \cf7 | in = 0, out = 0, ratio = 0, amp = 1, dur = 10, \
+						windowSize = 0.2, timeDispersion = 0.0001, pitchDispersion = 0.0001 |\cf0 \
+	\cf7 var\cf0  sound, env;\
+	env = \cf9 EnvGen\cf0 .ar(\cf9 Env\cf0 .linen(0.01,dur,0.01),doneAction:2);\
+	sound = \cf9 In\cf0 .ar(in, 3);\
+	sound = Mix.fill(3, \{|i| \cf9 PitchShift\cf0 .ar(sound[i], windowSize, ratio, \
+		timeDispersion, pitchDispersion, amp, mul: 1.0) * env; \});\
+	\cf9 ReplaceOut\cf0 .ar(out,sound);\
+\}).add;\cf3 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf3 \
+\cf4 SynthDef\cf3 (\cf8 \\distortion\cf3 , \{ \cf7 | in = 0, out = 0, amount = 0, amp = 0, atk = 10, \
+						sus = 10, dec = 10, dur = 10 |\cf3 \
+	\cf7 var\cf3  sound, k, env;\
+	\cf2 //env = EnvGen.ar(Env.new([1e-10,amp,amp,1e-10],[atk,sus,dec],'exp'),doneAction:2);\cf3 \
+	env = \cf4 Line\cf3 .kr(1,0,dur,doneAction:2);\
+	sound = \cf4 In\cf3 .ar(in, 1);\
+	k = 2 * amount / (1-amount);\
+	sound = (1+k) * sound / (1+(k*sound.abs));\
+	\cf2 //sound = sound * env;\cf3 \
+	\cf4 ReplaceOut\cf3 .ar(out,sound);\
+\}).add;\
+\
+\cf4 SynthDef\cf3 (\cf8 \\bpf\cf3 , \{ \cf7 | in = 0, out = 0, freq = 100, res = 0.7, dur = 10 |\cf3  \
+	\cf7 var\cf3  sound, env;\
+	sound = \cf4 In\cf3 .ar(in,1);\
+	env = \cf4 Line\cf3 .kr(1,0,dur,doneAction:2);\
+	sound = \cf4 BPF\cf3 .ar(sound,freq,res);\
+	\cf4 ReplaceOut\cf3 .ar(out,sound);\
+\}).add;\
+\
+\cf4 SynthDef\cf3 (\cf8 \\mod_delay\cf3 , \{ \cf7 | in = 0, out = 0, freq = 0.25, amp = 0, mul = 0, \
+						add = 0, maxdelay = 5, dur = 10 |\cf3 \
+	\cf7 var\cf3  sound, env;\
+	sound = \cf4 In\cf3 .ar(in, 1);\
+	env = \cf4 EnvGen\cf3 .ar(\cf4 Env\cf3 .linen(0.01,dur,0.01,amp), doneAction:2);\
+	sound = \cf4 DelayC\cf3 .ar(sound, maxdelay, \cf4 LFSaw\cf3 .ar(freq, 0, mul, add).abs, env); \cf2 // +=\cf3 \
+	sound = \cf4 LeakDC\cf3 .ar(sound,0.995);\
+	\cf4 ReplaceOut\cf3 .ar(out, sound);\
+\}).add;\
+\
+\cf4 SynthDef\cf3 (\cf8 \\grainer\cf3 , \{ \cf7 | in = 0, out = 0, freq = 0.1, pan = 0.0, rel = 0.1, hpfreq = 500,\
+						graindur = 1, rate = 1, amp = 0, dur = 10 |\cf3 \
+	\cf7 var\cf3  buf, sound, rec, trigger, env;\
+	env = \cf4 EnvGen\cf3 .ar(\cf4 Env\cf3 .linen(0.01,dur,rel), doneAction:2);\
+	buf = \cf4 LocalBuf\cf3 (\cf4 SampleRate\cf3 .ir,1).clear;\
+	sound = \cf4 In\cf3 .ar(in, 1);\
+	sound = \cf4 HPF\cf3 .ar(sound,hpfreq);\
+	rec = \cf4 RecordBuf\cf3 .ar(sound, buf, loop:1);\
+	sound = \cf4 PlayBuf\cf3 .ar(1, buf, 1, loop:1);\
+	trigger = \cf4 Dust\cf3 .ar(freq);\
+	sound = \cf4 GrainBuf\cf3 .ar(1, trigger, graindur, buf, \
+		\cf4 LFNoise2\cf3 .kr(freq).range(0.5,2.0), \cf4 SinOsc\cf3 .kr(1).range(0,1), 4, pan);\
+	sound = \cf4 LeakDC\cf3 .ar(sound, 0.995);\
+	sound = sound * env * amp;\
+	\cf4 Out\cf3 .ar(out, sound)\
+\}).add;\
+\
+\cf4 SynthDef\cf3 (\cf8 \\delay_grainer\cf3 , \{ \cf7 | in = 0, out = 0, amp = 0, dur = 10, rel = 0.1 |\cf3 \
+	\cf7 var\cf3  sound, env, freqs, numvoices, maxdelaytime;\
+	numvoices = 32;\
+	maxdelaytime = 5;\
+	env = \cf4 EnvGen\cf3 .ar(\cf4 Env\cf3 .linen(0.01,dur,rel), doneAction:2);\
+	sound = \cf4 In\cf3 .ar(in, 1);\
+	\cf2 // freqs = Array.fill(numvoices, \{ LFSaw.kr(Rand(0.1,1.0),0,0.5,0.5) \});\cf3 \
+	sound = \cf4 Mix\cf3 .fill(numvoices, \{ \cf7 |i|\cf3 \
+			\cf7 var\cf3  freq,muladd;\
+			muladd = \cf4 Rand\cf3 (0.0, maxdelaytime * 0.5); \
+			freq = \cf4 LFSaw\cf3 .kr(\cf4 Rand\cf3 (0.1,2.0),0,\cf4 Rand\cf3 (muladd.neg,muladd),muladd);\
+			\cf4 DelayC\cf3 .ar(sound, maxdelaytime, freq, numvoices.reciprocal)\
+		\});\
+	sound = \cf4 HPF\cf3 .ar(sound, 20);\
+	sound = sound * env * amp;\
+	\cf4 ReplaceOut\cf3 .ar(out, sound);	\
+\}).add;\
+\
+\cf4 SynthDef\cf3 (\cf8 \\warpin\cf3 , \{ \cf7 | in = 0, out = 0, amp = 0, dur = 10, sus = 0, atk = 0.01, rel = 0.01, \
+					hpfreq = 20, warpfactor = 1, freqscale = 1, windowsize = 0.2, \
+					overlaps = 10, windowrandratio = 0.1, prelevel = 0,\
+					interp = 4 |\cf3 \
+	\cf7 var\cf3  sound, env, buf;\
+	buf = \cf4 LocalBuf\cf3 (\cf4 SampleRate\cf3 .ir*dur,1).clear;\
+	env = \cf4 EnvGen\cf3 .ar(\cf4 Env\cf3 .linen(atk,sus,rel,amp,\cf8 'sin'\cf3 ), doneAction:2);\
+	sound = \cf4 In\cf3 .ar(in, 1);\
+	sound = \cf4 WarpIn\cf3 .ar(sound,buf,warpfactor,freqscale,windowsize,-1,\
+			overlaps,windowrandratio,prelevel,interp);\
+	sound = \cf4 HPF\cf3 .ar(sound,hpfreq);\
+	sound = sound * env;\
+	\cf4 Out\cf3 .ar(out, sound);\
+\}).add;\
+\
+\pard\pardeftab560\ql\qnatural
+\cf3 postln(\cf5 "Synths loaded"\cf3 );\
+);\
+\cf2 ////////////////////////////////////////////////////\cf3 \
+)}

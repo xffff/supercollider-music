@@ -1,0 +1,5746 @@
+conTimbre_eplayer_orchestra V1.4
+general: {
+  master_gain: 0.0
+  num_models: 3
+  num_voices: 4
+  reverb_is_on: false
+  reverb_gain: 0.0
+  reverb_time: 1.5
+  reverb_roomsize: 80.0
+  reverb_damping: 0.5
+}
+reverb_outputs: {
+    out: 0
+    out: 1
+}
+models: {
+  {
+    group: "string"
+    family: "standard"
+    instrument: "violin"
+  }
+  {
+    group: "string"
+    family: "standard"
+    instrument: "viola"
+  }
+  {
+    group: "string"
+    family: "standard"
+    instrument: "violoncello"
+  }
+}
+voices: {
+  {
+    name: "vi1"
+    color_index: 0
+    num_programs: 1
+    current_midiprogram: 0
+    midichannel: 0
+    gain: 0.0
+    output: 1
+    gain_to_reverb: 0.0
+    programs: {
+      {
+        number: -1
+        name: "violin.ordinario"
+        chorus: 1
+        chord_mode: false
+        keys: {
+          {
+            number: 0
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 1
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 2
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 3
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 4
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 5
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 6
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 7
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 8
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 9
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 10
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 11
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 12
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 13
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 14
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 15
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 16
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 17
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 18
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 19
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 20
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 21
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 22
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 23
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 24
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 25
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 26
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 27
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 28
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 29
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 30
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 31
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 32
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 33
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 34
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 35
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 36
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 37
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 38
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 39
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 40
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 41
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 42
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 43
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 44
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 45
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 46
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 47
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 48
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 49
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 50
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 51
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 52
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 53
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 54
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 55
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 56
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 1
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.Ab3.ppp.Hhv7"
+            pitch: 56.0
+          }
+          {
+            number: 57
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 2
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.Ab3.ppp.Hhv7"
+            pitch: 57.0
+          }
+          {
+            number: 58
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 3
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.B3.ppp.Hhv11"
+            pitch: 58.0
+          }
+          {
+            number: 59
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 4
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.B3.ppp.Hhv11"
+            pitch: 59.0
+          }
+          {
+            number: 60
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 5
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.B3.ppp.Hhv11"
+            pitch: 60.0
+          }
+          {
+            number: 61
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 6
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.D4.ppp.Hhv15"
+            pitch: 61.0
+          }
+          {
+            number: 62
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 7
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.D4.ppp.Hhv15"
+            pitch: 62.0
+          }
+          {
+            number: 63
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 8
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Eb4.ppp.Hhv47"
+            pitch: 63.0
+          }
+          {
+            number: 64
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 9
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Eb4.ppp.Hhv47"
+            pitch: 64.0
+          }
+          {
+            number: 65
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 10
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Gb4.ppp.Hhv51"
+            pitch: 65.0
+          }
+          {
+            number: 66
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 11
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Gb4.ppp.Hhv51"
+            pitch: 66.0
+          }
+          {
+            number: 67
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 12
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Gb4.ppp.Hhv51"
+            pitch: 67.0
+          }
+          {
+            number: 68
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 13
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.A4.ppp.Hhv55"
+            pitch: 68.0
+          }
+          {
+            number: 69
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 14
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.A4.ppp.Hhv55"
+            pitch: 69.0
+          }
+          {
+            number: 70
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 15
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Bb4.ppp.Hhv87"
+            pitch: 70.0
+          }
+          {
+            number: 71
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 16
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Bb4.ppp.Hhv87"
+            pitch: 71.0
+          }
+          {
+            number: 72
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 17
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Db5.ppp.Hhv91"
+            pitch: 72.0
+          }
+          {
+            number: 73
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 18
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Db5.ppp.Hhv91"
+            pitch: 73.0
+          }
+          {
+            number: 74
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 19
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Db5.ppp.Hhv91"
+            pitch: 74.0
+          }
+          {
+            number: 75
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 20
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.E5.ppp.Hhv95"
+            pitch: 75.0
+          }
+          {
+            number: 76
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 21
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.E5.ppp.Hhv95"
+            pitch: 76.0
+          }
+          {
+            number: 77
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 22
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F5.ppp.Hhv127"
+            pitch: 77.0
+          }
+          {
+            number: 78
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 23
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F5.ppp.Hhv127"
+            pitch: 78.0
+          }
+          {
+            number: 79
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 24
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab5.ppp.Hhv131"
+            pitch: 79.0
+          }
+          {
+            number: 80
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 25
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab5.ppp.Hhv131"
+            pitch: 80.0
+          }
+          {
+            number: 81
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 26
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab5.ppp.Hhv131"
+            pitch: 81.0
+          }
+          {
+            number: 82
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 27
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B5.ppp.Hhv135"
+            pitch: 82.0
+          }
+          {
+            number: 83
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 28
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B5.ppp.Hhv135"
+            pitch: 83.0
+          }
+          {
+            number: 84
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 29
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B5.ppp.Hhv135"
+            pitch: 84.0
+          }
+          {
+            number: 85
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 30
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D6.ppp.Hhv139"
+            pitch: 85.0
+          }
+          {
+            number: 86
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 31
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D6.ppp.Hhv139"
+            pitch: 86.0
+          }
+          {
+            number: 87
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 32
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D6.ppp.Hhv139"
+            pitch: 87.0
+          }
+          {
+            number: 88
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 33
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F6.ppp.Hhv143"
+            pitch: 88.0
+          }
+          {
+            number: 89
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 34
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F6.ppp.Hhv143"
+            pitch: 89.0
+          }
+          {
+            number: 90
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 35
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F6.ppp.Hhv143"
+            pitch: 90.0
+          }
+          {
+            number: 91
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 36
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab6.ppp.Hhv147"
+            pitch: 91.0
+          }
+          {
+            number: 92
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 37
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab6.ppp.Hhv147"
+            pitch: 92.0
+          }
+          {
+            number: 93
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 38
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab6.ppp.Hhv147"
+            pitch: 93.0
+          }
+          {
+            number: 94
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 39
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B6.ppp.Hhv151"
+            pitch: 94.0
+          }
+          {
+            number: 95
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 40
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B6.ppp.Hhv151"
+            pitch: 95.0
+          }
+          {
+            number: 96
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 41
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B6.ppp.Hhv151"
+            pitch: 96.0
+          }
+          {
+            number: 97
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 42
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D7.ppp.Hhv155"
+            pitch: 97.0
+          }
+          {
+            number: 98
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 43
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D7.ppp.Hhv155"
+            pitch: 98.0
+          }
+          {
+            number: 99
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 44
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D7.ppp.Hhv155"
+            pitch: 99.0
+          }
+          {
+            number: 100
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 45
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F7.ppp.Hhv159"
+            pitch: 100.0
+          }
+          {
+            number: 101
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F7.ppp.Hhv159"
+            pitch: 101.0
+          }
+          {
+            number: 102
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 47
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F7.ppp.Hhv159"
+            pitch: 102.0
+          }
+          {
+            number: 103
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 48
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 103.0
+          }
+          {
+            number: 104
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 105
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 106
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 107
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 108
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 109
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 110
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 111
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 112
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 113
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 114
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 115
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 116
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 117
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 118
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 119
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 120
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 121
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 122
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 123
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 124
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 125
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 126
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 127
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+        }
+      }
+    }
+  }
+  {
+    name: "vi2"
+    color_index: 0
+    num_programs: 1
+    current_midiprogram: 0
+    midichannel: 0
+    gain: 0.0
+    output: 2
+    gain_to_reverb: 0.0
+    programs: {
+      {
+        number: -1
+        name: "violin.ordinario"
+        chorus: 1
+        chord_mode: false
+        keys: {
+          {
+            number: 0
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 1
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 2
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 3
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 4
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 5
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 6
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 7
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 8
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 9
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 10
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 11
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 12
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 13
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 14
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 15
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 16
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 17
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 18
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 19
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 20
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 21
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 22
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 23
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 24
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 25
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 26
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 27
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 28
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 29
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 30
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 31
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 32
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 33
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 34
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 35
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 36
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 37
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 38
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 39
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 40
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 41
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 42
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 43
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 44
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 45
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 46
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 47
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 48
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 49
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 50
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 51
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 52
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 53
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 54
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 55
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.G3.ppp.Hhv3"
+            pitch: 55.0
+          }
+          {
+            number: 56
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 1
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.Ab3.ppp.Hhv7"
+            pitch: 56.0
+          }
+          {
+            number: 57
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 2
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.Ab3.ppp.Hhv7"
+            pitch: 57.0
+          }
+          {
+            number: 58
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 3
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.B3.ppp.Hhv11"
+            pitch: 58.0
+          }
+          {
+            number: 59
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 4
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.B3.ppp.Hhv11"
+            pitch: 59.0
+          }
+          {
+            number: 60
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 5
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.B3.ppp.Hhv11"
+            pitch: 60.0
+          }
+          {
+            number: 61
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 6
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.D4.ppp.Hhv15"
+            pitch: 61.0
+          }
+          {
+            number: 62
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 7
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m156.D4.ppp.Hhv15"
+            pitch: 62.0
+          }
+          {
+            number: 63
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 8
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Eb4.ppp.Hhv47"
+            pitch: 63.0
+          }
+          {
+            number: 64
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 9
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Eb4.ppp.Hhv47"
+            pitch: 64.0
+          }
+          {
+            number: 65
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 10
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Gb4.ppp.Hhv51"
+            pitch: 65.0
+          }
+          {
+            number: 66
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 11
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Gb4.ppp.Hhv51"
+            pitch: 66.0
+          }
+          {
+            number: 67
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 12
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.Gb4.ppp.Hhv51"
+            pitch: 67.0
+          }
+          {
+            number: 68
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 13
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.A4.ppp.Hhv55"
+            pitch: 68.0
+          }
+          {
+            number: 69
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 14
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m155.A4.ppp.Hhv55"
+            pitch: 69.0
+          }
+          {
+            number: 70
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 15
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Bb4.ppp.Hhv87"
+            pitch: 70.0
+          }
+          {
+            number: 71
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 16
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Bb4.ppp.Hhv87"
+            pitch: 71.0
+          }
+          {
+            number: 72
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 17
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Db5.ppp.Hhv91"
+            pitch: 72.0
+          }
+          {
+            number: 73
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 18
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Db5.ppp.Hhv91"
+            pitch: 73.0
+          }
+          {
+            number: 74
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 19
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.Db5.ppp.Hhv91"
+            pitch: 74.0
+          }
+          {
+            number: 75
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 20
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.E5.ppp.Hhv95"
+            pitch: 75.0
+          }
+          {
+            number: 76
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 21
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m154.E5.ppp.Hhv95"
+            pitch: 76.0
+          }
+          {
+            number: 77
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 22
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F5.ppp.Hhv127"
+            pitch: 77.0
+          }
+          {
+            number: 78
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 23
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F5.ppp.Hhv127"
+            pitch: 78.0
+          }
+          {
+            number: 79
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 24
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab5.ppp.Hhv131"
+            pitch: 79.0
+          }
+          {
+            number: 80
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 25
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab5.ppp.Hhv131"
+            pitch: 80.0
+          }
+          {
+            number: 81
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 26
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab5.ppp.Hhv131"
+            pitch: 81.0
+          }
+          {
+            number: 82
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 27
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B5.ppp.Hhv135"
+            pitch: 82.0
+          }
+          {
+            number: 83
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 28
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B5.ppp.Hhv135"
+            pitch: 83.0
+          }
+          {
+            number: 84
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 29
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B5.ppp.Hhv135"
+            pitch: 84.0
+          }
+          {
+            number: 85
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 30
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D6.ppp.Hhv139"
+            pitch: 85.0
+          }
+          {
+            number: 86
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 31
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D6.ppp.Hhv139"
+            pitch: 86.0
+          }
+          {
+            number: 87
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 32
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D6.ppp.Hhv139"
+            pitch: 87.0
+          }
+          {
+            number: 88
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 33
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F6.ppp.Hhv143"
+            pitch: 88.0
+          }
+          {
+            number: 89
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 34
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F6.ppp.Hhv143"
+            pitch: 89.0
+          }
+          {
+            number: 90
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 35
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F6.ppp.Hhv143"
+            pitch: 90.0
+          }
+          {
+            number: 91
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 36
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab6.ppp.Hhv147"
+            pitch: 91.0
+          }
+          {
+            number: 92
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 37
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab6.ppp.Hhv147"
+            pitch: 92.0
+          }
+          {
+            number: 93
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 38
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab6.ppp.Hhv147"
+            pitch: 93.0
+          }
+          {
+            number: 94
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 39
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B6.ppp.Hhv151"
+            pitch: 94.0
+          }
+          {
+            number: 95
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 40
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B6.ppp.Hhv151"
+            pitch: 95.0
+          }
+          {
+            number: 96
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 41
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.B6.ppp.Hhv151"
+            pitch: 96.0
+          }
+          {
+            number: 97
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 42
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D7.ppp.Hhv155"
+            pitch: 97.0
+          }
+          {
+            number: 98
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 43
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D7.ppp.Hhv155"
+            pitch: 98.0
+          }
+          {
+            number: 99
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 44
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.D7.ppp.Hhv155"
+            pitch: 99.0
+          }
+          {
+            number: 100
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 45
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F7.ppp.Hhv159"
+            pitch: 100.0
+          }
+          {
+            number: 101
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F7.ppp.Hhv159"
+            pitch: 101.0
+          }
+          {
+            number: 102
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 47
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.F7.ppp.Hhv159"
+            pitch: 102.0
+          }
+          {
+            number: 103
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 48
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 103.0
+          }
+          {
+            number: 104
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 105
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 106
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 107
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 108
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 109
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 110
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 111
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 112
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 113
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 114
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 115
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 116
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 117
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 118
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 119
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 120
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 121
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 122
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 123
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 124
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 125
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 126
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+          {
+            number: 127
+            model_index: 0
+            modes_index: 263
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violin.m153.Ab7.ppp.Hhv163"
+            pitch: 104.0
+          }
+        }
+      }
+    }
+  }
+  {
+    name: "va"
+    color_index: 0
+    num_programs: 1
+    current_midiprogram: 0
+    midichannel: 0
+    gain: 0.0
+    output: 3
+    gain_to_reverb: 0.0
+    programs: {
+      {
+        number: -1
+        name: "viola.ordinario"
+        chorus: 1
+        chord_mode: false
+        keys: {
+          {
+            number: 0
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 1
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 2
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 3
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 4
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 5
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 6
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 7
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 8
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 9
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 10
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 11
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 12
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 13
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 14
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 15
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 16
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 17
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 18
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 19
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 20
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 21
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 22
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 23
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 24
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 25
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 26
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 27
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 28
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 29
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 30
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 31
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 32
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 33
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 34
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 35
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 36
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 37
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 38
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 39
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 40
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 41
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 42
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 43
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 44
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 45
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 46
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 47
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 48
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.C3.ppp.Jsv3"
+            pitch: 48.0
+          }
+          {
+            number: 49
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 1
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.Db3.ppp.Jsv7"
+            pitch: 49.0
+          }
+          {
+            number: 50
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 2
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.Db3.ppp.Jsv7"
+            pitch: 50.0
+          }
+          {
+            number: 51
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 3
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.E3.ppp.Jsv11"
+            pitch: 51.0
+          }
+          {
+            number: 52
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 4
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.E3.ppp.Jsv11"
+            pitch: 52.0
+          }
+          {
+            number: 53
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 5
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.E3.ppp.Jsv11"
+            pitch: 53.0
+          }
+          {
+            number: 54
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 6
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.G3.ppp.Jsv15"
+            pitch: 54.0
+          }
+          {
+            number: 55
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 7
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m148.G3.ppp.Jsv15"
+            pitch: 55.0
+          }
+          {
+            number: 56
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 8
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m147.Ab3.ppp.Jsv47"
+            pitch: 56.0
+          }
+          {
+            number: 57
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 9
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m147.Ab3.ppp.Jsv47"
+            pitch: 57.0
+          }
+          {
+            number: 58
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 10
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m147.B3.ppp.Jsv51"
+            pitch: 58.0
+          }
+          {
+            number: 59
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 11
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m147.B3.ppp.Jsv51"
+            pitch: 59.0
+          }
+          {
+            number: 60
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 12
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m147.B3.ppp.Jsv51"
+            pitch: 60.0
+          }
+          {
+            number: 61
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 13
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m147.D4.ppp.Jsv55"
+            pitch: 61.0
+          }
+          {
+            number: 62
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 14
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m147.D4.ppp.Jsv55"
+            pitch: 62.0
+          }
+          {
+            number: 63
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 15
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m146.Eb4.ppp.Jsv87"
+            pitch: 63.0
+          }
+          {
+            number: 64
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 16
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m146.Eb4.ppp.Jsv87"
+            pitch: 64.0
+          }
+          {
+            number: 65
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 17
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m146.Gb4.ppp.Jsv91"
+            pitch: 65.0
+          }
+          {
+            number: 66
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 18
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m146.Gb4.ppp.Jsv91"
+            pitch: 66.0
+          }
+          {
+            number: 67
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 19
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m146.Gb4.ppp.Jsv91"
+            pitch: 67.0
+          }
+          {
+            number: 68
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 20
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m146.A4.ppp.Jsv95"
+            pitch: 68.0
+          }
+          {
+            number: 69
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 21
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m146.A4.ppp.Jsv95"
+            pitch: 69.0
+          }
+          {
+            number: 70
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 22
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb4.ppp.Jsv127"
+            pitch: 70.0
+          }
+          {
+            number: 71
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 23
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb4.ppp.Jsv127"
+            pitch: 71.0
+          }
+          {
+            number: 72
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 24
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Db5.ppp.Jsv131"
+            pitch: 72.0
+          }
+          {
+            number: 73
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 25
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Db5.ppp.Jsv131"
+            pitch: 73.0
+          }
+          {
+            number: 74
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 26
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Db5.ppp.Jsv131"
+            pitch: 74.0
+          }
+          {
+            number: 75
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 27
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.E5.ppp.Jsv135"
+            pitch: 75.0
+          }
+          {
+            number: 76
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 28
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.E5.ppp.Jsv135"
+            pitch: 76.0
+          }
+          {
+            number: 77
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 29
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.E5.ppp.Jsv135"
+            pitch: 77.0
+          }
+          {
+            number: 78
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 30
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.G5.ppp.Jsv139"
+            pitch: 78.0
+          }
+          {
+            number: 79
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 31
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.G5.ppp.Jsv139"
+            pitch: 79.0
+          }
+          {
+            number: 80
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 32
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.G5.ppp.Jsv139"
+            pitch: 80.0
+          }
+          {
+            number: 81
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 33
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb5.ppp.Jsv143"
+            pitch: 81.0
+          }
+          {
+            number: 82
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 34
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb5.ppp.Jsv143"
+            pitch: 82.0
+          }
+          {
+            number: 83
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 35
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb5.ppp.Jsv143"
+            pitch: 83.0
+          }
+          {
+            number: 84
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 36
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Db6.ppp.Jsv147"
+            pitch: 84.0
+          }
+          {
+            number: 85
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 37
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Db6.ppp.Jsv147"
+            pitch: 85.0
+          }
+          {
+            number: 86
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 38
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Db6.ppp.Jsv147"
+            pitch: 86.0
+          }
+          {
+            number: 87
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 39
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.E6.ppp.Jsv151"
+            pitch: 87.0
+          }
+          {
+            number: 88
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 40
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.E6.ppp.Jsv151"
+            pitch: 88.0
+          }
+          {
+            number: 89
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 41
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.E6.ppp.Jsv151"
+            pitch: 89.0
+          }
+          {
+            number: 90
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 42
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.G6.ppp.Jsv155"
+            pitch: 90.0
+          }
+          {
+            number: 91
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 43
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.G6.ppp.Jsv155"
+            pitch: 91.0
+          }
+          {
+            number: 92
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 44
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.G6.ppp.Jsv155"
+            pitch: 92.0
+          }
+          {
+            number: 93
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 45
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 93.0
+          }
+          {
+            number: 94
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 95
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 96
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 97
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 98
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 99
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 100
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 101
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 102
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 103
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 104
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 105
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 106
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 107
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 108
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 109
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 110
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 111
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 112
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 113
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 114
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 115
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 116
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 117
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 118
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 119
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 120
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 121
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 122
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 123
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 124
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 125
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 126
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+          {
+            number: 127
+            model_index: 1
+            modes_index: 257
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "viola.m145.Bb6.ppp.Jsv159"
+            pitch: 94.0
+          }
+        }
+      }
+    }
+  }
+  {
+    name: "vc"
+    color_index: 0
+    num_programs: 1
+    current_midiprogram: 0
+    midichannel: 0
+    gain: 0.0
+    output: 4
+    gain_to_reverb: 0.0
+    programs: {
+      {
+        number: -1
+        name: "violoncello.ordinario"
+        chorus: 1
+        chord_mode: false
+        keys: {
+          {
+            number: 0
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 1
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 2
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 3
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 4
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 5
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 6
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 7
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 8
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 9
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 10
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 11
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 12
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 13
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 14
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 15
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 16
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 17
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 18
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 19
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 20
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 21
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 22
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 23
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 24
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 25
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 26
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 27
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 28
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 29
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 30
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 31
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 32
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 33
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 34
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 35
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 36
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 0
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.C2.ppp.Esva3"
+            pitch: 36.0
+          }
+          {
+            number: 37
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 1
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.Db2.ppp.Esva7"
+            pitch: 37.0
+          }
+          {
+            number: 38
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 2
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.D2.ppp.Esva11"
+            pitch: 38.0
+          }
+          {
+            number: 39
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 3
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.Eb2.ppp.Esva15"
+            pitch: 39.0
+          }
+          {
+            number: 40
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 4
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.Eb2.ppp.Esva15"
+            pitch: 40.0
+          }
+          {
+            number: 41
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 5
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.Gb2.ppp.Esva19"
+            pitch: 41.0
+          }
+          {
+            number: 42
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 6
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.Gb2.ppp.Esva19"
+            pitch: 42.0
+          }
+          {
+            number: 43
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 7
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m244.G2.ppp.Esva23"
+            pitch: 43.0
+          }
+          {
+            number: 44
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 8
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m243.Ab2.ppp.Esva67"
+            pitch: 44.0
+          }
+          {
+            number: 45
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 9
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m243.A2.ppp.Esva71"
+            pitch: 45.0
+          }
+          {
+            number: 46
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 10
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m243.B2.ppp.Esva75"
+            pitch: 46.0
+          }
+          {
+            number: 47
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 11
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m243.B2.ppp.Esva75"
+            pitch: 47.0
+          }
+          {
+            number: 48
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 12
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m243.C3.ppp.Esva79"
+            pitch: 48.0
+          }
+          {
+            number: 49
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 13
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m243.Db3.ppp.Esva83"
+            pitch: 49.0
+          }
+          {
+            number: 50
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 14
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m243.D3.ppp.Esva87"
+            pitch: 50.0
+          }
+          {
+            number: 51
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 15
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m242.Eb3.ppp.Esva127"
+            pitch: 51.0
+          }
+          {
+            number: 52
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 16
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m242.Eb3.ppp.Esva127"
+            pitch: 52.0
+          }
+          {
+            number: 53
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 17
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m242.Gb3.ppp.Esva131"
+            pitch: 53.0
+          }
+          {
+            number: 54
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 18
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m242.Gb3.ppp.Esva131"
+            pitch: 54.0
+          }
+          {
+            number: 55
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 19
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m242.G3.ppp.Esva135"
+            pitch: 55.0
+          }
+          {
+            number: 56
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 20
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m242.Ab3.ppp.Esva139"
+            pitch: 56.0
+          }
+          {
+            number: 57
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 21
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m242.A3.ppp.Esva143"
+            pitch: 57.0
+          }
+          {
+            number: 58
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 22
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Bb3.ppp.Esva191"
+            pitch: 58.0
+          }
+          {
+            number: 59
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 23
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.B3.ppp.Esva195"
+            pitch: 59.0
+          }
+          {
+            number: 60
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 24
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.C4.ppp.Esva199"
+            pitch: 60.0
+          }
+          {
+            number: 61
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 25
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Db4.ppp.Esva203"
+            pitch: 61.0
+          }
+          {
+            number: 62
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 26
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.D4.ppp.Esva207"
+            pitch: 62.0
+          }
+          {
+            number: 63
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 27
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Eb4.ppp.Esva211"
+            pitch: 63.0
+          }
+          {
+            number: 64
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 28
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Eb4.ppp.Esva211"
+            pitch: 64.0
+          }
+          {
+            number: 65
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 29
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Gb4.ppp.Esva215"
+            pitch: 65.0
+          }
+          {
+            number: 66
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 30
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Gb4.ppp.Esva215"
+            pitch: 66.0
+          }
+          {
+            number: 67
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 31
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.G4.ppp.Esva219"
+            pitch: 67.0
+          }
+          {
+            number: 68
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 32
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Ab4.ppp.Esva223"
+            pitch: 68.0
+          }
+          {
+            number: 69
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 33
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Ab4.ppp.Esva223"
+            pitch: 69.0
+          }
+          {
+            number: 70
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 34
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.B4.ppp.Esva227"
+            pitch: 70.0
+          }
+          {
+            number: 71
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 35
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.B4.ppp.Esva227"
+            pitch: 71.0
+          }
+          {
+            number: 72
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 36
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.C5.ppp.Esva231"
+            pitch: 72.0
+          }
+          {
+            number: 73
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 37
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Db5.ppp.Esva235"
+            pitch: 73.0
+          }
+          {
+            number: 74
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 38
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Db5.ppp.Esva235"
+            pitch: 74.0
+          }
+          {
+            number: 75
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 39
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E5.ppp.Esva239"
+            pitch: 75.0
+          }
+          {
+            number: 76
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 40
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E5.ppp.Esva239"
+            pitch: 76.0
+          }
+          {
+            number: 77
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 41
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E5.ppp.Esva239"
+            pitch: 77.0
+          }
+          {
+            number: 78
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 42
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.G5.ppp.Esva243"
+            pitch: 78.0
+          }
+          {
+            number: 79
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 43
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.G5.ppp.Esva243"
+            pitch: 79.0
+          }
+          {
+            number: 80
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 44
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.G5.ppp.Esva243"
+            pitch: 80.0
+          }
+          {
+            number: 81
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 45
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Bb5.ppp.Esva247"
+            pitch: 81.0
+          }
+          {
+            number: 82
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 46
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Bb5.ppp.Esva247"
+            pitch: 82.0
+          }
+          {
+            number: 83
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 47
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Bb5.ppp.Esva247"
+            pitch: 83.0
+          }
+          {
+            number: 84
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 48
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Db6.ppp.Esva251"
+            pitch: 84.0
+          }
+          {
+            number: 85
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 49
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Db6.ppp.Esva251"
+            pitch: 85.0
+          }
+          {
+            number: 86
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 50
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.Db6.ppp.Esva251"
+            pitch: 86.0
+          }
+          {
+            number: 87
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 51
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 87.0
+          }
+          {
+            number: 88
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 89
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 90
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 91
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 92
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 93
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 94
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 95
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 96
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 97
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 98
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 99
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 100
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 101
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 102
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 103
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 104
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 105
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 106
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 107
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 108
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 109
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 110
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 111
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 112
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 113
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 114
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 115
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 116
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 117
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 118
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 119
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 120
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 121
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 122
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 123
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 124
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 125
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 126
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+          {
+            number: 127
+            model_index: 2
+            modes_index: 385
+            note_menu_index: 52
+            detune: 0.0
+            gain: 0.0
+            let_vibrate: 0.1
+            filename: "violoncello.m241.E6.ppp.Esva255"
+            pitch: 88.0
+          }
+        }
+      }
+    }
+  }
+}

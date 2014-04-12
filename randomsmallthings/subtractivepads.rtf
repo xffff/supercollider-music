@@ -1,0 +1,36 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red0\green0\blue191;\red0\green115\blue0;
+}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf0 (\
+\
+fork\{ \
+	loop\{\
+		\cf2 var\cf0  time;\
+		time = 5.rand;\
+		\{\
+			\cf2 var\cf0  sound, freqs, envs, rings, numvoices, env;\
+			numvoices = 40;\
+			freqs = \{(\cf3 Scale\cf0 .major(\cf4 \\just\cf0 ).degrees+26+\
+				(0,12..110).choose).choose\}.dup(numvoices).midicps;\
+			rings = \{1.0.rand\}.dup(numvoices);\
+			envs = \{ \cf3 EnvGen\cf0 .kr(\cf3 Env\cf0 .linen( time/3.0.rand, \
+				time/3.0.rand, time/3.0.rand, 1.0.rand ) ) \}.dup(numvoices);\
+			\
+			sound = \cf3 PinkNoise\cf0 .ar(numvoices.reciprocal!2);\
+			sound = \cf3 DynKlank\cf0 .ar(`[freqs,envs,rings], sound );\
+			sound = sound * EnvGen.kr(\cf3 Env\cf0 .linen(time*3,time/3,time.rand),doneAction:2);\
+			\
+			sound = HPF.ar(sound, 120);\
+			\
+			4.do\{sound = DelayC.ar(sound, 0.4, [0.4.rand,0.4.rand], 1/8, sound) \};\
+						\
+			sound;\
+		\}.play;\
+	time.rand.wait;\
+	\}\
+\}\
+)\
+}

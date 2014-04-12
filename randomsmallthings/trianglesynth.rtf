@@ -1,0 +1,67 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red0\green0\blue191;
+}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 \
+(\
+fork\{\
+	loop\{ \cf3 | i |\cf2  \
+		\cf3 var\cf2  time, trigtime;\
+		time = [1/8,1/4,1].wchoose([2,1,0.2].normalizeSum);\
+		trigtime = [1,2,4,8,16].choose;\
+		play\{		\
+			\cf3 var\cf2  sound, freq, ampenv, filterenv, mod, snare, snaretrig, kick, kickenv, lin;\
+						\
+			mod = \cf4 LFNoise2\cf2 .kr(\{0.01.rand\}.dup(2), [0.01.rand,0.001.rand,0.5.rand].choose, 1.0);\
+			\
+			freq = [\
+					\cf4 Scale\cf2 .minorPentatonic.degrees,\
+					\cf4 Scale\cf2 .minorPentatonic.degrees.choose\
+				].choose + (12 * (2..6).choose);\
+			freq = freq.midicps;\
+			\
+			filterenv = \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .linen(time/3.0.rand.max(0.01), \
+				time/3.0.rand.max(0.01),\
+				time/3.0.rand.max(0.01)).range(freq*1.5,freq*10.0.rand.max(1.5))\
+			);\
+			\
+			ampenv = \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.01,time/2.0.rand.max(1/8),1.0.rand),doneAction:2);\
+			\
+			sound = \cf4 Select\cf2 .ar(5.rand, [\
+				\cf4 Pulse\cf2 .ar(freq*mod,0.5).tanh,\
+				\cf4 LFTri\cf2 .ar(freq*mod,0).tanh,\
+				\cf4 Pulse\cf2 .ar(freq*mod,0.5).tanh,\
+				\cf4 LFSaw\cf2 .ar(freq*mod,0.5).tanh,		\
+				\cf4 SinOscFB\cf2 .ar(freq*mod,100.0.rand).tanh\
+			]); \
+			\
+			sound = \cf4 RLPF\cf2 .ar(sound, filterenv, \cf4 LFNoise2\cf2 .kr(0.01.rand, 0.3, 0.5) );\
+			sound = sound * ampenv;\
+			\
+			sound = sound + (\cf4 DelayC\cf2 .ar(sound, 1/4, \{[1/4,1/8].choose\}.dup(2)) * [1.0.rand,0]);\
+			\
+			5.do\{sound = (sound.clip + sound)*0.75\};\
+\
+			sound = \cf4 LPF\cf2 .ar(sound, \cf4 LFNoise2\cf2 .kr(trigtime, 250, 500) );\
+	\
+			snaretrig = \cf4 Impulse\cf2 .kr(trigtime);\
+			snare = 3*\cf4 PinkNoise\cf2 .ar(1!2) * \
+				\cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.01,0.01,[0,0.3.rand].choose),snaretrig);\
+			5.do\{snare = \cf4 AllpassC\cf2 .ar(snare, 0.5, \{0.05.rand\}.dup(2), 1.0.rand)+snare\};\
+			5.do\{snare = (snare.distort + snare)*0.85\};\
+			\
+			kickenv = \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.01,time,[0,1.0.rand].choose));\
+			kick = \cf4 SinOsc\cf2 .ar(40!2+(kickenv**3*200),0,7*kickenv) * kickenv; \
+			5.do\{kick = (kick.distort + kick)*0.75\};\
+			\
+			sound = \cf4 Limiter\cf2 .ar(sound + snare + kick, 1.0, 0.00001);\
+						\
+			\cf4 Out\cf2 .ar(0,sound.tanh);\
+		\};\
+		\
+		time.wait;\
+	\};\
+\}\
+)}

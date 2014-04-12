@@ -1,0 +1,82 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red191\green0\blue0;\red0\green0\blue255;\red0\green0\blue191;
+\red0\green115\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 // been listening to a lot of vangelis/wendy carlos recently\cf0 \
+\cf2 // largely modified from the cs80_mh in synthdefpool \cf0 \
+\
+(\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf3 var\cf0  scale,fund;\
+\
+scale = [0,3,7];\
+\
+fork\{\
+	loop\{\
+		\cf3 var\cf0  t = [16,32].choose;\
+		fund = 26+[0,3,7,10,14].choose;\
+		fund.postln;\
+		t.wait;\
+	\};\
+\};\
+\
+fork\{			\
+	loop\{\
+		\cf3 var\cf0  t = 1/2;\
+		\cf3 var\cf0  a,d,s,r,fa,fd,fs,fr,ratio,dtune,freq,\
+			ffreq,vibrate,vibdepth,cutoff,amp;\
+ 		freq = (scale.choose+fund+(12*(0..3).choose)).midicps;\
+ 		vibrate = t/(1..10).choose;\
+ 		vibdepth = (90..500).choose.reciprocal;\
+		dtune = \cf4 LFNoise0\cf0 .kr(t,0.02,1);\
+		cutoff = freq * (1.1,1.2..4).choose;\
+ 		ratio = (0.99,0.991..1.01).choose;	\
+ 		amp = 1/3;\
+		\
+ 		a = 3.0.rand/t;		\
+ 		s = 3.0.rand/t;\
+ 		r = 3.0.rand/t;\
+ 		fa = 3.0.rand/t;\
+ 		fs = 3.0.rand/t;\
+ 		fr = 3.0.rand/t;\
+		\
+		play\{\
+			\cf3 var\cf0  env, fenv, sig, gate, vib;\
+			gate = \cf4 Line\cf0 .kr(1,0,t);\
+			env = \cf4 EnvGen\cf0 .kr(\cf4 Env\cf0 .linen(a,s,r),doneAction:2);\
+			fenv = \cf4 EnvGen\cf0 .kr(\cf4 Env\cf0 .linen(fa,fs,fr));\
+			freq = \cf4 Line\cf0 .kr(freq,freq*ratio,t);\
+			vib = \cf4 SinOsc\cf0 .kr(vibrate).range(vibdepth.neg,vibdepth)+1;\
+			freq = vib*freq;			\
+			//freq = freq.lag(t);\
+			sig = \cf4 Select\cf0 .ar(2.rand,[\
+				\cf4 Pulse\cf0 .ar([freq,freq*(1+dtune),freq*(1-dtune)],\
+					\cf4 LFNoise2\cf0 .kr(t,0.5,0.5), 0.1).sum,\
+				\cf4 Saw\cf0 .ar([freq,freq*(1+dtune),freq*(1-dtune)]).sum\
+			]);\
+			sig = sig.tanh * env;\
+			ffreq = max(fenv*freq*12,cutoff)+100;\
+			sig = \cf4 MoogFF\cf0 .ar(sig,ffreq,\cf4 LFNoise2\cf0 .kr(1/t,1.4,1.5)).tanh;\
+			sig = \cf4 RLPF\cf0 .ar(sig,1e4,0.9).tanh;\
+			sig = \cf4 Pan2\cf0 .ar(sig*amp,\cf4 LFNoise2\cf0 .kr(t.rand));\
+			Out.ar([0,9],sig);\
+			\};\
+		t.wait;\
+		\};\
+	\};\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 // this was inspired by http://sccode.org/1-4EG \cf0 \
+\cf2 // good way to get the reverb out of the loop... \cf0 \
+\cf2 // thanks rukano ;)\cf0 \
+\{\
+	\cf3 var\cf0  in = \cf4 In\cf0 .ar(0,2);\
+	in = in * 0.25;\
+	in = \cf4 Compander\cf0 .ar(in,in,0.75,1,0.75,0.1,0.4);\
+	in = (in*0.2) + \cf4 GVerb\cf0 .ar(\cf4 HPF\cf0 .ar(in,100), 20, 20, mul:0.6).tanh;\
+	in = \cf4 Limiter\cf0 .ar(\cf4 LeakDC\cf0 .ar(in));		\
+	\cf4 ReplaceOut\cf0 .ar(0, in)\
+\}.play(addAction:\cf5 \\addToTail\cf0 );\
+)}

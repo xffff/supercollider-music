@@ -1,0 +1,49 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red0\green0\blue191;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf0 (\
+\{\
+	var freq = 26*3;\
+	freq = LFNoise2.kr(0.25,7,43);\
+	MoogFF.ar(Saw.ar([freq,freq+3,freq+7,freq+12].midicps,0.5),freq.midicps*\
+		Line.kr(1.5,6.0.rand.max(1.6),0.5), 2.5).sum *\
+		EnvGen.kr(Env.perc(0.001,0.5,1),Impulse.kr(3));\
+\}.play;\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+fork\{\
+	\cf2 var\cf0  i = 0;\
+	loop\{\
+		\cf2 var\cf0  t = 0.5, kamp = 1, snamp = 0;\
+		i = i + 1;\
+		kamp = i%2;\
+		snamp = ((i+1)%2);\
+		play\{\
+			\cf2 var\cf0  kick, snare, snarex, kfreq, kdecay, kcutoff;\
+			kfreq = 60; kdecay = t; kcutoff = 1000;\
+						\
+			kick = \cf3 LPF\cf0 .ar( \cf3 Ringz\cf0 .ar(\cf3 Impulse\cf0 .ar(1/t), kfreq, kdecay), kcutoff ) * \
+					\cf3 EnvGen\cf0 .kr(\cf3 Env\cf0 .perc(0.001, t, kamp*4), doneAction:2);\
+			kick = kick!2;\
+			kick = kick.tanh;\
+			\
+			snarex = \cf3 LPF\cf0 .ar(\cf3 WhiteNoise\cf0 .ar(1), 7040, 1) * (0.1 + 0.4);\
+			snare = (\
+				(\cf3 LFTri\cf0 .ar(330,0,1) * \cf3 EnvGen\cf0 .kr(\cf3 Env\cf0 .perc(0.0005,0.055,0.25))) +\
+				(\cf3 LFTri\cf0 .ar(185,0,1) * \cf3 EnvGen\cf0 .kr(\cf3 Env\cf0 .perc(0.0005,0.075,0.25))) +\
+				(snarex * \cf3 EnvGen\cf0 .kr(\cf3 Env\cf0 .perc(0.0005,0.25,0.2),doneAction:2)) +\
+				(\cf3 HPF\cf0 .ar(snarex, 523, 1) * \cf3 EnvGen\cf0 .kr(\cf3 Env\cf0 .perc(0.0005,0.1,0.2)))\
+			);\
+			\
+			snare = snare * snamp;\
+			snare = snare!2;\
+			\
+			(snare + kick).tanh\
+		\};\
+		t.wait;\
+	\};\
+\};\
+)}

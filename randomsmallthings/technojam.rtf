@@ -1,0 +1,160 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red0\green0\blue191;
+\red96\green96\blue96;\red0\green0\blue191;\red0\green115\blue0;\red191\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 (\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf3 var\cf2  scale,fund,numvoices;\
+\
+numvoices = 3;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 \
+fork\{\
+	\cf3 var\cf2  i = 0;\
+	loop\{\
+		\cf3 var\cf2  t = 0.5, kamp = 1, snamp = 0;\
+		i = i + 1;\
+		kamp = i%2;\
+		snamp = ((i+1)%2);\
+		play\{\
+			\cf3 var\cf2  kick, snare, snarex, kfreq, kdecay, kcutoff;\
+			kfreq = 60; kdecay = t; kcutoff = 1000;\
+						\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 			kick = \cf4 LPF\cf2 .ar( \cf4 Ringz\cf2 .ar(\cf4 Impulse\cf2 .ar(1/t), kfreq, kdecay), kcutoff ) * \
+					\cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.001, t, kamp*4), doneAction:2);\
+			kick = kick!2;\
+			kick = kick.tanh;\
+			\
+			snarex = \cf4 LPF\cf2 .ar(\cf4 WhiteNoise\cf2 .ar(1), 7040, 1) * (0.1 + 0.4);\
+			snare = (\
+				(\cf4 LFTri\cf2 .ar(330,0,1) * \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.0005,0.055,0.25))) +\
+				(\cf4 LFTri\cf2 .ar(185,0,1) * \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.0005,0.075,0.25))) +\
+				(snarex * \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.0005,0.25,0.2),doneAction:2)) +\
+				(\cf4 HPF\cf2 .ar(snarex, 523, 1) * \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.0005,0.283,0.2)))\
+			);\
+			\
+			snare = snare * snamp;\
+			snare = snare!2;\
+			\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 			(snare + kick).tanh\
+		\};\
+		t.wait;\
+	\};\
+\};\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 \
+fork\{\
+	loop\{\
+		\cf3 var\cf2  t = 2;\
+		scale = \cf4 [0,3,7,10,7,3,0]\cf2 ;\
+		fund = 29+[0,1].choose;\
+		postln(\cf5 "scale: "\cf2  ++ scale);\
+		postln(\cf5 "fund: "\cf2  ++ fund);\
+		t.wait;\
+	\};\
+\};\
+\
+fork\{\
+\cf3 	var\cf2  i, step;	\
+	i = 0;		\
+	loop\{\
+		\cf3 var\cf2  t = 1/8;\
+		\cf3 var\cf2  a,d,s,r,fa,fd,fs,fr,ratio,dtune,freq,\
+			ffreq,vibrate,vibdepth,cutoff,amp;\
+ 		i = i + 1;\
+ 		step = i % (scale.size-1);\
+ 		freq = (scale[step]+fund).midicps;\
+ 		vibrate = t;\
+ 		vibdepth = 0; (0.01,0.02..0.1).choose;\
+		dtune = 1e-3; \cf4 LFNoise0\cf2 .kr(t,0.02,1);\
+		cutoff = freq * (1.1,1.2..4).choose;\
+ 		ratio = (0.991,0.992..1.001).choose;	\
+ 		amp = 1;\
+	\
+ 		a = t/(1..3).choose;		\
+ 		r = t*(1,1.1..6.0).choose;\
+ 		fa = t/3.0.rand;\
+ 		fr = r*1.0.rand;\
+		\
+		play\{\
+			\cf3 var\cf2  env, fenv, sig, gate, vib;\
+			gate = \cf4 Line\cf2 .kr(1,0,t);\
+			env = \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(a/(2..20).choose,r),doneAction:2);\
+			fenv = \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(fa/(2..20).choose,fr));\
+			freq = \cf4 Line\cf2 .kr(freq,freq*ratio,t/(1,2..100).choose);\
+			vib = \cf4 SinOsc\cf2 .kr(vibrate).range(vibdepth.neg,vibdepth)+1;\
+			freq = vib*freq;				\
+			sig = \cf4 Saw\cf2 .ar([freq,freq*(1+dtune),freq*(1-dtune)]).sum;\
+			sig = sig.tanh * env;\
+			ffreq = max(fenv*freq*12,cutoff)+100;\
+			sig = \cf4 MoogFF\cf2 .ar(sig,ffreq,\cf4 LFNoise2\cf2 .kr(1/t,1.75,2)).tanh;\
+			sig = \cf4 HPF\cf2 .ar(sig,150);\
+			\cf4 Pan2\cf2 .ar(sig*amp,\cf4 LFNoise2\cf2 .kr(t.rand));\
+		\};\
+	t.wait;\
+	\};\
+\};\
+\
+numvoices.do\{\
+\cf0 	fork\{			\
+		loop\{\
+			\cf3 var\cf0  t = 2;\
+			\cf3 var\cf0  a,d,s,r,fa,fd,fs,fr,ratio,dtune,freq,\
+				ffreq,vibrate,vibdepth,cutoff,amp;\
+	 		freq = (scale.choose+fund+(12*(0..4).choose)).midicps;\
+	 		vibrate = t/(1..10).choose;\
+	 		vibdepth = (90..500).choose.reciprocal;\
+			dtune = 1e-3; \cf6 LFNoise0\cf0 .kr(t,0.02,1);\
+			cutoff = freq * (1.1,1.2..4).choose;\
+	 		ratio = (0.99,0.991..1.01).choose;	\
+	 		amp = 0.25.rand;\
+			\
+	 		a = t/3.rand;		\
+	 		s = t/3.rand;\
+	 		r = t*rrand(2,6);\
+	 		fa = t/3.rand;\
+	 		fs = t/3.rand;\
+	 		fr = t/3.rand;\
+			\
+			play\{\
+				\cf3 var\cf0  env, fenv, sig, gate, vib;\
+				gate = \cf6 Line\cf0 .kr(1,0,t);\
+				env = \cf6 EnvGen\cf0 .kr(\cf6 Env\cf0 .linen(a,s,r),doneAction:2);\
+				fenv = \cf6 EnvGen\cf0 .kr(\cf6 Env\cf0 .linen(fa,fs,fr));\
+				freq = \cf6 Line\cf0 .kr(freq,freq*ratio,t);\
+				vib = \cf6 SinOsc\cf0 .kr(vibrate).range(vibdepth.neg,vibdepth)+1;\
+				freq = vib*freq;			\
+				//freq = freq.lag(t);\
+				sig = \cf6 Select\cf0 .ar(2.rand,[\
+					\cf6 Pulse\cf0 .ar([freq,freq*(1+dtune),freq*(1-dtune)],\
+						\cf6 LFNoise2\cf0 .kr(t,0.5,0.5), 0.1).sum,\
+					\cf6 Saw\cf0 .ar([freq,freq*(1+dtune),freq*(1-dtune)]).sum\
+				]);\
+				sig = sig.tanh * env;\
+				ffreq = max(fenv*freq*12,cutoff)+100;\
+				sig = \cf6 MoogFF\cf0 .ar(sig,ffreq,\cf6 LFNoise2\cf0 .kr(1/t,1.4,1.5)).tanh;\
+				sig = \cf6 LPF\cf0 .ar(sig,1e4).tanh;\
+				\cf6 Pan2\cf0 .ar(sig*amp,\cf6 LFNoise2\cf0 .kr(t.rand));\
+			\};\
+			t.wait;\
+		\};\
+	\};\
+\cf2 \};\
+\
+\{\
+	\cf3 var\cf2  in = \cf4 In\cf2 .ar(0,2);\
+	in = \cf4 Compander\cf2 .ar(in,in,0.75,1,0.75,0.1,0.4);\
+	in = in.tanh + \cf4 GVerb\cf2 .ar(\cf4 HPF\cf2 .ar(in,100), 5, 0.25, mul:0.6).tanh;\
+	in = \cf4 Limiter\cf2 .ar(\cf4 LeakDC\cf2 .ar(in));		\
+	\cf4 ReplaceOut\cf2 .ar(0, in)\
+\}.play(addAction:\cf7 \\addToTail\cf2 );\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 )\
+\
+\
+\cf8 //Server.default = s = Server.internal.boot;\cf2 \
+}

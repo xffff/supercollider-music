@@ -1,0 +1,92 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red191\green0\blue0;\red0\green0\blue255;\red0\green0\blue191;
+}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf0 (\
+fork\{\
+	\cf2 // this is going to be a convoluted step seq\cf0 \
+	\cf3 var\cf0  i = 0;\
+	\
+	loop\{ \
+		\cf3 var\cf0  tempo, step;\
+		tempo = [\
+			(3,5..21).reciprocal.choose,\
+			1/11,\
+			1/7,\
+			1/5,\
+			1\
+		].wchoose([0.1,17,0.4,0.3,0.25].normalizeSum);\
+		\
+		i = i + 1;\
+		step = i % 16;\
+				\
+		play\{\
+			\cf2 // not sure I used all of these.\cf0 \
+			\cf3 var\cf0  scale, bdm, hh, sd, bd, bda, sda, hha, bdseq, sdseq, hhseq, reva, revb, rev,\
+				mix;\
+						\
+			scale = \cf4 Scale\cf0 .harmonicMinor.degrees+26;\
+			\
+			\cf2 // bd sequence\cf0 \
+			bdseq =[ \{2.rand\}.dup(16), \
+				[1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0]\
+			].choose;\
+			\
+			\cf2 // bd amp env\cf0 \
+			bda = \cf4 EnvGen\cf0 .kr(\cf4 Env\cf0 .perc(0.01,tempo*6.0.rand,bdseq[step]), doneAction: 2);\
+			\
+			\cf2 // bass freq modulation\cf0 \
+			bdm = \{\cf4 LFNoise2\cf0 .kr(tempo.rand,0.25,1)\}.dup;\
+			\
+			\cf2 // bd\cf0 \
+			bd = \cf4 LPF\cf0 .ar(\cf4 Pulse\cf0 .ar(scale.choose.midicps,0.5).distort*bdm,1e4.rand).sum * bda; \
+			bd = bd.tanh;\
+			5.do\{bd = \cf4 CombC\cf0 .ar(bd, 0.5, 0.1.rand, 5.0.rand)+bd\};\
+			5.do\{bd = \cf4 AllpassC\cf0 .ar(bd, 0.5, 0.1.rand, 5.0.rand)+bd\};\
+			\
+			\cf2 // sd seq\cf0 \
+			sdseq = [ [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], \
+				\{2.rand\}.dup(16) \
+			].choose;\
+			\
+			\cf2 // sd amp env\cf0 \
+			sda = \cf4 EnvGen\cf0 .kr(\cf4 Env\cf0 .perc(0.01,0.1,sdseq[step]));\
+\
+			\cf2 // sd\cf0 \
+			sd = \cf4 PinkNoise\cf0 .ar(2).distort * sda.lag(0.1.rand);\
+			5.do\{sd = \cf4 AllpassC\cf0 .ar(sd, 0.5, [0.25.rand,0.05.rand].choose, 1.5.rand)+sd\};\
+					\
+			\cf2 // hh seq\cf0 \
+			hhseq = [\{2.rand\}.dup(16),\
+				[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]\
+			].choose;\
+			\
+			\cf2 // hh amp env\cf0 \
+			hha = \cf4 EnvGen\cf0 .kr(\cf4 Env\cf0 .perc(0.01,0.01,hhseq[step]));\
+\
+			\cf2 // hh\cf0 \
+			hh = \cf4 HPF\cf0 .ar(\cf4 WhiteNoise\cf0 .ar(0.7),8000) * hha;\
+	\
+			\cf2 // drums together\cf0 \
+			mix = bd + sd + hh;\
+						\
+			\cf2 // rev\cf0 \
+			reva = \cf4 GVerb\cf0 .ar(mix,1.0.rand.max(0.1),1.0.rand).sum;\
+			revb = \cf4 GVerb\cf0 .ar(mix,1.0.rand.max(1),3.0.rand).sum;\
+			rev = \cf4 XFade2\cf0 .ar(reva,revb,\cf4 LFNoise0\cf0 .kr(tempo));\
+			\
+			\cf2 // pannnn\cf0 \
+			mix = \cf4 PanAz\cf0 .ar(2,rev,\cf4 LFNoise0\cf0 .kr(tempo*2));\
+			mix = \cf4 Limiter\cf0 .ar(mix);\
+			\
+			\cf2 // raussssss\cf0 \
+			\cf4 Out\cf0 .ar(0,mix.clip);\
+		\};\
+	tempo.wait;\
+	\};	\
+\}\
+)\
+\
+}

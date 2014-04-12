@@ -1,0 +1,205 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red191\green0\blue0;\red0\green0\blue191;
+\red0\green115\blue0;\red0\green0\blue255;\red96\green96\blue96;\red51\green51\blue191;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 (\
+\cf3 // SOSkick -------\cf2 \
+\cf3 // http://www.soundonsound.com/sos/jan02/articles/synthsecrets0102.asp\cf2 \
+\cf3 // increase mod_freq and mod_index for interesting electronic percussion\cf2 \
+\
+\cf4 SynthDef\cf2 (\cf5 \\SOSkick\cf2 ,\
+	\{ \cf6 arg\cf2  out = 0, freq = 50, mod_freq = 5, mod_index = 5, sustain = 0.4, amp = 0.8, beater_noise_level = 0.025;\
+	\cf6 var\cf2  pitch_contour, drum_osc, drum_lpf, drum_env;\
+	\cf6 var\cf2  beater_source, beater_hpf, beater_lpf, lpf_cutoff_contour, beater_env;\
+	\cf6 var\cf2  kick_mix;\
+	pitch_contour = \cf4 Line\cf2 .kr(freq*2, freq, 0.02);\
+	drum_osc = \cf4 PMOsc\cf2 .ar(	pitch_contour,\
+				mod_freq,\
+				mod_index/1.3,\
+				mul: 1,\
+				add: 0);\
+	drum_lpf = \cf4 LPF\cf2 .ar(in: drum_osc, freq: 1000, mul: 1, add: 0);\
+	drum_env = drum_lpf * \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.005, sustain), 1.0, doneAction: 2);\
+	beater_source = \cf4 WhiteNoise\cf2 .ar(beater_noise_level);\
+	beater_hpf = \cf4 HPF\cf2 .ar(in: beater_source, freq: 500, mul: 1, add: 0);\
+	lpf_cutoff_contour = \cf4 Line\cf2 .kr(6000, 500, 0.03);\
+	beater_lpf = \cf4 LPF\cf2 .ar(in: beater_hpf, freq: lpf_cutoff_contour, mul: 1, add: 0);\
+	beater_env = beater_lpf * \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc, 1.0, doneAction: 2);\
+	kick_mix = \cf4 Mix\cf2 .new([drum_env, beater_env]) * 2 * amp;\
+	\cf4 Out\cf2 .ar(out, [kick_mix, kick_mix])\
+	\}\
+	).add;\
+\
+\
+\cf3 // SOSsnare -------\cf2 \
+\cf3 // http://www.soundonsound.com/sos/Mar02/articles/synthsecrets0302.asp\cf2 \
+\
+\
+\cf4 SynthDef\cf2 (\cf5 \\SOSsnare\cf2 ,\
+	\{\cf6 arg\cf2  out = 0, sustain = 0.1, drum_mode_level = 0.25,\
+	snare_level = 40, snare_tightness = 1000,\
+	freq = 405, amp = 0.8;\
+	\cf6 var\cf2  drum_mode_sin_1, drum_mode_sin_2, drum_mode_pmosc, drum_mode_mix, drum_mode_env;\
+	\cf6 var\cf2  snare_noise, snare_brf_1, snare_brf_2, snare_brf_3, snare_brf_4, snare_reson;\
+	\cf6 var\cf2  snare_env;\
+	\cf6 var\cf2  snare_drum_mix;\
+\
+	drum_mode_env = \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.005, sustain), 1.0, doneAction: 2);\
+	drum_mode_sin_1 = \cf4 SinOsc\cf2 .ar(freq*0.53, 0, drum_mode_env * 0.5);\
+	drum_mode_sin_2 = \cf4 SinOsc\cf2 .ar(freq, 0, drum_mode_env * 0.5);\
+	drum_mode_pmosc = \cf4 PMOsc\cf2 .ar(	\cf4 Saw\cf2 .ar(freq*0.85),\
+					184,\
+					0.5/1.3,\
+					mul: drum_mode_env*5,\
+					add: 0);\
+	drum_mode_mix = \cf4 Mix\cf2 .new([drum_mode_sin_1, drum_mode_sin_2, drum_mode_pmosc]) * drum_mode_level;\
+\
+\cf3 // choose either noise source below\cf2 \
+\cf3 //	snare_noise = Crackle.ar(2.01, 1);\cf2 \
+	snare_noise = \cf4 LFNoise0\cf2 .ar(20000, 0.1);\
+	snare_env = \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.005, sustain), 1.0, doneAction: 2);\
+	snare_brf_1 = \cf4 BRF\cf2 .ar(in: snare_noise, freq: 8000, mul: 0.5, rq: 0.1);\
+	snare_brf_2 = \cf4 BRF\cf2 .ar(in: snare_brf_1, freq: 5000, mul: 0.5, rq: 0.1);\
+	snare_brf_3 = \cf4 BRF\cf2 .ar(in: snare_brf_2, freq: 3600, mul: 0.5, rq: 0.1);\
+	snare_brf_4 = \cf4 BRF\cf2 .ar(in: snare_brf_3, freq: 2000, mul: snare_env, rq: 0.0001);\
+	snare_reson = \cf4 Resonz\cf2 .ar(snare_brf_4, snare_tightness, mul: snare_level) ;\
+	snare_drum_mix = \cf4 Mix\cf2 .new([drum_mode_mix, snare_reson]) * 5 * amp;\
+	\cf4 Out\cf2 .ar(out, [snare_drum_mix, snare_drum_mix])\
+	\}\
+).add;\
+\
+\
+\cf3 // SOShats -------\cf2 \
+\cf3 // http://www.soundonsound.com/sos/Jun02/articles/synthsecrets0602.asp\cf2 \
+\
+\
+\cf4 SynthDef\cf2 (\cf5 \\SOShats\cf2 ,\
+	\{\cf6 arg\cf2  out = 0, freq = 6000, sustain = 0.1, amp = 0.8;\
+	\cf6 var\cf2  root_cymbal, root_cymbal_square, root_cymbal_pmosc;\
+	\cf6 var\cf2  initial_bpf_contour, initial_bpf, initial_env;\
+	\cf6 var\cf2  body_hpf, body_env;\
+	\cf6 var\cf2  cymbal_mix;\
+	\
+	root_cymbal_square = \cf4 Pulse\cf2 .ar(freq, 0.5, mul: 1);\
+	root_cymbal_pmosc = \cf4 PMOsc\cf2 .ar(root_cymbal_square,\
+					[freq*1.34, freq*2.405, freq*3.09, freq*1.309],\
+					[310/1.3, 26/0.5, 11/3.4, 0.72772],\
+					mul: 1,\
+					add: 0);\
+	root_cymbal = \cf4 Mix\cf2 .new(root_cymbal_pmosc);\
+	initial_bpf_contour = \cf4 Line\cf2 .kr(15000, 9000, 0.1);\
+	initial_env = \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.005, 0.1), 1.0);\
+	initial_bpf = \cf4 BPF\cf2 .ar(root_cymbal, initial_bpf_contour, mul:initial_env);\
+	body_env = \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.005, sustain, 1, -2), 1.0, doneAction: 2);\
+	body_hpf = \cf4 HPF\cf2 .ar(in: root_cymbal, freq: \cf4 Line\cf2 .kr(9000, 12000, sustain),mul: body_env, add: 0);\
+	cymbal_mix = \cf4 Mix\cf2 .new([initial_bpf, body_hpf]) * amp;\
+	\cf4 Out\cf2 .ar(out, [cymbal_mix, cymbal_mix])\
+	\}).add;\
+\
+\
+\cf3 // SOStom -------\cf2 \
+\cf3 // http://www.soundonsound.com/sos/Mar02/articles/synthsecrets0302.asp\cf2 \
+\
+\
+\cf4 SynthDef\cf2 (\cf5 \\SOStom\cf2 ,\
+	\{\cf6 arg\cf2  out = 0, sustain = 0.4, drum_mode_level = 0.25,\
+	freq = 90, drum_timbre = 1.0, amp = 0.8;\
+	\cf6 var\cf2  drum_mode_sin_1, drum_mode_sin_2, drum_mode_pmosc, drum_mode_mix, drum_mode_env;\
+	\cf6 var\cf2  stick_noise, stick_env;\
+	\cf6 var\cf2  drum_reson, tom_mix;\
+\
+	drum_mode_env = \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.005, sustain), 1.0, doneAction: 2);\
+	drum_mode_sin_1 = \cf4 SinOsc\cf2 .ar(freq*0.8, 0, drum_mode_env * 0.5);\
+	drum_mode_sin_2 = \cf4 SinOsc\cf2 .ar(freq, 0, drum_mode_env * 0.5);\
+	drum_mode_pmosc = \cf4 PMOsc\cf2 .ar(	\cf4 Saw\cf2 .ar(freq*0.9),\
+								freq*0.85,\
+								drum_timbre/1.3,\
+								mul: drum_mode_env*5,\
+								add: 0);\
+	drum_mode_mix = \cf4 Mix\cf2 .new([drum_mode_sin_1, drum_mode_sin_2, drum_mode_pmosc]) * drum_mode_level;\
+	stick_noise = \cf4 Crackle\cf2 .ar(2.01, 1);\
+	stick_env = \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.005, 0.01), 1.0) * 3;\
+	tom_mix = \cf4 Mix\cf2 .new([drum_mode_mix, stick_env]) * 2 * amp;\
+	\cf4 Out\cf2 .ar(out, [tom_mix, tom_mix])\
+	\}\
+).add;\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab560\ql\qnatural\pardirnatural
+\cf4 SynthDef\cf2 (\cf7 "tribe1"\cf2 , \{\
+	\cf6 |outBus = 0, midiFreq = 60, gate = 1.0, amp = 0.5, freqMult = 1,\
+	waveType = 0, modType = 0, modDepth = 0.0, modSpeed = 4.0, ampDecay = 0.1|\cf2 \
+	\
+	\cf6 var\cf2  freq, output, modEnvGen, ampEnvGen, pitchMod, white, waveFreq;\
+	\
+	freq = midiFreq.midicps * freqMult;\
+	white = \cf4 WhiteNoise\cf2 .ar;\
+	modEnvGen = \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.0001, modSpeed.reciprocal, 1, -6), gate);\
+	pitchMod = \
+		\cf4 Select\cf2 .kr(modType, \
+			[\
+			\cf4 LFSaw\cf2 .ar(modSpeed), \cf4 LFPulse\cf2 .ar(modSpeed), \
+			\cf4 LFTri\cf2 .ar(modSpeed), \cf4 Latch\cf2 .ar(white, \cf4 Impulse\cf2 .ar(modSpeed)), \
+			white,\
+			white * modEnvGen, modEnvGen\
+			]\
+		);\
+		\
+	waveFreq = (freq * (1 + (pitchMod * modDepth))).clip(40, \cf8 inf\cf2 );\
+	\
+	output = \
+		\cf4 Select\cf2 .ar(waveType, \
+			[\
+			\cf4 SinOsc\cf2 .ar(waveFreq),\
+			\cf4 LFTri\cf2 .ar(waveFreq)\
+			]\
+		);\
+	\
+	ampEnvGen = \cf4 EnvGen\cf2 .kr(\cf4 Env\cf2 .perc(0.0001, ampDecay, 1, -6), gate, doneAction:2);\
+	output = output * ampEnvGen * amp;\
+	\
+	\cf4 Out\cf2 .ar(outBus, output ! 2);\
+	\}\
+).add;\
+\
+\pard\pardeftab720\ql\qnatural
+\cf4 SynthDef\cf2 (\cf7 "sc303"\cf2 , \{ \cf6 | out=0, freq=440, wave=0, gate=0.5, ctf=100, res=0.2, sus=0, dec=1.0, env=1000, vol=0.2 |\cf2 \
+	\cf6 var\cf2  filEnv, volEnv, waves;\
+	volEnv = \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .new([10e-10, 1, 1, 10e-10], [0.01, sus, dec], \cf5 'exp'\cf2 ), gate, doneAction: 2);\
+	filEnv = \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .new([10e-10, 1, 10e-10], [0.01, dec], \cf5 'exp'\cf2 ), gate);\
+	waves = [\cf4 Saw\cf2 .ar(freq, volEnv).tanh, \cf4 Pulse\cf2 .ar(freq, 0.5, volEnv).tanh];\
+	\cf4 Out\cf2 .ar(out, \cf4 RLPF\cf2 .ar(\cf4 Select\cf2 .ar(wave, waves), ctf + (filEnv * env), res).dup * vol);\
+\}).add;\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf4 SynthDef\cf2 (\cf5 \\snare909\cf2 ,\{ \cf6 |out=0,mul=1,velocity=1,amp=1|\cf2  \
+\
+ \'a0\'a0 \'a0 \cf6 var\cf2  excitation, membrane; \
+ \'a0\'a0 \'a0 excitation = \cf4 LPF\cf2 .ar(\cf4 WhiteNoise\cf2 .ar(1), 7040, 1) * (0.1 + velocity); \
+ \'a0\'a0\'a0 \'a0membrane = ( \
+ \'a0\'a0 \'a0\cf3 /* Two simple enveloped oscillators represent the loudest resonances of the drum membranes */\cf2  \
+ \'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0(\cf4 LFTri\cf2 .ar(330,0,1) * \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.0005,0.055),doneAction:0) * 0.25) \
+ \'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 +(\cf4 LFTri\cf2 .ar(185,0,1) * \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.0005,0.075),doneAction:0) * 0.25) \
+\
+ \'a0\'a0 \'a0\cf3 /* Filtered white noise represents the snare */\cf2  \
+ \'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 +(excitation * \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.0005,0.4),doneAction:2) * 0.2) \
+ \'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 +(\cf4 HPF\cf2 .ar(excitation, 523, 1) * \cf4 EnvGen\cf2 .ar(\cf4 Env\cf2 .perc(0.0005,0.283),doneAction:0) * 0.2) \
+ \'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \
+ \'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0) * amp; \
+ \cf4 Out\cf2 .ar(out, membrane) \
+ \'a0\'a0\}).add;\
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf4 SynthDef\cf2 (\cf5 \\kick808\cf2 , \{ \cf6 | out = 0, dur = 1, freq = 60, decaytime = 0.5, cutoff = 500, amp = 0.25 |\cf2 \
+	\cf6 var\cf2  env = \cf4 Line\cf2 .kr(1,0,dur,doneAction:2);\
+	\cf4 Out\cf2 .ar(out,\
+		\cf4 LPF\cf2 .ar( \cf4 Ringz\cf2 .ar(\cf4 Impulse\cf2 .ar(1/dur), freq, decaytime ), cutoff ) * amp\
+	) \
+\}).add; \
+\pard\pardeftab720\ql\qnatural
+\cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 )}

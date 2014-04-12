@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue191;\red0\green0\blue0;\red0\green115\blue0;
+\red0\green0\blue255;\red191\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 SynthDef\cf3 ( \cf4 \\pluckString\cf3 , \{ \cf5 | amp, cps, dur, fdbkScl, plkPnt, out=0, bufnum = 0 |\cf3 \
+\
+        \cf5 var\cf3  signal, d1, d2, exciter, env, period, fdbk = 0, filterEnv, cntrlPeriod, block, p1, p2, p3, p4, p5, p6;\
+       \
+        \cf6 // subtract the duration of 1 control period from the delay length to correct the tuning\cf3 \
+      cntrlPeriod = \cf2 ControlRate\cf3 .ir;\
+    block = cntrlPeriod.reciprocal/2;  \cf6 // divide by 2; not sure why?  maybe because there are 2 delay lines?  This gives the correct pitch.\cf3 \
+       \
+        \cf6 // excitation signal -- think of this as a string that is being pulled at the plkPnt\cf3 \
+        period = cps.reciprocal;\
+        exciter = \cf2 EnvGen\cf3 .ar(\cf2 Env\cf3 .new([0,amp,0],[period*plkPnt, period*(1-plkPnt)],\cf4 'linear'\cf3 ), doneAction: 0);\
+        \cf6 // exciter = PlayBuf.ar(1, bufnum, doneAction: 0); // recording of a damped pluck on a real guitar\cf3 \
+       \
+        \cf6 // receives the feedback from LocalOut.ar()\cf3 \
+        fdbk = \cf2 LocalIn\cf3 .ar( 1 );\
+\
+        \cf6 // d1 models wave propagation to the right, d2 models wave propagation to the left;\cf3 \
+        \cf6 // When output d1 hits the end of the string, it reflects back as input to the second\cf3 \
+        \cf6 // filter (d2). The phase of the reflected signal is inverted and scaled by the feedback\cf3 \
+        \cf6 // coefficient modelling the loss of energy at reflection.\cf3 \
+       \
+        \cf6 // tuning is corrected by subtracting a control period from the delay time\cf3 \
+        d1 = \cf2 DelayC\cf3 .ar( exciter + fdbk, period-block, period-block );\
+        d2 = \cf2 DelayC\cf3 .ar( exciter + d1.neg, period-block, period-block ) * fdbkScl;\
+\
+        \cf6 // send signal back to input as feedback; the phase is again inverted after wave hits the bridge\cf3 \
+        \cf2 LocalOut\cf3 .ar( d2.neg );\
+\
+        \cf6 // attenuate harmonics depending on plckPnt\cf3 \
+        \cf6 // negative feedback coeff on Comb inverts the the frequency response,\cf3 \
+        \cf6 // creating "notches" instead of resonance peaks.\cf3 \
+\
+        \cf6 // commented out because it does not seem to be working correctly\cf3 \
+\cf6 	d2 = CombL.ar( d2, (cps/plkPnt).reciprocal,(cps/plkPnt).reciprocal, -0.005);\cf3 \
+\
+               \
+        \cf2 Out\cf3 .ar(out, [d2, d2]);\
+\}).add;\
+\cf0 \
+s.sendMsg(\\s_new, \\pluckString, -1,0,0, \\cps, 100.rand.midicps, \\amp, 0.1, \\dur, 16, \\fdbkScl, 0.994, \\plkPnt, 0.667); }

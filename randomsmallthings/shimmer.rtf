@@ -1,0 +1,147 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue191;\red191\green0\blue0;\red51\green51\blue191;
+\red0\green0\blue255;\red191\green0\blue0;\red0\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 Server\cf0 .default = s = \cf2 Server\cf0 .internal.boot;\
+\cf2 Server\cf0 .default.window;\
+\
+( \cf3 //wrong\cf0 \
+\{\
+\cf3 //	l=LocalIn.ar(2);\cf0 \
+	m=\cf2 LFNoise2\cf0 ;\
+	f=\{\cf2 Duty\cf0 .kr(\cf2 Drand\cf0 ((1,3..15),\cf4 inf\cf0 ),0,\cf2 Dseq\cf0 ([-12,-7,-5,-3,0,3,5,7,12],\cf4 inf\cf0 ))\}.dup(2);\
+	s=\cf2 PMOsc\cf0 .ar((f[0]+60).midicps,f*m.kr(0.01,7,8)**l,m.kr(0.1,2,4));\
+\cf3 //	s=s+l;\cf0 \
+	s=\cf2 Pan2\cf0 .ar(s, m.kr(0.1));\
+\cf3 //	6.do\{s=DelayC.ar(s,0.4,\{0.4.rand-ControlDur.ir\}.dup(2))\};\cf0 \
+\cf3 //	LocalOut.ar(HPF.ar(PitchShift.ar(s,0.2,f[1].midiratio!2)*0.75,30));\cf0 \
+	2.do\{s=\cf2 AllpassC\cf0 .ar(s,0.4,\{0.4.rand\}.dup(2),\{1.0.rand\}.dup(2))+s\};\
+	2.do\{s=\cf2 CombC\cf0 .ar(s,0.4,\{0.4.rand\}.dup(2),\{1.0.rand\}.dup(2))+s\};\
+\cf3 //	Limiter.ar(s,0.8,0.001);\cf0 \
+	s\
+\}.play;\
+)\
+\
+\{\cf2 SinOsc\cf0 .ar(442)\}.play;\
+\
+( \cf3 // wrong\cf0 \
+\{\
+	l=\cf2 LocalIn\cf0 .ar(2);\
+	\
+	s=\cf2 LPF\cf0 .ar(\cf2 Saw\cf0 .ar(60),120)+l;\
+	\
+	6.do\{s=\cf2 DelayC\cf0 .ar(s,0.4,\{0.4.rand-\cf2 ControlDur\cf0 .ir\}.dup(2))\};\
+	\
+	\cf2 LocalOut\cf0 .ar(\cf2 PitchShift\cf0 .ar(\cf2 HPF\cf0 .ar(\cf2 PitchShift\cf0 .ar(s,0.2,[-12,-7,7,12])*0.75,30)));\
+	\
+	s\
+\}.play;\
+)\
+\
+( \
+\{\
+	\cf5 var\cf0  freq, sound, filterenv, base, shift, lag, mod, lin;\
+	lin=\cf2 LocalIn\cf0 .ar(2);\
+	mod = \{\cf2 LFNoise2\cf0 .kr(0.01,0.01,1.0)\}.dup(2);\
+	lag = 0.5;\
+	base = (1,3..13);\
+	shift = \cf2 Duty\cf0 .kr(\cf2 Drand\cf0 (base,\cf4 inf\cf0 ),0,\cf2 Drand\cf0 (base.max(3),\cf4 inf\cf0 ));\
+	freq = \cf2 Duty\cf0 .kr(\cf2 Drand\cf0 (1/base,\cf4 inf\cf0 ),0,\cf2 Dseq\cf0 (base*.x(3,5..80),\cf4 inf\cf0 ));\
+	sound = \cf2 RLPF\cf0 .ar(\cf2 Saw\cf0 .ar(\cf2 Lag\cf0 .kr(freq*mod,lag)),\cf2 Lag\cf0 .kr(freq*shift+0.2,lag*1e9),0.2);\
+	sound = \cf2 Limiter\cf0 .ar(\
+		\cf2 GVerb\cf0 .ar(\
+			\cf2 PitchShift\cf0 .ar(\
+				lin,\
+				0.2,\
+				\cf2 Lag\cf0 .kr(shift,lag),\
+				\cf2 LFNoise2\cf0 .kr(0.01,0.09,0.1),\
+				\cf2 LFNoise2\cf0 .kr(0.01,0.09,0.1)\
+			),\
+			7,20\
+		) * \
+		0.25+sound,\
+		0.1\
+	);\
+	\cf2 LocalOut\cf0 .ar(sound);\
+	sound = \cf2 HPF\cf0 .ar(sound,30);\
+	sound = \cf2 XFade2\cf0 .ar(sound,sound.distort,\cf2 LFNoise2\cf0 .kr(0.01));\
+	sound = sound * 0.1;\
+	sound = \cf2 LPF\cf0 .ar(sound, 6000);\
+	sound = \cf2 GVerb\cf0 .ar(sound.tanh,15,20);	\
+\}.play;\
+)\
+\
+( \
+\{\
+	\cf5 var\cf0  freq, sound, filterenv, base, shift, lag, mod, lin, distortedsound;\
+	mod = \{\cf2 LFNoise2\cf0 .kr(0.01,0.01,1.0)\}.dup(2);\
+	lag = 0.5;\
+	base = (1,3..13);\
+	shift = \cf2 Duty\cf0 .kr(\cf2 Drand\cf0 (base,\cf4 inf\cf0 ),0,\cf2 Drand\cf0 (base.max(3),\cf4 inf\cf0 ));\
+	freq = \cf2 Duty\cf0 .kr(\cf2 Drand\cf0 (1/base++base,\cf4 inf\cf0 ),0,\cf2 Drand\cf0 (base*.x(3,5..12),\cf4 inf\cf0 ));\
+	sound = \cf2 PMOsc\cf0 .ar(freq*mod,freq*\cf2 LFNoise2\cf0 .kr(0.01,2,4),\cf2 LFNoise2\cf0 .ar(0.01,4,8));\
+	sound = \cf2 Limiter\cf0 .ar(\
+		\cf2 GVerb\cf0 .ar(\
+			\cf2 PitchShift\cf0 .ar(\
+				\cf2 LocalIn\cf0 .ar(2),\
+				0.2,\
+				\cf2 Lag\cf0 .kr(shift,lag),\
+				\cf2 LFNoise2\cf0 .kr(0.01,0.09,0.1),\
+				\cf2 LFNoise2\cf0 .kr(0.01,0.09,0.1)\
+			),\
+			7,20\
+		)*LFNoise2.kr(0.01,0.5,0.5)+sound\
+	);\
+	\cf2 LocalOut\cf0 .ar(sound);\
+	sound = \cf2 HPF\cf0 .ar(sound,30);\
+	distortedsound = sound;\
+	10.do\{distortedsound = (distortedsound.distort + distortedsound) * 0.6\};\
+	sound = \cf2 XFade2\cf0 .ar(sound, distortedsound, LFNoise2.kr(0.01,0.5,0.5));\
+\cf6 //	sound = XFade2.ar(sound,sound.distort,LFNoise2.kr(0.01));\cf7 \
+\cf0 	sound = sound * 0.1;\
+\cf3 //	sound = LPF.ar(sound, 6000);\cf0 \
+	sound = \cf2 GVerb\cf0 .ar(sound.tanh,15,20);	\
+\}.play;\
+)\
+\
+(\
+\{ \cf3 // simplest shimmer\cf0 \
+	\cf5 var\cf0  shimmersound, sound, lin, mod, distortedsound;\
+	mod = \cf2 LFNoise2\cf0 .kr(0.1);\
+	shimmersound = \cf2 DC\cf0 .ar(0); \cf3 // just init this so gverb deosn't complain\cf0 \
+	sound = \cf2 RLPF\cf0 .ar(\cf2 Saw\cf0 .ar(30*\{mod.range(0.75,1.15)\}.dup(2),),mod.range(50,1000),0.2);\
+	sound = sound * \{mod.range(0.0,1.0)\}.dup(2);\
+	lin = \cf2 LocalIn\cf0 .ar(2);\
+	shimmersound = \cf2 GVerb\cf0 .ar(shimmersound,20,20);\
+	shimmersound = \cf2 PitchShift\cf0 .ar(lin,0.2,mod.range(1.9,2.1),1e-3); \
+	shimmersound = \cf2 Limiter\cf0 .ar(shimmersound)*0.75;\
+	\cf2 LocalOut\cf0 .ar(shimmersound+sound);\
+	sound = \cf2 GVerb\cf0 .ar(shimmersound*0.2,15,15);\
+	distortedsound = sound;\
+	10.do\{distortedsound = (distortedsound.distort + distortedsound) * 0.6\};\
+	sound = \cf2 XFade2\cf0 .ar(sound, distortedsound, mod);\
+	\cf2 Limiter\cf0 .ar(sound)\
+\}.play;\
+)\
+\
+(\
+\{ \cf3 // simplest shimmer\cf0 \
+	\cf5 var\cf0  shimmersound, sound, lin, mod, distortedsound;\
+	mod = \cf2 LFNoise2\cf0 .kr(0.1);\
+\cf3 //	shimmersound = DC.ar(0); // just init this so gverb deosn't complain\cf0 \
+	sound = \cf2 RLPF\cf0 .ar(\cf2 Saw\cf0 .ar(30*\{mod.range(0.75,1.15)\}.dup(2),),mod.range(50,1000),0.2);\
+	sound = sound * \{mod.range(0.0,1.0)\}.dup(2);\
+	lin = \cf2 LocalIn\cf0 .ar(2);\
+	shimmersound = \cf2 GVerb\cf0 .ar(\cf2 PitchShift\cf0 .ar(lin,0.2,mod.range(1.9,2.1),1e-3),20,20);\
+\cf3 //	shimmersound = PitchShift.ar(lin,0.2,mod.range(1.9,2.1),1e-3); \cf0 \
+	shimmersound = \cf2 Limiter\cf0 .ar(shimmersound)*0.75;\
+	\cf2 LocalOut\cf0 .ar(shimmersound+sound);\
+	sound = \cf2 GVerb\cf0 .ar(shimmersound*0.2,15,15);\
+\cf3 //	distortedsound = sound;\cf0 \
+\cf3 //	10.do\{distortedsound = (distortedsound.distort + distortedsound) * 0.6\};\cf0 \
+\cf3 //	sound = XFade2.ar(sound, distortedsound, mod);\cf0 \
+	\cf2 Limiter\cf0 .ar(sound)\
+\}.play;\
+)}

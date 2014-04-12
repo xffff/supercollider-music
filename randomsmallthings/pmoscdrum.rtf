@@ -1,0 +1,86 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red0\green0\blue191;
+\red51\green51\blue191;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 (\
+	play\{\
+		\cf3 var\cf2  times, trigs, scale, kick, snare, hat, ride, envs, out, rev, osc, filters;\
+		scale = \cf4 Scale\cf2 .minorPentatonic.degrees+26;\
+		times = 8!4;		\
+		trigs = \cf4 Impulse\cf2 .kr([\
+			times[0],\
+			times[1],\
+			times[2],\
+			times[3]\
+		]);		\
+		envs = \cf4 Array\cf2 .fill(4,\{ \cf3 | i |\cf2  \
+			\cf4 EnvGen\cf2 .kr(\
+				\cf4 Env\cf2 .perc(times[i]*0.001,\
+					times[i]*\cf4 LFNoise0\cf2 .kr(times[i]).range(0.001,0.1),\
+					\cf4 LFNoise0\cf2 .kr(times[i]).round(1)*\cf4 LFNoise0\cf2 .kr(times[i]).abs\
+				),\
+				trigs[i]\
+			)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 		\});						\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 		kick = [\
+			\cf4 Demand\cf2 .kr(trigs[0],0,\cf4 Drand\cf2 (scale+(12*(0..2)).midicps,\cf5 inf\cf2 )),\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 			\cf4 Demand\cf2 .kr(trigs[0],0,\cf4 Drand\cf2 (scale+(12*(0..4)).midicps,\cf5 inf\cf2 )),\
+			\cf4 Demand\cf2 .kr(trigs[0],0,\cf4 Drand\cf2 ((0..25),\cf5 inf\cf2 )),\
+			\cf4 Demand\cf2 .kr(trigs[0],0,\cf4 Drand\cf2 ((0..360).degrad,\cf5 inf\cf2 ))\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 		];\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 		snare = [\
+			\cf4 Demand\cf2 .kr(trigs[1],0,\cf4 Drand\cf2 (scale+(12*(0..4)).midicps,\cf5 inf\cf2 )),\
+			\cf4 Demand\cf2 .kr(trigs[1],0,\cf4 Drand\cf2 (scale+(12*(0..20)).midicps,\cf5 inf\cf2 )),\
+			\cf4 Demand\cf2 .kr(trigs[1],0,\cf4 Drand\cf2 ((0..50),\cf5 inf\cf2 )),\
+			\cf4 Demand\cf2 .kr(trigs[1],0,\cf4 Drand\cf2 ((0..360).degrad,\cf5 inf\cf2 ))\
+		];\
+		hat = [\
+			\cf4 Demand\cf2 .kr(trigs[2],0,\cf4 Drand\cf2 (scale+(12*(0..6)).midicps,\cf5 inf\cf2 )),\
+			\cf4 Lag\cf2 .kr(\cf4 Demand\cf2 .kr(trigs[2],0,\cf4 Drand\cf2 (scale+(12*(0..20)).midicps,\cf5 inf\cf2 )),times[2]),\
+			\cf4 Demand\cf2 .kr(trigs[2],0,\cf4 Drand\cf2 ((0..100),\cf5 inf\cf2 )),\
+			\cf4 Demand\cf2 .kr(trigs[2],0,\cf4 Drand\cf2 ((0..360).degrad,\cf5 inf\cf2 ))\
+		];\
+		ride = [\
+			\cf4 Lag\cf2 .kr(\cf4 Demand\cf2 .kr(trigs[3],0,\cf4 Drand\cf2 (scale+(12*(0..8)).midicps,\cf5 inf\cf2 )),times[3]*\cf4 LFNoise0\cf2 .kr(times[3],0.5,0.5)*0.1),\
+			\cf4 Demand\cf2 .kr(trigs[3],0,\cf4 Drand\cf2 (scale+(12*(0..60)).midicps,\cf5 inf\cf2 )),\
+			Lag.kr(\cf4 Demand\cf2 .kr(trigs[3],0,\cf4 Drand\cf2 ((0..200),\cf5 inf\cf2 )),times[3]),\
+			\cf4 Demand\cf2 .kr(trigs[3],0,\cf4 Drand\cf2 ((0..360).degrad,\cf5 inf\cf2 ))\
+		];		\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 		\
+		out = \cf4 SplayAz\cf2 .ar(2,\
+			\cf4 RLPF\cf2 .ar(\
+				\cf4 PMOsc\cf2 .ar(\
+					[kick[0],snare[0],hat[0],ride[0]],\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 					[kick[1],snare[1],hat[1],ride[1]],\
+					[kick[2],snare[2],hat[2],ride[2]],\
+					[kick[3],snare[3],hat[3],ride[3]]\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 				)*envs,\
+				[kick[0]*(envs[0]+1)*\cf4 LFNoise2\cf2 .kr(times[0].reciprocal).range(1,8),\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 				snare[0]*(envs[1]+1)*\cf4 LFNoise2\cf2 .kr(times[1].reciprocal).range(2,4),\
+				hat[0]*(envs[2]+1)*\cf4 LFNoise2\cf2 .kr(times[2].reciprocal).range(4,6),\
+				ride[0]*(envs[3]+1)*\cf4 LFNoise2\cf2 .kr(times[3].reciprocal).range(1,8)],\
+				\cf4 LFNoise2\cf2 .kr(times).range(0.2,1.0)\
+			),\
+			center: LFNoise2.kr(0.1)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 		);\
+		\
+		out = \cf4 Limiter\cf2 .ar(out);\
+		\
+		rev = \cf4 GVerb\cf2 .ar(out,20,0.2);\
+		\
+		out = rev + out * 0.25;\
+	\};\
+)\
+}

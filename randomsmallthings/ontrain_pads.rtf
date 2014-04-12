@@ -1,0 +1,49 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue191;\red0\green0\blue255;\red51\green51\blue191;
+}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf0 s.boot;\
+\
+\
+\{\cf2 SinOsc\cf0 .ar(442)\}.play;\
+\
+(\
+	4.do\{\
+		\{\
+			\cf3 var\cf0  freqs = ([0,3,7,14].perfectShuffle.clumps(\{(1..4).choose\}.dup(4))+\
+				\cf2 Duty\cf0 .kr(\cf2 Drand\cf0 ((2,4..10),\cf4 inf\cf0 ),0,\cf2 Drand\cf0 (\cf2 Drand\cf0 ((20,27..80),\cf4 inf\cf0 )))).midicps;\
+			\cf3 var\cf0  ffreqs = \{\cf2 SinOsc\cf0 .ar(0.2.rand).range(freqs[0]*1.1,1e3)\}.dup(4);\
+			\cf3 var\cf0  mods = \{\cf2 LFNoise2\cf0 .ar(0.25.rand,1e-2,1)\}.dup(4);\
+			\cf3 var\cf0  delays = \{\{0.4.rand\}.dup(10)\}.dup(3);\
+			\cf3 var\cf0  decays = \{\{10.0.rand\}.dup(10)\}.dup(2);\
+			\
+			\cf2 Splay\cf0 .ar(\
+				\cf2 AllpassC\cf0 .ar(\
+					\cf2 CombC\cf0 .ar(\
+						\cf2 DelayC\cf0 .ar(\
+							\cf2 RLPF\cf0 .ar(\
+								\cf2 Select\cf0 .ar(\{2.rand\}.dup(3),[\
+									\cf2 LFSaw\cf0 .ar(freqs*mods,0,0.1),\
+									\cf2 SinOscFB\cf0 .ar(freqs*mods,(mods-1)*10,0.1)\
+								]),\
+								ffreqs,\
+								0.5\
+							),\
+						0.25,\
+						delays[0]\
+						),\
+					0.4,\
+					delays[1],\
+					decays[0]\
+					),\
+				0.4,\
+				delays[2],\
+				decays[1]\
+				)\
+			)*0.5\
+		\}.play;\
+	\}\
+)\
+}

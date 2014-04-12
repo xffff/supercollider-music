@@ -1,0 +1,48 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue191;\red0\green115\blue0;
+\red0\green0\blue191;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 s.boot;\
+\
+\cf3 SynthDef\cf2 (\cf4 \\fmosc\cf2 , \{ \cf3 |freq=440, dur=0.5, env=1000, ctf=100, res=0.2, amp=0.5, mod=0, idx=1, atk=0.1, sus=1, dec=5.0, rel=1.0 |\cf2 \
+	\cf3 var\cf2  fenv, venv, sound, gate, rev;\
+	gate = \cf3 Line\cf2 .kr(1.0,0.0,atk+dec+rel);\
+	venv=\cf3 EnvGen\cf2 .ar(\cf3 Env\cf2 .adsr(atk,dec,sus,rel),gate,doneAction:2);\
+	fenv=\cf3 EnvGen\cf2 .ar(\cf3 Env\cf2 .new([10e-10,1,10e-10],[atk,dec],\cf4 'exp'\cf2 ));\
+	sound = \cf3 PMOsc\cf2 .ar(freq,mod,idx)*venv;\
+	sound = \cf3 RLPF\cf2 .ar(sound,ctf+(env*fenv),res);\
+	//rev = sound\
+	//9.do\{rev=\cf3 AllpassC\cf2 .ar(rev,0.05,[0.05.rand,0.05.rand],0.5)\};\
+	//sound = sound + rev;\
+	sound = \cf3 Pan2\cf2 .ar(sound,\cf3 Rand\cf2 (-1,1));\
+	\cf3 Out\cf2 .ar(0,sound*amp)\
+	\}).add;\
+	\
+\cf3 Pdef\cf2 (\cf4 \\a\cf2 ,\cf3 Pbind\cf2 (\cf4 \\instrument\cf2 , \cf4 \\fmosc\cf2 ,\
+\cf4 \\freq\cf2 ,\cf3 50*Ptuple([\
+	Pseq((1..16),inf)\cf2 ,\
+	\cf5 Pseq((1..16),inf)+4\cf0 ,\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf5 	Pseq((1..16),inf)+8\cf0 ,\
+\cf5 	Pseq((1..16),inf)+16\cf0 ,\cf2 \
+	],inf),\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf4 \\dur\cf2 , 1/8,\
+\cf4 \\amp\cf2 , 0.25,\
+\cf4 \\mod\cf2 , \cf3 0\cf2 ,\
+\cf4 \\idx\cf2 , 0,\
+\cf4 \\ctf\cf2 , \cf5 Prand((10..1000),inf)\cf2 ,\
+\cf4 \\env\cf2 , \cf5 Prand((10..1000),inf)\cf2 ,\
+\cf4 \\atk\cf2 , \cf0 0.01\cf2 ,\
+\cf4 \\sus\cf2 , 0.5,\
+\cf4 \\dec\cf2 , \cf0 0.1\cf2 ,\
+\cf4 \\rel\cf2 , 0.25\
+))\
+\
+\cf3 Pdef\cf2 (\cf4 \\a\cf2 ).play;\
+\
+\cf3 Env\
+\
+Help.gui;}

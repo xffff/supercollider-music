@@ -1,0 +1,174 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue191;\red0\green0\blue0;\red96\green96\blue96;
+\red0\green115\blue0;\red0\green0\blue191;\red0\green115\blue0;}
+\deftab560
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab560\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf2 SynthDef\cf3 (\cf4 "tribe1"\cf3 , \{\
+	\cf2 |outBus = 0, midiFreq = 60, gate = 1.0, amp = 0.5, freqMult = 1,\
+	waveType = 0, modType = 0, modDepth = 0.0, modSpeed = 4.0, ampDecay = 0.1|\cf3 \
+	\
+	\cf2 var\cf3  freq, output, modEnvGen, ampEnvGen, pitchMod, white, waveFreq;\
+	\
+	freq = midiFreq.midicps * freqMult;\
+	white = \cf2 WhiteNoise\cf3 .ar;\
+	modEnvGen = \cf2 EnvGen\cf3 .kr(\cf2 Env\cf3 .perc(0.0001, modSpeed.reciprocal, 1, -6), gate);\
+	pitchMod = \
+		\cf2 Select\cf3 .kr(modType, \
+			[\
+			\cf2 LFSaw\cf3 .ar(modSpeed), \cf2 LFPulse\cf3 .ar(modSpeed), \
+			\cf2 LFTri\cf3 .ar(modSpeed), \cf2 Latch\cf3 .ar(white, \cf2 Impulse\cf3 .ar(modSpeed)), \
+			white,\
+			white * modEnvGen, modEnvGen\
+			]\
+		);\
+		\
+	waveFreq = (freq * (1 + (pitchMod * modDepth))).clip(40, \cf2 inf\cf3 );\
+	\
+	output = \
+		\cf2 Select\cf3 .ar(waveType, \
+			[\
+			\cf2 SinOsc\cf3 .ar(waveFreq),\
+			\cf2 LFTri\cf3 .ar(waveFreq)\
+			]\
+		);\
+	\
+	ampEnvGen = \cf2 EnvGen\cf3 .kr(\cf2 Env\cf3 .perc(0.0001, ampDecay, 1, -6), gate, doneAction:2);\
+	output = output * ampEnvGen * amp;\
+	\
+	\cf2 Out\cf3 .ar(outBus, output ! 2);\
+	\}\
+).add;\
+\
+\
+\cf2 Pdef\cf3 (\cf5 \\a\cf3 ,\cf2 Pbind\cf3 (\cf5 \\instrument\cf3 , \cf5 \\tribe1\cf3 ,\
+	\cf5 \\midiFreq\cf3 , \cf2 Prand\cf3 (\cf2 Scale\cf3 .minorPentatonic.degrees,\cf2 inf\cf3 )+30+\cf2 Prand\cf3 ([12,24,36],\cf2 inf\cf3 ),\
+	\cf5 \\dur\cf3 , \cf2 Prand\cf3 ([\cf2 Pn\cf3 (1/4,2),1/2],\cf2 inf\cf3 ),\
+	\cf5 \\freqMult\cf3 , 1,\
+	\cf5 \\modSpeed\cf3 , \cf2 Prand\cf3 ((1..10),\cf2 inf\cf3 ),\
+	\cf5 \\modDepth\cf3 , \cf2 Prand\cf3 ((1..10)/500,\cf2 inf\cf3 ),\
+	\cf5 \\modType\cf3 , \cf2 Prand\cf3 ((0..2),\cf2 inf\cf3 ),\
+	\cf5 \\waveType\cf3 , 0,\
+	\cf5 \\amp\cf3 , \cf2 Pwrand\cf3 ([0,1],[0.1,0.9],\cf2 inf\cf3 ),\
+	\cf5 \\ampDecay\cf3 , \cf2 Prand\cf3 ((1..3),\cf2 inf\cf3 )\
+));\
+\
+\cf2 Pdef\cf3 (\cf5 \\b\cf3 ,\cf2 Pbind\cf3 (\cf5 \\instrument\cf3 , \cf5 \\tribe1\cf3 ,\
+	\cf5 \\midiFreq\cf3 , \cf2 Prand\cf3 (\cf2 Scale\cf3 .minorPentatonic.degrees,\cf2 inf\cf3 )+37+\cf2 Prand\cf3 ([36,48],\cf2 inf\cf3 ),\
+	\cf5 \\dur\cf3 , \cf2 Prand\cf3 ([\cf2 Pn\cf3 (1/4,2),1/2],\cf2 inf\cf3 ),\
+	\cf5 \\freqMult\cf3 , 1,\
+	\cf5 \\modSpeed\cf3 , \cf2 Prand\cf3 ((1..10),\cf2 inf\cf3 ),\
+	\cf5 \\modDepth\cf3 , \cf2 Prand\cf3 ((1..10)/500,\cf2 inf\cf3 ),\
+	\cf5 \\modType\cf3 , \cf2 Prand\cf3 ((0..2),\cf2 inf\cf3 ),\
+	\cf5 \\waveType\cf3 , 0,\
+	\cf5 \\amp\cf3 , \cf2 Pwrand\cf3 ([0,1],[0.1,0.9],\cf2 inf\cf3 ),\
+	\cf5 \\ampDecay\cf3 , \cf2 Prand\cf3 ((1..3),\cf2 inf\cf3 )\
+));\
+\
+\cf2 Pdef\cf3 (\cf5 \\a\cf3 ).play(quant:1);\
+\
+\cf2 Pdef\cf3 (\cf5 \\b\cf3 ).play(quant:1.5);\
+\
+\cf2 Pdef\cf3 (\cf5 \\c\cf3 ,\cf2 Pbind\cf3 (\cf5 \\instrument\cf3 , \cf5 \\tribe1\cf3 ,\
+	\cf5 \\midiFreq\cf3 , \cf2 Ptuple\cf3 ([\
+		\cf2 Prand\cf3 (\cf2 Scale\cf3 .majorPentatonic.degrees,\cf2 inf\cf3 )+20+\cf2 Prand\cf3 ([0,12,24,36],\cf2 inf\cf3 ),\
+		\cf2 Prand\cf3 (\cf2 Scale\cf3 .minorPentatonic.degrees,\cf2 inf\cf3 )+34+\cf2 Prand\cf3 ([0,12,24,36],\cf2 inf\cf3 ),\
+		\cf2 Prand\cf3 (\cf2 Scale\cf3 .majorPentatonic.degrees,\cf2 inf\cf3 )+44+\cf2 Prand\cf3 ([0,12,24,36],\cf2 inf\cf3 ),\
+		\cf2 Prand\cf3 (\cf2 Scale\cf3 .minorPentatonic.degrees,\cf2 inf\cf3 )+46+\cf2 Prand\cf3 ([0,12,24,36],\cf2 inf\cf3 ),\
+	],\cf2 inf\cf3 ),\
+	\cf5 \\dur\cf3 , \cf2 Prand\cf3 ([\cf2 Pn\cf3 (1/4,2),1/2],\cf2 inf\cf3 ),\
+	\cf5 \\freqMult\cf3 , 1,\
+	\cf5 \\modSpeed\cf3 , \cf2 Prand\cf3 ((1..10),\cf2 inf\cf3 ),\
+	\cf5 \\modDepth\cf3 , \cf2 Prand\cf3 ((1..10)/10,\cf2 inf\cf3 ),\
+	\cf5 \\modType\cf3 , 5,\
+	\cf5 \\waveType\cf3 , \cf2 Pwrand\cf3 ([0,1],[0.25,0.75],\cf2 inf\cf3 ),\
+	\cf5 \\amp\cf3 , \cf2 Pwrand\cf3 ([0,0.1],[0.1,0.9],\cf2 inf\cf3 ),\
+	\cf5 \\ampDecay\cf3 , \cf2 Prand\cf3 ((1..10),\cf2 inf\cf3 )\
+));\
+\
+\cf2 Pdef\cf3 (\cf5 \\c\cf3 ).play(quant:1);\
+\
+\cf2 Pdef\cf3 (\cf5 \\c\cf3 ).stop;\
+\
+\cf2 Pdef\cf3 (\cf5 \\a\cf3 ).stop;\cf2 Pdef\cf3 (\cf5 \\b\cf3 ).stop;\
+\
+\cf2 Pdef\cf3 (\cf5 \\c\cf3 ,\cf2 Pbind\cf3 (\cf5 \\instrument\cf3 , \cf5 \\tribe1\cf3 ,\
+	\cf5 \\midiFreq\cf3 , Ptuple([\
+		\cf2 Pseq\cf3 (\cf2 Scale\cf3 .pelog.degrees,\cf2 inf\cf3 )+50+\cf2 Pstutter\cf3 (\cf2 Scale\cf3 .pelog.degrees.size,\cf2 Prand\cf3 ([0,12,24],inf)),\
+\cf0 		\cf6 Pseq\cf0 (\cf6 Scale\cf0 .pelog.degrees,\cf6 inf,4\cf0 )+50+\cf6 Pstutter\cf0 (\cf6 Scale\cf0 .pelog.degrees.size,\cf6 Prand\cf0 ([0,12,24],inf)),\
+		\cf6 Pseq\cf0 (\cf6 Scale\cf0 .pelog.degrees,\cf6 inf,4\cf0 )+50+\cf6 Pstutter\cf0 (\cf6 Scale\cf0 .pelog.degrees.size,\cf6 Prand\cf0 ([0,12,24,36],inf)),\
+		\cf6 Pseq\cf0 (\cf6 Scale\cf0 .pelog.degrees,\cf6 inf,4\cf0 )+50+\cf6 Pstutter\cf0 (\cf6 Scale\cf0 .pelog.degrees.size,\cf6 Prand\cf0 ([0,12,24,36],inf)),\
+\cf3 		],inf),\
+	\\dur, Prand([Pn(1/3,3),\cf0 Pn(\cf3 1/5,5),\cf0 Pn(\cf3 1/7,7)],inf),\
+	\cf5 \\freqMult\cf3 , 1,\
+	\cf5 \\modSpeed\cf3 , 10,\
+	\cf5 \\modDepth\cf3 , Prand((0..10)/10,inf),\
+	\cf5 \\modType\cf3 , 6,\
+	\cf5 \\waveType\cf3 , 0,\
+	\cf5 \\amp\cf3 , 0.1,\
+	\cf5 \\ampDecay\cf3 , Prand((5..50)/10,inf)\
+));\
+\
+\
+Pdef(\\c).clear;\
+\
+\
+(\
+\cf6 Pdef\cf0 (\cf7 \\d\cf0 ,\cf6 Pbind\cf0 (\cf7 \\instrument\cf0 , \cf7 \\tribe1\cf0 ,\
+	\cf7 \\midiFreq\cf0 , \cf6 Prand\cf0 (\cf6 Scale\cf0 .pelog.degrees,\cf6 inf,4\cf0 )+50+\cf6 Pstutter\cf0 (\cf6 Scale\cf0 .pelog.degrees.size,\cf6 Prand\cf0 ([0,12,24],inf)),\
+	\\dur, 1/4,\
+	\cf7 \\freqMult\cf0 , 1,\
+	\cf7 \\modSpeed\cf0 , 10,\
+	\cf7 \\modDepth\cf0 , 0,\
+	\cf7 \\modType\cf0 , 6,\
+	\cf7 \\waveType\cf0 , 0,\
+	\cf7 \\amp\cf0 , 0.1,\
+	\cf7 \\ampDecay\cf0 , Prand((5..50)/10,inf)\
+));\
+\
+\cf6 Pdef\cf0 (\cf7 \\e\cf0 ,\cf6 Pbind\cf0 (\cf7 \\instrument\cf0 , \cf7 \\tribe1\cf0 ,\
+	\cf7 \\midiFreq\cf0 , \cf6 Pseq\cf0 (\cf6 Scale\cf0 .pelog.degrees,\cf6 inf,4\cf0 )+50+\cf6 Pstutter\cf0 (\cf6 Scale\cf0 .pelog.degrees.size,\cf6 Prand\cf0 ([0,12,24],inf)),\
+	\\dur, Prand([Pn(1/3,3),Pn(1/5,5),Pn(1/7,7)],inf),\
+	\cf7 \\freqMult\cf0 , 1,\
+	\cf7 \\modSpeed\cf0 , 0,\
+	\cf7 \\modDepth\cf0 , Prand((0..10)/10,inf),\
+	\cf7 \\modType\cf0 , 6,\
+	\cf7 \\waveType\cf0 , 0,\
+	\cf7 \\amp\cf0 , 0.1,\
+	\cf7 \\ampDecay\cf0 , Prand((5..50)/10,inf)\
+));\
+\
+\cf6 Pdef\cf0 (\cf7 \\f\cf0 ,\cf6 Pbind\cf0 (\cf7 \\instrument\cf0 , \cf7 \\tribe1\cf0 ,\
+	\cf7 \\midiFreq\cf0 , \cf6 Prand\cf0 (\cf6 Scale\cf0 .pelog.degrees,\cf6 inf,4\cf0 )+50+\cf6 Pstutter\cf0 (\cf6 Scale\cf0 .pelog.degrees.size,\cf6 Prand\cf0 ([0,12,24,36],inf)),\
+	\\dur, 1/8,\
+	\cf7 \\freqMult\cf0 , 1,\
+	\cf7 \\modSpeed\cf0 , 10,\
+	\cf7 \\modDepth\cf0 , 0,\
+	\cf7 \\modType\cf0 , 6,\
+	\cf7 \\waveType\cf0 , 0,\
+	\cf7 \\amp\cf0 , 0.1,\
+	\cf7 \\ampDecay\cf0 , Prand((5..50)/10,inf)\
+));\
+\
+\cf6 Pdef\cf0 (\cf7 \\g\cf0 ,\cf6 Pbind\cf0 (\cf7 \\instrument\cf0 , \cf7 \\tribe1\cf0 ,\
+	\cf7 \\midiFreq\cf0 , \cf6 Pseq\cf0 (\cf6 Scale\cf0 .pelog.degrees,\cf6 inf,4\cf0 )+50+\cf6 Pstutter\cf0 (\cf6 Scale\cf0 .pelog.degrees.size,\cf6 Prand\cf0 ([0,12,24,36],inf)),\
+	\\dur, Prand([Pn(1/3,3),Pn(1/5,5),Pn(1/7,7)],inf),\
+	\cf7 \\freqMult\cf0 , 1,\
+	\cf7 \\modSpeed\cf0 , 0,\
+	\cf7 \\modDepth\cf0 , Prand((0..10)/10,inf),\
+	\cf7 \\modType\cf0 , 6,\
+	\cf7 \\waveType\cf0 , 0,\
+	\cf7 \\amp\cf0 , 0.1,\
+	\cf7 \\ampDecay\cf0 , Prand((5..50)/10,inf)\
+));\
+)\
+\
+(\
+\cf6 Pdef\cf0 (\cf7 \\d\cf0 ).play(quant:1);\
+\cf6 Pdef\cf0 (\cf7 \\e\cf0 ).play(quant:1);\
+\cf6 Pdef\cf0 (\cf7 \\f\cf0 ).play(quant:1);\
+\cf6 Pdef\cf0 (\cf7 \\g\cf0 ).play(quant:1);\
+)\
+\
+Pdef(\\d).stop;Pdef(\\e).stop;Pdef(\\f).stop;Pdef(\\g).stop;}
